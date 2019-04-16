@@ -1,0 +1,542 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Relational Dependency Networks · Statistics and Beyond</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-image-captions/image-captions.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchor-navigation-ex/style/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    
+    <link rel="prev" href="NeuralODE.html" />
+    
+
+    <style>
+    @media only screen and (max-width: 640px) {
+        .book-header .hidden-mobile {
+            display: none;
+        }
+    }
+    </style>
+    <script>
+        window["gitbook-plugin-github-buttons"] = {"buttons":[{"user":"ZizouHe","repo":"Statistics-and-More","type":"star","size":"small"}]};
+    </script>
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../contents/already.html">
+            
+                <a href="../contents/already.html">
+            
+                    
+                    Finished List
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../contents/DL.html">
+            
+                <a href="../contents/DL.html">
+            
+                    
+                    Deep Learning
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../contents/ML.html">
+            
+                <a href="../contents/ML.html">
+            
+                    
+                    Statistical Learning/Machine Learning
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="../contents/stat.html">
+            
+                <a href="../contents/stat.html">
+            
+                    
+                    Traditional Statistics
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="../contents/opt.html">
+            
+                <a href="../contents/opt.html">
+            
+                    
+                    Computational Maths and Optimization
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.5" data-path="../contents/CS.html">
+            
+                <a href="../contents/CS.html">
+            
+                    
+                    General CS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.6" data-path="../contents/DS.html">
+            
+                <a href="../contents/DS.html">
+            
+                    
+                    General Data Science
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.7" data-path="../contents/book.html">
+            
+                <a href="../contents/book.html">
+            
+                    
+                    Books
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../contents/reading.html">
+            
+                <a href="../contents/reading.html">
+            
+                    
+                    Reading List
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../contents/DLing.html">
+            
+                <a href="../contents/DLing.html">
+            
+                    
+                    Deep Learning
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../contents/MLing.html">
+            
+                <a href="../contents/MLing.html">
+            
+                    
+                    Statistical Learning/Machine Learning
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../contents/stating.html">
+            
+                <a href="../contents/stating.html">
+            
+                    
+                    Traditional Statistics
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="../contents/opting.html">
+            
+                <a href="../contents/opting.html">
+            
+                    
+                    Computational Maths and Optimization
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5" data-path="../contents/booking.html">
+            
+                <a href="../contents/booking.html">
+            
+                    
+                    Books
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../contents/notes.html">
+            
+                <a href="../contents/notes.html">
+            
+                    
+                    Notes
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="NeuralODE.html">
+            
+                <a href="NeuralODE.html">
+            
+                    
+                    Neural ODE
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.4.2" data-path="RDN.html">
+            
+                <a href="RDN.html">
+            
+                    
+                    Relational Dependency Networks
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Relational Dependency Networks</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h2 id="relational-dependency-networks"><a name="relational-dependency-networks" class="anchor-navigation-ex-anchor" href="#relational-dependency-networks"><i class="fa fa-link" aria-hidden="true"></i></a><a name="relational-dependency-networks" class="plugin-anchor" href="#relational-dependency-networks"><i class="fa fa-link" aria-hidden="true"></i></a>Relational Dependency Networks</h2>
+<ul>
+<li><p><a href="http://www.jmlr.org/papers/volume8/neville07a/neville07a.pdf" target="_blank">Neville, J., &amp; Jensen, D. (2007). Relational dependency networks. Journal of Machine Learning Research, 8(Mar), 653-692.</a></p>
+</li>
+<li><p><a href="https://github.com/jpfeiffe/rmllib" target="_blank">Relational Machine Learning Library (RMLLib)</a></p>
+</li>
+</ul>
+<h3 id="summary"><a name="summary" class="anchor-navigation-ex-anchor" href="#summary"><i class="fa fa-link" aria-hidden="true"></i></a><a name="summary" class="plugin-anchor" href="#summary"><i class="fa fa-link" aria-hidden="true"></i></a>Summary</h3>
+<p>Model the data using the idea of relational database and consider the autocorrelation between instances. The learning algorithm is novel, learning the CPDs based on the query that can return local sub-graphs. The learning algorithm can also produce dependency which interprets the relation between attributes. The inference process utilize the Gibbs sampler. However, it does not have the property like Markov network that the product of CPD is indeed the joint distribution, which is a trade-off between theoretical guarantee and cyclical network that describe wider connection between attributes.</p>
+<h3 id="structure-of-the-network"><a name="structure-of-the-network" class="anchor-navigation-ex-anchor" href="#structure-of-the-network"><i class="fa fa-link" aria-hidden="true"></i></a><a name="structure-of-the-network" class="plugin-anchor" href="#structure-of-the-network"><i class="fa fa-link" aria-hidden="true"></i></a>Structure of the network</h3>
+<p>Instead of consider independent instance case, RDN consider there are dependency (autocorrelation) among instances and therefore construct a whole large graph connected all instances (by connecting their attributes).</p>
+<p>The relational data set is represented as a typed, attributed data graph <script type="math/tex; ">G_D = (V_D,E_D)</script>. Consider the data graph in Figure 1(a). The nodes <script type="math/tex; ">V_D</script> represent objects in the data (e.g.,
+authors, papers) and the edges <script type="math/tex; ">E_D</script> represent relations among the objects (e.g., author-of, cites). Each node <script type="math/tex; ">v_i \in V_D</script> and edge <script type="math/tex; ">e_j \in E_D</script> is associated with a type, <script type="math/tex; ">T(v_i) = t_{v_i}</script> and <script type="math/tex; ">T(e_j) = t_{e_j}</script> (e.g., paper, cited-by). Each item type <script type="math/tex; ">t \in T</script> has a number of associated attributes <script type="math/tex; ">\boldsymbol{X}^t = (X^1_t , ..., X_m^t)</script> (e.g., topic, year). Consequently, each object <script type="math/tex; ">v_i</script> and link <script type="math/tex; ">e_j</script> is associated with a set of attribute values
+determined by their type, <script type="math/tex; ">\boldsymbol{X}_{v_i}^{t_{v_i}} = (X_{v_i}^{t_{v_i}1} , \ldots, X_{v_i}^{t_{v_i}m})</script> and <script type="math/tex; ">\boldsymbol{X}_{e_j}^{t_{e_j}} = (X_{e_j}^{t_{e_j}1} , \ldots, X_{e_j}^{t_{e_j}m'})</script>. A PRM represents a joint distribution over the values of the attributes in the data graph,</p>
+<p><script type="math/tex; mode=display">
+\boldsymbol{x}=\left\{\boldsymbol{x}_{\boldsymbol{v}_{\boldsymbol{i}}}^{\boldsymbol{t}_{\boldsymbol{v}_{\boldsymbol{i}}}}:v_{i} \in V \text{ s.t. }T(v_{i})=t_{v_{i}}\right\} \cup \left\{\boldsymbol{x}_{\boldsymbol{e}_{j}}^{\boldsymbol{t}_{\boldsymbol{e}_{\boldsymbol{j}}}}:e_{j} \in E \text{ s.t. } T(e_{j})=t_{e_{j}} \right\}
+</script></p>
+<figure id="fig1.4.2.1"><img src="pic/RDN-1.png" alt="Example (a) data graph and (b) model graph."><figcaption class="right">Figure 1. Example (a) data graph and (b) model graph.</figcaption></figure>
+<p>The network is represented by the product of conditional probability distributions (CPD) of one node given its parents. There are a few things need to be clarified:</p>
+<ul>
+<li><p>Since RDN is a cyclical graph, the product of CPD does not necessarily be the joint distribution, but under some conditions, it is quite close to the joint one.</p>
+</li>
+<li><p>In practice, the parents of one node is not given exhaustedly, moreover, we use query from relational database to return a local network for each node and condition on them.</p>
+</li>
+<li><p>Many machine learning algorithms can reveal the dependency of the variables, i.e. from the local network queried, to select the nodes that are parents of one node.</p>
+</li>
+</ul>
+<h3 id="rdn-learning"><a name="rdn-learning" class="anchor-navigation-ex-anchor" href="#rdn-learning"><i class="fa fa-link" aria-hidden="true"></i></a><a name="rdn-learning" class="plugin-anchor" href="#rdn-learning"><i class="fa fa-link" aria-hidden="true"></i></a>RDN learning</h3>
+<p>The pseudo-likelihood for data graph $G_D$ is computed as a product over the item types $t$, the attributes of that type $X_t$, and the items of that type $v,e$:</p>
+<p><script type="math/tex; mode=display">
+PL\left(G_{D} ; \theta\right) = \prod_{t \in T} \prod_{X_{i}^{t}\in \mathbf{X}^{t}}\prod_{v:T(v)=t} p\left(x_{v_i}^{t} | pa_{x_{v_i}^{t}};\theta\right)\prod_{e:T(e)=t}p\left(x_{e_i}^{t}|pa_{x_{e_i}^{t}};\theta\right)
+</script></p>
+<p>here $\theta$ may not be an explicit set of parameters, but implicit structure like tree. Therefore, we can maximize CPD for every node to maximize pseudo-likelihood:</p>
+<p><script type="math/tex; mode=display">
+\prod_{v:T(v)=t} p\left(x_{v_i}^{t} | pa_{x_{v_i}^{t}};\theta\right) \; \text{and} \; \prod_{e:T(e)=t}p\left(x_{e_i}^{t}|pa_{x_{e_i}^{t}};\theta\right)
+</script></p>
+<p>using some learners like <em>Relational Bayesian Classifiers</em> as well as <em>Relational Probability Trees</em>. After we maximize the pseudo-likelihood, we also learn the dependency among the nodes, like model graph in Figure 1(b).</p>
+<h3 id="rdn-inference"><a name="rdn-inference" class="anchor-navigation-ex-anchor" href="#rdn-inference"><i class="fa fa-link" aria-hidden="true"></i></a><a name="rdn-inference" class="plugin-anchor" href="#rdn-inference"><i class="fa fa-link" aria-hidden="true"></i></a>RDN inference</h3>
+<p>For some unknown nodes, we can use Gibbs sampling to make the inference. We first assign all unknown nodes a prior probability and draw from this prior distribution. Then, for each unknown node, we can randomly draw one sample from its CPD we have learned above. The empirical marginal and joint distribution can be calculated from the samples we draw from the Gibbs sampler.</p>
+<figure id="fig1.4.2.2"><img src="pic/RDN-2.png" alt="RDN inference algorithm."><figcaption class="right">Figure 2. RDN inference algorithm.</figcaption></figure>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="NeuralODE.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Neural ODE">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Relational Dependency Networks","level":"1.4.2","depth":2,"previous":{"title":"Neural ODE","level":"1.4.1","depth":2,"path":"notes/NeuralODE.md","ref":"./notes/NeuralODE.md","articles":[]},"dir":"ltr"},"config":{"plugins":["mathjax","image-captions","github","anchors","anchor-navigation-ex","-sharing","sharing-plus@^0.0.2","github-buttons","embed-pdf"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"github":{"url":"https://github.com/ZizouHe/"},"search":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":false},"mode":"float","multipleH1":false,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":true},"github-buttons":{"buttons":[{"user":"ZizouHe","repo":"Statistics-and-More","type":"star","size":"small"}]},"mathjax":{"forceSVG":false,"version":"2.6-latest"},"sharing":{"qq":true,"all":["facebook","google","twitter","weibo","qq","linkedin"],"douban":false,"facebook":true,"weibo":true,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":false,"messenger":false,"line":false,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"embed-pdf":{},"image-captions":{"caption":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","align":"right","variable_name":"_pictures"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{"_pictures":[{"backlink":"./notes/RDN.html#fig1.4.2.1","level":"1.4.2","align":"right","list_caption":"Figure: Example (a) data graph and (b) model graph.","alt":"Example (a) data graph and (b) model graph.","nro":1,"url":"./pic/RDN-1.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Example (a) data graph and (b) model graph.","attributes":{},"skip":false,"key":"1.4.2.1"},{"backlink":"./notes/RDN.html#fig1.4.2.2","level":"1.4.2","align":"right","list_caption":"Figure: RDN inference algorithm.","alt":"RDN inference algorithm.","nro":2,"url":"./pic/RDN-2.png","index":2,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"RDN inference algorithm.","attributes":{},"skip":false,"key":"1.4.2.2"}]},"title":"Statistics and Beyond","gitbook":"*"},"file":{"path":"notes/RDN.md","mtime":"2019-04-03T03:12:45.408Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-04-16T05:01:01.660Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="https://cdn.mathjax.org/mathjax/2.6-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-mathjax/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing-plus/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github-buttons/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

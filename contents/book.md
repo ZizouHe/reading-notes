@@ -18,4 +18,4 @@
 
 ## CS
 
-1. Mining of Massive Datasets
+1. Mining of Massive Datasets (chapter 3)

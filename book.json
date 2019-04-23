@@ -1,5 +1,5 @@
 {
-    "title": "Statistics and Beyond",
+    "title": "Reading List & Notes",
     "plugins": [
         "mathjax",
         "image-captions",
@@ -56,7 +56,7 @@
         "github-buttons": {
               "buttons": [{
                 "user": "ZizouHe",
-                "repo": "Statistics-and-More",
+                "repo": "reading-notes",
                 "type": "star",
                 "size": "small"
               }]

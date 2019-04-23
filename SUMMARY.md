@@ -17,3 +17,4 @@
 * [Notes](./contents/notes.md)
 	* [Neural ODE](./notes/NeuralODE.md)
 	* [Relational Dependency Networks](./notes/RDN.md)
+	* [Latent Dirichlet Allocation](./notes/LDA.md)

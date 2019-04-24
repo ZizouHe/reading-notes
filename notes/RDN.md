@@ -1,14 +1,14 @@
-## Relational Dependency Networks
+# Relational Dependency Networks
 
 - [Neville, J., & Jensen, D. (2007). Relational dependency networks. Journal of Machine Learning Research, 8(Mar), 653-692.](http://www.jmlr.org/papers/volume8/neville07a/neville07a.pdf)
 
 - [Relational Machine Learning Library (RMLLib)](https://github.com/jpfeiffe/rmllib)
 
-### Summary
+## Summary
 
 Model the data using the idea of relational database and consider the autocorrelation between instances. The learning algorithm is novel, learning the CPDs based on the query that can return local sub-graphs. The learning algorithm can also produce dependency which interprets the relation between attributes. The inference process utilize the Gibbs sampler. However, it does not have the property like Markov network that the product of CPD is indeed the joint distribution, which is a trade-off between theoretical guarantee and cyclical network that describe wider connection between attributes.
 
-### Structure of the network
+## Structure of the network
 
 Instead of consider independent instance case, RDN consider there are dependency (autocorrelation) among instances and therefore construct a whole large graph connected all instances (by connecting their attributes).
 
@@ -32,13 +32,13 @@ The network is represented by the product of conditional probability distributio
 
 ### RDN learning
 
-The pseudo-likelihood for data graph $G_D$ is computed as a product over the item types $t$, the attributes of that type $X_t$, and the items of that type $v,e$:
+The pseudo-likelihood for data graph $$G_D$$ is computed as a product over the item types $$t$$, the attributes of that type $$X_t$$, and the items of that type $$v,e$$:
 
 $$
 PL\left(G_{D} ; \theta\right) = \prod_{t \in T} \prod_{X_{i}^{t}\in \mathbf{X}^{t}}\prod_{v:T(v)=t} p\left(x_{v_i}^{t} | pa_{x_{v_i}^{t}};\theta\right)\prod_{e:T(e)=t}p\left(x_{e_i}^{t}|pa_{x_{e_i}^{t}};\theta\right)
 $$
 
-here $\theta$ may not be an explicit set of parameters, but implicit structure like tree. Therefore, we can maximize CPD for every node to maximize pseudo-likelihood:
+here $$\theta$$ may not be an explicit set of parameters, but implicit structure like tree. Therefore, we can maximize CPD for every node to maximize pseudo-likelihood:
 
 $$
 \prod_{v:T(v)=t} p\left(x_{v_i}^{t} | pa_{x_{v_i}^{t}};\theta\right) \; \text{and} \; \prod_{e:T(e)=t}p\left(x_{e_i}^{t}|pa_{x_{e_i}^{t}};\theta\right)

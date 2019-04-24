@@ -1,5 +1,11 @@
 # Books
 
+## CS
+
+1. Mining of Massive Datasets (chapter 3)
+
+## Maths
+
 ## Statistics
 
 1. MIT notes on High Dimensional Stat (Full)
@@ -11,11 +17,3 @@
 4. Bayesian Data Analysis (chapter 10-12)
 
 5. Counterfactuals and Causal Inference (chapter 1-7)
-
-
-## Maths
-
-
-## CS
-
-1. Mining of Massive Datasets (chapter 3)

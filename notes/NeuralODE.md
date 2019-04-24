@@ -1,10 +1,10 @@
-## Neural Ordinary Differential Equations
+# Neural Ordinary Differential Equations
 
 - [Chen, T. Q., Rubanova, Y., Bettencourt, J., & Duvenaud, D. K. (2018). Neural ordinary differential equations. In Advances in Neural Information Processing Systems (pp. 6572-6583).](http://papers.nips.cc/paper/7892-neural-ordinary-differential-equations.pdf)
 
 - [Author's code](https://github.com/rtqichen/torchdiffeq/)
 
-### Summary
+## Summary
 
 - **Memory efficiency**: Not storing any intermediate quantities of the forward pass allows us to train our models with constant memory cost as a function of depth, a major bottleneck of training deep models.
 
@@ -14,7 +14,7 @@
 
 - **Scalable and invertible normalizing flows**: the change of variables formula becomes easier to compute therefore it can avoid the single-unit bottleneck of normalizing flows, and can be trained directly by maximum likelihood.
 
-### Feedforward structure
+## Feedforward structure
 
 This paper introduce a new family of deep neural network models. Instead of a series of discrete hidden layer, as
 
@@ -30,7 +30,7 @@ $$
 
 Therefore, the traditional network can be seen as this function $$f ( \mathbf { h } ( t ) , t , \theta )$$. And the feedforward step can be solved by a black-box differential equation solver.
 
-### Backpropogate scheme
+## Backpropogate scheme
 
 The backpropogation step is as follows. Consider the loss function,
 

@@ -1,1 +1,1 @@
-# Computational Maths and Optimization
+# Numerical and Optimization

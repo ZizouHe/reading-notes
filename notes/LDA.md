@@ -1,15 +1,15 @@
-## Latent Dirichlet Allocation
+# Latent Dirichlet Allocation
 
 - [Blei, D. M., Ng, A. Y., & Jordan, M. I. (2003). Latent dirichlet allocation. Journal of machine Learning research, 3(Jan), 993-1022.](http://www.jmlr.org/papers/volume3/blei03a/blei03a.pdf)
 
 - Python: ```sklearn.decomposition.LatentDirichletAllocation```.
 
-### Summary
+## Summary
 
 This paper presents a generative probabilistic model for collections of discrete data such as text corpora. LDA is a three-level hierarchical Bayesian model with topics as latent variable. The parameter estimation and inference tasks can be made via a combination of variational method and EM algorithm.
 
 
-### Structure
+## Structure
 
 We define:
 
@@ -42,7 +42,7 @@ $$
 p(\mathbf{D} | \alpha, \beta) =\prod_{d=1}^{M} \int p\left(\theta_{d} | \alpha\right)\left(\prod_{n=1}^{N_{d}} \sum_{z_{d n}} p\left(z_{d n} | \theta_{d}\right) p\left(w_{d n} | z_{d n}, \beta\right)\right) d \theta_{d}
 $$
 
-### Learning and Inference
+## Learning and Inference
 
 The key inferential problem that we need to solve in order to use LDA is that of computing the posterior distribution of the hidden variables given a document:
 

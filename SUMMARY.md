@@ -20,5 +20,6 @@
 	* [Neural ODE](./notes/NeuralODE.md)
 	* [Relational Dependency Networks](./notes/RDN.md)
 	* [LDA](./notes/LDA.md)
-	* [KSD for Goodness-of-fit Tests](./notes/KSD_test.md)	
+	* [KSD for Goodness-of-fit Tests](./notes/KSD_test.md)
 	* [LTK Goodness-of-Fit Test](./notes/LTK_test.md)
+	* [Sample Complexity Bounds for Gaussian Mixtures](./notes/GaussMixCompress.md)

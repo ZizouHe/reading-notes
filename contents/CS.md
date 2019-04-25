@@ -7,3 +7,7 @@
 3. Spark SQL: Relational Data Processing in Spark
 4. Spark: Cluster Computing with Working Sets
 5. Dremel: Interactive Analysis of Web-Scale Datasets
+
+## Compression Schemes
+
+1. [Near-optimal Sample Complexity Bounds for Robust Learning of Gaussians Mixtures via Compression Schemes](../notes/GaussMixCompress.html)

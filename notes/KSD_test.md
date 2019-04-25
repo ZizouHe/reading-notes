@@ -57,30 +57,29 @@ $$
 
 The distribution of $$\hat{S}(p, q)$$ can be well characterized using the theory of $$U$$-statistics,
 
-**Theorem.** Let $$k\left(x, x^{\prime}\right)$$ be a positive definite kernel in
-the Stein class of $$p$$ and $$q$$. With some mild conditions, and $$\mathbb{E}_{x, x^{\prime} \sim p}\left[u_{q}\left(x, x^{\prime}\right)^{2}\right]<\infty$$ we have
+**Theorem.** *Let $$k\left(x, x^{\prime}\right)$$ be a positive definite kernel in the Stein class of $$p$$ and $$q$$. With some mild conditions, and $$\mathbb{E}_{x, x^{\prime} \sim p}\left[u_{q}\left(x, x^{\prime}\right)^{2}\right]<\infty$$ we have*
 
-- If $$p \neq q$$, then $$\hat{\mathrm{S}}_{u}(p, q)$$ is asymptotically normal with
+- *If $$p \neq q$$, then $$\hat{\mathrm{S}}_{u}(p, q)$$ is asymptotically normal with*
 
 $$
 \sqrt{n}\left(\hat{\mathbb{S}}_{u}(p, q)-\mathbb{S}(p, q)\right) \stackrel{d}{\rightarrow} \mathcal{N}\left(0, \sigma_{u}^{2}\right)
 $$
 
-where $$\sigma_{u}^{2}=\operatorname{var}_{x \sim p}\left(\mathbb{E}_{x^{\prime} \sim p}\left[u_{q}\left(x, x^{\prime}\right)\right]\right)$$ and $$\sigma_{u}^{2} \neq 0$$
+*where $$\sigma_{u}^{2}=\operatorname{var}_{x \sim p}\left(\mathbb{E}_{x^{\prime} \sim p}\left[u_{q}\left(x, x^{\prime}\right)\right]\right)$$ and $$\sigma_{u}^{2} \neq 0$$*
 
-- If $$p=q$$, then we have $$\sigma_{u}^{2}=0$$ (the $$U$$-statistics is degenerate) and
+- *If $$p=q$$, then we have $$\sigma_{u}^{2}=0$$ (the $$U$$-statistics is degenerate) and*
 
 $$
 n \hat{\mathrm{S}}_{u}(p, q) \stackrel{d}{\rightarrow} \sum_{j=1}^{\infty} c_{j}\left(Z_{j}^{2}-1\right)
 $$
 
-where $$\left\{Z_{j}\right\}$$ are i.i.d. standard Gaussian random variables, and $$\left\{c_{j}\right\}$$ are the eigenvalues of kernel $$u_{q}\left(x, x^{\prime}\right)$$ under $$p(x)$$ that is, they are the solutions of
+*where $$\left\{Z_{j}\right\}$$ are i.i.d. standard Gaussian random variables, and $$\left\{c_{j}\right\}$$ are the eigenvalues of kernel $$u_{q}\left(x, x^{\prime}\right)$$ under $$p(x)$$ that is, they are the solutions of*
 
 $$
 c_{j} \phi_{j}(x)= \int_{x^{\prime}} u_{q}\left(x, x^{\prime}\right) \phi_{j}\left(x^{\prime}\right) p\left(x^{\prime}\right) d x^{\prime}
 $$
 
-for non-zero $$\phi_{j}$$.
+*for non-zero $$\phi_{j}$$.*
 
 
 The above theorem allows us to reduce the testing of $$p=q$$ to the following hypothesis testing.

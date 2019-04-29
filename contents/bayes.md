@@ -10,6 +10,7 @@
 ## MCMC
 
 1. MCMC using Hamiltonian dynamics
+2. [A Complete Recipe for Stochastic Gradient MCMC](../notes/SGMCMC.html)
 
 ## Variational Autoencoder
 

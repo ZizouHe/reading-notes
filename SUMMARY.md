@@ -23,3 +23,6 @@
 	* [KSD for Goodness-of-fit Tests](./notes/KSD_test.md)
 	* [LTK Goodness-of-Fit Test](./notes/LTK_test.md)
 	* [Sample Complexity Bounds for Gaussian Mixtures](./notes/GaussMixCompress.md)
+	* [A Complete Recipe for SGMCMC](./notes/SGMCMC.md)
+	* [Sharpe Minima Can Generalize](./notes/Sharpe_Minima_Works.md)
+	* [Large Batch Training and Sharpe Minima](./notes/Sharpe_Minima_Exp.md)

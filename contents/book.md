@@ -2,7 +2,7 @@
 
 ## CS
 
-1. Mining of Massive Datasets (chapter 3)
+1. Mining of Massive Datasets (chapter 3, 9)
 
 ## Maths
 

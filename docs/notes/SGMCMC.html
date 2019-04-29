@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>LDA · Reading List & Notes</title>
+        <title>A Complete Recipe for SGMCMC · Reading List & Notes</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -70,10 +70,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="KSD_test.html" />
+    <link rel="next" href="Sharpe_Minima_Works.html" />
     
     
-    <link rel="prev" href="RDN.html" />
+    <link rel="prev" href="GaussMixCompress.html" />
     
 
     <style>
@@ -386,7 +386,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.4.3" data-path="LDA.html">
+        <li class="chapter " data-level="1.4.3" data-path="LDA.html">
             
                 <a href="LDA.html">
             
@@ -438,7 +438,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.7" data-path="SGMCMC.html">
+        <li class="chapter active" data-level="1.4.7" data-path="SGMCMC.html">
             
                 <a href="SGMCMC.html">
             
@@ -512,7 +512,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >LDA</a>
+        <a href=".." >A Complete Recipe for SGMCMC</a>
     </h1>
 </div>
 
@@ -527,64 +527,41 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon "></span><a href="#latent-dirichlet-allocation"><b> </b>Latent Dirichlet Allocation</a></li><ul><li><span class="title-icon "></span><a href="#summary"><b>1. </b>Summary</a></li><li><span class="title-icon "></span><a href="#structure"><b>2. </b>Structure</a></li><li><span class="title-icon "></span><a href="#learning-and-inference"><b>3. </b>Learning and Inference</a></li></ul></ul></div><a href="#latent-dirichlet-allocation" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h1 id="latent-dirichlet-allocation"><a name="latent-dirichlet-allocation" class="anchor-navigation-ex-anchor" href="#latent-dirichlet-allocation"><i class="fa fa-link" aria-hidden="true"></i></a> Latent Dirichlet Allocation</h1>
+                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon "></span><a href="#a-complete-recipe-for-stochastic-gradient-mcmc"><b> </b>A Complete Recipe for Stochastic Gradient MCMC</a></li><ul><li><span class="title-icon "></span><a href="#summary"><b>1. </b>Summary</a></li><li><span class="title-icon "></span><a href="#a-stochastic-gradient-mcmc-framework"><b>2. </b>A Stochastic Gradient MCMC Framework</a></li><li><span class="title-icon "></span><a href="#practical-algorithms-and-discussions"><b>3. </b>Practical Algorithms and Discussions</a></li><ul><li><span class="title-icon "></span><a href="#varepsilon-discretization-update"><b>3.1. </b>\varepsilon-discretization Update</a></li><li><span class="title-icon "></span><a href="#construct-samplers-with-proposed-framework"><b>3.2. </b>Construct Samplers with Proposed Framework</a></li></ul></ul></ul></div><a href="#a-complete-recipe-for-stochastic-gradient-mcmc" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h1 id="a-complete-recipe-for-stochastic-gradient-mcmc"><a name="a-complete-recipe-for-stochastic-gradient-mcmc" class="anchor-navigation-ex-anchor" href="#a-complete-recipe-for-stochastic-gradient-mcmc"><i class="fa fa-link" aria-hidden="true"></i></a> A Complete Recipe for Stochastic Gradient MCMC</h1>
 <ul>
-<li><p><a href="http://www.jmlr.org/papers/volume3/blei03a/blei03a.pdf" target="_blank">Blei, D. M., Ng, A. Y., &amp; Jordan, M. I. (2003). Latent dirichlet allocation. Journal of machine Learning research, 3(Jan), 993-1022.</a></p>
+<li><p><a href="http://papers.nips.cc/paper/5891-a-complete-recipe-for-stochastic-gradient-mcmc.pdf" target="_blank">Ma, Y. A., Chen, T., &amp; Fox, E. (2015). A complete recipe for stochastic gradient MCMC. In Advances in Neural Information Processing Systems (pp. 2917-2925).</a></p>
 </li>
-<li><p>Python: <code>sklearn.decomposition.LatentDirichletAllocation</code>.</p>
+<li><p>For an introduction to MCMC, see <a href="https://zizouhe.github.io/stats-and-beyond/contents/MC.html" target="_blank">my notes/Monte Carlo Sampling</a>.</p>
 </li>
 </ul>
 <h2 id="summary"><a name="summary" class="anchor-navigation-ex-anchor" href="#summary"><i class="fa fa-link" aria-hidden="true"></i></a>1. Summary</h2>
-<p>This paper presents a generative probabilistic model for collections of discrete data such as text corpora. LDA is a three-level hierarchical Bayesian model with topics as latent variable. The parameter estimation and inference tasks can be made via a combination of variational method and EM algorithm.</p>
-<h2 id="structure"><a name="structure" class="anchor-navigation-ex-anchor" href="#structure"><i class="fa fa-link" aria-hidden="true"></i></a>2. Structure</h2>
-<p>We define:</p>
-<ul>
-<li>A word is the basic unit of discrete data, defined to be an item from a vocabulary indexed by <script type="math/tex; ">\{1, .\ldots , V \}</script>. We encode words with one-hot coding.</li>
-<li>A document is a sequence of <script type="math/tex; ">N</script> words denoted by <script type="math/tex; ">\mathbf{w} = (w_1,w_2, \ldots ,w_N)</script>, where <script type="math/tex; ">w_n</script> is the <script type="math/tex; ">n</script>th word in the sequence.</li>
-<li>A corpus is a collection of <script type="math/tex; ">M</script> documents denoted by <script type="math/tex; ">\mathbf{D} = \{\mathbf{w}_1, \mathbf{w}_2, \ldots , \mathbf{w}_M\}</script>.</li>
-</ul>
-<p>LDA assumes the following generative process for each document <script type="math/tex; ">\mathbf{w}</script> in a corpus <script type="math/tex; ">\mathbf{D}</script>:</p>
-<ol>
-<li>Choose <script type="math/tex; ">N \sim \operatorname{Poisson}(\xi)</script>.</li>
-<li>Choose <script type="math/tex; ">\theta \sim \operatorname{Dir}(\alpha)</script>. <strong>The dimension of this Dirichlet distribution is assumed known and fixed.</strong></li>
-<li>For each of the <script type="math/tex; ">N</script> words <script type="math/tex; ">w_n</script>:
- (a) Choose a topic <script type="math/tex; ">z_{n} \sim \text { Multinomial }(\theta)</script>.
- (b) Choose a word <script type="math/tex; ">w_n</script> from <script type="math/tex; ">p\left(w_{n} | z_{n}, \beta\right)</script>, a multinomial probability conditioned on the topic <script type="math/tex; ">z_n</script>.</li>
-</ol>
-<p>Basically, we allocate the multinomial probability of <script type="math/tex; ">k</script> latent topics using hyper-parameter <script type="math/tex; ">\alpha</script> and then sample each word from the sampled multinomial distribution.</p>
-<p><img src="pic/LDA-1.png" alt="LDA structure">
-<em>Figure 1: Graphical model representation of LDA. The boxes are &quot;plates&quot; representing replicates. The outer plate represents documents, while the inner plate represents the repeated choice of topics and words within a document.</em></p>
-<p>Therefore, we can obtain the marginal distribution of a document:</p>
-<p><script type="math/tex; mode=display">
-p(\mathbf{w} | \alpha, \beta)=\int p(\theta | \alpha)\left(\prod_{n=1}^{N} \sum_{z_{n}} p\left(z_{n} | \theta\right) p\left(w_{n} | z_{n}, \beta\right)\right) d \theta
+<p>In this paper, a complete framework to direct the MCMC samplers has been presented. It shows that this framework is sufficient and necessary for all MCMC samplers. As many recent work try to use stochastic gradient version MCMC samplers as a consideration of computation, this method mainly introduce a systematical way to guide SGMCMC. Based on this framework, a new MCMC sampler called stochastic gradient Riemann Hamiltonian Monte Carlo (SGRHMC) has also been introduced</p>
+<h2 id="a-stochastic-gradient-mcmc-framework"><a name="a-stochastic-gradient-mcmc-framework" class="anchor-navigation-ex-anchor" href="#a-stochastic-gradient-mcmc-framework"><i class="fa fa-link" aria-hidden="true"></i></a>2. A Stochastic Gradient MCMC Framework</h2>
+<p>In general, we can write all continuous Markov processes as the following form stochastic differential equation:</p>
+<p><script type="math/tex; ">
+\mathrm{d} \mathbf{z}= f(\mathbf{z}) \mathrm{d} t+ \sqrt{2 \mathrm{D}(\mathbf{z})} \mathrm{d} \mathrm{W}(t)
 </script></p>
-<p>The probability of a corpus given parameter <script type="math/tex; ">\alpha, \beta</script> is</p>
-<p><script type="math/tex; mode=display">
-p(\mathbf{D} | \alpha, \beta) =\prod_{d=1}^{M} \int p\left(\theta_{d} | \alpha\right)\left(\prod_{n=1}^{N_{d}} \sum_{z_{d n}} p\left(z_{d n} | \theta_{d}\right) p\left(w_{d n} | z_{d n}, \beta\right)\right) d \theta_{d}
+<p>where <script type="math/tex; ">f(\mathbf{z})</script> denotes the deterministic drift and <script type="math/tex; ">\mathrm{W}(t)</script> is a <script type="math/tex; ">d</script>-dimensional Wiener Process, and <script type="math/tex; ">D(\mathbf{z})</script> is a positive semi-definite diffusion matrix. <strong><em>Notice that only some choices of <script type="math/tex; ">f(\mathbf{z})</script> and <script type="math/tex; ">\mathrm{D}(\mathbf{z})</script> yields a stationary distribution with the form <script type="math/tex; ">p^s(\mathbf{z}) \propto \exp^{-H(\mathbf{z})}</script></em></strong>. Here <script type="math/tex; ">H(\mathbf{z})</script> is related to Hamiltonian MC as well as other MCMC algorithms.</p>
+<p>This paper proposes to write <script type="math/tex; ">f(\mathbf{z})</script> into the following form:</p>
+<p><script type="math/tex; ">
+\mathrm{f}(\mathbf{z})=-[\mathrm{D}(\mathbf{z})+\mathrm{Q}(\mathbf{z})] \nabla H(\mathbf{z})+\Gamma(\mathbf{z}), \quad \mathrm{P}_{i}(\mathbf{z})=\sum_{j=1}^{d} \frac{\partial}{\partial \mathbf{z}_{j}}\left(\mathrm{D}_{i j}(\mathbf{z})+\mathrm{Q}_{i j}(\mathbf{z})\right)
 </script></p>
-<h2 id="learning-and-inference"><a name="learning-and-inference" class="anchor-navigation-ex-anchor" href="#learning-and-inference"><i class="fa fa-link" aria-hidden="true"></i></a>3. Learning and Inference</h2>
-<p>The key inferential problem that we need to solve in order to use LDA is that of computing the posterior distribution of the hidden variables given a document:</p>
-<p><script type="math/tex; mode=display">
-p(\theta, \mathbf{z} | \mathbf{w}, \alpha, \beta)=\frac{p(\theta, \mathbf{z}, \mathbf{w} | \alpha, \beta)}{p(\mathbf{w} | \alpha, \beta)}
+<p>Here <script type="math/tex; ">\mathrm{Q}(\mathbf{z})</script> is a skew-symmetric curl matrix representing the deterministic traversing effects seen in HMC procedures. In contrast, the diffusion matrix <script type="math/tex; ">\mathrm{D}(\mathbf{z})</script> determines the strength of the Wiener-process-driven diffusion. Matrices <script type="math/tex; ">\mathrm{Q}(\mathbf{z})</script> and <script type="math/tex; ">\mathrm{D}(\mathbf{z})</script> can be adjusted to attain faster convergence to the posterior distribution.</p>
+<p>It is stated that if we specifically write <script type="math/tex; ">f(\mathbf{z})</script> into the above form, then the stationary distribution of SDE has the form of <script type="math/tex; ">p^s(\mathbf{z}) \propto \exp^{-H(\mathbf{z})}</script>. Moreover, if the stationary distribution of SDE uniquely exists, then there exists skew-symmetric curl matrix <script type="math/tex; ">\mathrm{Q}(\mathbf{z})</script> such that we can write <script type="math/tex; ">f(\mathbf{z})</script> in the SDE to our specified form, and therefore the stationary distribution has our desired form.</p>
+<h2 id="practical-algorithms-and-discussions"><a name="practical-algorithms-and-discussions" class="anchor-navigation-ex-anchor" href="#practical-algorithms-and-discussions"><i class="fa fa-link" aria-hidden="true"></i></a>3. Practical Algorithms and Discussions</h2>
+<h3 id="varepsilon-discretization-update"><a name="varepsilon-discretization-update" class="anchor-navigation-ex-anchor" href="#varepsilon-discretization-update"><i class="fa fa-link" aria-hidden="true"></i></a>3.1. \varepsilon-discretization Update</h3>
+<p>In practice, we choose a step size of <script type="math/tex; ">\varepsilon</script> and update using the following discretized form of SDE:</p>
+<p><script type="math/tex; ">
+\mathbf{z}_{t+1} \leftarrow \mathbf{z}_{t}-\epsilon_{t}\left[\left(\mathrm{D}\left(\mathbf{z}_{t}\right)+\mathrm{Q}\left(\mathbf{z}_{t}\right)\right) \nabla H\left(\mathbf{z}_{t}\right)+\Gamma\left(\mathbf{z}_{t}\right)\right]+\mathcal{N}\left(0,2 \epsilon_{t} \mathrm{D}\left(\mathbf{z}_{t}\right)\right)
 </script></p>
-<p>which is intractable because of the intractability of <script type="math/tex; ">p(\mathbf{w} | \alpha, \beta)</script>. We consider using a variational inference method to approximate this posterior distribution:</p>
-<p><script type="math/tex; mode=display">
-q(\theta, \mathbf{z} | \gamma, \phi)=q(\theta | \gamma) \prod_{n=1}^{N} q\left(z_{n} | \phi_{n}\right)
+<p>In the above step, instead of evaluating the gradient using full data, we can use part of the data to do a stochastic-gradient-descent-style update in order to achieve computation efficiency. Although this SG step is unbiased, it does introduce extra noise into the training procedure. It can be shown that this noise is asymptotically normal, and we can partly subtract this noise by</p>
+<p><script type="math/tex; ">
+\mathbf{z}_{t+1} \leftarrow \mathbf{z}_{t}-\epsilon_{t}\left[\left(\mathrm{D}\left(\mathbf{z}_{t}\right)+\mathrm{Q}\left(\mathbf{z}_{t}\right)\right) \nabla \widetilde{H}\left(\mathbf{z}_{t}\right)+\Gamma\left(\mathbf{z}_{t}\right)\right]+\mathcal{N}\left(0, \epsilon_{t}\left(2 \mathrm{D}\left(\mathbf{z}_{t}\right)-\epsilon_{t} \hat{\mathrm{B}}_{t}\right)\right)
 </script></p>
-<p>As for the learning task, we wish to find parameters <script type="math/tex; ">\alpha</script> and <script type="math/tex; ">\beta</script> that maximize the (marginal) log likelihood of the data:</p>
-<p><script type="math/tex; mode=display">
-\ell(\alpha, \beta)=\sum_{d=1}^{M} \log p\left(\mathbf{w}_{d} | \alpha, \beta\right)
-</script></p>
-<p>since <script type="math/tex; ">p(\mathbf{w} | \alpha, \beta)</script> is intractable, We can thus find approximate empirical Bayes estimates for the LDA model via an alternating variational EM procedure that maximizes a lower bound with respect to the variational parameters <script type="math/tex; ">\gamma</script> and <script type="math/tex; ">\phi</script>, and then, for fixed values of the variational parameters, maximizes the lower bound with respect to the model parameters <script type="math/tex; ">\alpha</script> and <script type="math/tex; ">\beta</script>:</p>
-<ol>
-<li>(E-step) For each document, find the optimizing values of the variational parameters <script type="math/tex; ">\left\{\gamma_{d}^{*}, \phi_{d}^{*} :d \in \mathbf{D} \right\}</script>. This minimization can be achieved via an iterative fixed-point method.</li>
-</ol>
-<p><script type="math/tex; mode=display">
-\left(\gamma^{*}, \phi^{*}\right)=\arg \min _{(\gamma, \phi)} \mathrm{D}(q(\theta, \mathbf{z} | \gamma, \phi) \| p(\theta, \mathbf{z} | \mathbf{w}, \alpha, \beta))
-</script></p>
-<ol>
-<li>(M-step) Maximize the resulting lower bound on the log likelihood with respect to the model parameters <script type="math/tex; ">\alpha</script> and <script type="math/tex; ">\beta</script>. This corresponds to finding maximum likelihood estimates with expected sufficient statistics for each document under the approximate posterior which is computed in the E-step.</li>
-</ol>
+<p>where <script type="math/tex; ">\widetilde{H}\left(\mathbf{z}_{t}\right)</script> is the down-sampled version of gradient and <script type="math/tex; ">\hat{\mathrm{B}}_{t}</script> is our estimated noise term. It is also true that this SGD-correction training procedure also yields the correct invariant distribution.</p>
+<h3 id="construct-samplers-with-proposed-framework"><a name="construct-samplers-with-proposed-framework" class="anchor-navigation-ex-anchor" href="#construct-samplers-with-proposed-framework"><i class="fa fa-link" aria-hidden="true"></i></a>3.2. Construct Samplers with Proposed Framework</h3>
+<p>The authors shows that all previous MCMC methods, e.g. Hamiltonian Monte Carlo (HMC), Stochastic Gradient Hamiltonian Monte Carlo (SGHMC), Stochastic Gradient Langevin Dynamics (SGLD) as well as Stochastic Gradient Riemannian Langevin Dynamics (SGRLD) are all adapted to this framework. </p>
+<p>Since the matrices <script type="math/tex; ">\mathrm{Q}(\mathbf{z})</script> and <script type="math/tex; ">\mathrm{D}(\mathbf{z})</script> can be adjusted, a new sampler called Stochastic Gradient Riemann Hamiltonian Monte Carlo (SGRHMC) has been presented which introduces Fisher information metric as a way to utilize the geometry information of our targeted distribution. For a detailed discussion on how to use geometry information in the MCMC procedure, please refer to <a href="https://rss.onlinelibrary.wiley.com/doi/pdf/10.1111/j.1467-9868.2010.00765.x" target="_blank">Girolami, M., &amp; Calderhead, B. (2011). Riemann manifold langevin and hamiltonian monte carlo methods. Journal of the Royal Statistical Society: Series B (Statistical Methodology), 73(2), 123-214.</a>.</p>
 
                                 
                                 </section>
@@ -612,12 +589,12 @@ q(\theta, \mathbf{z} | \gamma, \phi)=q(\theta | \gamma) \prod_{n=1}^{N} q\left(z
 
             
                 
-                <a href="RDN.html" class="navigation navigation-prev " aria-label="Previous page: Relational Dependency Networks">
+                <a href="GaussMixCompress.html" class="navigation navigation-prev " aria-label="Previous page: Sample Complexity Bounds for Gaussian Mixtures">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="KSD_test.html" class="navigation navigation-next " aria-label="Next page: KSD for Goodness-of-fit Tests">
+                <a href="Sharpe_Minima_Works.html" class="navigation navigation-next " aria-label="Next page: Sharpe Minima Can Generalize">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -628,7 +605,7 @@ q(\theta, \mathbf{z} | \gamma, \phi)=q(\theta | \gamma) \prod_{n=1}^{N} q\left(z
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"LDA","level":"1.4.3","depth":2,"next":{"title":"KSD for Goodness-of-fit Tests","level":"1.4.4","depth":2,"path":"notes/KSD_test.md","ref":"./notes/KSD_test.md","articles":[]},"previous":{"title":"Relational Dependency Networks","level":"1.4.2","depth":2,"path":"notes/RDN.md","ref":"./notes/RDN.md","articles":[]},"dir":"ltr"},"config":{"plugins":["mathjax","image-captions","github","anchors","anchor-navigation-ex","-sharing","sharing-plus@^0.0.2","github-buttons","embed-pdf","livereload"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"github":{"url":"https://github.com/ZizouHe/"},"livereload":{},"search":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":false},"mode":"float","multipleH1":false,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":true},"github-buttons":{"buttons":[{"user":"ZizouHe","repo":"reading-notes","type":"star","size":"small"}]},"mathjax":{"forceSVG":false,"version":"2.6-latest"},"sharing":{"qq":true,"all":["facebook","google","twitter","weibo","qq","linkedin"],"douban":false,"facebook":true,"weibo":true,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":false,"messenger":false,"line":false,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"embed-pdf":{},"image-captions":{"caption":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","align":"right","variable_name":"_pictures"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{"_pictures":[{"backlink":"./notes/RDN.html#fig1.4.2.1","level":"1.4.2","align":"right","list_caption":"Figure: Example (a) data graph and (b) model graph.","alt":"Example (a) data graph and (b) model graph.","nro":1,"url":"./pic/RDN-1.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Example (a) data graph and (b) model graph.","attributes":{},"skip":false,"key":"1.4.2.1"},{"backlink":"./notes/RDN.html#fig1.4.2.2","level":"1.4.2","align":"right","list_caption":"Figure: RDN inference algorithm.","alt":"RDN inference algorithm.","nro":2,"url":"./pic/RDN-2.png","index":2,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"RDN inference algorithm.","attributes":{},"skip":false,"key":"1.4.2.2"}]},"title":"Reading List & Notes","gitbook":"*"},"file":{"path":"notes/LDA.md","mtime":"2019-04-23T23:48:41.323Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-04-29T06:14:27.062Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"A Complete Recipe for SGMCMC","level":"1.4.7","depth":2,"next":{"title":"Sharpe Minima Can Generalize","level":"1.4.8","depth":2,"path":"notes/Sharpe_Minima_Works.md","ref":"./notes/Sharpe_Minima_Works.md","articles":[]},"previous":{"title":"Sample Complexity Bounds for Gaussian Mixtures","level":"1.4.6","depth":2,"path":"notes/GaussMixCompress.md","ref":"./notes/GaussMixCompress.md","articles":[]},"dir":"ltr"},"config":{"plugins":["mathjax","image-captions","github","anchors","anchor-navigation-ex","-sharing","sharing-plus@^0.0.2","github-buttons","embed-pdf","livereload"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"github":{"url":"https://github.com/ZizouHe/"},"livereload":{},"search":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":false},"mode":"float","multipleH1":false,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":true},"github-buttons":{"buttons":[{"user":"ZizouHe","repo":"reading-notes","type":"star","size":"small"}]},"mathjax":{"forceSVG":false,"version":"2.6-latest"},"sharing":{"qq":true,"all":["facebook","google","twitter","weibo","qq","linkedin"],"douban":false,"facebook":true,"weibo":true,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":false,"messenger":false,"line":false,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"embed-pdf":{},"image-captions":{"caption":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","align":"right","variable_name":"_pictures"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{"_pictures":[{"backlink":"./notes/RDN.html#fig1.4.2.1","level":"1.4.2","align":"right","list_caption":"Figure: Example (a) data graph and (b) model graph.","alt":"Example (a) data graph and (b) model graph.","nro":1,"url":"./pic/RDN-1.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Example (a) data graph and (b) model graph.","attributes":{},"skip":false,"key":"1.4.2.1"},{"backlink":"./notes/RDN.html#fig1.4.2.2","level":"1.4.2","align":"right","list_caption":"Figure: RDN inference algorithm.","alt":"RDN inference algorithm.","nro":2,"url":"./pic/RDN-2.png","index":2,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"RDN inference algorithm.","attributes":{},"skip":false,"key":"1.4.2.2"}]},"title":"Reading List & Notes","gitbook":"*"},"file":{"path":"notes/SGMCMC.md","mtime":"2019-04-27T02:02:50.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-04-29T06:14:27.062Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

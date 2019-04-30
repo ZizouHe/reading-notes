@@ -11,6 +11,7 @@
 
 1. MCMC using Hamiltonian dynamics
 2. [A Complete Recipe for Stochastic Gradient MCMC](../notes/SGMCMC.html)
+3. [Riemann Manifold Langevin and Hamiltonian Monte Carlo](../notes/RMLHMC.html)
 
 ## Variational Autoencoder
 

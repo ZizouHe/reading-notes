@@ -70,6 +70,8 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
+    <link rel="next" href="RMLHMC.html" />
+    
     
     <link rel="prev" href="Sharpe_Minima_Works.html" />
     
@@ -475,6 +477,19 @@
             
         </li>
     
+        <li class="chapter " data-level="1.4.10" data-path="RMLHMC.html">
+            
+                <a href="RMLHMC.html">
+            
+                    
+                    Riemann Manifold Langevin and HMC
+            
+                </a>
+            
+
+            
+        </li>
+    
 
             </ul>
             
@@ -525,11 +540,26 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon "></span><a href="#on-large-batch-training-for-deep-learning-generalization-gap-and-sharp-minima"><b> </b>On Large-Batch Training for Deep Learning: Generalization Gap and Sharp Minima</a></li><ul><li><span class="title-icon "></span><a href="#summary"><b>1. </b>Summary</a></li></ul></ul></div><a href="#on-large-batch-training-for-deep-learning-generalization-gap-and-sharp-minima" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h1 id="on-large-batch-training-for-deep-learning-generalization-gap-and-sharp-minima"><a name="on-large-batch-training-for-deep-learning-generalization-gap-and-sharp-minima" class="anchor-navigation-ex-anchor" href="#on-large-batch-training-for-deep-learning-generalization-gap-and-sharp-minima"><i class="fa fa-link" aria-hidden="true"></i></a> On Large-Batch Training for Deep Learning: Generalization Gap and Sharp Minima</h1>
+                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon "></span><a href="#on-large-batch-training-for-deep-learning-generalization-gap-and-sharp-minima"><b> </b>On Large-Batch Training for Deep Learning: Generalization Gap and Sharp Minima</a></li><ul><li><span class="title-icon "></span><a href="#summary"><b>1. </b>Summary</a></li><li><span class="title-icon "></span><a href="#generalization-gap-for-large-batch"><b>2. </b>Generalization Gap for Large-batch</a></li><li><span class="title-icon "></span><a href="#sharpness-and-explanation"><b>3. </b>Sharpness and Explanation</a></li></ul></ul></div><a href="#on-large-batch-training-for-deep-learning-generalization-gap-and-sharp-minima" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h1 id="on-large-batch-training-for-deep-learning-generalization-gap-and-sharp-minima"><a name="on-large-batch-training-for-deep-learning-generalization-gap-and-sharp-minima" class="anchor-navigation-ex-anchor" href="#on-large-batch-training-for-deep-learning-generalization-gap-and-sharp-minima"><i class="fa fa-link" aria-hidden="true"></i></a> On Large-Batch Training for Deep Learning: Generalization Gap and Sharp Minima</h1>
 <ul>
 <li><a href="https://arxiv.org/pdf/1609.04836.pdf" target="_blank">Keskar, N. S., Mudigere, D., Nocedal, J., Smelyanskiy, M., &amp; Tang, P. T. P. (2016). On large-batch training for deep learning: Generalization gap and sharp minima. arXiv preprint arXiv:1609.04836.</a></li>
 </ul>
 <h2 id="summary"><a name="summary" class="anchor-navigation-ex-anchor" href="#summary"><i class="fa fa-link" aria-hidden="true"></i></a>1. Summary</h2>
+<p>This paper discusses the phenomenon the generalization gap (test error drop) for the large-batch SGD. It states that large-batch SGD training is more likely to converge to the sharp minima while the small-batch SGD converges to the flat minima, which is due to the inherent noise in the training.</p>
+<h2 id="generalization-gap-for-large-batch"><a name="generalization-gap-for-large-batch" class="anchor-navigation-ex-anchor" href="#generalization-gap-for-large-batch"><i class="fa fa-link" aria-hidden="true"></i></a>2. Generalization Gap for Large-batch</h2>
+<p>Empirically, large-batch SGD experience a drop in test error and by experiment, we can check that this is not caused by over-fitting. Another explanation could be sharpness, as in the lens of the minimum description length (MDL) theory, which states that statistical models that require fewer bits to describe generalize better. Since flat minima can be specified with lower precision than to sharp minima, they tend to have better generalization performance. Alternative theory of sharpness and generalization are presented through the Bayesian view of learning and the lens of free Gibbs energy.</p>
+<h2 id="sharpness-and-explanation"><a name="sharpness-and-explanation" class="anchor-navigation-ex-anchor" href="#sharpness-and-explanation"><i class="fa fa-link" aria-hidden="true"></i></a>3. Sharpness and Explanation</h2>
+<p>As defined in the paper, let</p>
+<p><script type="math/tex; mode=display">
+\mathcal{C}_{\epsilon}=\left\{z \in \mathbb{R}^{p} :-\epsilon\left(\left|\left(A^{+} x\right)_{i}\right|+1\right) \leq z_{i} \leq \epsilon\left(\left|\left(A^{+} x\right)_{i}\right|+1\right) \quad \forall i \in\{1,2, \cdots, p\}\right\}
+</script></p>
+<p>where <script type="math/tex; ">A^+</script> denotes the pseudo-inverse of <script type="math/tex; ">A \in \mathbb{R}^{n \times p}</script> and <script type="math/tex; ">\epsilon > 0</script> controls the size of the box. Therefore, we define the <script type="math/tex; ">\left(\mathcal{C}_{\epsilon}, A\right)</script>-sharpness of <script type="math/tex; ">f</script> at <script type="math/tex; ">x</script> as:</p>
+<p><script type="math/tex; mode=display">
+\phi_{x, f}(\epsilon, A) :=\frac{\left(\max _{y \in \mathcal{C}_{\epsilon}} f(x+A y)\right)-f(x)}{1+f(x)} \times 100
+</script></p>
+<p>Using the defined sharpness, the local minima found by large-batch method has larger sharpness than that found by small-batch empirically.</p>
+<p>Although they are all unbiased gradient estimators, large-batch has small variance which makes it more likely to be stuck in a sharp minima. However, as small-batch introduces much more noise, it has the property of exploration and therefore can avoid the trap of sharp minima. Large-batch methods lack this explorative properties of small-batch methods and tend to zoom-in on the minima closest to the initial point.</p>
+<p><strong>However, this definition of sharpness is not very rigorous in a deep neural network setting, as will be shown in <a href="Sharpe_Minima_Works.html"><em>Sharp minima can generalize for deep nets.</em></a></strong></p>
 
                                 
                                 </section>
@@ -557,10 +587,14 @@
 
             
                 
-                <a href="Sharpe_Minima_Works.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Sharpe Minima Can Generalize">
+                <a href="Sharpe_Minima_Works.html" class="navigation navigation-prev " aria-label="Previous page: Sharpe Minima Can Generalize">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
+                
+                <a href="RMLHMC.html" class="navigation navigation-next " aria-label="Next page: Riemann Manifold Langevin and HMC">
+                    <i class="fa fa-angle-right"></i>
+                </a>
                 
             
         
@@ -569,7 +603,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Large Batch Training and Sharpe Minima","level":"1.4.9","depth":2,"previous":{"title":"Sharpe Minima Can Generalize","level":"1.4.8","depth":2,"path":"notes/Sharpe_Minima_Works.md","ref":"./notes/Sharpe_Minima_Works.md","articles":[]},"dir":"ltr"},"config":{"plugins":["mathjax","image-captions","github","anchors","anchor-navigation-ex","-sharing","sharing-plus@^0.0.2","github-buttons","embed-pdf","livereload"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"github":{"url":"https://github.com/ZizouHe/"},"livereload":{},"search":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":false},"mode":"float","multipleH1":false,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":true},"github-buttons":{"buttons":[{"user":"ZizouHe","repo":"reading-notes","type":"star","size":"small"}]},"mathjax":{"forceSVG":false,"version":"2.6-latest"},"sharing":{"qq":true,"all":["facebook","google","twitter","weibo","qq","linkedin"],"douban":false,"facebook":true,"weibo":true,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":false,"messenger":false,"line":false,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"embed-pdf":{},"image-captions":{"caption":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","align":"right","variable_name":"_pictures"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{"_pictures":[{"backlink":"./notes/RDN.html#fig1.4.2.1","level":"1.4.2","align":"right","list_caption":"Figure: Example (a) data graph and (b) model graph.","alt":"Example (a) data graph and (b) model graph.","nro":1,"url":"./pic/RDN-1.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Example (a) data graph and (b) model graph.","attributes":{},"skip":false,"key":"1.4.2.1"},{"backlink":"./notes/RDN.html#fig1.4.2.2","level":"1.4.2","align":"right","list_caption":"Figure: RDN inference algorithm.","alt":"RDN inference algorithm.","nro":2,"url":"./pic/RDN-2.png","index":2,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"RDN inference algorithm.","attributes":{},"skip":false,"key":"1.4.2.2"}]},"title":"Reading List & Notes","gitbook":"*"},"file":{"path":"notes/Sharpe_Minima_Exp.md","mtime":"2019-04-29T06:12:29.025Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-04-29T06:14:27.062Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Large Batch Training and Sharpe Minima","level":"1.4.9","depth":2,"next":{"title":"Riemann Manifold Langevin and HMC","level":"1.4.10","depth":2,"path":"notes/RMLHMC.md","ref":"./notes/RMLHMC.md","articles":[]},"previous":{"title":"Sharpe Minima Can Generalize","level":"1.4.8","depth":2,"path":"notes/Sharpe_Minima_Works.md","ref":"./notes/Sharpe_Minima_Works.md","articles":[]},"dir":"ltr"},"config":{"plugins":["mathjax","image-captions","github","anchors","anchor-navigation-ex","-sharing","sharing-plus@^0.0.2","github-buttons","embed-pdf"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"github":{"url":"https://github.com/ZizouHe/"},"search":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":false},"mode":"float","multipleH1":false,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":true},"github-buttons":{"buttons":[{"user":"ZizouHe","repo":"reading-notes","type":"star","size":"small"}]},"mathjax":{"forceSVG":false,"version":"2.6-latest"},"sharing":{"qq":true,"all":["facebook","google","twitter","weibo","qq","linkedin"],"douban":false,"facebook":true,"weibo":true,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":false,"messenger":false,"line":false,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"embed-pdf":{},"image-captions":{"caption":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","align":"right","variable_name":"_pictures"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{"_pictures":[{"backlink":"./notes/RDN.html#fig1.4.2.1","level":"1.4.2","align":"right","list_caption":"Figure: Example (a) data graph and (b) model graph.","alt":"Example (a) data graph and (b) model graph.","nro":1,"url":"./pic/RDN-1.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Example (a) data graph and (b) model graph.","attributes":{},"skip":false,"key":"1.4.2.1"},{"backlink":"./notes/RDN.html#fig1.4.2.2","level":"1.4.2","align":"right","list_caption":"Figure: RDN inference algorithm.","alt":"RDN inference algorithm.","nro":2,"url":"./pic/RDN-2.png","index":2,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"RDN inference algorithm.","attributes":{},"skip":false,"key":"1.4.2.2"}]},"title":"Reading List & Notes","gitbook":"*"},"file":{"path":"notes/Sharpe_Minima_Exp.md","mtime":"2019-04-30T05:46:20.268Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-04-30T08:35:05.926Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
@@ -596,10 +630,6 @@
     
         
         <script src="../gitbook/gitbook-plugin-github-buttons/plugin.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
         
     
         

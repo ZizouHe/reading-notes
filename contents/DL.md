@@ -32,6 +32,7 @@
 5. DeepFool: a simple and accurate method to fool deep neural networks
 6. [On Large-Batch Training for Deep Learning: Generalization Gap and Sharp Minima](../notes/Sharpe_Minima_Exp.html)
 7. [Sharp Minima Can Generalize For Deep Nets](../notes/Sharpe_Minima_Works.html)
+8. Entropy-sgd: Biasing Gradient Descent into Wide Valleys
 
 
 ## Measuring Uncertainty

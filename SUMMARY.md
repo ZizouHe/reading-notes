@@ -26,3 +26,4 @@
 	* [A Complete Recipe for SGMCMC](./notes/SGMCMC.md)
 	* [Sharpe Minima Can Generalize](./notes/Sharpe_Minima_Works.md)
 	* [Large Batch Training and Sharpe Minima](./notes/Sharpe_Minima_Exp.md)
+	* [Riemann Manifold Langevin and HMC](./notes/RMLHMC.md)

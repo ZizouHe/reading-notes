@@ -16,7 +16,7 @@
 7. Recursive Partitioning for Heterogeneous Causal Effects
 8. Distinguishing Cause from Effect Using Observational Data: Methods and Benchmarks
 9. Double Machine Learning for Treatment and Causal Parameters
-10. Double/debiased machine learning for treatmentand structural parameters
+10. [Double/debiased machine learning for treatmentand structural parameters](../notes/Double_ML.html)
 11. Double/debiased/neyman machine learning of treatment effects
 
 ## Distributed Inference

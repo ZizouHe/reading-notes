@@ -32,3 +32,4 @@
 	* [Good Semi-supervised Learning that Requires a Bad GAN](./notes/Good_Semi_Bad_GAN.md)
 	* [Faster Rates for Frank-Wolfe over Strongly-Convex Sets](./notes/Faster_Frank_Wolfe.md)
 	* [The Element of Financial Econometrics](./notes/Fin_Fan_Book.md)
+	* [Double machine learning for treatment effect](./notes/Double_ML.md)

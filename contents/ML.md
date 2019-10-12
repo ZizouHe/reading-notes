@@ -29,3 +29,8 @@
 2. The Weighted Majority Algorithm
 3. The Strength of Weak Learnability
 4. The Multiplicative Weights Update Method- A Meta-Algorithm and Applications
+5. Manifold Regularization: A Geometric Framework for Learning from Labeled and Unlabeled Examples
+
+## Visualization
+
+1. Visualizing Data using t-SNE

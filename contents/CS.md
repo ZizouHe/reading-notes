@@ -11,3 +11,7 @@
 ## Compression Schemes
 
 1. [Near-optimal Sample Complexity Bounds for Robust Learning of Gaussians Mixtures via Compression Schemes](../notes/GaussMixCompress.html)
+
+## Logical Reasoning
+
+1. SATNet: Bridging Deep Learning and Logical Reasoning using a Differentiable Satisfiability Solver

@@ -27,3 +27,8 @@
 	* [Sharpe Minima Can Generalize](./notes/Sharpe_Minima_Works.md)
 	* [Large Batch Training and Sharpe Minima](./notes/Sharpe_Minima_Exp.md)
 	* [Riemann Manifold Langevin and HMC](./notes/RMLHMC.md)
+	* [Path-sgd: Path-normalized Optimization in Deep Neural Networks](./notes/pathSGD.md)
+	* [Empirical Analysis of DNN Loss Surfaces](./notes/Empirical_Loss.md)
+	* [Good Semi-supervised Learning that Requires a Bad GAN](./notes/Good_Semi_Bad_GAN.md)
+	* [Faster Rates for Frank-Wolfe over Strongly-Convex Sets](./notes/Faster_Frank_Wolfe.md)
+	* [The Element of Financial Econometrics](./notes/Fin_Fan_Book.md)

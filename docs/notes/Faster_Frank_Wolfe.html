@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Relational Dependency Networks · Reading List & Notes</title>
+        <title>Faster Rates for Frank-Wolfe over Strongly-Convex Sets · Reading List & Notes</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -70,10 +70,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="LDA.html" />
+    <link rel="next" href="Fin_Fan_Book.html" />
     
     
-    <link rel="prev" href="NeuralODE.html" />
+    <link rel="prev" href="Good_Semi_Bad_GAN.html" />
     
 
     <style>
@@ -373,7 +373,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.4.2" data-path="RDN.html">
+        <li class="chapter " data-level="1.4.2" data-path="RDN.html">
             
                 <a href="RDN.html">
             
@@ -529,7 +529,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.14" data-path="Faster_Frank_Wolfe.html">
+        <li class="chapter active" data-level="1.4.14" data-path="Faster_Frank_Wolfe.html">
             
                 <a href="Faster_Frank_Wolfe.html">
             
@@ -590,7 +590,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Relational Dependency Networks</a>
+        <a href=".." >Faster Rates for Frank-Wolfe over Strongly-Convex Sets</a>
     </h1>
 </div>
 
@@ -605,46 +605,29 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon "></span><a href="#relational-dependency-networks"><b> </b>Relational Dependency Networks</a></li><ul><li><span class="title-icon "></span><a href="#summary"><b>1. </b>Summary</a></li><li><span class="title-icon "></span><a href="#structure-of-the-network"><b>2. </b>Structure of the network</a></li><ul><li><span class="title-icon "></span><a href="#rdn-learning"><b>2.1. </b>RDN learning</a></li><li><span class="title-icon "></span><a href="#rdn-inference"><b>2.2. </b>RDN inference</a></li></ul></ul></ul></div><a href="#relational-dependency-networks" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h1 id="relational-dependency-networks"><a name="relational-dependency-networks" class="anchor-navigation-ex-anchor" href="#relational-dependency-networks"><i class="fa fa-link" aria-hidden="true"></i></a> Relational Dependency Networks</h1>
+                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon "></span><a href="#faster-rates-for-the-frank-wolfe-method-over-strongly-convex-sets"><b> </b>Faster Rates for the Frank-Wolfe Method over Strongly-Convex Sets</a></li><ul><li><span class="title-icon "></span><a href="#summary"><b>1. </b>Summary</a></li><li><span class="title-icon "></span><a href="#frank-wolfe-method"><b>2. </b>Frank-Wolfe method</a></li><li><span class="title-icon "></span><a href="#previous-result"><b>3. </b>Previous result</a></li><li><span class="title-icon "></span><a href="#new-result"><b>4. </b>New result</a></li></ul></ul></div><a href="#faster-rates-for-the-frank-wolfe-method-over-strongly-convex-sets" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h1 id="faster-rates-for-the-frank-wolfe-method-over-strongly-convex-sets"><a name="faster-rates-for-the-frank-wolfe-method-over-strongly-convex-sets" class="anchor-navigation-ex-anchor" href="#faster-rates-for-the-frank-wolfe-method-over-strongly-convex-sets"><i class="fa fa-link" aria-hidden="true"></i></a> Faster Rates for the Frank-Wolfe Method over Strongly-Convex Sets</h1>
 <ul>
-<li><p><a href="http://www.jmlr.org/papers/volume8/neville07a/neville07a.pdf" target="_blank">Neville, J., &amp; Jensen, D. (2007). Relational dependency networks. Journal of Machine Learning Research, 8(Mar), 653-692.</a></p>
+<li><p><a href="http://proceedings.mlr.press/v37/garbera15-supp.pdf" target="_blank">Garber, D., &amp; Hazan, E. (2015). Faster rates for the frank-wolfe method over strongly-convex sets. In 32nd International Conference on Machine Learning, ICML 2015.</a></p>
 </li>
-<li><p><a href="https://github.com/jpfeiffe/rmllib" target="_blank">Relational Machine Learning Library (RMLLib)</a></p>
+<li><p><a href="http://www.princeton.edu/~yc5/ele522_optimization/lectures/grad_descent_constrained.pdf" target="_blank">Yuxin Chen&apos;s lecture notes for Frank-Wolfe method</a></p>
 </li>
 </ul>
 <h2 id="summary"><a name="summary" class="anchor-navigation-ex-anchor" href="#summary"><i class="fa fa-link" aria-hidden="true"></i></a>1. Summary</h2>
-<p>Model the data using the idea of relational database and consider the autocorrelation between instances. The learning algorithm is novel, learning the CPDs based on the query that can return local sub-graphs. The learning algorithm can also produce dependency which interprets the relation between attributes. The inference process utilize the Gibbs sampler. However, it does not have the property like Markov network that the product of CPD is indeed the joint distribution, which is a trade-off between theoretical guarantee and cyclical network that describe wider connection between attributes.</p>
-<h2 id="structure-of-the-network"><a name="structure-of-the-network" class="anchor-navigation-ex-anchor" href="#structure-of-the-network"><i class="fa fa-link" aria-hidden="true"></i></a>2. Structure of the network</h2>
-<p>Instead of consider independent instance case, RDN consider there are dependency (autocorrelation) among instances and therefore construct a whole large graph connected all instances (by connecting their attributes).</p>
-<p>The relational data set is represented as a typed, attributed data graph <script type="math/tex; ">G_D = (V_D,E_D)</script>. Consider the data graph in Figure 1(a). The nodes <script type="math/tex; ">V_D</script> represent objects in the data (e.g.,
-authors, papers) and the edges <script type="math/tex; ">E_D</script> represent relations among the objects (e.g., author-of, cites). Each node <script type="math/tex; ">v_i \in V_D</script> and edge <script type="math/tex; ">e_j \in E_D</script> is associated with a type, <script type="math/tex; ">T(v_i) = t_{v_i}</script> and <script type="math/tex; ">T(e_j) = t_{e_j}</script> (e.g., paper, cited-by). Each item type <script type="math/tex; ">t \in T</script> has a number of associated attributes <script type="math/tex; ">\boldsymbol{X}^t = (X^1_t , ..., X_m^t)</script> (e.g., topic, year). Consequently, each object <script type="math/tex; ">v_i</script> and link <script type="math/tex; ">e_j</script> is associated with a set of attribute values
-determined by their type, <script type="math/tex; ">\boldsymbol{X}_{v_i}^{t_{v_i}} = (X_{v_i}^{t_{v_i}1} , \ldots, X_{v_i}^{t_{v_i}m})</script> and <script type="math/tex; ">\boldsymbol{X}_{e_j}^{t_{e_j}} = (X_{e_j}^{t_{e_j}1} , \ldots, X_{e_j}^{t_{e_j}m'})</script>. A PRM represents a joint distribution over the values of the attributes in the data graph,</p>
-<p><script type="math/tex; mode=display">
-\boldsymbol{x}=\left\{\boldsymbol{x}_{\boldsymbol{v}_{\boldsymbol{i}}}^{\boldsymbol{t}_{\boldsymbol{v}_{\boldsymbol{i}}}}:v_{i} \in V \text{ s.t. }T(v_{i})=t_{v_{i}}\right\} \cup \left\{\boldsymbol{x}_{\boldsymbol{e}_{j}}^{\boldsymbol{t}_{\boldsymbol{e}_{\boldsymbol{j}}}}:e_{j} \in E \text{ s.t. } T(e_{j})=t_{e_{j}} \right\}
+<p>This paper consider the special case of optimization over strongly convex sets, for which the authors prove a convergence rate of <script type="math/tex; ">\frac{1}{t^2}</script> for Frank-Wolfe method. They also show that various balls induced by <script type="math/tex; ">l_p</script> norms, Schatten norms and group norms are strongly convex on one hand and on the other hand, linear optimization over these sets is straightforward and admits a closed-form solution.</p>
+<h2 id="frank-wolfe-method"><a name="frank-wolfe-method" class="anchor-navigation-ex-anchor" href="#frank-wolfe-method"><i class="fa fa-link" aria-hidden="true"></i></a>2. Frank-Wolfe method</h2>
+<p>The Frank-Wolfe method, originally introduced by Frank and Wolfe in the 1950&apos;s, is a first order method for the minimization of a smooth convex function over a convex set. Compared to projection method, which is also a first order method on convex set, Frank-Wolfe method is projection free. Its main advantage in large-scale problems is that this projection-free characteristic makes computation efficient. First order and projection-free features enabled the derivation of algorithms that are practical on one hand and come with provable convergence rates on the other.</p>
+<figure id="fig1.4.14.1"><img src="pic/Frank-Wolfe.png" alt="Frank-Wolfe Algorithm"><figcaption class="right">Figure 1. Frank-Wolfe Algorithm</figcaption></figure>
+<p>Above is the general Frank-Wolfe method, where <script type="math/tex; ">\mathcal{K} \subset E</script> is the convex feasible set and <script type="math/tex; ">\mathcal{O}_{\mathcal{K}}(c), c \in E</script> returns a point <script type="math/tex; ">x=\mathcal{O}_{\mathcal{K}}(c) \in \mathcal{K}</script> such that <script type="math/tex; ">x \in \arg \min _{y \in \mathcal{K}} \langle y, c \rangle</script>. Step 4 does the exact line search for Frank-Wolfe method. In fact, the RHS is a upper bound for the exact line search object <script type="math/tex; ">\min_{\eta_t} f(x_{t}+\eta_{t}\left(p_{t}-x_{t}\right))</script> and is a easy-to-solve quadratic form.</p>
+<h2 id="previous-result"><a name="previous-result" class="anchor-navigation-ex-anchor" href="#previous-result"><i class="fa fa-link" aria-hidden="true"></i></a>3. Previous result</h2>
+<p><strong>Theorem.</strong> <em>If <script type="math/tex; ">f</script> is a <script type="math/tex; ">\beta_f</script>-smooth function, let <script type="math/tex; ">x^{*} \in \arg \min _{x \in \mathcal{K}} f(x)</script> and denote <script type="math/tex; ">D_{\mathcal{K}} = \max _{x, y \in \mathcal{K}}\|x-y\|</script>  (the diameter of the set with respect to <script type="math/tex; ">\|\cdot\|</script>). For every <script type="math/tex; ">t \geq 1</script>, the iterate <script type="math/tex; ">x_t</script> of the above Algorithm satisfies</em>
+<script type="math/tex; mode=display">
+f\left(x_{t}\right)-f\left(x^{*}\right) \leq \frac{8 \beta_{f} D_{\mathcal{K}}^{2}}{t}=O\left(\frac{1}{t}\right)
 </script></p>
-<figure id="fig1.4.2.1"><img src="pic/RDN-1.png" alt="Example (a) data graph and (b) model graph."><figcaption class="right">Figure 1. Example (a) data graph and (b) model graph.</figcaption></figure>
-<p>The network is represented by the product of conditional probability distributions (CPD) of one node given its parents. There are a few things need to be clarified:</p>
-<ul>
-<li><p>Since RDN is a cyclical graph, the product of CPD does not necessarily be the joint distribution, but under some conditions, it is quite close to the joint one.</p>
-</li>
-<li><p>In practice, the parents of one node is not given exhaustedly, moreover, we use query from relational database to return a local network for each node and condition on them.</p>
-</li>
-<li><p>Many machine learning algorithms can reveal the dependency of the variables, i.e. from the local network queried, to select the nodes that are parents of one node.</p>
-</li>
-</ul>
-<h3 id="rdn-learning"><a name="rdn-learning" class="anchor-navigation-ex-anchor" href="#rdn-learning"><i class="fa fa-link" aria-hidden="true"></i></a>2.1. RDN learning</h3>
-<p>The pseudo-likelihood for data graph <script type="math/tex; ">G_D</script> is computed as a product over the item types <script type="math/tex; ">t</script>, the attributes of that type <script type="math/tex; ">X_t</script>, and the items of that type <script type="math/tex; ">v,e</script>:</p>
-<p><script type="math/tex; mode=display">
-PL\left(G_{D} ; \theta\right) = \prod_{t \in T} \prod_{X_{i}^{t}\in \mathbf{X}^{t}}\prod_{v:T(v)=t} p\left(x_{v_i}^{t} | pa_{x_{v_i}^{t}};\theta\right)\prod_{e:T(e)=t}p\left(x_{e_i}^{t}|pa_{x_{e_i}^{t}};\theta\right)
+<h2 id="new-result"><a name="new-result" class="anchor-navigation-ex-anchor" href="#new-result"><i class="fa fa-link" aria-hidden="true"></i></a>4. New result</h2>
+<p><strong>Theorem.</strong> <em>If <script type="math/tex; ">f</script> is a <script type="math/tex; ">\beta_f</script>-smooth and <script type="math/tex; ">\alpha_f</script>-strongly convex function with respect to <script type="math/tex; ">\|\cdot\|</script>, and the feasible set <script type="math/tex; ">\mathcal{K}</script> is <script type="math/tex; ">\alpha_{\mathcal{K}}</script>-strongly convex with respect to <script type="math/tex; ">\|\cdot\|</script>. Let <script type="math/tex; ">x^{*} \in \arg \min _{x \in \mathcal{K}} f(x)</script>, let <script type="math/tex; ">M = \frac{\sqrt{\alpha_{f}} \alpha_{K}}{8 \sqrt{2} \beta_{f}}</script> and denote <script type="math/tex; ">D_{\mathcal{K}} = \max _{x, y \in \mathcal{K}}\|x-y\|</script>  (the diameter of the set with respect to <script type="math/tex; ">\|\cdot\|</script>). For every <script type="math/tex; ">t \geq 1</script>, the iterate <script type="math/tex; ">x_t</script> of the above Algorithm satisfies</em>
+<script type="math/tex; mode=display">
+f\left(x_{t}\right)-f\left(x^{*}\right) \leq \frac{\max \left\{\frac{9}{2} \beta_{f} D_{\mathcal{K}}^{2}, 18 M^{-2}\right\}}{(t+2)^{2}}=O\left(\frac{1}{t^{2}}\right)
 </script></p>
-<p>here <script type="math/tex; ">\theta</script> may not be an explicit set of parameters, but implicit structure like tree. Therefore, we can maximize CPD for every node to maximize pseudo-likelihood:</p>
-<p><script type="math/tex; mode=display">
-\prod_{v:T(v)=t} p\left(x_{v_i}^{t} | pa_{x_{v_i}^{t}};\theta\right) \; \text{and} \; \prod_{e:T(e)=t}p\left(x_{e_i}^{t}|pa_{x_{e_i}^{t}};\theta\right)
-</script></p>
-<p>using some learners like <em>Relational Bayesian Classifiers</em> as well as <em>Relational Probability Trees</em>. After we maximize the pseudo-likelihood, we also learn the dependency among the nodes, like model graph in Figure 1(b).</p>
-<h3 id="rdn-inference"><a name="rdn-inference" class="anchor-navigation-ex-anchor" href="#rdn-inference"><i class="fa fa-link" aria-hidden="true"></i></a>2.2. RDN inference</h3>
-<p>For some unknown nodes, we can use Gibbs sampling to make the inference. We first assign all unknown nodes a prior probability and draw from this prior distribution. Then, for each unknown node, we can randomly draw one sample from its CPD we have learned above. The empirical marginal and joint distribution can be calculated from the samples we draw from the Gibbs sampler.</p>
-<figure id="fig1.4.2.2"><img src="pic/RDN-2.png" alt="RDN inference algorithm."><figcaption class="right">Figure 2. RDN inference algorithm.</figcaption></figure>
 
                                 
                                 </section>
@@ -672,12 +655,12 @@ PL\left(G_{D} ; \theta\right) = \prod_{t \in T} \prod_{X_{i}^{t}\in \mathbf{X}^{
 
             
                 
-                <a href="NeuralODE.html" class="navigation navigation-prev " aria-label="Previous page: Neural ODE">
+                <a href="Good_Semi_Bad_GAN.html" class="navigation navigation-prev " aria-label="Previous page: Good Semi-supervised Learning that Requires a Bad GAN">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="LDA.html" class="navigation navigation-next " aria-label="Next page: LDA">
+                <a href="Fin_Fan_Book.html" class="navigation navigation-next " aria-label="Next page: The Element of Financial Econometrics">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -688,7 +671,7 @@ PL\left(G_{D} ; \theta\right) = \prod_{t \in T} \prod_{X_{i}^{t}\in \mathbf{X}^{
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Relational Dependency Networks","level":"1.4.2","depth":2,"next":{"title":"LDA","level":"1.4.3","depth":2,"path":"notes/LDA.md","ref":"./notes/LDA.md","articles":[]},"previous":{"title":"Neural ODE","level":"1.4.1","depth":2,"path":"notes/NeuralODE.md","ref":"./notes/NeuralODE.md","articles":[]},"dir":"ltr"},"config":{"plugins":["mathjax","image-captions","github","anchors","anchor-navigation-ex","-sharing","sharing-plus@^0.0.2","github-buttons","embed-pdf","livereload"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"github":{"url":"https://github.com/ZizouHe/"},"livereload":{},"search":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":false},"mode":"float","multipleH1":false,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":true},"github-buttons":{"buttons":[{"user":"ZizouHe","repo":"reading-notes","type":"star","size":"small"}]},"mathjax":{"forceSVG":false,"version":"2.6-latest"},"sharing":{"qq":true,"all":["facebook","google","twitter","weibo","qq","linkedin"],"douban":false,"facebook":true,"weibo":true,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":false,"messenger":false,"line":false,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"embed-pdf":{},"image-captions":{"caption":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","align":"right","variable_name":"_pictures"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{"_pictures":[{"backlink":"./notes/RDN.html#fig1.4.2.1","level":"1.4.2","align":"right","list_caption":"Figure: Example (a) data graph and (b) model graph.","alt":"Example (a) data graph and (b) model graph.","nro":1,"url":"./pic/RDN-1.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Example (a) data graph and (b) model graph.","attributes":{},"skip":false,"key":"1.4.2.1"},{"backlink":"./notes/RDN.html#fig1.4.2.2","level":"1.4.2","align":"right","list_caption":"Figure: RDN inference algorithm.","alt":"RDN inference algorithm.","nro":2,"url":"./pic/RDN-2.png","index":2,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"RDN inference algorithm.","attributes":{},"skip":false,"key":"1.4.2.2"},{"backlink":"./notes/Faster_Frank_Wolfe.html#fig1.4.14.1","level":"1.4.14","align":"right","list_caption":"Figure: Frank-Wolfe Algorithm","alt":"Frank-Wolfe Algorithm","nro":3,"url":"./pic/Frank-Wolfe.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Frank-Wolfe Algorithm","attributes":{},"skip":false,"key":"1.4.14.1"},{"backlink":"./notes/Fin_Fan_Book.html#fig1.4.15.1","level":"1.4.15","align":"right","list_caption":"Figure: Efficient Frontier with risk-free asset","alt":"Efficient Frontier with risk-free asset","nro":4,"url":"./pic/Eff_Front_1.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Efficient Frontier with risk-free asset","attributes":{},"skip":false,"key":"1.4.15.1"},{"backlink":"./notes/Fin_Fan_Book.html#fig1.4.15.2","level":"1.4.15","align":"right","list_caption":"Figure: Efficient Frontier without risk-free asset","alt":"Efficient Frontier without risk-free asset","nro":5,"url":"./pic/Eff_Front_2.png","index":2,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Efficient Frontier without risk-free asset","attributes":{},"skip":false,"key":"1.4.15.2"}]},"title":"Reading List & Notes","gitbook":"*"},"file":{"path":"notes/RDN.md","mtime":"2019-04-23T23:48:22.228Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-10-12T19:10:53.621Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Faster Rates for Frank-Wolfe over Strongly-Convex Sets","level":"1.4.14","depth":2,"next":{"title":"The Element of Financial Econometrics","level":"1.4.15","depth":2,"path":"notes/Fin_Fan_Book.md","ref":"./notes/Fin_Fan_Book.md","articles":[]},"previous":{"title":"Good Semi-supervised Learning that Requires a Bad GAN","level":"1.4.13","depth":2,"path":"notes/Good_Semi_Bad_GAN.md","ref":"./notes/Good_Semi_Bad_GAN.md","articles":[]},"dir":"ltr"},"config":{"plugins":["mathjax","image-captions","github","anchors","anchor-navigation-ex","-sharing","sharing-plus@^0.0.2","github-buttons","embed-pdf","livereload"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"github":{"url":"https://github.com/ZizouHe/"},"livereload":{},"search":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":false},"mode":"float","multipleH1":false,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":true},"github-buttons":{"buttons":[{"user":"ZizouHe","repo":"reading-notes","type":"star","size":"small"}]},"mathjax":{"forceSVG":false,"version":"2.6-latest"},"sharing":{"qq":true,"all":["facebook","google","twitter","weibo","qq","linkedin"],"douban":false,"facebook":true,"weibo":true,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":false,"messenger":false,"line":false,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"embed-pdf":{},"image-captions":{"caption":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","align":"right","variable_name":"_pictures"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{"_pictures":[{"backlink":"./notes/RDN.html#fig1.4.2.1","level":"1.4.2","align":"right","list_caption":"Figure: Example (a) data graph and (b) model graph.","alt":"Example (a) data graph and (b) model graph.","nro":1,"url":"./pic/RDN-1.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Example (a) data graph and (b) model graph.","attributes":{},"skip":false,"key":"1.4.2.1"},{"backlink":"./notes/RDN.html#fig1.4.2.2","level":"1.4.2","align":"right","list_caption":"Figure: RDN inference algorithm.","alt":"RDN inference algorithm.","nro":2,"url":"./pic/RDN-2.png","index":2,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"RDN inference algorithm.","attributes":{},"skip":false,"key":"1.4.2.2"},{"backlink":"./notes/Faster_Frank_Wolfe.html#fig1.4.14.1","level":"1.4.14","align":"right","list_caption":"Figure: Frank-Wolfe Algorithm","alt":"Frank-Wolfe Algorithm","nro":3,"url":"./pic/Frank-Wolfe.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Frank-Wolfe Algorithm","attributes":{},"skip":false,"key":"1.4.14.1"},{"backlink":"./notes/Fin_Fan_Book.html#fig1.4.15.1","level":"1.4.15","align":"right","list_caption":"Figure: Efficient Frontier with risk-free asset","alt":"Efficient Frontier with risk-free asset","nro":4,"url":"./pic/Eff_Front_1.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Efficient Frontier with risk-free asset","attributes":{},"skip":false,"key":"1.4.15.1"},{"backlink":"./notes/Fin_Fan_Book.html#fig1.4.15.2","level":"1.4.15","align":"right","list_caption":"Figure: Efficient Frontier without risk-free asset","alt":"Efficient Frontier without risk-free asset","nro":5,"url":"./pic/Eff_Front_2.png","index":2,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Efficient Frontier without risk-free asset","attributes":{},"skip":false,"key":"1.4.15.2"}]},"title":"Reading List & Notes","gitbook":"*"},"file":{"path":"notes/Faster_Frank_Wolfe.md","mtime":"2019-06-09T21:02:52.321Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-10-12T19:10:53.621Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

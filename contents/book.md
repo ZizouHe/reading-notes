@@ -3,6 +3,7 @@
 ## CS
 
 1. Mining of Massive Datasets (chapter 3, 9)
+2. [Reinforcement Learning: An Introduction by Richard Sutton and Andrew Barto](../notes/RL_Book.html)
 
 ## Maths
 

@@ -492,7 +492,7 @@ G_{t: h}
 \end{aligned}
 $$
 
-after which it is exactly like the [n-step return for Sarsa with control variates](./RL_book.html###Per-decision Methods with Control Variates) except with the action probability $$\pi\left(A_{t+1} | S_{t+1}\right)$$ substituted for the importance-sampling ratio $$\rho_{t+1}$$. For $$Q(\sigma)$$, we slide linearly between these two cases:
+after which it is exactly like the [n-step return for Sarsa with control variates](./RL_book.html###Per-decision%20Methods%20with%20Control%20Variates) except with the action probability $$\pi\left(A_{t+1} | S_{t+1}\right)$$ substituted for the importance-sampling ratio $$\rho_{t+1}$$. For $$Q(\sigma)$$, we slide linearly between these two cases:
 
 $$
 G_{t: h} \doteq R_{t+1}+\gamma\left(\sigma_{t+1} \rho_{t+1}+\left(1-\sigma_{t+1}\right) \pi\left(A_{t+1} | S_{t+1}\right)\right)\left(G_{t+1: h}-Q_{h-1}\left(S_{t+1}, A_{t+1}\right)\right) + \gamma \overline{V}_{h-1}(S_{t+1})

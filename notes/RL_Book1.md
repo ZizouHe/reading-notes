@@ -1,4 +1,4 @@
-# Reinforcement Learning: An Introduction
+# Reinforcement Learning: An Introduction (1)
 
 ## Multi-armed Bandits
 
@@ -6,7 +6,7 @@ Denote $$Q(A)$$ the average reward for arm $$A$$, $$N(A)$$ the number of visits 
 
 **$$\epsilon$$-greedy algorithm**
 
-![](./pic/RL_1.png)
+![](./pic/RL_book/RL_1.png)
 
 **Upper-Confidence-Bound algorithm**
 
@@ -112,7 +112,7 @@ The term dynamic programming (DP) refers to a collection of algorithms that can 
 
 ### Policy Evaluation
 
-![](./pic/RL_2.png)
+![](./pic/RL_book/RL_2.png)
 
 ### Policy Improvement
 
@@ -153,7 +153,7 @@ $$
 
 Combine policy evaluation and policy improvement together, we have:
 
-![](./pic/RL_3.png)
+![](./pic/RL_book/RL_3.png)
 
 ### Value Iteration
 
@@ -161,13 +161,13 @@ One drawback to policy iteration is that each of its iterations involves policy 
 
 We can consider using policy evaluation where it stops after just one sweep (one update of each state). This algorithm is called value iteration.
 
-![](./pic/RL_4.png)
+![](./pic/RL_book/RL_4.png)
 
 ## Monte Carlo Methods
 
 ### Monte Carlo Prediction
 
-![](./pic/RL_5.png)
+![](./pic/RL_book/RL_5.png)
 
 **If a model is not available, then it is particularly useful to estimate action values (the values of state–action pairs) rather than state values. With a model (in DP case), state values alone are sufficient to determine a policy; one simply looks ahead one step and chooses whichever action leads to the best combination of reward and next state.**
 
@@ -175,11 +175,11 @@ We can consider using policy evaluation where it stops after just one sweep (one
 
 The algorithm is similar with DP case. However, we need to ensure all state-action pairs have a chance to be visited.
 
-![](./pic/RL_6.png)
+![](./pic/RL_book/RL_6.png)
 
 We can eliminate the exploring start assumption by using a $$\epsilon$$-soft policy as follows:
 
-![](./pic/RL_7.png)
+![](./pic/RL_book/RL_7.png)
 
 It can be shown that
 
@@ -232,11 +232,11 @@ where $$\mathcal{T}(s)$$ would only include time steps that were first visits to
 
 The incremental implementation of off-policy Monte Carlo evaluation is shown below, where $$C(S_t, A_t)$$ is the cumulative weights.
 
-![](./pic/RL_8.png)
+![](./pic/RL_book/RL_8.png)
 
 The corresponding off-policy MC control algorithm is as follows.
 
-![](./pic/RL_9.png)
+![](./pic/RL_book/RL_9.png)
 
 Notice that $$\pi(S_t)$$ is taken as a greedy policy and only when it coincides with the path of policy $b$, the update will continue within a episode. Therefore, $$\pi(A_t | S_t) = 1$$.
 
@@ -329,11 +329,11 @@ $$
 
 TD(0) is a one-step bootstrap method which plug-in the current estimation of value function.
 
-![](./pic/RL_10.png)
+![](./pic/RL_book/RL_10.png)
 
 The TD(0) control algorithm (a.k.a. **Sarsa**) is
 
-![](./pic/RL_11.png)
+![](./pic/RL_book/RL_11.png)
 
 The convergence properties of the Sarsa algorithm depend on the nature of the policy’s dependence on Q. For example, one could use $$\epsilon$$-greedy policies. Sarsa converges with probability $$1$$ to an optimal policy and action-value function as long as all state–action pairs are visited an infinite number of times and the policy converges in the limit to the greedy policy.
 
@@ -345,7 +345,7 @@ $$
 Q\left(S_{t}, A_{t}\right) \leftarrow Q\left(S_{t}, A_{t}\right)+\alpha\left[R_{t+1}+\gamma \max _{a} Q\left(S_{t+1}, a\right)-Q\left(S_{t}, A_{t}\right)\right]
 $$
 
-![](./pic/RL_12.png)
+![](./pic/RL_book/RL_12.png)
 
 We may also use expected value instead of maximum one:
 
@@ -363,7 +363,7 @@ In Q-learning the target policy is the greedy policy given the current action va
 
 We can consider using two policy together and update one and only one of them each time.
 
-![](./pic/RL_13.png)
+![](./pic/RL_book/RL_13.png)
 
 ## n-step Bootstrapping
 
@@ -393,11 +393,11 @@ $$
 \max _{s}\left|\mathbb{E}_{\pi}\left[G_{t: t+n} \; | \; S_{t}=s\right]-v_{\pi}(s)\right| \leq \gamma^{n} \max _{s}\left|V_{t+n-1}(s)-v_{\pi}(s)\right|
 $$
 
-![](./pic/RL_14.png)
+![](./pic/RL_book/RL_14.png)
 
 and the n-step Sarsa can be derived similarly.
 
-![](./pic/RL_15.png)
+![](./pic/RL_book/RL_15.png)
 
 ### n-step Off-policy Learning
 
@@ -409,7 +409,7 @@ $$
 
 Therefore, the off-policy n-step Sarsa is as follows.
 
-![](./pic/RL_16.png)
+![](./pic/RL_book/RL_16.png)
 
 ### Per-decision Methods with Control Variates
 
@@ -473,11 +473,11 @@ $$
 
 This can be illustrated from the backup diagram below.
 
-![](./pic/RL_17.png)
+![](./pic/RL_book/RL_17.png)
 
 and the n-step tree-backup algorithm for control is:
 
-![](./pic/RL_18.png)
+![](./pic/RL_book/RL_18.png)
 
 ### A Unifying Algorithm
 
@@ -498,6 +498,4 @@ $$
 G_{t: h} \doteq R_{t+1}+\gamma\left(\sigma_{t+1} \rho_{t+1}+\left(1-\sigma_{t+1}\right) \pi\left(A_{t+1} | S_{t+1}\right)\right)\left(G_{t+1: h}-Q_{h-1}\left(S_{t+1}, A_{t+1}\right)\right) + \gamma \overline{V}_{h-1}(S_{t+1})
 $$
 
-![](./pic/RL_19.png)
-
-## On-policy Prediction with Approximation
+![](./pic/RL_book/RL_19.png)

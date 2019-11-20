@@ -18,6 +18,7 @@
 9. Double Machine Learning for Treatment and Causal Parameters
 10. [Double/debiased machine learning for treatmentand structural parameters](../notes/Double_ML.html)
 11. Double/debiased/neyman machine learning of treatment effects
+12. Approximate residual balancing: debiased inference of average treatment effects in high dimensions
 
 ## Distributed Inference
 

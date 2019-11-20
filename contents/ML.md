@@ -12,6 +12,14 @@
 4. Repeated labeling using multiple noisy labelers
 5. Get Another Label? Improving Data Quality and Data Mining Using Multiple, Noisy Labelers
 
+## Privacy
+
+1. Formal Privacy for Functional Data with Gaussian Perturbations
+2. Differential Privacy for Functions and Functional Data
+3. White-box vs Black-box- Bayes Optimal Strategies for Membership Inference
+4. Privacy Risk in Machine Learning- Analyzing the Connection to Overfitting
+5. Sublinear Space Private Algorithms Under the Sliding Window Model
+
 ## Subspace Clustering
 
 1. Mixtures of Probabilistic Principal Component Analysers

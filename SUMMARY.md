@@ -35,3 +35,4 @@
 	* [Double machine learning for treatment effect](./notes/Double_ML.md)
 	* [Part 1: Reinforecement Learning: An Introduction](./notes/RL_Book1.md)
 	* [Part 2: Reinforecement Learning: An Introduction (2)](./notes/RL_Book2.md)
+	* [Trust Region Policy Optimization](./notes/TRPO.md)

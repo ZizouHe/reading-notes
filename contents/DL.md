@@ -18,6 +18,9 @@
 ## Deep Reinforcement Learning
 
 1. Mastering the game of Go with deep neural networks and tree search
+2. Continuous control with deep reinforcement learning
+3. Deterministic Policy Gradient Algorithms
+4. [Trust Region Policy Optimization](../notes/TRPO.html)
 
 ## Generative Adversarial Network
 

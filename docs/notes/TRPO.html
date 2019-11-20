@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Good Semi-supervised Learning that Requires a Bad GAN · Reading List & Notes</title>
+        <title>Trust Region Policy Optimization · Reading List & Notes</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -70,10 +70,8 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="Faster_Frank_Wolfe.html" />
     
-    
-    <link rel="prev" href="Empirical_Loss.html" />
+    <link rel="prev" href="RL_Book2.html" />
     
 
     <style>
@@ -516,7 +514,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.4.13" data-path="Good_Semi_Bad_GAN.html">
+        <li class="chapter " data-level="1.4.13" data-path="Good_Semi_Bad_GAN.html">
             
                 <a href="Good_Semi_Bad_GAN.html">
             
@@ -594,7 +592,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.19" data-path="TRPO.html">
+        <li class="chapter active" data-level="1.4.19" data-path="TRPO.html">
             
                 <a href="TRPO.html">
             
@@ -642,7 +640,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Good Semi-supervised Learning that Requires a Bad GAN</a>
+        <a href=".." >Trust Region Policy Optimization</a>
     </h1>
 </div>
 
@@ -657,36 +655,59 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon "></span><a href="#good-semi-supervised-learning-that-requires-a-bad-gan"><b> </b>Good Semi-supervised Learning that Requires a Bad GAN</a></li><ul><li><span class="title-icon "></span><a href="#summary"><b>1. </b>Summary</a></li><li><span class="title-icon "></span><a href="#problem-setups"><b>2. </b>Problem Setups</a></li><li><span class="title-icon "></span><a href="#perfect-generator"><b>3. </b>Perfect generator</a></li><li><span class="title-icon "></span><a href="#complement-generator"><b>4. </b>Complement generator</a></li><li><span class="title-icon "></span><a href="#pros-and-cons-of-feature-matching"><b>5. </b>Pros and cons of feature matching</a></li></ul></ul></div><a href="#good-semi-supervised-learning-that-requires-a-bad-gan" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h1 id="good-semi-supervised-learning-that-requires-a-bad-gan"><a name="good-semi-supervised-learning-that-requires-a-bad-gan" class="anchor-navigation-ex-anchor" href="#good-semi-supervised-learning-that-requires-a-bad-gan"><i class="fa fa-link" aria-hidden="true"></i></a> Good Semi-supervised Learning that Requires a Bad GAN</h1>
+                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon "></span><a href="#trust-region-policy-optimization"><b> </b>Trust Region Policy Optimization</a></li><ul><li><span class="title-icon "></span><a href="#abstract"><b>1. </b>Abstract</a></li><li><span class="title-icon "></span><a href="#comparison-between-algorithms"><b>2. </b>Comparison between algorithms</a></li><li><span class="title-icon "></span><a href="#computation"><b>3. </b>Computation</a></li></ul></ul></div><a href="#trust-region-policy-optimization" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h1 id="trust-region-policy-optimization"><a name="trust-region-policy-optimization" class="anchor-navigation-ex-anchor" href="#trust-region-policy-optimization"><i class="fa fa-link" aria-hidden="true"></i></a> Trust Region Policy Optimization</h1>
 <ul>
-<li><a href="http://papers.nips.cc/paper/7229-good-semi-supervised-learning-that-requires-a-bad-gan.pdf" target="_blank">Dai, Z., Yang, Z., Yang, F., Cohen, W. W., &amp; Salakhutdinov, R. R. (2017). Good semi-supervised learning that requires a bad gan. In Advances in neural information processing systems (pp. 6510-6520).</a></li>
+<li><a href="https://arxiv.org/pdf/1502.05477.pdf" target="_blank">Schulman, J., Levine, S., Abbeel, P., Jordan, M., &amp; Moritz, P. (2015, June). Trust region policy optimization. In International conference on machine learning (pp. 1889-1897).</a></li>
 </ul>
-<h2 id="summary"><a name="summary" class="anchor-navigation-ex-anchor" href="#summary"><i class="fa fa-link" aria-hidden="true"></i></a>1. Summary</h2>
-<p>This paper shows that given a discriminator objective, good semi-supervised learning indeed requires a bad generator, and propose the definition of a preferred generator.</p>
-<h2 id="problem-setups"><a name="problem-setups" class="anchor-navigation-ex-anchor" href="#problem-setups"><i class="fa fa-link" aria-hidden="true"></i></a>2. Problem Setups</h2>
-<p>Given a labeled set <script type="math/tex; ">L = \{(x, y)\}</script>, let <script type="math/tex; ">\{1, 2, \cdots , K\}</script> be the label space for classification. Let <script type="math/tex; ">D</script> and <script type="math/tex; ">G</script> denote the discriminator and generator, and <script type="math/tex; ">P_D</script> and <script type="math/tex; ">p_G</script> denote the corresponding distributions. Consider the discriminator objective function of GAN-based semi-supervised learning, (this is the standard objective function for GAN-based semi-supervised learning)
-<script type="math/tex; mode=display">
-\max _{D} \mathbb{E}_{x, y \sim \mathcal{L}} \log P_{D}(y | x, y \leq K)+\mathbb{E}_{x \sim p} \log P_{D}(y \leq K | x)+\mathbb{E}_{x \sim p_{G}} \log P_{D}(K+1 | x)
-</script>
-where <script type="math/tex; ">P</script> is the true data distribution. The probability distribution <script type="math/tex; ">P_D</script> is over <script type="math/tex; ">K + 1</script> classes where the first <script type="math/tex; ">K</script> classes are true classes and the (<script type="math/tex; ">K + 1</script>)-th class is the fake class. The objective function consists of three terms. The first term is to maximize the log conditional probability for labeled data, which is the standard cost as in supervised learning setting. The second term is to maximize the log probability of the first <script type="math/tex; ">K</script> classes for unlabeled data. The third term is to maximize the log probability of the (<script type="math/tex; ">K + 1</script>)-th class for generated data.</p>
-<p>Let <script type="math/tex; ">f(x)</script> be a nonlinear vector-valued function, and <script type="math/tex; ">w_k</script> be the weight vector for class <script type="math/tex; ">k</script>. The discriminator <script type="math/tex; ">D</script> can be defined as
-<script type="math/tex; mode=display">
-P_{D}(k | x)=\frac{\exp \left(w_{k}^{\top} f(x)\right)}{\sum_{k^{\prime}=1}^{K+1} \exp \left(w_{k^{\prime}}^{\top} f(x)\right)}
-</script>
-Since this is a form of over-parameterization, <script type="math/tex; ">w_{K+1}</script> is fixed as a zero vector.</p>
-<h2 id="perfect-generator"><a name="perfect-generator" class="anchor-navigation-ex-anchor" href="#perfect-generator"><i class="fa fa-link" aria-hidden="true"></i></a>3. Perfect generator</h2>
-<p><strong>Theorem.</strong> <em>If the generator distribution <script type="math/tex; ">p_G</script> matches the truen data distribution <script type="math/tex; ">p</script>, i.e. <script type="math/tex; ">p_G = p</script>, and discriminator <script type="math/tex; ">D</script> has infinite capacity, then for any optimal solution <script type="math/tex; ">D = (w,f)</script> of the following supervised objective,</em>
-<script type="math/tex; mode=display">
-\max _{D} \mathbb{E}_{x, y \sim \mathcal{L}} \log P_{D}(y | x, y \leq K)
-</script>
-<em>there exists <script type="math/tex; ">D^* = (w^*, f^*)</script> such that <script type="math/tex; ">D^*</script> maximizes the semi-supervised cost function and that for all <script type="math/tex; ">x</script>, <script type="math/tex; ">P_{D}(y | x, y \leq K) = P_{D^*}(y | x, y \leq K)</script>.</em></p>
-<p>This theorem states that given a perfect generator, there is no benefit for introducing the unlabeled data, i.e. the discriminator cannot improved by unsupervised part.</p>
-<h2 id="complement-generator"><a name="complement-generator" class="anchor-navigation-ex-anchor" href="#complement-generator"><i class="fa fa-link" aria-hidden="true"></i></a>4. Complement generator</h2>
-<p>The function <script type="math/tex; ">f</script> maps data points in the input space to the feature space. Let <script type="math/tex; ">p_k(f)</script> be the density of the data points of class <script type="math/tex; ">k</script> in the feature space. Given a threshold <script type="math/tex; ">\epsilon_k</script>, let <script type="math/tex; ">F_k</script> be a subset of the data support where <script type="math/tex; ">p_{k}(f)>\epsilon_{k},</script> i.e., <script type="math/tex; ">F_{k}=\left\{f : p_{k}(f)>\epsilon_{k}\right\}</script>. We assume that given <script type="math/tex; ">\left\{\epsilon_{k}\right\}_{k=1}^{K}</script>, the <script type="math/tex; ">F_k</script>&#x2019;s are disjoint with a margin.</p>
-<p>Suppose <script type="math/tex; ">\cup_{k=1}^{K} F_{k}</script> is bounded by a convex set <script type="math/tex; ">\mathcal{B}</script>. If the support <script type="math/tex; ">F_G</script> of a generator <script type="math/tex; ">G</script> in the feature space is a relative complement set in <script type="math/tex; ">\mathcal{B}</script>, i.e., <script type="math/tex; ">F_{G}=\mathcal{B}-\cup_{k=1}^{K} F_{k}</script>, we call <script type="math/tex; ">G</script> a complement generator.</p>
-<p>Then the paper states that when <script type="math/tex; ">G</script> is a complement generator, under mild assumptions, a near- optimal <script type="math/tex; ">D</script> learns correct decision boundaries in each high-density subset <script type="math/tex; ">F_k</script> (defined by <script type="math/tex; ">\epsilon_k</script>) of the data support in the feature space. Intuitively, the generator generates complement samples so the logits of the true classes are forced to be low in the complement. As a result, the discriminator obtains class boundaries in low-density areas.</p>
-<h2 id="pros-and-cons-of-feature-matching"><a name="pros-and-cons-of-feature-matching" class="anchor-navigation-ex-anchor" href="#pros-and-cons-of-feature-matching"><i class="fa fa-link" aria-hidden="true"></i></a>5. Pros and cons of feature matching</h2>
-<p>By matching the first-order moment by SGD, feature matching is performing some kind of distribution matching, though in a rather weak manner. Loosely speaking, feature matching has the effect of generating samples close to the manifold. But due to its weak power in distribution matching, feature matching will inevitably generate samples outside of the manifold, especially when the data complexity increases. Consequently, the generator density <script type="math/tex; ">p_G</script> is usually lower than the true data density <script type="math/tex; ">p</script> within the manifold and higher outside. Hence, an optimal discriminator <script type="math/tex; ">P_{D^*} (K+1 | x)=p(x) /\left(p(x)+p_{G}(x)\right)</script> could still distinguish between true and generated samples in many cases.</p>
+<h2 id="abstract"><a name="abstract" class="anchor-navigation-ex-anchor" href="#abstract"><i class="fa fa-link" aria-hidden="true"></i></a>1. Abstract</h2>
+<ul>
+<li><p>The theory justifies optimizing a surrogate objective with a penalty on KL divergence. However, the large penalty coefficient C leads to prohibitively small steps, so we would like to decrease this coefficient. Empirically, it is hard to robustly choose the penalty coefficient, so we use a hard constraint instead of a penalty, with parameter <script type="math/tex; ">\delta</script> (the bound on KL divergence).</p>
+</li>
+<li><p>The constraint on <script type="math/tex; ">D_{\mathrm{KL}}^{\max }\left(\theta_{\mathrm{old}}, \theta\right)</script> is hard for numerical optimization and estimation, so instead we constrain <script type="math/tex; ">\bar{D}_{\mathrm{KL}}\left(\theta_{\mathrm{old}}, \theta\right)</script></p>
+</li>
+<li><p>Our theory ignores estimation error for the advantage function. Kakade and Langford (2002) consider this error in their derivation, and the same arguments would hold in the setting of this paper, but we omit them for simplicity.</p>
+</li>
+</ul>
+<h2 id="comparison-between-algorithms"><a name="comparison-between-algorithms" class="anchor-navigation-ex-anchor" href="#comparison-between-algorithms"><i class="fa fa-link" aria-hidden="true"></i></a>2. Comparison between algorithms</h2>
+<ul>
+<li>Traditional gradient descent</li>
+</ul>
+<p><script type="math/tex; mode=display">
+\theta^{\prime} \leftarrow \arg \max _{\theta^{\prime}}\left(\theta^{\prime}-\theta\right)^{T} \nabla_{\theta} J(\theta) \text{, s.t. } \left\|\theta^{\prime}-\theta\right\|^{2} \leq \epsilon
+</script></p>
+<p>some parameters change probabilities a lot more than others!</p>
+<ul>
+<li>We can rescale the gradient so this doesn&apos;t happen, using trust region optimization:</li>
+</ul>
+<p><script type="math/tex; mode=display">
+\theta^{\prime} \leftarrow \arg \max _{\theta^{\prime}}\left(\theta^{\prime}-\theta\right)^{T} \nabla_{\theta} J(\theta) \text {, s.t. } D\left(\pi_{\theta^{\prime}}, \pi_{\theta}\right) \leq \epsilon
+</script></p>
+<p>Notice that</p>
+<p><script type="math/tex; mode=display">
+D_{\mathrm{KL}}\left(\pi_{\theta^{\prime}} \| \pi_{\theta}\right)=E_{\pi_{\theta^{\prime}}}\left[\log \pi_{\theta}-\log \pi_{\theta^{\prime}}\right] \approx \left(\theta^{\prime}-\theta\right)^{T} \mathbf{F}\left(\theta^{\prime}-\theta\right)
+</script></p>
+<p>where <script type="math/tex; ">\mathbf{F}</script> is the Fisher-information matrix,</p>
+<p><script type="math/tex; mode=display">
+\mathbf{F}=E_{\pi_{\theta}}\left[\log \pi_{\theta}(\mathbf{a} | \mathbf{s}) \log \pi_{\theta}(\mathbf{a} | \mathbf{s})^{T}\right]
+</script></p>
+<ul>
+<li>Natural policy gradient, pick <script type="math/tex; ">\alpha</script></li>
+</ul>
+<p><script type="math/tex; mode=display">
+\theta \leftarrow \theta+\alpha \mathbf{F}^{-1} \nabla_{\theta} J(\theta)
+</script></p>
+<h2 id="computation"><a name="computation" class="anchor-navigation-ex-anchor" href="#computation"><i class="fa fa-link" aria-hidden="true"></i></a>3. Computation</h2>
+<p>Fisher-information matrix <script type="math/tex; ">\mathbf{F}</script> can be estimated using samples. The updated rule for TRPO is a quadratic form.</p>
+<ul>
+<li>we first solve linear system and get the direction of update:</li>
+</ul>
+<p><script type="math/tex; mode=display">
+\mathbf{F} \theta = g
+</script></p>
+<p>this can be done using conjugate gradient method. </p>
+<ul>
+<li>Having computed the search direction, we next need to compute the maximal step length which satisfies the KL divergence constraint. The solution has a analytic form.</li>
+</ul>
 
                                 
                                 </section>
@@ -714,14 +735,10 @@ Since this is a form of over-parameterization, <script type="math/tex; ">w_{K+1}
 
             
                 
-                <a href="Empirical_Loss.html" class="navigation navigation-prev " aria-label="Previous page: Empirical Analysis of DNN Loss Surfaces">
+                <a href="RL_Book2.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Part 2: Reinforecement Learning: An Introduction (2)">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
-                
-                <a href="Faster_Frank_Wolfe.html" class="navigation navigation-next " aria-label="Next page: Faster Rates for Frank-Wolfe over Strongly-Convex Sets">
-                    <i class="fa fa-angle-right"></i>
-                </a>
                 
             
         
@@ -730,7 +747,7 @@ Since this is a form of over-parameterization, <script type="math/tex; ">w_{K+1}
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Good Semi-supervised Learning that Requires a Bad GAN","level":"1.4.13","depth":2,"next":{"title":"Faster Rates for Frank-Wolfe over Strongly-Convex Sets","level":"1.4.14","depth":2,"path":"notes/Faster_Frank_Wolfe.md","ref":"./notes/Faster_Frank_Wolfe.md","articles":[]},"previous":{"title":"Empirical Analysis of DNN Loss Surfaces","level":"1.4.12","depth":2,"path":"notes/Empirical_Loss.md","ref":"./notes/Empirical_Loss.md","articles":[]},"dir":"ltr"},"config":{"plugins":["mathjax","image-captions","github","anchors","anchor-navigation-ex","-sharing","sharing-plus@^0.0.2","github-buttons","embed-pdf","livereload"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"github":{"url":"https://github.com/ZizouHe/"},"livereload":{},"search":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":false},"mode":"float","multipleH1":false,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":true},"github-buttons":{"buttons":[{"user":"ZizouHe","repo":"reading-notes","type":"star","size":"small"}]},"mathjax":{"forceSVG":false,"version":"2.6-latest"},"sharing":{"qq":true,"all":["facebook","google","twitter","weibo","qq","linkedin"],"douban":false,"facebook":true,"weibo":true,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":false,"messenger":false,"line":false,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"embed-pdf":{},"image-captions":{"caption":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","align":"right","variable_name":"_pictures"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{"_pictures":[{"backlink":"./notes/RDN.html#fig1.4.2.1","level":"1.4.2","align":"right","list_caption":"Figure: Example (a) data graph and (b) model graph.","alt":"Example (a) data graph and (b) model graph.","nro":1,"url":"./pic/RDN-1.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Example (a) data graph and (b) model graph.","attributes":{},"skip":false,"key":"1.4.2.1"},{"backlink":"./notes/RDN.html#fig1.4.2.2","level":"1.4.2","align":"right","list_caption":"Figure: RDN inference algorithm.","alt":"RDN inference algorithm.","nro":2,"url":"./pic/RDN-2.png","index":2,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"RDN inference algorithm.","attributes":{},"skip":false,"key":"1.4.2.2"},{"backlink":"./notes/Faster_Frank_Wolfe.html#fig1.4.14.1","level":"1.4.14","align":"right","list_caption":"Figure: Frank-Wolfe Algorithm","alt":"Frank-Wolfe Algorithm","nro":3,"url":"./pic/Frank-Wolfe.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Frank-Wolfe Algorithm","attributes":{},"skip":false,"key":"1.4.14.1"},{"backlink":"./notes/Fin_Fan_Book.html#fig1.4.15.1","level":"1.4.15","align":"right","list_caption":"Figure: Efficient Frontier with risk-free asset","alt":"Efficient Frontier with risk-free asset","nro":4,"url":"./pic/Eff_Front_1.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Efficient Frontier with risk-free asset","attributes":{},"skip":false,"key":"1.4.15.1"},{"backlink":"./notes/Fin_Fan_Book.html#fig1.4.15.2","level":"1.4.15","align":"right","list_caption":"Figure: Efficient Frontier without risk-free asset","alt":"Efficient Frontier without risk-free asset","nro":5,"url":"./pic/Eff_Front_2.png","index":2,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Efficient Frontier without risk-free asset","attributes":{},"skip":false,"key":"1.4.15.2"}]},"title":"Reading List & Notes","gitbook":"*"},"file":{"path":"notes/Good_Semi_Bad_GAN.md","mtime":"2019-06-09T17:28:50.365Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-11-20T18:03:40.553Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Trust Region Policy Optimization","level":"1.4.19","depth":2,"previous":{"title":"Part 2: Reinforecement Learning: An Introduction (2)","level":"1.4.18","depth":2,"path":"notes/RL_Book2.md","ref":"./notes/RL_Book2.md","articles":[]},"dir":"ltr"},"config":{"plugins":["mathjax","image-captions","github","anchors","anchor-navigation-ex","-sharing","sharing-plus@^0.0.2","github-buttons","embed-pdf","livereload"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"github":{"url":"https://github.com/ZizouHe/"},"livereload":{},"search":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":false},"mode":"float","multipleH1":false,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":true},"github-buttons":{"buttons":[{"user":"ZizouHe","repo":"reading-notes","type":"star","size":"small"}]},"mathjax":{"forceSVG":false,"version":"2.6-latest"},"sharing":{"qq":true,"all":["facebook","google","twitter","weibo","qq","linkedin"],"douban":false,"facebook":true,"weibo":true,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":false,"messenger":false,"line":false,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"embed-pdf":{},"image-captions":{"caption":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","align":"right","variable_name":"_pictures"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{"_pictures":[{"backlink":"./notes/RDN.html#fig1.4.2.1","level":"1.4.2","align":"right","list_caption":"Figure: Example (a) data graph and (b) model graph.","alt":"Example (a) data graph and (b) model graph.","nro":1,"url":"./pic/RDN-1.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Example (a) data graph and (b) model graph.","attributes":{},"skip":false,"key":"1.4.2.1"},{"backlink":"./notes/RDN.html#fig1.4.2.2","level":"1.4.2","align":"right","list_caption":"Figure: RDN inference algorithm.","alt":"RDN inference algorithm.","nro":2,"url":"./pic/RDN-2.png","index":2,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"RDN inference algorithm.","attributes":{},"skip":false,"key":"1.4.2.2"},{"backlink":"./notes/Faster_Frank_Wolfe.html#fig1.4.14.1","level":"1.4.14","align":"right","list_caption":"Figure: Frank-Wolfe Algorithm","alt":"Frank-Wolfe Algorithm","nro":3,"url":"./pic/Frank-Wolfe.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Frank-Wolfe Algorithm","attributes":{},"skip":false,"key":"1.4.14.1"},{"backlink":"./notes/Fin_Fan_Book.html#fig1.4.15.1","level":"1.4.15","align":"right","list_caption":"Figure: Efficient Frontier with risk-free asset","alt":"Efficient Frontier with risk-free asset","nro":4,"url":"./pic/Eff_Front_1.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Efficient Frontier with risk-free asset","attributes":{},"skip":false,"key":"1.4.15.1"},{"backlink":"./notes/Fin_Fan_Book.html#fig1.4.15.2","level":"1.4.15","align":"right","list_caption":"Figure: Efficient Frontier without risk-free asset","alt":"Efficient Frontier without risk-free asset","nro":5,"url":"./pic/Eff_Front_2.png","index":2,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Efficient Frontier without risk-free asset","attributes":{},"skip":false,"key":"1.4.15.2"}]},"title":"Reading List & Notes","gitbook":"*"},"file":{"path":"notes/TRPO.md","mtime":"2019-11-20T18:03:05.956Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-11-20T18:03:40.553Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

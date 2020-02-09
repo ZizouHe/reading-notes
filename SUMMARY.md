@@ -3,6 +3,7 @@
 * [Finished List](./contents/already.md)
 	* [Bayesian Machine Learning](./contents/bayes.md)
 	* [Deep Learning](./contents/DL.md)
+	* [Finance/Quant Finance](./contents/fin.md)
 	* [General CS](./contents/CS.md)
 	* [General Data Science](./contents/DS.md)
 	* [Machine Learning](./contents/ML.md)
@@ -36,3 +37,4 @@
 	* [Part 1: Reinforecement Learning: An Introduction](./notes/RL_Book1.md)
 	* [Part 2: Reinforecement Learning: An Introduction (2)](./notes/RL_Book2.md)
 	* [Trust Region Policy Optimization](./notes/TRPO.md)
+	* [Prioritized Experience Replay](./notes/Prior_Exp_Replay.md)

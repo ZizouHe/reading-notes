@@ -12,6 +12,11 @@
 4. Repeated labeling using multiple noisy labelers
 5. Get Another Label? Improving Data Quality and Data Mining Using Multiple, Noisy Labelers
 
+## Learning to Rank
+
+1. A Short Introduction to Learning to Rank
+2. DeepRank: A New Architecture for Relevance Ranking in Information Retrieval
+
 ## Privacy
 
 1. Formal Privacy for Functional Data with Gaussian Perturbations

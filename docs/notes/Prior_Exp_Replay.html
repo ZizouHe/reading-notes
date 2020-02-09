@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Riemann Manifold Langevin and HMC · Reading List & Notes</title>
+        <title>Prioritized Experience Replay · Reading List & Notes</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -70,10 +70,8 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="pathSGD.html" />
     
-    
-    <link rel="prev" href="Sharpe_Minima_Exp.html" />
+    <link rel="prev" href="TRPO.html" />
     
 
     <style>
@@ -490,7 +488,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.4.10" data-path="RMLHMC.html">
+        <li class="chapter " data-level="1.4.10" data-path="RMLHMC.html">
             
                 <a href="RMLHMC.html">
             
@@ -620,7 +618,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.20" data-path="Prior_Exp_Replay.html">
+        <li class="chapter active" data-level="1.4.20" data-path="Prior_Exp_Replay.html">
             
                 <a href="Prior_Exp_Replay.html">
             
@@ -668,7 +666,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Riemann Manifold Langevin and HMC</a>
+        <a href=".." >Prioritized Experience Replay</a>
     </h1>
 </div>
 
@@ -683,68 +681,13 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon "></span><a href="#riemann-manifold-langevin-and-hamiltonian-monte-carlo-methods"><b> </b>Riemann manifold Langevin and Hamiltonian Monte Carlo methods</a></li><ul><li><span class="title-icon "></span><a href="#summary"><b>1. </b>Summary</a></li><li><span class="title-icon "></span><a href="#enlightenment-from-metropolis-adjusted-langevin-and-hmc"><b>2. </b>Enlightenment from Metropolis Adjusted Langevin and HMC</a></li><ul><li><span class="title-icon "></span><a href="#metropolis-adjusted-langevin"><b>2.1. </b>Metropolis Adjusted Langevin</a></li><li><span class="title-icon "></span><a href="#hmc"><b>2.2. </b>HMC</a></li></ul><li><span class="title-icon "></span><a href="#geometry-information-in-probability"><b>3. </b>Geometry Information in Probability</a></li><li><span class="title-icon "></span><a href="#manifold-metropolis-adjusted-langevin-algorithm"><b>4. </b>Manifold Metropolis adjusted Langevin algorithm</a></li><li><span class="title-icon "></span><a href="#riemann-manifold-hamiltonian-monte-carlo-methods"><b>5. </b>Riemann manifold Hamiltonian Monte Carlo methods</a></li></ul></ul></div><a href="#riemann-manifold-langevin-and-hamiltonian-monte-carlo-methods" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h1 id="riemann-manifold-langevin-and-hamiltonian-monte-carlo-methods"><a name="riemann-manifold-langevin-and-hamiltonian-monte-carlo-methods" class="anchor-navigation-ex-anchor" href="#riemann-manifold-langevin-and-hamiltonian-monte-carlo-methods"><i class="fa fa-link" aria-hidden="true"></i></a> Riemann manifold Langevin and Hamiltonian Monte Carlo methods</h1>
+                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon "></span><a href="#prioritized-experience-replay"><b> </b>Prioritized Experience Replay</a></li></ul></div><a href="#prioritized-experience-replay" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h1 id="prioritized-experience-replay"><a name="prioritized-experience-replay" class="anchor-navigation-ex-anchor" href="#prioritized-experience-replay"><i class="fa fa-link" aria-hidden="true"></i></a> Prioritized Experience Replay</h1>
 <ul>
-<li><p><a href="https://rss.onlinelibrary.wiley.com/doi/pdf/10.1111/j.1467-9868.2010.00765.x" target="_blank">Girolami, M., &amp; Calderhead, B. (2011). Riemann manifold langevin and hamiltonian monte carlo methods. Journal of the Royal Statistical Society: Series B (Statistical Methodology), 73(2), 123-214.</a></p>
+<li><p><a href="https://arxiv.org/pdf/1511.05952.pdf" target="_blank">Schaul, T., Quan, J., Antonoglou, I., &amp; Silver, D. (2015). Prioritized experience replay. arXiv preprint arXiv:1511.05952.</a></p>
 </li>
-<li><p><a href="https://github.com/ehbihenscoding/Riemann_manifold_HMCM" target="_blank">Python Implementation</a></p>
+<li><p><a href="https://danieltakeshi.github.io/2019/07/14/per/" target="_blank">Understanding Prioritized Experience Replay</a></p>
 </li>
 </ul>
-<h2 id="summary"><a name="summary" class="anchor-navigation-ex-anchor" href="#summary"><i class="fa fa-link" aria-hidden="true"></i></a>1. Summary</h2>
-<p>This paper extend two MCMC algorithms: Metropolis adjusted Langevin and Hamiltonian Monte Carlo from Euclidean space to Riemann manifold to resolve the shortcomings of existing Monte Carlo algorithms when sampling from target densities that may be high dimensional and exhibit strong correlations. This is done by utilizing the geometry information associated with probability density function.</p>
-<h2 id="enlightenment-from-metropolis-adjusted-langevin-and-hmc"><a name="enlightenment-from-metropolis-adjusted-langevin-and-hmc" class="anchor-navigation-ex-anchor" href="#enlightenment-from-metropolis-adjusted-langevin-and-hmc"><i class="fa fa-link" aria-hidden="true"></i></a>2. Enlightenment from Metropolis Adjusted Langevin and HMC</h2>
-<h3 id="metropolis-adjusted-langevin"><a name="metropolis-adjusted-langevin" class="anchor-navigation-ex-anchor" href="#metropolis-adjusted-langevin"><i class="fa fa-link" aria-hidden="true"></i></a>2.1. Metropolis Adjusted Langevin</h3>
-<p>Based on a Langevin diffusion, the SDE with stationary distribution <script type="math/tex; ">p(\boldsymbol{\theta})</script> is</p>
-<p><script type="math/tex; ">
-\mathrm{d} \theta(t)=\nabla_{\boldsymbol{\theta}} \mathcal{L}\{\boldsymbol{\theta}(t)\} \mathrm{d} t / 2+\mathrm{d}\boldsymbol{b}(t)
-</script></p>
-<p>where <script type="math/tex; ">\mathcal{L}(\boldsymbol{\theta}) \equiv \log \{p(\boldsymbol{\theta})\}</script> and <script type="math/tex; ">\mathbf{b}</script> denotes a D-dimensional Brownian motion. A first-order Euler discretization of the SDE gives the proposal mechanism</p>
-<p><script type="math/tex; ">
-\boldsymbol{\theta}^{*}=\boldsymbol{\theta}^{n}+\varepsilon^{2} \nabla_{\boldsymbol{\theta}} \mathcal{L}\left(\boldsymbol{\theta}^{n}\right) / 2+\varepsilon \mathbf{z}^{n}
-</script></p>
-<p>where <script type="math/tex; ">\mathbf{z} \sim \mathcal{N}(\mathbf{z} | \mathbf{0}, \mathbf{I})</script> and <script type="math/tex; ">\epsilon</script> is the integration step size. Notice that the error this discretization introduces can be corrected by employing a Metropolis acceptance probability after each integration step.</p>
-<p>Although the drift term in the proposal mechanism for the Metropolis Adjusted Langevin defines the direction for the proposal based on the gradient information, it is clear that the isotropic diffusion will be inefficient for strongly correlated variables <script type="math/tex; ">\boldsymbol{\theta}</script> with widely differing variances forcing the step size to accommodate the variate with smallest variance. This issue can be circumvented by employing a preconditioning matrix <script type="math/tex; ">M</script> such that</p>
-<p><script type="math/tex; ">
-\boldsymbol{\theta}^{*}=\boldsymbol{\theta}^{n}+\varepsilon^{2} \mathbf{M} \nabla_{\boldsymbol{\theta}} \mathcal{L}\left(\boldsymbol{\theta}^{n}\right) / 2+\varepsilon \sqrt{\mathbf{M} \mathbf{z}}^{n}
-</script></p>
-<h3 id="hmc"><a name="hmc" class="anchor-navigation-ex-anchor" href="#hmc"><i class="fa fa-link" aria-hidden="true"></i></a>2.2. HMC</h3>
-<p>With a auxiliary variable <script type="math/tex; ">\boldsymbol{p} \sim \mathcal{N}(\boldsymbol{0}, M)</script>, we can define the negative joint log-probability as</p>
-<p><script type="math/tex; ">
-H(\boldsymbol{\theta}, \mathbf{p})=-\mathcal{L}(\boldsymbol{\theta})+\frac{1}{2} \log \left\{(2 \pi)^{D}|\mathbf{M}|\right\}+\frac{1}{2} \mathbf{p}^{\mathrm{T}} \mathbf{M}^{-1} \mathbf{p}
-</script></p>
-<p>where the kinetic energy term <script type="math/tex; ">\mathbf{p}^{\mathrm{T}} \mathbf{M}^{-1} \mathbf{p} / 2</script> where the covariance matrix <script type="math/tex; ">\mathbf{M}</script> denotes a mass matrix.</p>
-<p><strong>It can be shown that the discrete version of HMC (leapfrog method) is equivalent to a Metropolis Adjusted Langevin with precondition matrix <script type="math/tex; ">\mathbf{M}</script></strong>.</p>
-<h2 id="geometry-information-in-probability"><a name="geometry-information-in-probability" class="anchor-navigation-ex-anchor" href="#geometry-information-in-probability"><i class="fa fa-link" aria-hidden="true"></i></a>3. Geometry Information in Probability</h2>
-<p>A distance metric based on a first order expression for the symmetric Kullback-Liebler divergence between two densities <script type="math/tex; ">p</script> and <script type="math/tex; ">q</script> is defined as</p>
-<p><script type="math/tex; ">
-D_{\mathcal{S}}(p \| q)=D(p \| q)+D(q \| p)
-</script></p>
-<p>Therefore, up to a small term, we have</p>
-<p><script type="math/tex; ">
-D_{\mathcal{S}}(p(\mathbf{y} ; \boldsymbol{\theta}+\delta \boldsymbol{\theta}) \| p(\mathbf{y} ; \boldsymbol{\theta})) = \delta \boldsymbol{\theta}^{\top} E_{\mathbf{y} | \boldsymbol{\theta}}\left\{\nabla_{\boldsymbol{\theta}} \log p(\mathbf{y} ; \boldsymbol{\theta}) \nabla_{\boldsymbol{\theta}} \log p(\mathbf{y} ; \boldsymbol{\theta})^{\top}\right\} \delta \boldsymbol{\theta}=\delta \boldsymbol{\theta}^{\top} \mathbf{G}(\boldsymbol{\theta}) \delta \boldsymbol{\theta}
-</script></p>
-<p>where <script type="math/tex; ">\mathbf{G}(\boldsymbol{\theta})</script> is the Fisher Information matrix.</p>
-<p>The parameter space of a statistical model is a Riemannian manifold. Therefore
-the natural geometric structure of the density model <script type="math/tex; ">p(\boldsymbol{\theta})</script> is defined by the Riemannian manifold and associated metric tensor. Given this geometric structure of the parameter space of statistical models the appropriate adoption of the position specific metric, <script type="math/tex; ">\mathbf{G}(\boldsymbol{\theta})</script>, within an MCMC scheme should yield more effective transitions in the overall algorithm.</p>
-<h2 id="manifold-metropolis-adjusted-langevin-algorithm"><a name="manifold-metropolis-adjusted-langevin-algorithm" class="anchor-navigation-ex-anchor" href="#manifold-metropolis-adjusted-langevin-algorithm"><i class="fa fa-link" aria-hidden="true"></i></a>4. Manifold Metropolis adjusted Langevin algorithm</h2>
-<p>Given the geometric structure for probability models a Langevin diffusion with invariant measure <script type="math/tex; ">p(\boldsymbol{\theta})</script> can be defined directly upon the Riemannian manifold with metric tensor <script type="math/tex; ">\mathbf{G}(\boldsymbol{\theta})</script>:</p>
-<p><script type="math/tex; ">
-d \boldsymbol{\theta}(t)=\frac{1}{2} \tilde{\nabla}_{\boldsymbol{\theta}} \mathcal{L}(\boldsymbol{\theta}(t)) d t+d \tilde{\mathbf{b}}(t)
-</script></p>
-<p>where</p>
-<p><script type="math/tex; ">
-\tilde{\nabla}_{\boldsymbol{\theta}} \mathcal{L}(\boldsymbol{\theta}(t))=\mathbf{G}^{-1}(\boldsymbol{\theta}(t)) \nabla_{\boldsymbol{\theta}} \mathcal{L}(\boldsymbol{\theta}(t))
-</script></p>
-<p>and</p>
-<p><script type="math/tex; ">
-d \tilde{\mathbf{b}}_{i}(t)=|\mathbf{G}(\boldsymbol{\theta}(t))|^{-1 / 2} \sum_{j=1}^{D} \frac{\partial}{\partial \boldsymbol{\theta}_{j}}\left(\mathbf{G}^{-1}(\boldsymbol{\theta}(t))_{i j}|\mathbf{G}(\boldsymbol{\theta}(t))|^{1 / 2}\right) d t+\left(\sqrt{\mathbf{G}^{-1}(\boldsymbol{\theta}(t))} d \mathbf{b}(t)\right)_{i}
-</script></p>
-<h2 id="riemann-manifold-hamiltonian-monte-carlo-methods"><a name="riemann-manifold-hamiltonian-monte-carlo-methods" class="anchor-navigation-ex-anchor" href="#riemann-manifold-hamiltonian-monte-carlo-methods"><i class="fa fa-link" aria-hidden="true"></i></a>5. Riemann manifold Hamiltonian Monte Carlo methods</h2>
-<p>Similarly, we can replace the covariance matrix <script type="math/tex; ">M</script> with <script type="math/tex; ">\mathbf{G}(\boldsymbol{\theta})</script>:</p>
-<p><script type="math/tex; ">
-H(\boldsymbol{\theta}, \mathbf{p})=-\mathcal{L}(\boldsymbol{\theta})+\frac{1}{2} \log \left((2 \pi)^{D}|\mathbf{G}(\boldsymbol{\theta})|\right)+\frac{1}{2} \mathbf{p}^{\top} \mathbf{G}(\boldsymbol{\theta})^{-1} \mathbf{p}
-</script></p>
-<p>and the marginal density of <script type="math/tex; ">p(\boldsymbol{\theta})</script> does not depend on <script type="math/tex; ">\mathbf{p}</script>.</p>
 
                                 
                                 </section>
@@ -772,14 +715,10 @@ H(\boldsymbol{\theta}, \mathbf{p})=-\mathcal{L}(\boldsymbol{\theta})+\frac{1}{2}
 
             
                 
-                <a href="Sharpe_Minima_Exp.html" class="navigation navigation-prev " aria-label="Previous page: Large Batch Training and Sharpe Minima">
+                <a href="TRPO.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Trust Region Policy Optimization">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
-                
-                <a href="pathSGD.html" class="navigation navigation-next " aria-label="Next page: Path-sgd: Path-normalized Optimization in Deep Neural Networks">
-                    <i class="fa fa-angle-right"></i>
-                </a>
                 
             
         
@@ -788,7 +727,7 @@ H(\boldsymbol{\theta}, \mathbf{p})=-\mathcal{L}(\boldsymbol{\theta})+\frac{1}{2}
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Riemann Manifold Langevin and HMC","level":"1.4.10","depth":2,"next":{"title":"Path-sgd: Path-normalized Optimization in Deep Neural Networks","level":"1.4.11","depth":2,"path":"notes/pathSGD.md","ref":"./notes/pathSGD.md","articles":[]},"previous":{"title":"Large Batch Training and Sharpe Minima","level":"1.4.9","depth":2,"path":"notes/Sharpe_Minima_Exp.md","ref":"./notes/Sharpe_Minima_Exp.md","articles":[]},"dir":"ltr"},"config":{"plugins":["mathjax","image-captions","github","anchors","anchor-navigation-ex","-sharing","sharing-plus@^0.0.2","github-buttons","embed-pdf"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"github":{"url":"https://github.com/ZizouHe/"},"search":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":false},"mode":"float","multipleH1":false,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":true},"github-buttons":{"buttons":[{"user":"ZizouHe","repo":"reading-notes","type":"star","size":"small"}]},"mathjax":{"forceSVG":false,"version":"2.6-latest"},"sharing":{"qq":true,"all":["facebook","google","twitter","weibo","qq","linkedin"],"douban":false,"facebook":true,"weibo":true,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":false,"messenger":false,"line":false,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"embed-pdf":{},"image-captions":{"caption":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","align":"right","variable_name":"_pictures"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{"_pictures":[{"backlink":"./notes/RDN.html#fig1.4.2.1","level":"1.4.2","align":"right","list_caption":"Figure: Example (a) data graph and (b) model graph.","alt":"Example (a) data graph and (b) model graph.","nro":1,"url":"./pic/RDN-1.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Example (a) data graph and (b) model graph.","attributes":{},"skip":false,"key":"1.4.2.1"},{"backlink":"./notes/RDN.html#fig1.4.2.2","level":"1.4.2","align":"right","list_caption":"Figure: RDN inference algorithm.","alt":"RDN inference algorithm.","nro":2,"url":"./pic/RDN-2.png","index":2,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"RDN inference algorithm.","attributes":{},"skip":false,"key":"1.4.2.2"},{"backlink":"./notes/Faster_Frank_Wolfe.html#fig1.4.14.1","level":"1.4.14","align":"right","list_caption":"Figure: Frank-Wolfe Algorithm","alt":"Frank-Wolfe Algorithm","nro":3,"url":"./pic/Frank-Wolfe.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Frank-Wolfe Algorithm","attributes":{},"skip":false,"key":"1.4.14.1"},{"backlink":"./notes/Fin_Fan_Book.html#fig1.4.15.1","level":"1.4.15","align":"right","list_caption":"Figure: Efficient Frontier with risk-free asset","alt":"Efficient Frontier with risk-free asset","nro":4,"url":"./pic/Eff_Front_1.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Efficient Frontier with risk-free asset","attributes":{},"skip":false,"key":"1.4.15.1"},{"backlink":"./notes/Fin_Fan_Book.html#fig1.4.15.2","level":"1.4.15","align":"right","list_caption":"Figure: Efficient Frontier without risk-free asset","alt":"Efficient Frontier without risk-free asset","nro":5,"url":"./pic/Eff_Front_2.png","index":2,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Efficient Frontier without risk-free asset","attributes":{},"skip":false,"key":"1.4.15.2"}]},"title":"Reading List & Notes","gitbook":"*"},"file":{"path":"notes/RMLHMC.md","mtime":"2019-10-05T05:35:23.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-02-09T22:57:16.846Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Prioritized Experience Replay","level":"1.4.20","depth":2,"previous":{"title":"Trust Region Policy Optimization","level":"1.4.19","depth":2,"path":"notes/TRPO.md","ref":"./notes/TRPO.md","articles":[]},"dir":"ltr"},"config":{"plugins":["mathjax","image-captions","github","anchors","anchor-navigation-ex","-sharing","sharing-plus@^0.0.2","github-buttons","embed-pdf"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"github":{"url":"https://github.com/ZizouHe/"},"search":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":false},"mode":"float","multipleH1":false,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":true},"github-buttons":{"buttons":[{"user":"ZizouHe","repo":"reading-notes","type":"star","size":"small"}]},"mathjax":{"forceSVG":false,"version":"2.6-latest"},"sharing":{"qq":true,"all":["facebook","google","twitter","weibo","qq","linkedin"],"douban":false,"facebook":true,"weibo":true,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":false,"messenger":false,"line":false,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"embed-pdf":{},"image-captions":{"caption":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","align":"right","variable_name":"_pictures"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{"_pictures":[{"backlink":"./notes/RDN.html#fig1.4.2.1","level":"1.4.2","align":"right","list_caption":"Figure: Example (a) data graph and (b) model graph.","alt":"Example (a) data graph and (b) model graph.","nro":1,"url":"./pic/RDN-1.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Example (a) data graph and (b) model graph.","attributes":{},"skip":false,"key":"1.4.2.1"},{"backlink":"./notes/RDN.html#fig1.4.2.2","level":"1.4.2","align":"right","list_caption":"Figure: RDN inference algorithm.","alt":"RDN inference algorithm.","nro":2,"url":"./pic/RDN-2.png","index":2,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"RDN inference algorithm.","attributes":{},"skip":false,"key":"1.4.2.2"},{"backlink":"./notes/Faster_Frank_Wolfe.html#fig1.4.14.1","level":"1.4.14","align":"right","list_caption":"Figure: Frank-Wolfe Algorithm","alt":"Frank-Wolfe Algorithm","nro":3,"url":"./pic/Frank-Wolfe.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Frank-Wolfe Algorithm","attributes":{},"skip":false,"key":"1.4.14.1"},{"backlink":"./notes/Fin_Fan_Book.html#fig1.4.15.1","level":"1.4.15","align":"right","list_caption":"Figure: Efficient Frontier with risk-free asset","alt":"Efficient Frontier with risk-free asset","nro":4,"url":"./pic/Eff_Front_1.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Efficient Frontier with risk-free asset","attributes":{},"skip":false,"key":"1.4.15.1"},{"backlink":"./notes/Fin_Fan_Book.html#fig1.4.15.2","level":"1.4.15","align":"right","list_caption":"Figure: Efficient Frontier without risk-free asset","alt":"Efficient Frontier without risk-free asset","nro":5,"url":"./pic/Eff_Front_2.png","index":2,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Efficient Frontier without risk-free asset","attributes":{},"skip":false,"key":"1.4.15.2"}]},"title":"Reading List & Notes","gitbook":"*"},"file":{"path":"notes/Prior_Exp_Replay.md","mtime":"2019-11-20T19:24:30.352Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-02-09T22:57:16.846Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

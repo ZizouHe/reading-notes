@@ -16,6 +16,8 @@
 3. Accelerating Stochastic Gradient Descent using Predictive Variance Reduction
 4. Semi-Stochastic Gradient Descent Methods
 5. [Faster Rates for the Frank-Wolfe Method over Strongly-Convex Sets](../notes/Faster_Frank_Wolfe.html)
+6. Spider: Near-Optimal Non-Convex Optimization via Stochastic Path Integrated Differential Estimator
+7. How to Escape Saddle Point Efficiently?
 
 ## Principal Component Analysis
 

@@ -15,12 +15,11 @@
 3. Learning Representations for Counterfactual Inference
 4. Estimating Individual Treatment Effect: Generalization Bounds and Algorithms
 
-## Deep Reinforcement Learning
+## Deep Learning Theory
 
-1. Mastering the game of Go with deep neural networks and tree search
-2. Continuous control with deep reinforcement learning
-3. Deterministic Policy Gradient Algorithms
-4. [Trust Region Policy Optimization](../notes/TRPO.html)
+1. Deep Neural Networks as Gaussian Processes
+2. Neural Tangent Kernel: Convergence and Generalization in Neural Networks
+3. Theoretical Guarantees for Sampling and Inference in Generative Models with Latent Diffusions
 
 ## Generative Adversarial Network
 
@@ -36,19 +35,6 @@
 3. Understanding Black-box Predictions via Influence Functions
 4. Understanding Deep Learning Requires Rethinking Generalization
 5. DeepFool: a simple and accurate method to fool deep neural networks
-6. [On Large-Batch Training for Deep Learning: Generalization Gap and Sharp Minima](../notes/Sharpe_Minima_Exp.html)
-7. [Sharp Minima Can Generalize For Deep Nets](../notes/Sharpe_Minima_Works.html)
-8. Entropy-sgd: Biasing Gradient Descent into Wide Valleys
-9. [Geometry of Optimization and Implicit Regularization in Deep Learning](../notes/pathSGD.html)
-10. [Path-sgd: Path-normalized Optimization in Deep Neural Networks](../notes/pathSGD.html)
-11. Norm-based capacity control in neural networks
-12. [An Empirical Analysis of the Optimization of Deep Network Loss Surfaces](../notes/Empirical_Loss.html)
-13. Theory of Deep Learning II: Landscape of the Empirical Risk in Deep Learning
-14. Theory of Deep Learning III: Generalization Properties of SGD
-15. Towards Understanding Generalization of Deep Learning: Perspective of Loss Landscapes
-16. On Dropout and Nuclear Norm Regularization
-17. Deep Neural Networks as Gaussian Processes
-18. Neural Tangent Kernel: Convergence and Generalization in Neural Networks
 
 ## Information Theory
 
@@ -84,10 +70,20 @@
 3. Tying word vectors and word classifiers: A loss framework for language modeling
 4. Smart Reply: Automated Response Suggestion for Email
 
+## Deep Privacy
+
+1. Deep Leakage from Gradients
+
 ## Reinforcement Learning
 
 1. Mastering the Game of Go with Deep Neural Networks and Tree Search
 2. Mastering the Game of Go without Human Knowledge
+3. Continuous control with deep reinforcement learning
+4. Deterministic Policy Gradient Algorithms
+5. [Trust Region Policy Optimization](../notes/TRPO.html)
+6. Deep Reinforcement Learning with Double Q-learning
+7. [Prioritized Experience Replay](../notes/Prior_Exp_Replay.html)
+8. Taming the Noise in Reinforcement Learning via Soft Updates
 
 ## Semi-supervised Learning
 
@@ -100,6 +96,28 @@
 7. Temporal Ensembling for Semi-Supervised Learning
 8. [Good Semi-supervised Learning that Requires a Bad GAN](../notes/Good_Semi_Bad_GAN.html)
 
+## Stochastic Optimization and Generalization
+
+6. [On Large-Batch Training for Deep Learning: Generalization Gap and Sharp Minima](../notes/Sharpe_Minima_Exp.html)
+7. [Sharp Minima Can Generalize For Deep Nets](../notes/Sharpe_Minima_Works.html)
+8. Entropy-sgd: Biasing Gradient Descent into Wide Valleys
+9. [Geometry of Optimization and Implicit Regularization in Deep Learning](../notes/pathSGD.html)
+10. [Path-sgd: Path-normalized Optimization in Deep Neural Networks](../notes/pathSGD.html)
+11. Norm-based capacity control in neural networks
+12. [An Empirical Analysis of the Optimization of Deep Network Loss Surfaces](../notes/Empirical_Loss.html)
+13. Theory of Deep Learning II: Landscape of the Empirical Risk in Deep Learning
+14. Theory of Deep Learning III: Generalization Properties of SGD
+15. Towards Understanding Generalization of Deep Learning: Perspective of Loss Landscapes
+16. On Dropout and Nuclear Norm Regularization
+17. Theoretical guarantees for sampling and inference in generative models with latent diffusions
+17. Neural Stochastic Differential Equations: Deep Latent Gaussian Models in the Diffusion Limit
+
+## Time Series
+
+1. Deep State Space Models for Time Series Forecasting
+2. Deep Factors for Forecasting
+3. DeepAR- Probabilistic forecasting with autoregressive recurrent networks
+4. Structured Inference Networks for Nonlinear State Space Models
 
 ## Training Technique
 

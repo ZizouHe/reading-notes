@@ -26,3 +26,8 @@
 3. Faster Eigenvector Computation via Shift-and-Invert Preconditioning
 4. LazySVD: Even Faster SVD Decomposition Yet Without Agonizing Pain
 5. Fast Stochastic Algorithms for SVD and PCA- Convergence Properties and Convexity
+
+## Stochastic Gradient Langevin Dynamics
+
+1. Non-convex Learning via Stochastic Gradient Langevin Dynamics: A Nonasymptotic Analysis
+2. Local Optimality and Generalization Guarantees for the Langevin Algorithm via Empirical Metastability

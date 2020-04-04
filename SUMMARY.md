@@ -38,3 +38,5 @@
 	* [Part 2: Reinforecement Learning: An Introduction (2)](./notes/RL_Book2.md)
 	* [Trust Region Policy Optimization](./notes/TRPO.md)
 	* [Prioritized Experience Replay](./notes/Prior_Exp_Replay.md)
+	* [A Galtonian Perspective on Shrinkage Estimators](./notes/stein-galton.md)
+	* [Regression Shrinkage and Selection via the Lasso](./notes/lasso.md)

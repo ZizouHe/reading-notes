@@ -1,5 +1,10 @@
 # Traditional Statistics
 
+## Clustering
+
+1. Hidden Integrality of SDP Relaxation for Sub-Gaussian Mixture Models
+2. Exponential error rates of SDP for block models: Beyond Grothendieck's inequality
+
 ## Concentration Inequalities
 
 1. Sum-of-Squares Lower Bounds for Sparse PCA
@@ -27,6 +32,8 @@
 3. Communication-Efficient Algorithms for Statistical Optimization
 4. Distributed Estimation of Principal Eigenspaces
 5. Communication-efficient Algorithms for Distributed Stochastic Principal Component Analysis
+6. Communication Efficient Distributed Optimization using an Approximate Newton-type Method
+7. Communication-Efficient Accurate Statistical Estimation
 
 ## False Discovery Rate
 
@@ -34,7 +41,12 @@
 
 ## General Inference
 
-1. Statistical Inference for Model Parameters in Stochastic Gradient Descent
+1. A Scalable Bootstrap for Massive Data
+2. [A Galtonian Perspective on Shrinkage Estimators](../notes/stein-galton.html)
+
+## Linear Method
+
+1. [Regression Shrinkage and Selection via the Lasso](../notes/lasso.html)
 
 ## Hypothesis Testing
 
@@ -52,3 +64,12 @@
 ## Semi-supervised Inference
 
 1. Semi-supervised Inference: General Theory and Estimation of Means
+
+## SGD Inference
+
+1. Statistical Inference for Model Parameters in Stochastic Gradient Descent
+2. Online Bootstrap Confidence Interval for the Stochastic Gradient Descent Estimator
+3. Bridging the Gap between Constant Step Size Stochastic Gradient Descent and Markov Chains
+4. On Constructing Confidence Region for Model Parameters in Stochastic Gradient Descent via Batch Means
+5. A Fully Online Approach for Covariance Matrices Estimation of Stochastic Gradient Descent Solutions
+6. Uncertainty Quantification for Online Learning and Stochastic Approximation via Hierarchical Incremental Gradient Descent

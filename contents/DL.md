@@ -35,6 +35,7 @@
 3. Understanding Black-box Predictions via Influence Functions
 4. Understanding Deep Learning Requires Rethinking Generalization
 5. DeepFool: a simple and accurate method to fool deep neural networks
+6. On the Accuracy of Influence Functions for Measuring Group Effects
 
 ## Information Theory
 

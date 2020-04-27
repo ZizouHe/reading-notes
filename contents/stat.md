@@ -47,6 +47,7 @@
 ## Linear Method
 
 1. [Regression Shrinkage and Selection via the Lasso](../notes/lasso.html)
+2. [Nonparametric Instrumental Regression](../notes/nonpa_inst.html)
 
 ## Hypothesis Testing
 
@@ -73,3 +74,5 @@
 4. On Constructing Confidence Region for Model Parameters in Stochastic Gradient Descent via Batch Means
 5. A Fully Online Approach for Covariance Matrices Estimation of Stochastic Gradient Descent Solutions
 6. Uncertainty Quantification for Online Learning and Stochastic Approximation via Hierarchical Incremental Gradient Descent
+7. Acceleration of Stochastic Approximation by Averaging
+8. Statistical Inference for the Population Landscape via Moment Adjusted Stochastic Gradients

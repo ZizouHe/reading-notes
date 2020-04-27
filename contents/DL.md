@@ -112,6 +112,7 @@
 16. On Dropout and Nuclear Norm Regularization
 17. Theoretical guarantees for sampling and inference in generative models with latent diffusions
 17. Neural Stochastic Differential Equations: Deep Latent Gaussian Models in the Diffusion Limit
+18. The Landscape of Empirical Risk for Non-convex Losses
 
 ## Time Series
 

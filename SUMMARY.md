@@ -40,3 +40,4 @@
 	* [Prioritized Experience Replay](./notes/Prior_Exp_Replay.md)
 	* [A Galtonian Perspective on Shrinkage Estimators](./notes/stein-galton.md)
 	* [Regression Shrinkage and Selection via the Lasso](./notes/lasso.md)
+	* [Nonparametric Instrumental Regression](./notes/nonpa_inst.md)

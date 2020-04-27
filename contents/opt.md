@@ -19,6 +19,13 @@
 6. Spider: Near-Optimal Non-Convex Optimization via Stochastic Path Integrated Differential Estimator
 7. How to Escape Saddle Point Efficiently?
 
+## Phase Retrieval/Single Index Model
+
+1. Online Stochastic Gradient Descent with Arbitrary Initialization Solves Non-smooth, Non-convex Phase Retrieval
+2. Phase Retrieval via Randomized Kaczmarz: Theoretical Guarantees
+3. Phase Retrieval via Wirtinger Flow: Theory and Algorithms
+4. Efficient Learning of Generalized Linear and Single Index Models
+
 ## Principal Component Analysis
 
 1. Fast and Simple PCA via Convex Optimization
@@ -31,3 +38,8 @@
 
 1. Non-convex Learning via Stochastic Gradient Langevin Dynamics: A Nonasymptotic Analysis
 2. Local Optimality and Generalization Guarantees for the Langevin Algorithm via Empirical Metastability
+
+## Other SGD Method
+
+1. SignSGD: Compressed Optimisation for Non-Convex Problems
+2. SignSGD via Zeroth-Order Oracle

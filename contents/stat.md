@@ -24,6 +24,38 @@
 10. [Double/debiased machine learning for treatmentand structural parameters](../notes/Double_ML.html)
 11. Double/debiased/neyman machine learning of treatment effects
 12. Approximate residual balancing: debiased inference of average treatment effects in high dimensions
+13. Conformal Inference of Counterfactuals and Individual Treatment Effects
+
+## Causal Mediation Analysis
+
+1. Identification, Inference and Sensitivity Analysis for Causal Mediation Effects
+2. A General Approach to Causal Mediation Analysis
+3. Mediation Analysis with Multiple Mediators
+4. Unpacking the Black Box of Causality
+5. Challenges Raised by Mediation Analysis in a High-Dimension Setting
+6. Testing Mediation Effects in High-Dimensional Epigenetic Studies
+7. Estimating and Testing High-dimensional Mediation Effects in Epigenetic Studies
+8. A Comparison of Methods to Test Mediation and Other Intervening Variable Effects
+9. Joint Significance Tests for Mediation Effects of Socioeconomic Adversity on Adiposity via Epigenetics
+10. Genome-wide Analyses of Sparse Mediation Effects Under Composite Null Hypotheses
+11. Sparse Principal Component-based High-dimensional Mediation Analysis
+12. Hypothesis Test of Mediation Effect in Causal Mediation Model with High-Dimensional Continuous Mediators
+
+## Differential Privacy
+
+1. Deep Learning with Gaussian Differential Privacy
+2. Deep Learning with Differential Privacy
+3. Oracle Efficient Private Non-Convex Optimization
+4. Smooth Sensitivity and Sampling in Private Data Analysis
+5. On Differentially Private Stochastic Convex Optimization with Heavy-tailed Data
+6. Characterizing Private Clipped Gradient Descent on Convex Generalized Linear Problems
+7. The Cost of Privacy in Generalized Linear Models Algorithms and Minimax Lower Bounds
+8. Private Stochastic Convex Optimization with Optimal Rates
+9. Preserving Statistical Validity in Adaptive Data Analysis
+10. Private Stochastic Non-Convex Optimization: Adaptive Algorithms and Tighter Generalization Bounds
+11. Differentially Private Empirical Risk Minimization with Non-convex Loss Functions
+12. Understanding Gradient Clipping in Private SGD: A Geometric Perspective
+13. Private PAC Learning Implies Finite Littlestone
 
 ## Distributed Inference
 
@@ -33,7 +65,8 @@
 4. Distributed Estimation of Principal Eigenspaces
 5. Communication-efficient Algorithms for Distributed Stochastic Principal Component Analysis
 6. Communication Efficient Distributed Optimization using an Approximate Newton-type Method
-7. Communication-Efficient Accurate Statistical Estimation
+7. Communication-Efficient Accurate Statistical **Estimation
+8. A Massive Data Framework for M-Estimators with Cubic-Rate
 
 ## False Discovery Rate
 
@@ -43,11 +76,17 @@
 
 1. A Scalable Bootstrap for Massive Data
 2. [A Galtonian Perspective on Shrinkage Estimators](../notes/stein-galton.html)
+3. Predictive inference with the jackknife+
+4. Conformalized Quantile Regression
+5. Conformal Prediction Under Covariate Shift
 
-## Linear Method
+## High Dimensional Linear Regression
 
 1. [Regression Shrinkage and Selection via the Lasso](../notes/lasso.html)
 2. [Nonparametric Instrumental Regression](../notes/nonpa_inst.html)
+3. On Asymptotically Optimal Confidence Regions and Tests for High-dimensional Models
+4. Confidence Intervals for Low Dimensional Parameters in High Dimensional Linear Models
+5. Sure Independence Screening for Ultrahighdimensional Feature Space
 
 ## Hypothesis Testing
 
@@ -61,6 +100,14 @@
 ## Probability
 
 1. Optimal Estimation of a Large-dimensional Covariance Matrix under Stein’s Loss
+
+## Reinforcement Learning Inference
+
+1. Doubly-Robust Lasso Bandit
+2. Statistical Inference for Online Decision Making: In a Contextual Bandit Setting
+3. Statistical Inference for Online Decision Making via Stochastic Gradient Descent
+3. [Statistical Inference with M-Estimators on Adaptively Collected Data](../notes/kelly_zhang_2021_nips.html)
+3. [Confidence Intervals for Policy Evaluation in Adaptive Experiments](../notes/wager_athey_pnas_2021.html)
 
 ## Semi-supervised Inference
 
@@ -76,3 +123,7 @@
 6. Uncertainty Quantification for Online Learning and Stochastic Approximation via Hierarchical Incremental Gradient Descent
 7. Acceleration of Stochastic Approximation by Averaging
 8. Statistical Inference for the Population Landscape via Moment Adjusted Stochastic Gradients
+9. Asymptotic and Finite-sample Properties of Estimators Based on Stochastic Gradients
+10. On Linear Stochastic Approximation: Fine-grained Polyak-Ruppert and Non-Asymptotic Concentration
+11. ROOT-SGD: Sharp Nonasymptotics and Asymptotic Efficiency in a Single Algorithm
+12. Asymptotic Optimality in Stochastic Optimization

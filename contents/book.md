@@ -3,9 +3,14 @@
 ## CS
 
 1. Mining of Massive Datasets (chapter 3, 9)
+
 2. Reinforcement Learning: An Introduction by Richard Sutton and Andrew Barto (Full) [notes1](../notes/RL_Book1.html), [notes2](../notes/RL_Book2.html)
 
 ## Maths
+
+1. Optimal Transport: Old and New (part 1)
+
+2. Computational Optimal Transport (Full)
 
 ## Statistics
 
@@ -23,4 +28,9 @@
 
 7. All of Non-parametric Statistics (Full)
 
-8. [The Element of Financial Econometrics]((../notes/Fin_Fan_Book.html)) (Full)
+9. Lecture Notes for Statistics 311/Electrical Engineering 377 - John Duchi (Full)
+
+## Finance
+
+1. [The Element of Financial Econometrics]((../notes/Fin_Fan_Book.html)) (Full)
+2. Advances in Financial Machine Learning (Full)

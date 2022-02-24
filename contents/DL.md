@@ -1,12 +1,25 @@
 # Deep Learning
 
-## Architechture
+## Adversial Training
+
+1. Adversarial risk via optimal transport and optimal couplings
+2. Certified Robustness to Adversarial Examples with Differential Privacy
+3. Certified Adversarial Robustness via Randomized Smoothing
+4. Certified Robustness to Label-Flipping Attacks via Randomized Smoothing
+5. Tight Certificates of Adversarial Robustness for Randomly Smoothed Classifiers
+6. Robust Estimation and Generative Adversarial Networks
+7. Robust Descent using Smoothed Multiplicative Noise
+
+## Architecture
 
 1. Dynamic Routing Between Capsules
 2. Matrix Capsules with Em Routing
 3. Deep Residual Learning for Image Recognition
 4. [Neural Ordinary Differential Equations](../notes/NeuralODE.html)
 5. Augmented Neural ODEs
+6. Fully Convolutional Networks for Semantic Segmentation
+7. Swin Transformer: Hierarchical Vision Transformer using Shifted Windows
+8. An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale
 
 ## Deep Causal Inference
 
@@ -20,6 +33,8 @@
 1. Deep Neural Networks as Gaussian Processes
 2. Neural Tangent Kernel: Convergence and Generalization in Neural Networks
 3. Theoretical Guarantees for Sampling and Inference in Generative Models with Latent Diffusions
+4. Deep Double Descent: Where Bigger Models and More Data Hurt
+5. On Lazy Training in Differentiable Programming
 
 ## Generative Adversarial Network
 
@@ -27,6 +42,10 @@
 2. towards principled methods for training generative adversarial networks
 3. Wasserstein GAN
 4. Improved Techniques for Training GANs
+5. Training Generative Neural Networks via Maximum Mean Discrepancy Optimization
+6. Generative Moment Matching Networks
+7. MMD GAN: Towards Deeper Understanding of Moment Matching Network
+8. On Gradient Regularizers for MMD GANs
 
 ## Generalization
 
@@ -70,6 +89,18 @@
 2. Using the output embedding to improve language models
 3. Tying word vectors and word classifiers: A loss framework for language modeling
 4. Smart Reply: Automated Response Suggestion for Email
+5. An Empirical Evaluation of Generic Convolutional and Recurrent Networks for Sequence Modeling
+6. Temporal Convolutional Networks for Action Segmentation and Detection
+7. Temporal Convolutional Attention-based Network For Sequence Modeling
+8. Long Short-Term Memory-Networks for Machine Reading
+9. Effective Approaches to Attention-based Neural Machine Translation
+10. Neural Machine Translation by Jointly Learning to Align and Translate
+11. Sequence to Sequence Learning with Neural Networks
+12. Show, Attend and Tell- Neural Image Caption Generation with Visual Attention
+13. Attention Is All You Need
+14. Pre-training of Deep Bidirectional Transformers for Language Understanding
+15. Neural Turing Machines
+16. Pointer Networks
 
 ## Deep Privacy
 

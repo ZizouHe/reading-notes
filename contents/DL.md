@@ -56,6 +56,13 @@
 5. DeepFool: a simple and accurate method to fool deep neural networks
 6. On the Accuracy of Influence Functions for Measuring Group Effects
 
+## Graph Models
+
+1. [Convolutional neural networks on graphs with fast localized spectral filtering (Defferrard et al. NIPS 2016)](../notes/GCN.html)
+- [Semi-supervised classification with graph convolutional networks (Kipf and Welling ICLR 2017)](../notes/GCN.html)
+- [Inductive representation learning on large graphs (Hamilton et al. NIPS 2017)](../notes/GCN.html)
+- [Graph attention networks (Bengio et al. NIPS 2018)](../notes/GCN.html)
+
 ## Information Theory
 
 1. The Information Bottleneck Method
@@ -101,8 +108,14 @@
 14. Pre-training of Deep Bidirectional Transformers for Language Understanding
 15. Neural Turing Machines
 16. Pointer Networks
+17. [ChineseBERT: Chinese Pretraining Enhanced by Glyph and Pinyin Information (Sun et al., ACL 2021)](../notes/cn_nlp.html)
+18. [Chinese NER Using Lattice LSTM (Zhang and Yang. ACL 2018)](../notes/cn_nlp.html)
+19. [An Encoding Strategy Based Word-Character LSTM for Chinese NER (Liu et al., ACL 2019)](../notes/cn_nlp.html)
+20. [A Neural Multi-digraph Model for Chinese NER with Gazetteers (Ding et al., ACL 2019)](../notes/cn_nlp.html)
+21. [Leverage Lexical Knowledge for Chinese Named Entity Recognition via Collaborative Graph Network (Sui et al., EMNLP 2019)](../notes/cn_nlp.html)
+22. [A Lexicon-Based Graph Neural Network for Chinese NER (Gui et al., EMNLP 2019)](../notes/cn_nlp.html)
 
-## Deep Privacy
+## Privacy
 
 1. Deep Leakage from Gradients
 
@@ -174,4 +187,5 @@
 
 ## Unsupervised Learning
 
-1. Representation learning with contrastive predictive coding
+1. Representation Learning with Contrastive Predictive Coding
+1. A Simple Framework for Contrastive Learning of Visual Representations

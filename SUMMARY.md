@@ -55,4 +55,13 @@
     * [Extrapolative beliefs in the cross-section: What can we learn from the crowds?](./notes/Da_2021_jfe.md)
     * [Geographic Lead-Lag Effects](./notes/Parsons_2020_rfs.md)
     * [Shared Analyst Coverage: Unifying Momentum Spillover Effects](./notes/Ali_2020_jfe.md)
+    * [Q-Factor Model](./notes/q-factor.md)
+    * [Short- and Long-Horizon Behavioral Factors](./notes/DHS-4-factors.md)
+    * [Mispricing Factors](./notes/Stambaugh-Yuan-2017.md)
+    * [Time Series Momentum](./notes/TSM.md)
+    * [Chinese NLP](./notes/cn_nlp.md)
+    * [Chinese Stock Market Shell Value](./notes/cn_shell.md)
+    * [Size and Value in China](./notes/cn_ff3.md)
+    * [Tracking Retail Investor Activity](./notes/retail.md)
+    * [Graph Convolution and Graph Attention](./notes/GCN.md)
 

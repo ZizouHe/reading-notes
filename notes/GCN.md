@@ -5,6 +5,7 @@
 - [Defferrard, Michaël, Xavier Bresson, and Pierre Vandergheynst. "Convolutional neural networks on graphs with fast localized spectral filtering." Advances in neural information processing systems 29 (2016).](https://proceedings.neurips.cc/paper/2016/hash/04df4d434d481c5bb723be1b6df1ee65-Abstract.html)
 - [Kipf, Thomas N., and Max Welling. "Semi-supervised classification with graph convolutional networks." International Conference on Learning Representations (2017).](https://arxiv.org/abs/1609.02907)
 - [Hamilton, Will, Zhitao Ying, and Jure Leskovec. "Inductive representation learning on large graphs." Advances in neural information processing systems 30 (2017).](https://proceedings.neurips.cc/paper/6703-inductive-representation-learning-on-large-graphs)
+- [Wu, Felix, Amauri Souza, Tianyi Zhang, Christopher Fifty, Tao Yu, and Kilian Weinberger. "Simplifying graph convolutional networks." In *International conference on machine learning*, pp. 6861-6871. PMLR, 2019.](https://arxiv.org/pdf/1902.07153.pdf)
 - [Veličković, Petar, Guillem Cucurull, Arantxa Casanova, Adriana Romero, Pietro Lio, and Yoshua Bengio. "Graph attention networks." International Conference on Learning Representations (2018).](https://arxiv.org/abs/1710.10903)
 
 ## Laplacian Matrix on Graph
@@ -105,11 +106,11 @@ f * g=\mathcal{F}^{-1} \left(\mathcal{F}\{f\} \cdot \mathcal{F}\{g\} \right).
 $$
 For convolution operations on graph $$\mathcal{G}$$, similarly, we have
 $$
-(\mathbf{f} * \mathbf{g})_{\mathcal{G}} =\mathcal{F}^{-1}[\mathcal{F}\{\mathbf{f}\} \cdot \mathcal{F}\{\mathbf{g}\}] =\mathcal{F}^{-1}\left[\mathbf{U}^{T} \mathbf{f} \cdot \hat{\mathbf{g}}\right] = \mathcal{F}^{-1}\left[\mathrm{diag}(\hat{g}_1, \ldots, \hat{g}_n) \mathbf{U}^{T} \mathbf{f} \right].
+(\mathbf{f} * \mathbf{g})_{\mathcal{G}} =\mathcal{F}^{-1}[\mathcal{F}\{\mathbf{f}\} \cdot \mathcal{F}\{\mathbf{g}\}] =\mathcal{F}^{-1}\left[U^{T} \mathbf{f} \cdot \hat{\mathbf{g}}\right] = \mathcal{F}^{-1}\left[\mathrm{diag}(\hat{g}_1, \ldots, \hat{g}_n) U^{T} \mathbf{f} \right].
 $$
 If we parameterize $$\hat{\mathbf{g}}$$ directly by trainable parameters $$\theta_1, \ldots, \theta_n$$, 
 $$
-(\mathbf{f} * \mathbf{g})_{\mathcal{G}} = U \mathrm{diag}(\theta_1, \ldots, \theta_n) \mathbf{U}^{T} \mathbf{f}.
+(\mathbf{f} * \mathbf{g})_{\mathcal{G}} = U \mathrm{diag}(\theta_1, \ldots, \theta_n) U^{T} \mathbf{f}.
 $$
 This is the convolution filter on graphs.
 
@@ -123,11 +124,11 @@ $$
 $$
 and the graph convolution is then
 $$
-\mathbf{y} = U g_\theta(\Lambda) \mathbf{U}^{T} \mathbf{x}.
+\mathbf{y} = U g_\theta(\Lambda) U^{T} \mathbf{x}.
 $$
 Notice that it can also be seen as a signal $$\mathbf{x}$$ filtered by $$g_\theta$$ as,
 $$
-\mathbf{y} = g_\theta(L) \mathbf{x} = g_\theta(U \Lambda U^\top) \mathbf{x} = U g_\theta(\Lambda) \mathbf{U}^{T} \mathbf{x}.
+\mathbf{y} = g_\theta(L) \mathbf{x} = g_\theta(U \Lambda U^\top) \mathbf{x} = U g_\theta(\Lambda) U^{T} \mathbf{x}.
 $$
 The parameterization in the previous section can be seen as a non-parametric filter, i.e.,
 $$
@@ -193,12 +194,45 @@ We can generalize this definition to a signal $$X \in \mathbb{R}^{N \times C}$$ 
 $$
 Y=\tilde{D}^{-\frac{1}{2}} \tilde{W} \tilde{D}^{-\frac{1}{2}} X \Theta,
 $$
-where $$\Theta \in \mathbb{R}^{C \times F}$$ is now a matrix of filter parameters and $$Z \in \mathbb{R}^{N \times F}$$ is the convolved signal matrix. This filtering operation has complexity $$\mathcal{O}(|\mathcal{E}| F C)$$, as $$\tilde{W} X$$ can be efficiently implemented as a product of a sparse matrix with a dense matrix.
+where $$\Theta \in \mathbb{R}^{C \times F}$$ is now a matrix of filter parameters and $$Y \in \mathbb{R}^{N \times F}$$ is the convolved signal matrix. This filtering operation has complexity $$\mathcal{O}(|\mathcal{E}| F C)$$, as $$\tilde{W} X$$ can be efficiently implemented as a product of a sparse matrix with a dense matrix.
+
+## Simple GCN
+
+- [Wu, Felix, Amauri Souza, Tianyi Zhang, Christopher Fifty, Tao Yu, and Kilian Weinberger. "Simplifying graph convolutional networks." In *International conference on machine learning*, pp. 6861-6871. PMLR, 2019.](https://arxiv.org/pdf/1902.07153.pdf)
+
+From Kipf and Welling (2017) above, for a input $$X^{(t)} \in \mathbb{R}^{N \times C}$$ with $$C$$ input channels (i.e. a $$C$$-dimensional feature vector for every node) and $$F$$ filters or feature maps as follows,
+$$
+X^{(t+1)}= \sigma\left(S X^{(t)} \Theta \right), \; \; S = \tilde{D}^{-\frac{1}{2}} \tilde{W} \tilde{D}^{-\frac{1}{2}}.
+$$
+where $$\Theta \in \mathbb{R}^{C \times F}$$ is now a matrix of filter parameters, $$\sigma$$ is the non-liner activation function and $$X^{(t+1)} \in \mathbb{R}^{N \times F}$$ is the convolved signal matrix. For a $$K$$-depth network, we will repeat the above procedure $$K$$ times. 
+
+This paper hypothesizes that the nonlinearity between GCN layers is not critical - but that the majority of the benefit arises from the local averaging. The resulting model is linear, but still has the same increased “receptive field” of a $$K$$-layer GCN, i.e.,
+$$
+Y =\operatorname{softmax}\left(S \ldots S S X \Theta^{(1)} \Theta^{(2)} \ldots \Theta^{(K)}\right) = \operatorname{softmax} \left(S^K X \Theta\right).
+$$
+Under this network, the authors obtain a comparable experiment results with the previous structure, and the computation cost / the number of parameters is significantly reduced. Notice that $$S$$ is a $$2 |\mathcal{E}|$$-sparse matrix, where $$|\mathcal{E}|$$ is the number of edges in the graph $$\mathcal{G}$$, and the exponential computation for sparse matrix is quite fast.
 
 ## GraphSAGE
 
 - [Hamilton, Will, Zhitao Ying, and Jure Leskovec. "Inductive representation learning on large graphs." Advances in neural information processing systems 30 (2017).](https://proceedings.neurips.cc/paper/6703-inductive-representation-learning-on-large-graphs)
 - [GraphSAGE](https://zhuanlan.zhihu.com/p/62750137)
+
+We now consider the graph convolution from a different aspect. We mimic the logic of convolution on graph: for a 3x3 convolution layer, we conduct weighted average of the value of the 1-step neighbors of the center point. The next layer convolution operation increases the "receptive field" to the 2-step neighbors of the center point.
+
+The algorithm is given below. For each step $$k=1, \ldots, K$$, we first gather and aggregate all the hidden vecotr from previous step $$\mathbf{h}_{u}^{k-1}$$ in the neightbourhood of vertex $$v$$, i.e., $$u \in \mathcal{N}(v)$$. Then in line 5, we combine the neighborhood information vector $$\mathbf{v}_{\mathcal{N}(v)}^k$$ with $$\mathbf{h}_{v}^{k-1}$$ of $$v$$. 
+
+This process has been repeated $$K$$ times and the information from all the $$K$$-step neighbor will be included.  Instead of training a distinct embedding vector for each node, this algorithm train a set of *aggregator functions* that learn to aggregate feature information from a node’s local neighborhood.
+
+There are several choices of aggregator function:
+
+- **Mean aggregator**: which is the average of all the $$\left\{\mathbf{h}_{u}^{k-1}, \forall u \in \mathcal{N}(v)\right\}$$.
+
+- **Pooling aggregator**: each neighbor’s vector is independently fed through a fully-connected neural network; following this transformation, an elementwise max-pooling operation is applied to aggregate information across the neighbor set:
+  $$
+  \text { AGGREGATE }_{k}^{\text {pool }}=\max \left(\left\{\sigma\left(W \mathbf{h}_{u}^{k}+\mathbf{b}\right), \forall u \in \mathcal{N}(v)\right\}\right).
+  $$
+
+![](./pic/graphsage.png)
 
 ## Graph Attention Network
 

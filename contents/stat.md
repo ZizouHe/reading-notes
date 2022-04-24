@@ -92,6 +92,10 @@
 
 1. Testing for Independence of Large Dimensional Vectors
 
+## Non-smooth Estimation and Inference
+
+1. A General Bahadur Representation of M-estimators and Its Application to Linear Regression with Nonstochastic Designs (He and Shao, AoS 1996)
+
 ## Post-Selection Inference
 
 1. Exact post-selection inference, with application to the lasso
@@ -101,13 +105,14 @@
 
 1. Optimal Estimation of a Large-dimensional Covariance Matrix under Stein’s Loss
 
-## Reinforcement Learning Inference
+## Reinforcement Learning/Adaptive Inference
 
 1. Doubly-Robust Lasso Bandit
 2. Statistical Inference for Online Decision Making: In a Contextual Bandit Setting
 3. Statistical Inference for Online Decision Making via Stochastic Gradient Descent
-3. [Statistical Inference with M-Estimators on Adaptively Collected Data](../notes/kelly_zhang_2021_nips.html)
-3. [Confidence Intervals for Policy Evaluation in Adaptive Experiments](../notes/wager_athey_pnas_2021.html)
+4. [Statistical Inference with M-Estimators on Adaptively Collected Data (Zhang, Jason, and Murphy, NIPS 2021)](../notes/kelly_zhang_2021_nips.html)
+5. [Confidence Intervals for Policy Evaluation in Adaptive Experiments (Zhan, Wager and Athey, PNAS 2021)](../notes/wager_athey_pnas_2021.html)
+6. Inference for Batched Bandits (Zhang, Jason, and Murphy, NIPS 2021)
 
 ## Semi-supervised Inference
 

@@ -54,6 +54,14 @@
 1. Bagehot, Walter. "The only game in town." *Financial Analysts Journal* 27, no. 2 (1971): 12-14.
 1. [Hansen, Peter R., and Asger Lunde. "Realized variance and market microstructure noise." *Journal of Business & Economic Statistics* 24, no. 2 (2006): 127-161.](../notes/realized_var.html)
 
+## P-hacking
+
+1. [Harvey, Campbell R., and Yan Liu. "Lucky factors." *Journal of Financial Economics* 141, no. 2 (2021): 413-435.](../notes/phack.html)
+
+2. [Harvey, Campbell R., Yan Liu, and Heqing Zhu. "… and the cross-section of expected returns." *The Review of Financial Studies* 29, no. 1 (2016): 5-68.](../notes/phack.html)
+3. [Harvey, Campbell R. "Presidential address: The scientific outlook in financial economics." *The Journal of Finance* 72, no. 4 (2017): 1399-1440.](../notes/phack.html)
+4. [Novy-Marx, Robert. *Backtesting strategies based on multiple signals*. No. w21329. National Bureau of Economic Research, 2015.](../notes/phack.html)
+
 ## Reinforcement Learning for Finance
 
 1. Halperin, Igor, and Ilya Feldshteyn. "Market self-learning of signals, impact and optimal trading: Invisible hand inference with free energy." *arXiv preprint arXiv:1805.06126* (2018).

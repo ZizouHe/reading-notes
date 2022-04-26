@@ -64,4 +64,5 @@
     * [Size and Value in China](./notes/cn_ff3.md)
     * [Tracking Retail Investor Activity](./notes/retail.md)
     * [Graph Convolution and Graph Attention](./notes/GCN.md)
+    * [P-hacking](./notes/phack.md)
 

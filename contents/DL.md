@@ -1,5 +1,7 @@
 # Deep Learning
 
+[General Structures and Techniques in Deep Learning](../notes/general_tech_dl.html)
+
 ## Adversial Training
 
 1. Adversarial risk via optimal transport and optimal couplings
@@ -96,7 +98,7 @@
 2. Using the output embedding to improve language models
 3. Tying word vectors and word classifiers: A loss framework for language modeling
 4. Smart Reply: Automated Response Suggestion for Email
-5. An Empirical Evaluation of Generic Convolutional and Recurrent Networks for Sequence Modeling
+5. [An Empirical Evaluation of Generic Convolutional and Recurrent Networks for Sequence Modeling (Bat et al., 2018)](../notes/TCN.html)
 6. Temporal Convolutional Networks for Action Segmentation and Detection
 7. Temporal Convolutional Attention-based Network For Sequence Modeling
 8. Long Short-Term Memory-Networks for Machine Reading

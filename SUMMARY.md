@@ -65,4 +65,8 @@
     * [Tracking Retail Investor Activity](./notes/retail.md)
     * [Graph Convolution and Graph Attention](./notes/GCN.md)
     * [P-hacking](./notes/phack.md)
+    * [General Structures and Techniques in Deep Learning](./notes/general_tech_dl.md)
+    * [Temporal Convolutional Network](./notes/TCN.md)
+    * [Which Beta?](./notes/whichbeta.md)
+    * [Out of Sample Predictability](./notes/OOS.md)
 

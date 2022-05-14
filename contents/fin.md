@@ -24,6 +24,10 @@
 10. [Lee, Charles, Yuanyu Qu, and Tao Shen. "Reverse mergers, shell value, and regulation risk in Chinese equity markets." (2017).](../notes/cn_shell.html)
 11. [屈源育, 沈涛, and 吴卫星. "壳溢价: 错误定价还是管制风险?." *金融研究* 453, no. 3 (2018): 155-171.](../notes/cn_shell.html)
 12. [Liu, Jianan, Robert F. Stambaugh, and Yu Yuan. "Size and value in China." *Journal of Financial Economics* 134, no. 1 (2019): 48-69.](../notes/cn_ff3.html)
+13. [Jegadeesh, Narasimhan, Joonki Noh, Kuntara Pukthuanthong, Richard Roll, and Junbo Wang. "Empirical tests of asset pricing models with individual assets: Resolving the errors-in-variables bias in risk premium estimation." *Journal of Financial Economics* 133, no. 2 (2019): 273-298.](../notes/whichbeta.html)
+14. [Fama, Eugene F., and Kenneth R. French. "Comparing cross-section and time-series factor models." *The Review of Financial Studies* 33, no. 5 (2020): 1891-1926.](../notes/whichbeta.html)
+15. [Kozak, Serhiy, Stefan Nagel, and Shrihari Santosh. "Interpreting factor models." *The Journal of Finance* 73, no. 3 (2018): 1183-1223.](../notes/whichbeta.html)
+16. [Barillas, Francisco, and Jay Shanken. "Which alpha?." *The Review of Financial Studies* 30, no. 4 (2017): 1316-1338.](../notes/whichbeta.html)
 
 ## Cryptocurrency
 
@@ -54,13 +58,21 @@
 1. Bagehot, Walter. "The only game in town." *Financial Analysts Journal* 27, no. 2 (1971): 12-14.
 1. [Hansen, Peter R., and Asger Lunde. "Realized variance and market microstructure noise." *Journal of Business & Economic Statistics* 24, no. 2 (2006): 127-161.](../notes/realized_var.html)
 
-## P-hacking
+## P-hacking and Out-of-Sample
 
 1. [Harvey, Campbell R., and Yan Liu. "Lucky factors." *Journal of Financial Economics* 141, no. 2 (2021): 413-435.](../notes/phack.html)
 
 2. [Harvey, Campbell R., Yan Liu, and Heqing Zhu. "… and the cross-section of expected returns." *The Review of Financial Studies* 29, no. 1 (2016): 5-68.](../notes/phack.html)
 3. [Harvey, Campbell R. "Presidential address: The scientific outlook in financial economics." *The Journal of Finance* 72, no. 4 (2017): 1399-1440.](../notes/phack.html)
 4. [Novy-Marx, Robert. *Backtesting strategies based on multiple signals*. No. w21329. National Bureau of Economic Research, 2015.](../notes/phack.html)
+5. [Chordia, Tarun, Amit Goyal, and Alessio Saretto. "Anomalies and false rejections." *The Review of Financial Studies* 33, no. 5 (2020): 2134-2179.](../notes/phack.html)
+6. [Chen, Andrew Y. "The Limits of p‐Hacking: Some Thought Experiments." *The Journal of Finance* 76, no. 5 (2021): 2447-2480.](../notes/phack.html)
+7. [Harvey, Campbell R., and Yan Liu. "Uncovering the iceberg from its tip: A model of publication bias and p-hacking." *Available at SSRN 3865813* (2021).](../notes/phack.html)
+8. [Harvey, Campbell R., and Yan Liu. "False (and missed) discoveries in financial economics." *The Journal of Finance* 75, no. 5 (2020): 2503-2553.](../notes/phack.html)
+9. [Martin, Ian WR, and Stefan Nagel. "Market efficiency in the age of big data." *Journal of Financial Economics* (2021).](../notes/OOS.html)
+10. [McLean, R. David, and Jeffrey Pontiff. "Does academic research destroy stock return predictability?." *The Journal of Finance* 71, no. 1 (2016): 5-32.](../notes/OOS.html)
+11. [Bowles, Boone, Adam V. Reed, Matthew C. Ringgenberg, and Jacob R. Thornock. "Anomaly time." *Available at SSRN 3069026* (2020).](../notes/OOS.html)
+12. [Novy-Marx, Robert, and Mihail Velikov. "A taxonomy of anomalies and their trading costs." *The Review of Financial Studies* 29, no. 1 (2016): 104-147.](../notes/OOS.html)
 
 ## Reinforcement Learning for Finance
 

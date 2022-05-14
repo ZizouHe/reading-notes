@@ -70,6 +70,8 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
+    <link rel="next" href="general_tech_dl.html" />
+    
     
     <link rel="prev" href="GCN.html" />
     
@@ -969,6 +971,58 @@
             
         </li>
     
+        <li class="chapter " data-level="1.4.47" data-path="general_tech_dl.html">
+            
+                <a href="general_tech_dl.html">
+            
+                    
+                    General Structures and Techniques in Deep Learning
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.48" data-path="TCN.html">
+            
+                <a href="TCN.html">
+            
+                    
+                    Temporal Convolutional Network
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.49" data-path="whichbeta.html">
+            
+                <a href="whichbeta.html">
+            
+                    
+                    Which Beta?
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.50" data-path="OOS.html">
+            
+                <a href="OOS.html">
+            
+                    
+                    Out of Sample Predictability
+            
+                </a>
+            
+
+            
+        </li>
+    
 
             </ul>
             
@@ -1019,7 +1073,7 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon "></span><a href="#p-hacking"><b> </b>P-hacking</a></li><ul><li><span class="title-icon "></span><a href="#introduction"><b>1. </b>Introduction</a></li><li><span class="title-icon "></span><a href="#multiple-testing-using-bootstrap"><b>2. </b>Multiple Testing using Bootstrap</a></li><ul><li><span class="title-icon "></span><a href="#bootstrap-on-panel-regression"><b>2.1. </b>Bootstrap on Panel Regression</a></li><li><span class="title-icon "></span><a href="#bootstrap-for-predictive-regression"><b>2.2. </b>Bootstrap for predictive regression</a></li></ul><li><span class="title-icon "></span><a href="#t-statistics-threshold-using-multiple-testing"><b>3. </b>t-statistics Threshold using Multiple Testing</a></li><ul><li><span class="title-icon "></span><a href="#fwer-and-fdr-control-methods"><b>3.1. </b>FWER and FDR control methods</a></li><li><span class="title-icon "></span><a href="#paper-summary"><b>3.2. </b>Paper summary</a></li></ul><li><span class="title-icon "></span><a href="#bayesian-approach"><b>4. </b>Bayesian Approach</a></li><li><span class="title-icon "></span><a href="#empirical-distribution-of-using-random-factors"><b>5. </b>Empirical Distribution of using Random Factors</a></li></ul></ul></div><a href="#p-hacking" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h1 id="p-hacking"><a name="p-hacking" class="anchor-navigation-ex-anchor" href="#p-hacking"><i class="fa fa-link" aria-hidden="true"></i></a> P-hacking</h1>
+                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon "></span><a href="#p-hacking"><b> </b>P-hacking</a></li><ul><li><span class="title-icon "></span><a href="#introduction"><b>1. </b>Introduction</a></li><li><span class="title-icon "></span><a href="#multiple-testing-using-bootstrap"><b>2. </b>Multiple Testing using Bootstrap</a></li><ul><li><span class="title-icon "></span><a href="#bootstrap-on-panel-regression"><b>2.1. </b>Bootstrap on Panel Regression</a></li><li><span class="title-icon "></span><a href="#bootstrap-for-predictive-regression"><b>2.2. </b>Bootstrap for predictive regression</a></li></ul><li><span class="title-icon "></span><a href="#t-statistics-threshold-using-multiple-testing"><b>3. </b>t-statistics Threshold using Multiple Testing</a></li><ul><li><span class="title-icon "></span><a href="#fwer-and-fdr-control-methods"><b>3.1. </b>FWER and FDR control methods</a></li><li><span class="title-icon "></span><a href="#paper-summary"><b>3.2. </b>Paper summary</a></li></ul><li><span class="title-icon "></span><a href="#bayesian-approach"><b>4. </b>Bayesian Approach</a></li><li><span class="title-icon "></span><a href="#empirical-distribution-of-using-random-factors"><b>5. </b>Empirical Distribution of using Random Factors</a></li><li><span class="title-icon "></span><a href="#t-statistics-threshold-using-multiple-testing-ii"><b>6. </b>t-statistics Threshold using Multiple Testing II</a></li><li><span class="title-icon "></span><a href="#the-existence-of-p-hacking"><b>7. </b>The Existence of P-hacking</a></li><li><span class="title-icon "></span><a href="#controlling-the-type-i-and-type-ii-error-using-double-bootstrap"><b>8. </b>Controlling the Type I and Type II Error using Double-bootstrap</a></li></ul></ul></div><a href="#p-hacking" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h1 id="p-hacking"><a name="p-hacking" class="anchor-navigation-ex-anchor" href="#p-hacking"><i class="fa fa-link" aria-hidden="true"></i></a> P-hacking</h1>
 <h2 id="introduction"><a name="introduction" class="anchor-navigation-ex-anchor" href="#introduction"><i class="fa fa-link" aria-hidden="true"></i></a>1. Introduction</h2>
 <ul>
 <li><p><a href="https://zhuanlan.zhihu.com/p/38663777" target="_blank">&#x5728;&#x8FFD;&#x9010; p-value &#x7684;&#x9053;&#x8DEF;&#x4E0A;&#x72C2;&#x5954;&#xFF0C;&#x5374;&#x5728;&#x79D1;&#x5B66;&#x7684;&#x9053;&#x8DEF;&#x4E0A;&#x6E10;&#x884C;&#x6E10;&#x8FDC;</a></p>
@@ -1043,7 +1097,7 @@ where <script type="math/tex; ">N</script> is the number of assets, and factor r
 <script type="math/tex; mode=display">
 R_{i t}-R_{f t}=a_{i}^+ +\sum_{j=1}^{K+1} b^*_{i j} f_{j t}+\epsilon_{i t}, i=1, \ldots, N
 </script>
-&#x5728;null hypothesis&#x4E0B;&#xFF0C;&#x65B0;&#x7684;factor&#x5BF9;&#x4E8E;&#x89E3;&#x91CA;asset&#x5728;cross-section&#x4E0A;&#x7684;return&#x6CA1;&#x6709;&#x4EFB;&#x4F55;&#x5E2E;&#x52A9;&#xFF0C;&#x56E0;&#x6B64;&#x5E94;&#x8BE5;&#x6709; <script type="math/tex; ">a_i = a^+</script>. &#x6211;&#x4EEC;&#x8003;&#x8651;&#x4E00;&#x4E2A;pseudo factor&#xFF0C;<script type="math/tex; ">f^\prime_{K+1 t}</script>, &#x4E3A;<script type="math/tex; ">f_{K+1 t}</script> &#x5728;&#x524D;&#x9762;<script type="math/tex; ">f_{1t}, \ldots, f_{Kt}</script> &#x5F20;&#x6210;&#x7684;&#x7A7A;&#x95F4;&#x4E0A;&#x7684;&#x6295;&#x5F71;&#xFF0C;&#x5373;
+&#x5728;null hypothesis&#x4E0B;&#xFF0C;&#x65B0;&#x7684;factor&#x5BF9;&#x4E8E;&#x89E3;&#x91CA;asset&#x5728;cross-section&#x4E0A;&#x7684;return&#x6CA1;&#x6709;&#x4EFB;&#x4F55;&#x5E2E;&#x52A9;&#xFF0C;&#x56E0;&#x6B64;&#x5E94;&#x8BE5;&#x6709; <script type="math/tex; ">a_i = a^+_i</script>. &#x6211;&#x4EEC;&#x8003;&#x8651;&#x4E00;&#x4E2A;pseudo factor&#xFF0C;<script type="math/tex; ">f^\prime_{K+1 t}</script>, &#x4E3A;<script type="math/tex; ">f_{K+1 t}</script> &#x5728;&#x524D;&#x9762;<script type="math/tex; ">f_{1t}, \ldots, f_{Kt}</script> &#x5F20;&#x6210;&#x7684;&#x7A7A;&#x95F4;&#x4E0A;&#x7684;&#x6295;&#x5F71;&#xFF0C;&#x5373;
 <script type="math/tex; mode=display">
 \begin{aligned}
 f_{K+1t} &= \delta_0 +\sum_{j=1}^{K} \delta_{j} f_{j t}+\epsilon_{t}, \\
@@ -1065,30 +1119,31 @@ R_{i t}-R_{f t}&=a_{i}^+(R) +\sum_{j=1}^{K} b^*_{i j}(R) f_{j t}+ b^*_{i K+1}(R)
 </script>
 &#x5E76;&#x4E14;&#x901A;&#x8FC7;<script type="math/tex; ">\{(a_i(R), a_i^+(R))\}</script> &#x8BA1;&#x7B97;test statistic&#xFF0C;&#x5E76;&#x7ED9;&#x51FA;&#x5728;null hypothesis &#x4E0B;&#x7684;test statistic &#x7ECF;&#x9A8C;&#x5206;&#x5E03;&#xFF0C;&#x6765;&#x5F97;&#x51FA;&#x539F;&#x672C;&#x7528;<script type="math/tex; ">(a_i, a_i^+)</script> &#x8BA1;&#x7B97;&#x7684; test statistic &#x7684;p-value. </p>
 <p>&#x51E0;&#x79CD;test statistic&#x7684;&#x8BA1;&#x7B97;&#x65B9;&#x6CD5;&#x5982;&#x4E0B;&#xFF1A;</p>
-<ol>
-<li><p>&#x6700;naive&#x7684;
-<script type="math/tex; mode=display">
-   S I_{e w}^{m} \equiv \frac{\frac{1}{N} \sum_{i=1}^{N}\left(\left|a_{i}^{+}\right|-\left|a_{i}\right|\right) / s_{i}}{\frac{1}{N} \sum_{i=1}^{N}\left|a_{i}\right| / s_{i}},
-   </script>
-where <script type="math/tex; ">s_i</script> is the standard deviation of <script type="math/tex; ">a_i</script>.</p>
-</li>
-<li><p>A robust version that calculates the percentage difference in the scaled median absolute intercept
-<script type="math/tex; mode=display">
-   S I_{e w}^{\text {med }} \equiv \frac{\operatorname{med}\left(\left\{\left|a_{i}^{+}\right| / s_{i}\right\}_{i=1}^{N}\right)-\operatorname{med}\left(\left\{\left|a_{i}\right| / s_{i}\right\}_{i=1}^{N}\right)}{\operatorname{med}\left(\left\{\left|a_{i}\right| / s_{i}\right\}_{i=1}^{N}\right)}.
-   </script></p>
-</li>
-</ol>
-<ol>
-<li>Value-weighted statistic
-<script type="math/tex; mode=display">
-   S I_{v w}^{m} \equiv \frac{\sum_{t=1}^{T} \sum_{i=1}^{N} \frac{m e_{i, t}}{M E_{t}} \times\left(\left|a_{i}^{+}\right|-\left|a_{i}\right|\right) / s_{i}}{\sum_{t=1}^{T} \sum_{i=1}^{N} \frac{m e_{i, t}}{M E_{t}} \times\left|a_{i}\right| / s_{i}},
-   </script>
-where <script type="math/tex; ">\left\{m e_{i, t}\right\}_{t=1}^{T}</script> is the time series of market equity for stock <script type="math/tex; ">i</script>, and <script type="math/tex; ">M E_{t}=\sum_{i=1}^{N} m e_{i, t}</script> is the aggregate market equity at time <script type="math/tex; ">t</script>.</li>
-</ol>
+<ul>
+<li>&#x6700;naive&#x7684;</li>
+</ul>
+<p><script type="math/tex; mode=display">
+S I_{e w}^{m} \equiv \frac{\frac{1}{N} \sum_{i=1}^{N}\left(\left|a_{i}^{+}\right|-\left|a_{i}\right|\right) / s_{i}}{\frac{1}{N} \sum_{i=1}^{N}\left|a_{i}\right| / s_{i}},
+</script></p>
+<p>where <script type="math/tex; ">s_i</script> is the standard deviation of <script type="math/tex; ">a_i</script>.</p>
+<ul>
+<li>A robust version that calculates the percentage difference in the scaled median absolute intercept</li>
+</ul>
+<p><script type="math/tex; mode=display">
+S I_{e w}^{\text {med }} \equiv \frac{\operatorname{med}\left(\left\{\left|a_{i}^{+}\right| / s_{i}\right\}_{i=1}^{N}\right)-\operatorname{med}\left(\left\{\left|a_{i}\right| / s_{i}\right\}_{i=1}^{N}\right)}{\operatorname{med}\left(\left\{\left|a_{i}\right| / s_{i}\right\}_{i=1}^{N}\right)}.
+</script></p>
+<ul>
+<li>Value-weighted statistic</li>
+</ul>
+<p><script type="math/tex; mode=display">
+S I_{v w}^{m} \equiv \frac{\sum_{t=1}^{T} \sum_{i=1}^{N} \frac{m e_{i, t}}{M E_{t}} \times\left(\left|a_{i}^{+}\right|-\left|a_{i}\right|\right) / s_{i}}{\sum_{t=1}^{T} \sum_{i=1}^{N} \frac{m e_{i, t}}{M E_{t}} \times\left|a_{i}\right| / s_{i}},
+</script></p>
+<p>where <script type="math/tex; ">\left\{m e_{i, t}\right\}_{t=1}^{T}</script> is the time series of market equity for stock <script type="math/tex; ">i</script>, and <script type="math/tex; ">M E_{t}=\sum_{i=1}^{N} m e_{i, t}</script> is the aggregate market equity at time <script type="math/tex; ">t</script>.</p>
 <p>We have several comments on the test statistics above:</p>
 <ol>
 <li>The use of the scaled intercept takes the heterogeneity in return volatilities into account.</li>
 <li>We scale the intercepts of the baseline model and the augmented model by the same standard error, that is, the standard error of the estimate of the intercept under the baseline model. This ensures that our test statistics are exactly zero when the null hypothesis, i.e., the candidate factor has zero incremental contribution to explain the cross-section of expected returns, is forced to exactly hold in sample for our procedure. This might not hold under alternative scaling schemes.</li>
+<li>For the first factor <script type="math/tex; ">f_{1t}</script>, we can subtract the in-sample mean of <script type="math/tex; ">f_{1t}</script> from its time series. In this way, we are projecting <script type="math/tex; ">f_{1t}</script> onto a vector of all ones.</li>
 </ol>
 <h3 id="bootstrap-for-predictive-regression"><a name="bootstrap-for-predictive-regression" class="anchor-navigation-ex-anchor" href="#bootstrap-for-predictive-regression"><i class="fa fa-link" aria-hidden="true"></i></a>2.2. Bootstrap for predictive regression</h3>
 <p>&#x5047;&#x8BBE;&#x6709;&#x56E0;&#x53D8;&#x91CF; Y &#x548C; 100 &#x4E2A;&#x89E3;&#x91CA;&#x53D8;&#x91CF; X &#x7684; 500 &#x671F;&#x6837;&#x672C;&#x6570;&#x636E;&#xFF0C;&#x6211;&#x4EEC;&#x60F3;&#x770B;&#x770B;&#x54EA;&#x4E2A; X &#x80FD;&#x591F;&#x9884;&#x6D4B; Y&#x3002;&#x591A;&#x91CD;&#x68C0;&#x9A8C;&#x7684;&#x6B65;&#x9AA4;&#x4E3A;&#xFF1A;</p>
@@ -1097,7 +1152,7 @@ where <script type="math/tex; ">\left\{m e_{i, t}\right\}_{t=1}^{T}</script> is 
 </li>
 <li><p>&#x4EE5;&#x8FD9; 500 &#x671F;&#x7684; Y &#x548C;&#x6B63;&#x4EA4;&#x5316;&#x5F97;&#x5230;&#x7684; OX &#x4E3A;&#x539F;&#x59CB;&#x6570;&#x636E;&#xFF08;500 &#xD7; 101 &#x7684;&#x77E9;&#x9635;&#xFF0C;&#x6BCF;&#x4E00;&#x884C;&#x4EE3;&#x8868;&#x4E00;&#x671F;&#xFF0C;&#x7B2C;&#x4E00;&#x5217;&#x4E3A; Y&#xFF0C;&#x7B2C;&#x4E8C;&#x5230;&#x7B2C; 101 &#x5217;&#x4E3A; 100 &#x4E2A; OX &#x53D8;&#x91CF;&#xFF09;&#xFF0C;&#x4F7F;&#x7528;<strong>&#x5E26;&#x653E;&#x56DE;</strong>&#x7684; Bootstrap &#x91CD;&#x91C7;&#x6837;&#x4ECE;&#x8FD9; 500 &#x884C;&#x4E2D;&#x4E0D;&#x65AD;&#x7684;&#x968F;&#x673A;&#x62BD;&#x53D6;&#xFF0C;&#x6784;&#x5EFA;&#x548C;&#x539F;&#x59CB;&#x957F;&#x5EA6;&#x4E00;&#x6837;&#x7684; bootstrapped &#x6570;&#x636E;&#xFF08;&#x4E5F;&#x662F; 500 &#xD7; 101 &#x77E9;&#x9635;&#xFF09;&#x3002;<strong>&#x6574;&#x884C;&#x62BD;&#x53D6;&#x4FDD;&#x7559;&#x4E86;&#x8FD9; 100 &#x4E2A;&#x53D8;&#x91CF;&#x5728;&#x622A;&#x9762;&#x4E0A;&#x7684;&#x76F8;&#x5173;&#x6027;&#x3002;&#x6B64;&#x5916; Bootstrap &#x7684;&#x597D;&#x5904;&#x662F;&#x4E0D;&#x5BF9;&#x539F;&#x59CB;&#x6570;&#x636E;&#x4E2D;&#x7684;&#x6982;&#x7387;&#x5206;&#x5E03;&#x505A;&#x4EFB;&#x4F55;&#x5047;&#x8BBE;&#x3002;</strong></p>
 </li>
-<li>&#x4F7F;&#x7528; bootstrapped &#x6570;&#x636E;&#xFF0C;&#x7528;&#x6BCF;&#x4E2A; OX &#x548C; Y &#x56DE;&#x5F52;&#x5F97;&#x5230;&#x4E00;&#x4E2A;&#x68C0;&#x9A8C;&#x7EDF;&#x8BA1;&#x91CF; (&#x6BD4;&#x5982;&#x662F; t-statistic); &#x627E;&#x51FA;&#x6240;&#x6709; OX &#x4E2D;&#x8BE5;&#x68C0;&#x9A8C;&#x7EDF;&#x8BA1;&#x91CF;&#x6700;&#x5927;&#x7684;&#x90A3;&#x4E2A;&#x503C;&#xFF0C;&#x79F0;&#x4E3A; max statistic&#x3002;&#x5982;&#x679C;&#x6211;&#x4EEC;&#x7684;&#x68C0;&#x9A8C;&#x7EDF;&#x8BA1;&#x91CF;&#x662F; t-statistic&#xFF0C;&#x90A3;&#x4E48;&#x8FD9;&#x4E2A; max statistic &#x5C31;&#x662F; 500 &#x4E2A; t-statistic &#x4E2D;&#x6700;&#x5927;&#x7684;&#x3002;</li>
+<li>&#x4F7F;&#x7528; bootstrapped &#x6570;&#x636E;&#xFF0C;&#x7528;&#x6BCF;&#x4E2A; OX &#x548C; Y &#x56DE;&#x5F52;&#x5F97;&#x5230;&#x4E00;&#x4E2A;&#x68C0;&#x9A8C;&#x7EDF;&#x8BA1;&#x91CF; (&#x6BD4;&#x5982;&#x662F; t-statistic); &#x627E;&#x51FA;&#x6240;&#x6709; OX &#x4E2D;&#x8BE5;&#x68C0;&#x9A8C;&#x7EDF;&#x8BA1;&#x91CF;&#x6700;&#x5927;&#x7684;&#x90A3;&#x4E2A;&#x503C;&#xFF0C;&#x79F0;&#x4E3A; max statistic&#x3002;&#x5982;&#x679C;&#x6211;&#x4EEC;&#x7684;&#x68C0;&#x9A8C;&#x7EDF;&#x8BA1;&#x91CF;&#x662F; t-statistic&#xFF0C;&#x90A3;&#x4E48;&#x8FD9;&#x4E2A; max statistic &#x5C31;&#x662F; 100 &#x4E2A; t-statistic &#x4E2D;&#x6700;&#x5927;&#x7684;&#x3002;</li>
 <li><strong>&#x91CD;&#x590D;&#x4E0A;&#x8FF0;&#x7B2C;&#x4E8C;&#x3001;&#x7B2C;&#x4E09;&#x6B65; 10000 &#x6B21;&#xFF0C;</strong>&#x5F97;&#x5230; max statistic &#x7684;&#x7ECF;&#x9A8C;&#x5206;&#x5E03;&#xFF08;empirical distribution&#xFF09;&#xFF0C;&#x8FD9;&#x662F;&#x7EAF;&#x9760;&#x8FD0;&#x6C14;&#xFF08;&#x56E0;&#x4E3A; null hypothesis &#x5DF2;&#x7ECF;&#x662F; OX &#x5BF9; Y &#x6CA1;&#x6709;&#x4EFB;&#x4F55;&#x9884;&#x6D4B;&#x6027;&#x4E86;&#xFF09;&#x80FD;&#x591F;&#x5F97;&#x5230;&#x7684; max statistic &#x7684;&#x5206;&#x5E03;&#x3002;</li>
 <li>&#x6BD4;&#x8F83;&#x539F;&#x59CB;&#x6570;&#x636E; Y &#x548C;&#x6BCF;&#x4E2A; X &#x56DE;&#x5F52;&#x5F97;&#x5230;&#x7684; max statistic &#x548C;&#x7B2C;&#x56DB;&#x6B65;&#x5F97;&#x5230;&#x7684; max statistic &#x7684;&#x7ECF;&#x9A8C;&#x5206;&#x5E03;&#xFF1A;<ul>
 <li>&#x5982;&#x679C;&#x6765;&#x81EA;&#x771F;&#x5B9E;&#x6570;&#x636E;&#x7684; max statistic &#x8D85;&#x8FC7;&#x4E86;&#x7ECF;&#x9A8C;&#x5206;&#x5E03;&#x4E2D;&#x7684;&#x9608;&#x503C;&#xFF08;&#x6BD4;&#x5982; 95% &#x663E;&#x8457;&#x6027;&#x6C34;&#x5E73;&#x5BF9;&#x5E94;&#x7684;&#x7ECF;&#x9A8C;&#x5206;&#x5E03;&#x4E2D; max statistic &#x7684;&#x53D6;&#x503C;&#xFF09;&#xFF0C;&#x90A3;&#x4E48;&#x771F;&#x5B9E;&#x6570;&#x636E;&#x4E2D; max statistic &#x5BF9;&#x5E94;&#x7684;&#x89E3;&#x91CA;&#x53D8;&#x91CF;&#x5C31;&#x662F;&#x771F;&#x6B63;&#x663E;&#x8457;&#x7684;&#x3002;&#x5047;&#x8BBE;&#x8FD9;&#x4E2A;&#x89E3;&#x91CA;&#x53D8;&#x91CF;&#x662F; X_7&#x3002;</li>
@@ -1269,6 +1324,35 @@ Here <script type="math/tex; ">\pi_0</script> and <script type="math/tex; ">\pi_
 <li><p><a href="https://zhuanlan.zhihu.com/p/56154663" target="_blank">&#x51FA;&#x8272;&#x4E0D;&#x5982;&#x8D70;&#x8FD0; III</a></p>
 </li>
 </ul>
+<h2 id="t-statistics-threshold-using-multiple-testing-ii"><a name="t-statistics-threshold-using-multiple-testing-ii" class="anchor-navigation-ex-anchor" href="#t-statistics-threshold-using-multiple-testing-ii"><i class="fa fa-link" aria-hidden="true"></i></a>6. t-statistics Threshold using Multiple Testing II</h2>
+<ul>
+<li><a href="https://academic.oup.com/rfs/article-abstract/33/5/2134/5739455" target="_blank">Chordia, Tarun, Amit Goyal, and Alessio Saretto. &quot;Anomalies and false rejections.&quot; <em>The Review of Financial Studies</em> 33, no. 5 (2020): 2134-2179.</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/136733555" target="_blank">&#x51FA;&#x8272;&#x4E0D;&#x5982;&#x8D70;&#x8FD0; IV</a></li>
+</ul>
+<p>A multiple testing procedure controls FDP at proportion <script type="math/tex; ">\gamma</script> and significance level <script type="math/tex; ">\alpha</script> if
+<script type="math/tex; mode=display">
+\operatorname{Prob}(\mathrm{FDP} \geq \gamma) \leq \alpha.
+</script>
+One way to control the FDP is the RSW method proposed by Romano and Wolf (2007) and <a href="https://link.springer.com/article/10.1007/s11749-008-0126-6" target="_blank">Romano, Shaikh, and Wolf (2008)</a>. The RSW is meant to control the tail behavior of FDP, it avoids the concerns that controlling FDR exposes a researcher to the possibility that the realized FDP varies significantly across applications. &#x8BE6;&#x7EC6;&#x8BF7;&#x770B;<a href="https://zhuanlan.zhihu.com/p/136733555" target="_blank">&#x51FA;&#x8272;&#x4E0D;&#x5982;&#x8D70;&#x8FD0; IV</a>&#x5168;&#x6587;&#x3002;</p>
+<h2 id="the-existence-of-p-hacking"><a name="the-existence-of-p-hacking" class="anchor-navigation-ex-anchor" href="#the-existence-of-p-hacking"><i class="fa fa-link" aria-hidden="true"></i></a>7. The Existence of P-hacking</h2>
+<ul>
+<li><a href="https://onlinelibrary.wiley.com/doi/full/10.1111/jofi.13036" target="_blank">Chen, Andrew Y. &quot;The Limits of p&#x2010;Hacking: Some Thought Experiments.&quot; <em>The Journal of Finance</em> 76, no. 5 (2021): 2447-2480.</a></li>
+<li><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3865813" target="_blank">Harvey, Campbell R., and Yan Liu. &quot;Uncovering the iceberg from its tip: A model of publication bias and p-hacking.&quot; <em>Available at SSRN 3865813</em> (2021).</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/386393496" target="_blank">&#x51FA;&#x8272;&#x4E0D;&#x5982;&#x8D70;&#x8FD0; V</a></li>
+</ul>
+<p>The core formula in Chen (2021) is the following lower bound:
+<script type="math/tex; mode=display">
+\mathbb{E}[N] \geq \frac{\mathbb{E}\left[\text { num observed }\left(\left|t_{i}\right|>\bar{t}\right)\right]}{\mathbb{P}(|Z|>\bar{t})}
+</script>
+where <script type="math/tex; ">\bar{t}</script> is any <script type="math/tex; ">t</script>-statistic threshold and <script type="math/tex; ">Z</script> is a standard normal random variable. Intuitively, if one makes <script type="math/tex; ">N</script> hacking attempts, one should expect to find <script type="math/tex; ">N \mathbb{P}(|Z|>\bar{t})</script> <script type="math/tex; ">t</script>-statistics that exceed <script type="math/tex; ">\bar{t}</script>, (only a selected subset of the significant <script type="math/tex; ">t</script>-statistics makes it into circulated working papers). &#x8BE6;&#x7EC6;&#x8BF7;&#x770B; <a href="https://zhuanlan.zhihu.com/p/386393496" target="_blank">&#x51FA;&#x8272;&#x4E0D;&#x5982;&#x8D70;&#x8FD0; V</a> &#x7B2C;&#x4E8C;&#x90E8;&#x5206;&#x3002;</p>
+<p>In both Chen (2021) and Harvey and Liu (2021), they define the shrinkage factor. Shrinkage is defined as the average percentage reduction of in-sample anomaly (absolute) return required to restore its population value. For example, an in-sample mean return of <script type="math/tex; ">10\%</script> might be subject to a shrinkage of <script type="math/tex; ">20\%</script> to restore its population mean return of <script type="math/tex; ">8\%</script>.</p>
+<p>Harvey and Liu (2021) &#x91C7;&#x7528;&#x4E86;&#x7C7B;&#x4F3C;&#x4E8E; Harvey and Liu (2020) False (and missed) discoveries in financial economics &#x4E00;&#x6587;&#x4E2D;&#x7684;double-bootstrap &#x65B9;&#x6CD5;&#xFF0C;&#x5047;&#x8BBE;&#x4E86;bi-modal mean&#x7684;data generating function&#xFF0C;&#x5E76;&#x4E14;&#x901A;&#x8FC7;match target statistics&#x6765;&#x9009;&#x62E9;&#x6A21;&#x578B;&#x4E2D;&#x7684;&#x53C2;&#x6570;&#xFF0C;&#x8BE6;&#x7EC6;&#x8BF7;&#x770B; <a href="https://zhuanlan.zhihu.com/p/386393496" target="_blank">&#x51FA;&#x8272;&#x4E0D;&#x5982;&#x8D70;&#x8FD0; V</a> &#x7B2C;&#x4E09;&#x90E8;&#x5206;&#x3002;</p>
+<h2 id="controlling-the-type-i-and-type-ii-error-using-double-bootstrap"><a name="controlling-the-type-i-and-type-ii-error-using-double-bootstrap" class="anchor-navigation-ex-anchor" href="#controlling-the-type-i-and-type-ii-error-using-double-bootstrap"><i class="fa fa-link" aria-hidden="true"></i></a>8. Controlling the Type I and Type II Error using Double-bootstrap</h2>
+<ul>
+<li><a href="https://onlinelibrary.wiley.com/doi/full/10.1111/jofi.12951" target="_blank">Harvey, Campbell R., and Yan Liu. &quot;False (and missed) discoveries in financial economics.&quot; <em>The Journal of Finance</em> 75, no. 5 (2020): 2503-2553.</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/348966374" target="_blank">&#x51FA;&#x8272;&#x4E0D;&#x5982;&#x8D70;&#x8FD0; (V) </a></li>
+</ul>
+<p>&#x57FA;&#x4E8E;<strong>&#x53CC;&#x91CD; bootstrap</strong> &#x7684;&#x591A;&#x91CD;&#x5047;&#x8BBE;&#x68C0;&#x9A8C;&#x6846;&#x67B6;&#xFF0C;&#x540C;&#x65F6;&#x63A7;&#x5236;Type I &#x548C; Type II errors. &#x5BF9;&#x4EFB;&#x610F;&#x7ED9;&#x5B9A;&#x7684;<script type="math/tex; ">p_0</script>, &#x6211;&#x4EEC;control <script type="math/tex; ">5\%</script>&#x7684; Type I error&#xFF0C;&#x53EF;&#x4EE5;&#x5F97;&#x5230;&#x6700;&#x4F18;&#x7684;Type II error &#x5BF9;&#x5E94;&#x7684;t-statistics&#x3002;&#x8BE6;&#x7EC6;&#x8BF7;&#x770B;<a href="https://zhuanlan.zhihu.com/p/348966374" target="_blank">&#x51FA;&#x8272;&#x4E0D;&#x5982;&#x8D70;&#x8FD0; (V) </a>&#x5168;&#x6587;&#x3002;</p>
 
                                 
                                 </section>
@@ -1296,10 +1380,14 @@ Here <script type="math/tex; ">\pi_0</script> and <script type="math/tex; ">\pi_
 
             
                 
-                <a href="GCN.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Graph Convolution and Graph Attention">
+                <a href="GCN.html" class="navigation navigation-prev " aria-label="Previous page: Graph Convolution and Graph Attention">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
+                
+                <a href="general_tech_dl.html" class="navigation navigation-next " aria-label="Next page: General Structures and Techniques in Deep Learning">
+                    <i class="fa fa-angle-right"></i>
+                </a>
                 
             
         
@@ -1308,7 +1396,7 @@ Here <script type="math/tex; ">\pi_0</script> and <script type="math/tex; ">\pi_
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"P-hacking","level":"1.4.46","depth":2,"previous":{"title":"Graph Convolution and Graph Attention","level":"1.4.45","depth":2,"path":"notes/GCN.md","ref":"./notes/GCN.md","articles":[]},"dir":"ltr"},"config":{"plugins":["mathjax","image-captions","github","anchors","anchor-navigation-ex","-sharing","sharing-plus@^0.0.2","github-buttons","embed-pdf","livereload"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"github":{"url":"https://github.com/ZizouHe/"},"livereload":{},"search":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":false},"mode":"float","multipleH1":false,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":true},"github-buttons":{"buttons":[{"user":"ZizouHe","repo":"reading-notes","type":"star","size":"small"}]},"mathjax":{"forceSVG":false,"version":"2.6-latest"},"sharing":{"qq":true,"all":["facebook","google","twitter","weibo","qq","linkedin"],"douban":false,"facebook":true,"weibo":true,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":false,"messenger":false,"line":false,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"embed-pdf":{},"image-captions":{"caption":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","align":"right","variable_name":"_pictures"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{"_pictures":[{"backlink":"./notes/RDN.html#fig1.4.2.1","level":"1.4.2","align":"right","list_caption":"Figure: Example (a) data graph and (b) model graph.","alt":"Example (a) data graph and (b) model graph.","nro":1,"url":"./pic/RDN-1.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Example (a) data graph and (b) model graph.","attributes":{},"skip":false,"key":"1.4.2.1"},{"backlink":"./notes/RDN.html#fig1.4.2.2","level":"1.4.2","align":"right","list_caption":"Figure: RDN inference algorithm.","alt":"RDN inference algorithm.","nro":2,"url":"./pic/RDN-2.png","index":2,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"RDN inference algorithm.","attributes":{},"skip":false,"key":"1.4.2.2"},{"backlink":"./notes/Faster_Frank_Wolfe.html#fig1.4.14.1","level":"1.4.14","align":"right","list_caption":"Figure: Frank-Wolfe Algorithm","alt":"Frank-Wolfe Algorithm","nro":3,"url":"./pic/Frank-Wolfe.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Frank-Wolfe Algorithm","attributes":{},"skip":false,"key":"1.4.14.1"},{"backlink":"./notes/Fin_Fan_Book.html#fig1.4.15.1","level":"1.4.15","align":"right","list_caption":"Figure: Efficient Frontier with risk-free asset","alt":"Efficient Frontier with risk-free asset","nro":4,"url":"./pic/Eff_Front_1.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Efficient Frontier with risk-free asset","attributes":{},"skip":false,"key":"1.4.15.1"},{"backlink":"./notes/Fin_Fan_Book.html#fig1.4.15.2","level":"1.4.15","align":"right","list_caption":"Figure: Efficient Frontier without risk-free asset","alt":"Efficient Frontier without risk-free asset","nro":5,"url":"./pic/Eff_Front_2.png","index":2,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Efficient Frontier without risk-free asset","attributes":{},"skip":false,"key":"1.4.15.2"}]},"title":"Reading List & Notes","gitbook":"*"},"file":{"path":"notes/phack.md","mtime":"2022-04-26T03:26:01.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-04-26T03:27:23.477Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"P-hacking","level":"1.4.46","depth":2,"next":{"title":"General Structures and Techniques in Deep Learning","level":"1.4.47","depth":2,"path":"notes/general_tech_dl.md","ref":"./notes/general_tech_dl.md","articles":[]},"previous":{"title":"Graph Convolution and Graph Attention","level":"1.4.45","depth":2,"path":"notes/GCN.md","ref":"./notes/GCN.md","articles":[]},"dir":"ltr"},"config":{"plugins":["mathjax","image-captions","github","anchors","anchor-navigation-ex","-sharing","sharing-plus@^0.0.2","github-buttons","embed-pdf","livereload"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"github":{"url":"https://github.com/ZizouHe/"},"livereload":{},"search":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":false},"mode":"float","multipleH1":false,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":true},"github-buttons":{"buttons":[{"user":"ZizouHe","repo":"reading-notes","type":"star","size":"small"}]},"mathjax":{"forceSVG":false,"version":"2.6-latest"},"sharing":{"qq":true,"all":["facebook","google","twitter","weibo","qq","linkedin"],"douban":false,"facebook":true,"weibo":true,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":false,"messenger":false,"line":false,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"embed-pdf":{},"image-captions":{"caption":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","align":"right","variable_name":"_pictures"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{"_pictures":[{"backlink":"./notes/RDN.html#fig1.4.2.1","level":"1.4.2","align":"right","list_caption":"Figure: Example (a) data graph and (b) model graph.","alt":"Example (a) data graph and (b) model graph.","nro":1,"url":"./pic/RDN-1.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Example (a) data graph and (b) model graph.","attributes":{},"skip":false,"key":"1.4.2.1"},{"backlink":"./notes/RDN.html#fig1.4.2.2","level":"1.4.2","align":"right","list_caption":"Figure: RDN inference algorithm.","alt":"RDN inference algorithm.","nro":2,"url":"./pic/RDN-2.png","index":2,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"RDN inference algorithm.","attributes":{},"skip":false,"key":"1.4.2.2"},{"backlink":"./notes/Faster_Frank_Wolfe.html#fig1.4.14.1","level":"1.4.14","align":"right","list_caption":"Figure: Frank-Wolfe Algorithm","alt":"Frank-Wolfe Algorithm","nro":3,"url":"./pic/Frank-Wolfe.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Frank-Wolfe Algorithm","attributes":{},"skip":false,"key":"1.4.14.1"},{"backlink":"./notes/Fin_Fan_Book.html#fig1.4.15.1","level":"1.4.15","align":"right","list_caption":"Figure: Efficient Frontier with risk-free asset","alt":"Efficient Frontier with risk-free asset","nro":4,"url":"./pic/Eff_Front_1.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Efficient Frontier with risk-free asset","attributes":{},"skip":false,"key":"1.4.15.1"},{"backlink":"./notes/Fin_Fan_Book.html#fig1.4.15.2","level":"1.4.15","align":"right","list_caption":"Figure: Efficient Frontier without risk-free asset","alt":"Efficient Frontier without risk-free asset","nro":5,"url":"./pic/Eff_Front_2.png","index":2,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Efficient Frontier without risk-free asset","attributes":{},"skip":false,"key":"1.4.15.2"}]},"title":"Reading List & Notes","gitbook":"*"},"file":{"path":"notes/phack.md","mtime":"2022-05-01T01:05:13.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-05-14T23:39:18.682Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

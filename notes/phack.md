@@ -25,7 +25,7 @@ where $$N$$ is the number of assets, and factor returns $$\{f_{jt}\}$$ are long-
 $$
 R_{i t}-R_{f t}=a_{i}^+ +\sum_{j=1}^{K+1} b^*_{i j} f_{j t}+\epsilon_{i t}, i=1, \ldots, N
 $$
-在null hypothesis下，新的factor对于解释asset在cross-section上的return没有任何帮助，因此应该有 $$a_i = a^+$$. 我们考虑一个pseudo factor，$$f^\prime_{K+1 t}$$, 为$$f_{K+1 t}$$ 在前面$$f_{1t}, \ldots, f_{Kt}$$ 张成的空间上的投影，即
+在null hypothesis下，新的factor对于解释asset在cross-section上的return没有任何帮助，因此应该有 $$a_i = a^+_i$$. 我们考虑一个pseudo factor，$$f^\prime_{K+1 t}$$, 为$$f_{K+1 t}$$ 在前面$$f_{1t}, \ldots, f_{Kt}$$ 张成的空间上的投影，即
 $$
 \begin{aligned}
 f_{K+1t} &= \delta_0 +\sum_{j=1}^{K} \delta_{j} f_{j t}+\epsilon_{t}, \\
@@ -50,28 +50,35 @@ $$
 
 几种test statistic的计算方法如下：
 
-1. 最naive的
-   $$
-   S I_{e w}^{m} \equiv \frac{\frac{1}{N} \sum_{i=1}^{N}\left(\left|a_{i}^{+}\right|-\left|a_{i}\right|\right) / s_{i}}{\frac{1}{N} \sum_{i=1}^{N}\left|a_{i}\right| / s_{i}},
-   $$
-   where $$s_i$$ is the standard deviation of $$a_i$$.
+- 最naive的
 
-2. A robust version that calculates the percentage difference in the scaled median absolute intercept
-   $$
-   S I_{e w}^{\text {med }} \equiv \frac{\operatorname{med}\left(\left\{\left|a_{i}^{+}\right| / s_{i}\right\}_{i=1}^{N}\right)-\operatorname{med}\left(\left\{\left|a_{i}\right| / s_{i}\right\}_{i=1}^{N}\right)}{\operatorname{med}\left(\left\{\left|a_{i}\right| / s_{i}\right\}_{i=1}^{N}\right)}.
-   $$
-   
+$$
+S I_{e w}^{m} \equiv \frac{\frac{1}{N} \sum_{i=1}^{N}\left(\left|a_{i}^{+}\right|-\left|a_{i}\right|\right) / s_{i}}{\frac{1}{N} \sum_{i=1}^{N}\left|a_{i}\right| / s_{i}},
+$$
 
-3. Value-weighted statistic
-   $$
-   S I_{v w}^{m} \equiv \frac{\sum_{t=1}^{T} \sum_{i=1}^{N} \frac{m e_{i, t}}{M E_{t}} \times\left(\left|a_{i}^{+}\right|-\left|a_{i}\right|\right) / s_{i}}{\sum_{t=1}^{T} \sum_{i=1}^{N} \frac{m e_{i, t}}{M E_{t}} \times\left|a_{i}\right| / s_{i}},
-   $$
-   where $$\left\{m e_{i, t}\right\}_{t=1}^{T}$$ is the time series of market equity for stock $$i$$, and $$M E_{t}=\sum_{i=1}^{N} m e_{i, t}$$ is the aggregate market equity at time $$t$$.
+where $$s_i$$ is the standard deviation of $$a_i$$.
+
+- A robust version that calculates the percentage difference in the scaled median absolute intercept
+
+$$
+S I_{e w}^{\text {med }} \equiv \frac{\operatorname{med}\left(\left\{\left|a_{i}^{+}\right| / s_{i}\right\}_{i=1}^{N}\right)-\operatorname{med}\left(\left\{\left|a_{i}\right| / s_{i}\right\}_{i=1}^{N}\right)}{\operatorname{med}\left(\left\{\left|a_{i}\right| / s_{i}\right\}_{i=1}^{N}\right)}.
+$$
+
+
+
+- Value-weighted statistic
+
+$$
+S I_{v w}^{m} \equiv \frac{\sum_{t=1}^{T} \sum_{i=1}^{N} \frac{m e_{i, t}}{M E_{t}} \times\left(\left|a_{i}^{+}\right|-\left|a_{i}\right|\right) / s_{i}}{\sum_{t=1}^{T} \sum_{i=1}^{N} \frac{m e_{i, t}}{M E_{t}} \times\left|a_{i}\right| / s_{i}},
+$$
+
+where $$\left\{m e_{i, t}\right\}_{t=1}^{T}$$ is the time series of market equity for stock $$i$$, and $$M E_{t}=\sum_{i=1}^{N} m e_{i, t}$$ is the aggregate market equity at time $$t$$.
 
 We have several comments on the test statistics above:
 
 1. The use of the scaled intercept takes the heterogeneity in return volatilities into account.
 2. We scale the intercepts of the baseline model and the augmented model by the same standard error, that is, the standard error of the estimate of the intercept under the baseline model. This ensures that our test statistics are exactly zero when the null hypothesis, i.e., the candidate factor has zero incremental contribution to explain the cross-section of expected returns, is forced to exactly hold in sample for our procedure. This might not hold under alternative scaling schemes.
+3. For the first factor $$f_{1t}$$, we can subtract the in-sample mean of $$f_{1t}$$ from its time series. In this way, we are projecting $$f_{1t}$$ onto a vector of all ones.
 
 ### Bootstrap for predictive regression
 
@@ -80,7 +87,7 @@ We have several comments on the test statistics above:
 1. 用每个 X 和 Y 回归（在我们的例子中就是 100 次回归），得到 100 个残差 OX，它们和 Y 正交。这构成了 null hypothesis：所有 OX 对 Y 没有预测性。
 
 2. 以这 500 期的 Y 和正交化得到的 OX 为原始数据（500 × 101 的矩阵，每一行代表一期，第一列为 Y，第二到第 101 列为 100 个 OX 变量），使用**带放回**的 Bootstrap 重采样从这 500 行中不断的随机抽取，构建和原始长度一样的 bootstrapped 数据（也是 500 × 101 矩阵）。**整行抽取保留了这 100 个变量在截面上的相关性。此外 Bootstrap 的好处是不对原始数据中的概率分布做任何假设。**
-3. 使用 bootstrapped 数据，用每个 OX 和 Y 回归得到一个检验统计量 (比如是 t-statistic); 找出所有 OX 中该检验统计量最大的那个值，称为 max statistic。如果我们的检验统计量是 t-statistic，那么这个 max statistic 就是 500 个 t-statistic 中最大的。
+3. 使用 bootstrapped 数据，用每个 OX 和 Y 回归得到一个检验统计量 (比如是 t-statistic); 找出所有 OX 中该检验统计量最大的那个值，称为 max statistic。如果我们的检验统计量是 t-statistic，那么这个 max statistic 就是 100 个 t-statistic 中最大的。
 4. **重复上述第二、第三步 10000 次，**得到 max statistic 的经验分布（empirical distribution），这是纯靠运气（因为 null hypothesis 已经是 OX 对 Y 没有任何预测性了）能够得到的 max statistic 的分布。
 5. 比较原始数据 Y 和每个 X 回归得到的 max statistic 和第四步得到的 max statistic 的经验分布：
    - 如果来自真实数据的 max statistic 超过了经验分布中的阈值（比如 95% 显著性水平对应的经验分布中 max statistic 的取值），那么真实数据中 max statistic 对应的解释变量就是真正显著的。假设这个解释变量是 X\_7。
@@ -218,8 +225,6 @@ Their simulation results is given in the table below.
 
 To conclude, a new factor needs to clear a much higher hurdle, **with a *t*-statistic greater than 3.0.**
 
-
-
 ## Bayesian Approach
 
 - [在追逐 p-value 的道路上狂奔，却在科学的道路上渐行渐远](https://zhuanlan.zhihu.com/p/38663777)
@@ -265,3 +270,36 @@ $$
 
 - [出色不如走运 III](https://zhuanlan.zhihu.com/p/56154663)
 
+## $$t$$-statistics Threshold using Multiple Testing II
+
+- [Chordia, Tarun, Amit Goyal, and Alessio Saretto. "Anomalies and false rejections." *The Review of Financial Studies* 33, no. 5 (2020): 2134-2179.](https://academic.oup.com/rfs/article-abstract/33/5/2134/5739455)
+- [出色不如走运 IV](https://zhuanlan.zhihu.com/p/136733555)
+
+A multiple testing procedure controls FDP at proportion $$\gamma$$ and significance level $$\alpha$$ if
+$$
+\operatorname{Prob}(\mathrm{FDP} \geq \gamma) \leq \alpha.
+$$
+One way to control the FDP is the RSW method proposed by Romano and Wolf (2007) and [Romano, Shaikh, and Wolf (2008)](https://link.springer.com/article/10.1007/s11749-008-0126-6). The RSW is meant to control the tail behavior of FDP, it avoids the concerns that controlling FDR exposes a researcher to the possibility that the realized FDP varies significantly across applications. 详细请看[出色不如走运 IV](https://zhuanlan.zhihu.com/p/136733555)全文。
+
+## The Existence of P-hacking
+
+- [Chen, Andrew Y. "The Limits of p‐Hacking: Some Thought Experiments." *The Journal of Finance* 76, no. 5 (2021): 2447-2480.](https://onlinelibrary.wiley.com/doi/full/10.1111/jofi.13036)
+- [Harvey, Campbell R., and Yan Liu. "Uncovering the iceberg from its tip: A model of publication bias and p-hacking." *Available at SSRN 3865813* (2021).](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3865813)
+- [出色不如走运 V](https://zhuanlan.zhihu.com/p/386393496)
+
+The core formula in Chen (2021) is the following lower bound:
+$$
+\mathbb{E}[N] \geq \frac{\mathbb{E}\left[\text { num observed }\left(\left|t_{i}\right|>\bar{t}\right)\right]}{\mathbb{P}(|Z|>\bar{t})}
+$$
+where $$\bar{t}$$ is any $$t$$-statistic threshold and $$Z$$ is a standard normal random variable. Intuitively, if one makes $$N$$ hacking attempts, one should expect to find $$N \mathbb{P}(|Z|>\bar{t})$$ $$t$$-statistics that exceed $$\bar{t}$$, (only a selected subset of the significant $$t$$-statistics makes it into circulated working papers). 详细请看 [出色不如走运 V](https://zhuanlan.zhihu.com/p/386393496) 第二部分。
+
+In both Chen (2021) and Harvey and Liu (2021), they define the shrinkage factor. Shrinkage is defined as the average percentage reduction of in-sample anomaly (absolute) return required to restore its population value. For example, an in-sample mean return of $$10\%$$ might be subject to a shrinkage of $$20\%$$ to restore its population mean return of $$8\%$$.
+
+Harvey and Liu (2021) 采用了类似于 Harvey and Liu (2020) False (and missed) discoveries in financial economics 一文中的double-bootstrap 方法，假设了bi-modal mean的data generating function，并且通过match target statistics来选择模型中的参数，详细请看 [出色不如走运 V](https://zhuanlan.zhihu.com/p/386393496) 第三部分。
+
+## Controlling the Type I and Type II Error using Double-bootstrap 
+
+- [Harvey, Campbell R., and Yan Liu. "False (and missed) discoveries in financial economics." *The Journal of Finance* 75, no. 5 (2020): 2503-2553.](https://onlinelibrary.wiley.com/doi/full/10.1111/jofi.12951)
+- [出色不如走运 (V) ](https://zhuanlan.zhihu.com/p/348966374)
+
+基于**双重 bootstrap** 的多重假设检验框架，同时控制Type I 和 Type II errors. 对任意给定的$$p_0$$, 我们control $$5\%$$的 Type I error，可以得到最优的Type II error 对应的t-statistics。详细请看[出色不如走运 (V) ](https://zhuanlan.zhihu.com/p/348966374)全文。

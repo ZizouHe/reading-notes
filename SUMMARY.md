@@ -69,4 +69,6 @@
     * [Temporal Convolutional Network](./notes/TCN.md)
     * [Which Beta?](./notes/whichbeta.md)
     * [Out of Sample Predictability](./notes/OOS.md)
+    * [Multi-factor in Cryptocurrency](./notes/FF3_cryoto.md)
+    * [Quant Machine Learning](./notes/quant_ml.md)
 

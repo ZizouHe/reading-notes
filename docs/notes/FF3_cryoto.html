@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>KSD for Goodness-of-fit Tests · Reading List & Notes</title>
+        <title>Multi-factor in Cryptocurrency · Reading List & Notes</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -70,10 +70,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="LTK_test.html" />
+    <link rel="next" href="quant_ml.html" />
     
     
-    <link rel="prev" href="LDA.html" />
+    <link rel="prev" href="OOS.html" />
     
 
     <style>
@@ -412,7 +412,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.4.4" data-path="KSD_test.html">
+        <li class="chapter " data-level="1.4.4" data-path="KSD_test.html">
             
                 <a href="KSD_test.html">
             
@@ -1023,7 +1023,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.51" data-path="FF3_cryoto.html">
+        <li class="chapter active" data-level="1.4.51" data-path="FF3_cryoto.html">
             
                 <a href="FF3_cryoto.html">
             
@@ -1084,7 +1084,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >KSD for Goodness-of-fit Tests</a>
+        <a href=".." >Multi-factor in Cryptocurrency</a>
     </h1>
 </div>
 
@@ -1099,70 +1099,28 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon "></span><a href="#a-kernelized-stein-discrepancy-for-goodness-of-fit-tests"><b> </b>A Kernelized Stein Discrepancy for Goodness-of-fit Tests</a></li><ul><li><span class="title-icon "></span><a href="#summary"><b>1. </b>Summary</a></li><li><span class="title-icon "></span><a href="#stein-discrepancy-measure"><b>2. </b>Stein Discrepancy Measure</a></li><li><span class="title-icon "></span><a href="#kernelized-stein-discrepancy"><b>3. </b>Kernelized Stein Discrepancy</a></li><li><span class="title-icon "></span><a href="#estimate-kernelized-stein-discrepancy"><b>4. </b>Estimate Kernelized Stein Discrepancy</a></li></ul></ul></div><a href="#a-kernelized-stein-discrepancy-for-goodness-of-fit-tests" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h1 id="a-kernelized-stein-discrepancy-for-goodness-of-fit-tests"><a name="a-kernelized-stein-discrepancy-for-goodness-of-fit-tests" class="anchor-navigation-ex-anchor" href="#a-kernelized-stein-discrepancy-for-goodness-of-fit-tests"><i class="fa fa-link" aria-hidden="true"></i></a> A Kernelized Stein Discrepancy for Goodness-of-fit Tests</h1>
+                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon "></span><a href="#multi-factor-in-cryptocurrency"><b> </b>Multi-factor in Cryptocurrency</a></li><ul><li><span class="title-icon "></span><a href="#summary"><b>1. </b>Summary</a></li></ul></ul></div><a href="#multi-factor-in-cryptocurrency" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h1 id="multi-factor-in-cryptocurrency"><a name="multi-factor-in-cryptocurrency" class="anchor-navigation-ex-anchor" href="#multi-factor-in-cryptocurrency"><i class="fa fa-link" aria-hidden="true"></i></a> Multi-factor in Cryptocurrency</h1>
 <ul>
-<li><p><a href="https://arxiv.org/pdf/1602.03253.pdf" target="_blank">Liu, Qiang, Jason Lee, and Michael Jordan. &quot;A kernelized Stein discrepancy for goodness-of-fit tests.&quot; International Conference on Machine Learning. 2016.</a></p>
+<li><p><a href="https://zhuanlan.zhihu.com/p/43545668" target="_blank">&#x591A;&#x56E0;&#x5B50;&#x5982;&#x4F55;&#x73A9;&#x8F6C;&#x52A0;&#x5BC6;&#x5E01;&#xFF1F;</a></p>
 </li>
-<li><p><a href="https://github.com/MinHyung-Kang/KSD" target="_blank">Python Package - KSD</a></p>
-</li>
-<li><p>See my notes on <a href="https://zizouhe.github.io/stats-and-beyond/contents/RKHS.html" target="_blank">reproducing kernel Hilbert Space</a> and <a href="https://zizouhe.github.io/stats-and-beyond/contents/steins.html" target="_blank">Stein&apos;s Method</a> for more details.</p>
+<li><p><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3055498" target="_blank">Hubrich, Stefan. &quot;&apos;Know When to Hodl&apos;Em, Know When to Fodl&apos;Em&apos;: An Investigation of Factor Based Investing in the Cryptocurrency Space.&quot; <em>Know When to Fodl&apos;Em&apos;: An Investigation of Factor Based Investing in the Cryptocurrency Space (October 28, 2017)</em> (2017).</a></p>
 </li>
 </ul>
 <h2 id="summary"><a name="summary" class="anchor-navigation-ex-anchor" href="#summary"><i class="fa fa-link" aria-hidden="true"></i></a>1. Summary</h2>
-<p>This paper derive a new discrepancy statistic for measuring differences between two probability distributions based on combining Stein&#x2019;s identity with the reproducing kernel Hilbert space theory.</p>
-<h2 id="stein-discrepancy-measure"><a name="stein-discrepancy-measure" class="anchor-navigation-ex-anchor" href="#stein-discrepancy-measure"><i class="fa fa-link" aria-hidden="true"></i></a>2. Stein Discrepancy Measure</h2>
-<p>For two smooth densities <script type="math/tex; ">p(x)</script> and <script type="math/tex; ">q(x)</script> supported on <script type="math/tex; ">\mathbb{R}</script> are identical if and only if</p>
-<p><script type="math/tex; mode=display">
-\mathbb{E}_{p}\left[s_{q}(x) f(x)+\nabla_{x} f(x)\right]=0
-</script></p>
-<p>for smooth functions f (x) with proper zero-boundary conditions, where</p>
-<p><script type="math/tex; mode=display">
-s_{q}(x)=\nabla_{x} \log q(x)= \frac{\nabla_{x} q(x)}{q(x)}
-</script></p>
-<p>is the <em>stein score function</em> of <script type="math/tex; ">q</script>. Therefore, one can define a Stein discrepancy measure between <script type="math/tex; ">p</script> and <script type="math/tex; ">q</script> via</p>
-<p><script type="math/tex; mode=display">
-\mathbb{S}(p, q)=\max _{f \in \mathcal{F}}\left(\mathbb{E}_{p}\left[\boldsymbol{s}_{q}(x) f(x)+\nabla_{x} f(x)\right]\right)^{2}
-</script></p>
-<p>where F is a set of smooth functions that satisfies <script type="math/tex; ">\mathbb{E}_{p}\left[s_{q}(x) f(x)+\nabla_{x} f(x)\right]=0</script> and is also rich enough to ensure <script type="math/tex; ">\mathbb{S}(p, q)  > 0</script> whenever <script type="math/tex; ">p \neq q</script>. The problem is that <script type="math/tex; ">\mathbb{S}(p, q)</script> is often computationally intractable.</p>
-<h2 id="kernelized-stein-discrepancy"><a name="kernelized-stein-discrepancy" class="anchor-navigation-ex-anchor" href="#kernelized-stein-discrepancy"><i class="fa fa-link" aria-hidden="true"></i></a>3. Kernelized Stein Discrepancy</h2>
-<p>This paper propose a simpler method for obtaining computational tractable Stein discrepancy <script type="math/tex; ">\mathbb{S}(p, q)</script> by <strong><em>taking <script type="math/tex; ">\mathcal{F}</script> to be the unit ball in the reproducing kernel Hilbert space associated with a smooth positive definite kernel <script type="math/tex; ">k(x, x^\prime)</script></em></strong>, and the associated Stein discrepancy is defined as</p>
-<p><script type="math/tex; mode=display">
-\mathbb{S}(p, q)=\mathbb{E}_{x, x^{\prime} \sim p}\left[u_{q}\left(x, x^{\prime}\right)\right]
-</script></p>
-<p>where <script type="math/tex; ">x, x^{\prime}</script> are i.i.d. random variables drawn from <script type="math/tex; ">p</script> and
-<script type="math/tex; ">u_{q}\left(x, x^{\prime}\right)</script> is a function depends on <script type="math/tex; ">q</script> only through the score function <script type="math/tex; ">\nabla_{x} \log q(x)</script> <strong><em>which can be calculated efficiently even when <script type="math/tex; ">q</script> has an intractable normalization constant</em></strong>. Specifically, assuming</p>
-<p><script type="math/tex; mode=display">
-q(x) = \frac{f(x)}{z}, \; \; \Rightarrow \; \; \boldsymbol{s}_q(x) = \frac{\nabla_{x} f(x)}{f(x)} =
-</script></p>
-<h2 id="estimate-kernelized-stein-discrepancy"><a name="estimate-kernelized-stein-discrepancy" class="anchor-navigation-ex-anchor" href="#estimate-kernelized-stein-discrepancy"><i class="fa fa-link" aria-hidden="true"></i></a>4. Estimate Kernelized Stein Discrepancy</h2>
-<p>With an i.i.d. sample <script type="math/tex; ">\left\{x_{i}\right\}</script> drawn from the (unknown) <script type="math/tex; ">p(x)</script>, the kernel Stein discrepancy also enables efficient empirical estimation of <script type="math/tex; ">\mathbb{S}(p, q)</script> via a <script type="math/tex; ">U</script> -statistic,</p>
-<p><script type="math/tex; mode=display">
-\hat{\mathrm{S}}(p, q)=\frac{1}{n(n-1)} \sum_{i \neq j} u_{q}\left(x_{i}, x_{j}\right)
-</script></p>
-<p>The distribution of <script type="math/tex; ">\hat{S}(p, q)</script> can be well characterized using the theory of <script type="math/tex; ">U</script>-statistics,</p>
-<p><strong>Theorem.</strong> <em>Let <script type="math/tex; ">k\left(x, x^{\prime}\right)</script> be a positive definite kernel in the Stein class of <script type="math/tex; ">p</script> and <script type="math/tex; ">q</script>. With some mild conditions, and <script type="math/tex; ">\mathbb{E}_{x, x^{\prime} \sim p}\left[u_{q}\left(x, x^{\prime}\right)^{2}\right]<\infty</script> we have</em></p>
 <ul>
-<li><em>If <script type="math/tex; ">p \neq q</script>, then <script type="math/tex; ">\hat{\mathrm{S}}_{u}(p, q)</script> is asymptotically normal with</em></li>
+<li><strong>Momentum&#xFF1A;</strong>&#x52A8;&#x91CF;&#x56E0;&#x5B50;&#x8003;&#x5BDF;&#x7684;&#x662F;&#x5F53;&#x5E02;&#x573A;&#x6CBF;&#x7740;&#x8FC7;&#x53BB;&#x7684;&#x8F68;&#x8FF9;&#x7EE7;&#x7EED;&#x8FD0;&#x52A8;&#x65F6;&#xFF08;&#x5373;&#x4EF7;&#x683C;&#x4E0A;&#x6DA8;&#x7684;&#x8FD8;&#x4F1A;&#x6DA8;&#xFF0C;&#x4EF7;&#x683C;&#x4E0B;&#x8DCC;&#x7684;&#x8FD8;&#x4F1A;&#x8DCC;&#xFF09;&#xFF0C;&#x6211;&#x4EEC;&#x80FD;&#x591F;&#x83B7;&#x5F97;&#x7684;&#x6536;&#x76CA;&#xFF1B;</li>
+<li><strong>Value&#xFF1A;</strong>&#x4EF7;&#x503C;&#x56E0;&#x5B50;&#x8003;&#x5BDF;&#x7684;&#x662F;&#x5F53;&#x5E02;&#x573A;&#x56DE;&#x590D;&#x5230;&#x4E4B;&#x524D;&#x7684;&#x67D0;&#x79CD;&#x5747;&#x8861;&#x72B6;&#x6001;&#x65F6;&#xFF08;&#x5373;&#x4EF7;&#x683C;&#x56F4;&#x7ED5;&#x57FA;&#x672C;&#x9762;&#x4EF7;&#x503C;&#x5F80;&#x590D;&#x8FD0;&#x52A8;&#xFF09;&#xFF0C;&#x6211;&#x4EEC;&#x80FD;&#x591F;&#x83B7;&#x5F97;&#x6536;&#x76CA;&#xFF1B;<ul>
+<li>&#x52A0;&#x5BC6;&#x5E01;&#x7684;&#x201C;&#x57FA;&#x672C;&#x9762;&#x201D;&#x4EF7;&#x503C;&#x4F53;&#x73B0;&#x5728;&#x4E86;&#x5B83;&#x4EEC;&#x7684;&#x4EA4;&#x6613;&#x4EF7;&#x503C;&#x4E0A;</li>
+<li>&#x4E00;&#x4E2A;&#x5E01;&#x79CD;&#x5728;&#x5168;&#x4E16;&#x754C;&#x8303;&#x56F4;&#x5185;&#x7684;&#x4EA4;&#x6613;&#x8D8A;&#x6D3B;&#x8DC3;&#x3001;&#x4EA4;&#x6613;&#x989D;&#x8D8A;&#x9AD8;&#xFF0C;&#x8BF4;&#x660E;&#x5B83;&#x7684;&#x4EF7;&#x503C;&#x8D8A;&#x5927;&#x3002;&#x7528;&#x5E02;&#x503C;&#x9664;&#x4EE5;&#x533A;&#x5757;&#x4E0A;&#x7684;&#x4EA4;&#x6613;&#x503C;&#x6765;&#x5B9A;&#x4E49; Market-to-Transaction-Value (MTV)&#xFF0C;&#x4EE5;&#x6B64;&#x4F5C;&#x4E3A;&#x52A0;&#x5BC6;&#x5E01;&#x7684;&#x4EF7;&#x503C;&#x56E0;&#x5B50;&#x3002;</li>
 </ul>
-<p><script type="math/tex; mode=display">
-\sqrt{n}\left(\hat{\mathbb{S}}_{u}(p, q)-\mathbb{S}(p, q)\right) \stackrel{d}{\rightarrow} \mathcal{N}\left(0, \sigma_{u}^{2}\right)
-</script></p>
-<p><em>where <script type="math/tex; ">\sigma_{u}^{2}=\operatorname{var}_{x \sim p}\left(\mathbb{E}_{x^{\prime} \sim p}\left[u_{q}\left(x, x^{\prime}\right)\right]\right)</script> and <script type="math/tex; ">\sigma_{u}^{2} \neq 0</script></em></p>
-<ul>
-<li><em>If <script type="math/tex; ">p=q</script>, then we have <script type="math/tex; ">\sigma_{u}^{2}=0</script> (the <script type="math/tex; ">U</script>-statistics is degenerate) and</em></li>
+</li>
+<li><strong>Carry&#xFF1A;</strong>Carry &#x56E0;&#x5B50;&#x8003;&#x5BDF;&#x7684;&#x662F;&#x5F53;&#x5E02;&#x573A;&#x4E0D;&#x53D1;&#x751F;&#x53D8;&#x5316;&#x65F6;&#xFF08;&#x5373;&#x4ECE;&#x4F9B;&#x9700;&#x7684;&#x89D2;&#x5EA6;&#x6765;&#x770B;&#xFF0C;&#x52A0;&#x5BC6;&#x5E01;&#x7684;&#x9700;&#x6C42;&#x7AEF;&#x4E0D;&#x53D1;&#x751F;&#x53D8;&#x5316;&#xFF09;&#xFF0C;&#x6211;&#x4EEC;&#x80FD;&#x591F;&#x83B7;&#x5F97;&#x7684;&#x6536;&#x76CA;&#x3002;<ul>
+<li>&#x4E00;&#x4E2A;&#x8D44;&#x4EA7;&#x7684; Carry &#x5B9A;&#x4E49;&#x4E3A;&#xFF1A;&#x5F53;&#x8BE5;&#x8D44;&#x4EA7;&#x7684;&#x4EF7;&#x683C;&#x5728;&#x4E00;&#x5B9A;&#x65F6;&#x95F4;&#x5185;&#x4E0D;&#x53D1;&#x751F;&#x53D8;&#x5316;&#x65F6;&#xFF0C;&#x6301;&#x6709;&#x8BE5;&#x8D44;&#x4EA7;&#x80FD;&#x591F;&#x83B7;&#x53D6;&#x7684;&#x6536;&#x76CA;&#x3002;</li>
+<li>&#x5047;&#x5982;&#x6211;&#x4EEC;&#x4E70;&#x5165;&#x4E00;&#x652F;&#x80A1;&#x7968;&#x5E76;&#x4E00;&#x76F4;&#x6301;&#x6709;&#xFF0C;&#x5982;&#x679C;&#x80A1;&#x7968;&#x7684;&#x4EF7;&#x683C;&#x4E0D;&#x53D8;&#xFF0C;&#x90A3;&#x4E48;&#x6211;&#x4EEC;&#x83B7;&#x5F97;&#x7684;&#x6536;&#x76CA;&#x7387;&#x5C31;&#x662F;&#x8BE5;&#x80A1;&#x7968;&#x7684;&#x5206;&#x7EA2;&#x3002;&#x80A1;&#x606F;&#x7387;&#xFF08;dividend yield&#xFF09;&#x5C31;&#x662F; Carry &#x6536;&#x76CA;&#x7387;&#xFF0C;&#x5B83;&#x5C31;&#x662F;&#x6211;&#x4EEC;&#x7684; Carry &#x56E0;&#x5B50;&#x3002;&#x80A1;&#x606F;&#x7387;&#x56E0;&#x5B50;&#x662F;&#x4E00;&#x4E2A;&#x975E;&#x5E38;&#x597D;&#x4F7F;&#x7684;&#x91CF;&#x5316;&#x9009;&#x80A1;&#x56E0;&#x5B50;&#x3002;</li>
+<li>&#x52A0;&#x5BC6;&#x5E01;&#x7684; Carry &#x6536;&#x76CA;&#x7531;&#x5B83;&#x7684;&#x4F9B;&#x9700;&#x51B3;&#x5B9A;&#x3002;&#x5927;&#x591A;&#x6570;&#x52A0;&#x5BC6;&#x5E01;&#x7684;&#x53D1;&#x884C;&#x603B;&#x6570;&#x90FD;&#x6709;&#x4E2A;&#x4E0A;&#x9650;&#x4E14;&#x4E0D;&#x80FD;&#x968F;&#x610F;&#x589E;&#x53D1;&#xFF0C;&#x56E0;&#x6B64;&#x672A;&#x6765;&#x8FD8;&#x80FD;&#x88AB;&#x6316;&#x51FA;&#x6765;&#x7684;&#x5E01;&#x7684;&#x6570;&#x91CF;&#x8D8A;&#x5C11;&#xFF0C;&#x8FD9;&#x4E2A;&#x5E01;&#x7684; Carry &#x6536;&#x76CA;&#x7387;&#x5C31;&#x8D8A;&#x9AD8;&#x3002;</li>
 </ul>
-<p><script type="math/tex; mode=display">
-n \hat{\mathrm{S}}_{u}(p, q) \stackrel{d}{\rightarrow} \sum_{j=1}^{\infty} c_{j}\left(Z_{j}^{2}-1\right)
-</script></p>
-<p><em>where <script type="math/tex; ">\left\{Z_{j}\right\}</script> are i.i.d. standard Gaussian random variables, and <script type="math/tex; ">\left\{c_{j}\right\}</script> are the eigenvalues of kernel <script type="math/tex; ">u_{q}\left(x, x^{\prime}\right)</script> under <script type="math/tex; ">p(x)</script> that is, they are the solutions of</em></p>
-<p><script type="math/tex; mode=display">
-c_{j} \phi_{j}(x)= \int_{x^{\prime}} u_{q}\left(x, x^{\prime}\right) \phi_{j}\left(x^{\prime}\right) p\left(x^{\prime}\right) d x^{\prime}
-</script></p>
-<p><em>for non-zero <script type="math/tex; ">\phi_{j}</script>.</em></p>
-<p>The above theorem allows us to reduce the testing of <script type="math/tex; ">p=q</script> to the following hypothesis testing.</p>
-<p><script type="math/tex; mode=display">
-H_{0} : \mathbb{E}_{p}\left[u_{q}\left(x, x^{\prime}\right)\right]=0 \quad \text{vs.} \quad H_{1} : \mathbb{E}_{p}\left[u_{q}\left(x, x^{\prime}\right)\right]>0
-</script></p>
+</li>
+</ul>
 
                                 
                                 </section>
@@ -1190,12 +1148,12 @@ H_{0} : \mathbb{E}_{p}\left[u_{q}\left(x, x^{\prime}\right)\right]=0 \quad \text
 
             
                 
-                <a href="LDA.html" class="navigation navigation-prev " aria-label="Previous page: LDA">
+                <a href="OOS.html" class="navigation navigation-prev " aria-label="Previous page: Out of Sample Predictability">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="LTK_test.html" class="navigation navigation-next " aria-label="Next page: LTK Goodness-of-Fit Test">
+                <a href="quant_ml.html" class="navigation navigation-next " aria-label="Next page: Quant Machine Learning">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -1206,7 +1164,7 @@ H_{0} : \mathbb{E}_{p}\left[u_{q}\left(x, x^{\prime}\right)\right]=0 \quad \text
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"KSD for Goodness-of-fit Tests","level":"1.4.4","depth":2,"next":{"title":"LTK Goodness-of-Fit Test","level":"1.4.5","depth":2,"path":"notes/LTK_test.md","ref":"./notes/LTK_test.md","articles":[]},"previous":{"title":"LDA","level":"1.4.3","depth":2,"path":"notes/LDA.md","ref":"./notes/LDA.md","articles":[]},"dir":"ltr"},"config":{"plugins":["mathjax","image-captions","github","anchors","anchor-navigation-ex","-sharing","sharing-plus@^0.0.2","github-buttons","embed-pdf","livereload"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"github":{"url":"https://github.com/ZizouHe/"},"livereload":{},"search":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":false},"mode":"float","multipleH1":false,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":true},"github-buttons":{"buttons":[{"user":"ZizouHe","repo":"reading-notes","type":"star","size":"small"}]},"mathjax":{"forceSVG":false,"version":"2.6-latest"},"sharing":{"qq":true,"all":["facebook","google","twitter","weibo","qq","linkedin"],"douban":false,"facebook":true,"weibo":true,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":false,"messenger":false,"line":false,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"embed-pdf":{},"image-captions":{"caption":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","align":"right","variable_name":"_pictures"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{"_pictures":[{"backlink":"./notes/RDN.html#fig1.4.2.1","level":"1.4.2","align":"right","list_caption":"Figure: Example (a) data graph and (b) model graph.","alt":"Example (a) data graph and (b) model graph.","nro":1,"url":"./pic/RDN-1.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Example (a) data graph and (b) model graph.","attributes":{},"skip":false,"key":"1.4.2.1"},{"backlink":"./notes/RDN.html#fig1.4.2.2","level":"1.4.2","align":"right","list_caption":"Figure: RDN inference algorithm.","alt":"RDN inference algorithm.","nro":2,"url":"./pic/RDN-2.png","index":2,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"RDN inference algorithm.","attributes":{},"skip":false,"key":"1.4.2.2"},{"backlink":"./notes/Faster_Frank_Wolfe.html#fig1.4.14.1","level":"1.4.14","align":"right","list_caption":"Figure: Frank-Wolfe Algorithm","alt":"Frank-Wolfe Algorithm","nro":3,"url":"./pic/Frank-Wolfe.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Frank-Wolfe Algorithm","attributes":{},"skip":false,"key":"1.4.14.1"},{"backlink":"./notes/Fin_Fan_Book.html#fig1.4.15.1","level":"1.4.15","align":"right","list_caption":"Figure: Efficient Frontier with risk-free asset","alt":"Efficient Frontier with risk-free asset","nro":4,"url":"./pic/Eff_Front_1.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Efficient Frontier with risk-free asset","attributes":{},"skip":false,"key":"1.4.15.1"},{"backlink":"./notes/Fin_Fan_Book.html#fig1.4.15.2","level":"1.4.15","align":"right","list_caption":"Figure: Efficient Frontier without risk-free asset","alt":"Efficient Frontier without risk-free asset","nro":5,"url":"./pic/Eff_Front_2.png","index":2,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Efficient Frontier without risk-free asset","attributes":{},"skip":false,"key":"1.4.15.2"}]},"title":"Reading List & Notes","gitbook":"*"},"file":{"path":"notes/KSD_test.md","mtime":"2019-10-05T05:37:24.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-05-23T00:47:29.675Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Multi-factor in Cryptocurrency","level":"1.4.51","depth":2,"next":{"title":"Quant Machine Learning","level":"1.4.52","depth":2,"path":"notes/quant_ml.md","ref":"./notes/quant_ml.md","articles":[]},"previous":{"title":"Out of Sample Predictability","level":"1.4.50","depth":2,"path":"notes/OOS.md","ref":"./notes/OOS.md","articles":[]},"dir":"ltr"},"config":{"plugins":["mathjax","image-captions","github","anchors","anchor-navigation-ex","-sharing","sharing-plus@^0.0.2","github-buttons","embed-pdf","livereload"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"github":{"url":"https://github.com/ZizouHe/"},"livereload":{},"search":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":false},"mode":"float","multipleH1":false,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":true},"github-buttons":{"buttons":[{"user":"ZizouHe","repo":"reading-notes","type":"star","size":"small"}]},"mathjax":{"forceSVG":false,"version":"2.6-latest"},"sharing":{"qq":true,"all":["facebook","google","twitter","weibo","qq","linkedin"],"douban":false,"facebook":true,"weibo":true,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":false,"messenger":false,"line":false,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"embed-pdf":{},"image-captions":{"caption":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","align":"right","variable_name":"_pictures"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{"_pictures":[{"backlink":"./notes/RDN.html#fig1.4.2.1","level":"1.4.2","align":"right","list_caption":"Figure: Example (a) data graph and (b) model graph.","alt":"Example (a) data graph and (b) model graph.","nro":1,"url":"./pic/RDN-1.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Example (a) data graph and (b) model graph.","attributes":{},"skip":false,"key":"1.4.2.1"},{"backlink":"./notes/RDN.html#fig1.4.2.2","level":"1.4.2","align":"right","list_caption":"Figure: RDN inference algorithm.","alt":"RDN inference algorithm.","nro":2,"url":"./pic/RDN-2.png","index":2,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"RDN inference algorithm.","attributes":{},"skip":false,"key":"1.4.2.2"},{"backlink":"./notes/Faster_Frank_Wolfe.html#fig1.4.14.1","level":"1.4.14","align":"right","list_caption":"Figure: Frank-Wolfe Algorithm","alt":"Frank-Wolfe Algorithm","nro":3,"url":"./pic/Frank-Wolfe.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Frank-Wolfe Algorithm","attributes":{},"skip":false,"key":"1.4.14.1"},{"backlink":"./notes/Fin_Fan_Book.html#fig1.4.15.1","level":"1.4.15","align":"right","list_caption":"Figure: Efficient Frontier with risk-free asset","alt":"Efficient Frontier with risk-free asset","nro":4,"url":"./pic/Eff_Front_1.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Efficient Frontier with risk-free asset","attributes":{},"skip":false,"key":"1.4.15.1"},{"backlink":"./notes/Fin_Fan_Book.html#fig1.4.15.2","level":"1.4.15","align":"right","list_caption":"Figure: Efficient Frontier without risk-free asset","alt":"Efficient Frontier without risk-free asset","nro":5,"url":"./pic/Eff_Front_2.png","index":2,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Efficient Frontier without risk-free asset","attributes":{},"skip":false,"key":"1.4.15.2"}]},"title":"Reading List & Notes","gitbook":"*"},"file":{"path":"notes/FF3_cryoto.md","mtime":"2022-05-22T16:12:51.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-05-23T00:47:29.675Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

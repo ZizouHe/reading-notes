@@ -41,15 +41,19 @@
 1. [Saleh, Fahad. "Blockchain without waste: Proof-of-stake." *The Review of financial studies* 34, no. 3 (2021): 1156-1190.](../notes/PoS.html)
 1. [Atzei, Nicola, Massimo Bartoletti, and Tiziana Cimoli. "A survey of attacks on ethereum smart contracts (sok)." In *International conference on principles of security and trust*, pp. 164-186. Springer, Berlin, Heidelberg, 2017.](../notes/SoK.html)
 1. Howell, Sabrina T., Marina Niessner, and David Yermack. "Initial coin offerings: Financing growth with cryptocurrency token sales." *The Review of Financial Studies* 33, no. 9 (2020): 3925-3974.
+1. [Hubrich, Stefan. "'Know When to Hodl'Em, Know When to Fodl'Em': An Investigation of Factor Based Investing in the Cryptocurrency Space." *Know When to Fodl'Em': An Investigation of Factor Based Investing in the Cryptocurrency Space (October 28, 2017)* (2017).](../notes/FF3_cryoto.html)
 
 ## Machine Learning Finance
 
 1. Gu, Shihao, Bryan Kelly, and Dacheng Xiu. "Autoencoder asset pricing models." *Journal of Econometrics* 222, no. 1 (2021): 429-450.
 2. Kelly, Bryan T., Seth Pruitt, and Yinan Su. "Characteristics are covariances: A unified model of risk and return." *Journal of Financial Economics* 134, no. 3 (2019): 501-524.
-3. Gu, Shihao, Bryan Kelly, and Dacheng Xiu. "Empirical asset pricing via machine learning." *The Review of Financial Studies* 33, no. 5 (2020): 2223-2273.
+3. [Gu, Shihao, Bryan Kelly, and Dacheng Xiu. "Empirical asset pricing via machine learning." *The Review of Financial Studies* 33, no. 5 (2020): 2223-2273.](../notes/quant_ml.html)
 4. Feng, Guanhao, Nick Polson, and Jianeng Xu. "Deep learning in characteristics-sorted factor models." *Available at SSRN 3243683* (2021).
 5. Feng, Guanhao, Stefano Giglio, and Dacheng Xiu. "Taming the factor zoo: A test of new factors." *The Journal of Finance* 75, no. 3 (2020): 1327-1370.
 6. Chen, Luyang, Markus Pelger, and Jason Zhu. "Deep learning in asset pricing." *Available at SSRN 3350138* (2020).
+7. [Han, Yufeng, Ai He, David Rapach, and Guofu Zhou. "What firm characteristics drive us stock returns." *Available at SSRN* (2018).](../notes/quant_ml.html)
+8. [Arnott, Rob, Campbell R. Harvey, and Harry Markowitz. "A backtesting protocol in the era of machine learning." *The Journal of Financial Data Science* 1, no. 1 (2019): 64-74.](../notes/quant_ml.html)
+9. [Bailey, David H., Jonathan Borwein, Marcos Lopez de Prado, and Qiji Jim Zhu. "The probability of backtest overfitting." *Journal of Computational Finance, forthcoming* (2016).](https://www.davidhbailey.com/dhbpapers/backtest-prob.pdf)
 
 ## Market Microstrcure
 

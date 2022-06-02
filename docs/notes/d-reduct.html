@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Nonparametric Instrumental Regression · Reading List & Notes</title>
+        <title>Nonlinear Dimension Reduction · Reading List & Notes</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -70,10 +70,8 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="defi_RFS.html" />
     
-    
-    <link rel="prev" href="lasso.html" />
+    <link rel="prev" href="behave.html" />
     
 
     <style>
@@ -659,7 +657,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.4.23" data-path="nonpa_inst.html">
+        <li class="chapter " data-level="1.4.23" data-path="nonpa_inst.html">
             
                 <a href="nonpa_inst.html">
             
@@ -1062,7 +1060,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.54" data-path="d-reduct.html">
+        <li class="chapter active" data-level="1.4.54" data-path="d-reduct.html">
             
                 <a href="d-reduct.html">
             
@@ -1110,7 +1108,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Nonparametric Instrumental Regression</a>
+        <a href=".." >Nonlinear Dimension Reduction</a>
     </h1>
 </div>
 
@@ -1125,23 +1123,41 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon "></span><a href="#nonparametric-instrumental-regression"><b> </b>Nonparametric Instrumental Regression</a></li></ul></div><a href="#nonparametric-instrumental-regression" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h1 id="nonparametric-instrumental-regression"><a name="nonparametric-instrumental-regression" class="anchor-navigation-ex-anchor" href="#nonparametric-instrumental-regression"><i class="fa fa-link" aria-hidden="true"></i></a> Nonparametric Instrumental Regression</h1>
+                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon "></span><a href="#nonlinear-dimension-reduction"><b> </b>Nonlinear Dimension Reduction</a></li><ul><li><span class="title-icon "></span><a href="#umap"><b>1. </b>UMAP</a></li><li><span class="title-icon "></span><a href="#details"><b>2. </b>Details</a></li><li><span class="title-icon "></span><a href="#t-sne"><b>3. </b>t-SNE</a></li></ul></ul></div><a href="#nonlinear-dimension-reduction" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h1 id="nonlinear-dimension-reduction"><a name="nonlinear-dimension-reduction" class="anchor-navigation-ex-anchor" href="#nonlinear-dimension-reduction"><i class="fa fa-link" aria-hidden="true"></i></a> Nonlinear Dimension Reduction</h1>
+<h2 id="umap"><a name="umap" class="anchor-navigation-ex-anchor" href="#umap"><i class="fa fa-link" aria-hidden="true"></i></a>1. UMAP</h2>
 <ul>
-<li><a href="https://onlinelibrary.wiley.com/doi/abs/10.3982/ECTA6539?casa_token=AlkE66zeHBsAAAAA:4Q59H2f3jwpKBtjhov3J5rpSXZ6vshmSkOu_kfvkpdXP1mAHimDxmZJjY2WXaQluk09f3dedAUWXo58" target="_blank">Darolles, S., Fan, Y., Florens, J. P., &amp; Renault, E. (2011). Nonparametric instrumental regression. Econometrica, 79(5), 1541-1565.</a></li>
+<li><a href="https://arxiv.org/abs/1802.03426" target="_blank">McInnes, Leland, John Healy, and James Melville. &quot;Umap: Uniform manifold approximation and projection for dimension reduction.&quot; <em>arXiv preprint arXiv:1802.03426</em> (2018).</a></li>
+<li><a href="https://umap-learn.readthedocs.io/en/latest/index.html" target="_blank">UMAP Python Library Document</a></li>
+<li><a href="https://www.youtube.com/watch?v=nq6iPZVUxZU&amp;t=1397s" target="_blank">Leland McInnes - UMAP Talk</a></li>
+<li><a href="https://towardsdatascience.com/how-exactly-umap-works-13e3040e1668" target="_blank">How Exactly UMAP Works and why exactly it is better than t-SNE</a></li>
 </ul>
-<p><div class="pdf">
-                                
-                <div class="pdf__link"><a target="_blank" href="../assets/report-Darolles-2011.pdf">View PDF</a></div>
-                
-                                <object data="/assets/report-Darolles-2011.pdf" width="100%" height="850" type="application/pdf">
-                                    <embed src="/assets/report-Darolles-2011.pdf">
-                                        <p>
-                                            This browser does not support PDFs. <br>
-                                            Please download the PDF to view it: <a target="_blank" href="../assets/report-Darolles-2011.pdf">Download PDF</a>.
-                                        </p>
-                                    
-                                </object>
-                            </div></p>
+<h2 id="details"><a name="details" class="anchor-navigation-ex-anchor" href="#details"><i class="fa fa-link" aria-hidden="true"></i></a>2. Details</h2>
+<ul>
+<li>Assumption: Data is uniformly distributed on the manifold.<ul>
+<li>Define Riemannian metric on manifold to make the assumption true.</li>
+</ul>
+</li>
+<li>Assumption: The manifold is locally connected.</li>
+<li><p>Graph with combined edge weights</p>
+</li>
+<li><p>t-SNE preserves only local structure (KL divergence) while UMAP can preserve global structure (cross entropy)</p>
+</li>
+<li>UMAP find approximate nearest neighbours very efficiently (even in high-d space)<ul>
+<li>Random-projection tree + nearest neighbour descent</li>
+<li>SGD + negative sampling (avoid the curse of dimensionality and can do dimension reduction over 3-d, unlike t-SNE)</li>
+</ul>
+</li>
+<li>Use Python + Numba (custom distance metrics as long as it can be compiled by JIT)</li>
+<li>Can make use of labels for supervised dimension reduction</li>
+<li>combine different distance (categorical data, discrete data, etc.)</li>
+</ul>
+<h2 id="t-sne"><a name="t-sne" class="anchor-navigation-ex-anchor" href="#t-sne"><i class="fa fa-link" aria-hidden="true"></i></a>3. t-SNE</h2>
+<ul>
+<li><p><a href="https://www.jmlr.org/papers/volume9/vandermaaten08a/vandermaaten08a.pdf?fbclid=IwA" target="_blank">Van der Maaten, Laurens, and Geoffrey Hinton. &quot;Visualizing data using t-SNE.&quot; <em>Journal of machine learning research</em> 9, no. 11 (2008).</a></p>
+</li>
+<li><p><a href="https://towardsdatascience.com/how-exactly-umap-works-13e3040e1668" target="_blank">How Exactly UMAP Works and why exactly it is better than t-SNE</a></p>
+</li>
+</ul>
 
                                 
                                 </section>
@@ -1169,14 +1185,10 @@
 
             
                 
-                <a href="lasso.html" class="navigation navigation-prev " aria-label="Previous page: Regression Shrinkage and Selection via the Lasso">
+                <a href="behave.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Behavioral Finance">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
-                
-                <a href="defi_RFS.html" class="navigation navigation-next " aria-label="Next page: Decentralized mining in centralized pools">
-                    <i class="fa fa-angle-right"></i>
-                </a>
                 
             
         
@@ -1185,7 +1197,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Nonparametric Instrumental Regression","level":"1.4.23","depth":2,"next":{"title":"Decentralized mining in centralized pools","level":"1.4.24","depth":2,"path":"notes/defi_RFS.md","ref":"./notes/defi_RFS.md","articles":[]},"previous":{"title":"Regression Shrinkage and Selection via the Lasso","level":"1.4.22","depth":2,"path":"notes/lasso.md","ref":"./notes/lasso.md","articles":[]},"dir":"ltr"},"config":{"plugins":["mathjax","image-captions","github","anchors","anchor-navigation-ex","-sharing","sharing-plus@^0.0.2","github-buttons","embed-pdf","livereload"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"github":{"url":"https://github.com/ZizouHe/"},"livereload":{},"search":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":false},"mode":"float","multipleH1":false,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":true},"github-buttons":{"buttons":[{"user":"ZizouHe","repo":"reading-notes","type":"star","size":"small"}]},"mathjax":{"forceSVG":false,"version":"2.6-latest"},"sharing":{"qq":true,"all":["facebook","google","twitter","weibo","qq","linkedin"],"douban":false,"facebook":true,"weibo":true,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":false,"messenger":false,"line":false,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"embed-pdf":{},"image-captions":{"caption":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","align":"right","variable_name":"_pictures"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{"_pictures":[{"backlink":"./notes/RDN.html#fig1.4.2.1","level":"1.4.2","align":"right","list_caption":"Figure: Example (a) data graph and (b) model graph.","alt":"Example (a) data graph and (b) model graph.","nro":1,"url":"./pic/RDN-1.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Example (a) data graph and (b) model graph.","attributes":{},"skip":false,"key":"1.4.2.1"},{"backlink":"./notes/RDN.html#fig1.4.2.2","level":"1.4.2","align":"right","list_caption":"Figure: RDN inference algorithm.","alt":"RDN inference algorithm.","nro":2,"url":"./pic/RDN-2.png","index":2,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"RDN inference algorithm.","attributes":{},"skip":false,"key":"1.4.2.2"},{"backlink":"./notes/Faster_Frank_Wolfe.html#fig1.4.14.1","level":"1.4.14","align":"right","list_caption":"Figure: Frank-Wolfe Algorithm","alt":"Frank-Wolfe Algorithm","nro":3,"url":"./pic/Frank-Wolfe.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Frank-Wolfe Algorithm","attributes":{},"skip":false,"key":"1.4.14.1"},{"backlink":"./notes/Fin_Fan_Book.html#fig1.4.15.1","level":"1.4.15","align":"right","list_caption":"Figure: Efficient Frontier with risk-free asset","alt":"Efficient Frontier with risk-free asset","nro":4,"url":"./pic/Eff_Front_1.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Efficient Frontier with risk-free asset","attributes":{},"skip":false,"key":"1.4.15.1"},{"backlink":"./notes/Fin_Fan_Book.html#fig1.4.15.2","level":"1.4.15","align":"right","list_caption":"Figure: Efficient Frontier without risk-free asset","alt":"Efficient Frontier without risk-free asset","nro":5,"url":"./pic/Eff_Front_2.png","index":2,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Efficient Frontier without risk-free asset","attributes":{},"skip":false,"key":"1.4.15.2"}]},"title":"Reading List & Notes","gitbook":"*"},"file":{"path":"notes/nonpa_inst.md","mtime":"2020-04-27T21:30:34.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-06-02T02:29:20.642Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Nonlinear Dimension Reduction","level":"1.4.54","depth":2,"previous":{"title":"Behavioral Finance","level":"1.4.53","depth":2,"path":"notes/behave.md","ref":"./notes/behave.md","articles":[]},"dir":"ltr"},"config":{"plugins":["mathjax","image-captions","github","anchors","anchor-navigation-ex","-sharing","sharing-plus@^0.0.2","github-buttons","embed-pdf","livereload"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"github":{"url":"https://github.com/ZizouHe/"},"livereload":{},"search":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":false},"mode":"float","multipleH1":false,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":true},"github-buttons":{"buttons":[{"user":"ZizouHe","repo":"reading-notes","type":"star","size":"small"}]},"mathjax":{"forceSVG":false,"version":"2.6-latest"},"sharing":{"qq":true,"all":["facebook","google","twitter","weibo","qq","linkedin"],"douban":false,"facebook":true,"weibo":true,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":false,"messenger":false,"line":false,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"embed-pdf":{},"image-captions":{"caption":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","align":"right","variable_name":"_pictures"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{"_pictures":[{"backlink":"./notes/RDN.html#fig1.4.2.1","level":"1.4.2","align":"right","list_caption":"Figure: Example (a) data graph and (b) model graph.","alt":"Example (a) data graph and (b) model graph.","nro":1,"url":"./pic/RDN-1.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Example (a) data graph and (b) model graph.","attributes":{},"skip":false,"key":"1.4.2.1"},{"backlink":"./notes/RDN.html#fig1.4.2.2","level":"1.4.2","align":"right","list_caption":"Figure: RDN inference algorithm.","alt":"RDN inference algorithm.","nro":2,"url":"./pic/RDN-2.png","index":2,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"RDN inference algorithm.","attributes":{},"skip":false,"key":"1.4.2.2"},{"backlink":"./notes/Faster_Frank_Wolfe.html#fig1.4.14.1","level":"1.4.14","align":"right","list_caption":"Figure: Frank-Wolfe Algorithm","alt":"Frank-Wolfe Algorithm","nro":3,"url":"./pic/Frank-Wolfe.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Frank-Wolfe Algorithm","attributes":{},"skip":false,"key":"1.4.14.1"},{"backlink":"./notes/Fin_Fan_Book.html#fig1.4.15.1","level":"1.4.15","align":"right","list_caption":"Figure: Efficient Frontier with risk-free asset","alt":"Efficient Frontier with risk-free asset","nro":4,"url":"./pic/Eff_Front_1.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Efficient Frontier with risk-free asset","attributes":{},"skip":false,"key":"1.4.15.1"},{"backlink":"./notes/Fin_Fan_Book.html#fig1.4.15.2","level":"1.4.15","align":"right","list_caption":"Figure: Efficient Frontier without risk-free asset","alt":"Efficient Frontier without risk-free asset","nro":5,"url":"./pic/Eff_Front_2.png","index":2,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Efficient Frontier without risk-free asset","attributes":{},"skip":false,"key":"1.4.15.2"}]},"title":"Reading List & Notes","gitbook":"*"},"file":{"path":"notes/d-reduct.md","mtime":"2022-06-02T02:28:22.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-06-02T02:29:20.642Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

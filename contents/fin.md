@@ -9,6 +9,7 @@
 1. [Parsons, Christopher A., Riccardo Sabbatucci, and Sheridan Titman. "Geographic lead-lag effects." *The Review of Financial Studies* 33, no. 10 (2020): 4721-4770.](../notes/Parsons_2020_rfs.html)
 1. [Ali, Usman, and David Hirshleifer. "Shared analyst coverage: Unifying momentum spillover effects." *Journal of Financial Economics* 136, no. 3 (2020): 649-675.](../notes/Ali_2020_jfe.html)
 1. [Boehmer, Ekkehart, Charles M. Jones, Xiaoyan Zhang, and Xinran Zhang. "Tracking retail investor activity." *The Journal of Finance* 76, no. 5 (2021): 2249-2305.](../notes/retail.html)
+1. Zhai, Xiao-ying, Ying-ying Hou, and Yuan-shun Li. "Investor attention and stock returns under negative shocks: an empirical analysis based on “Dragon and Tiger” list in China." *Journal of Business Economics and Management* 21, no. 3 (2020): 914-941.
 
 ## Asset Pricing
 
@@ -28,6 +29,13 @@
 14. [Fama, Eugene F., and Kenneth R. French. "Comparing cross-section and time-series factor models." *The Review of Financial Studies* 33, no. 5 (2020): 1891-1926.](../notes/whichbeta.html)
 15. [Kozak, Serhiy, Stefan Nagel, and Shrihari Santosh. "Interpreting factor models." *The Journal of Finance* 73, no. 3 (2018): 1183-1223.](../notes/whichbeta.html)
 16. [Barillas, Francisco, and Jay Shanken. "Which alpha?." *The Review of Financial Studies* 30, no. 4 (2017): 1316-1338.](../notes/whichbeta.html)
+
+## Behavioral Finance
+
+1. [Kahneman, Daniel, and Amos Tversky. "Prospect Theory: An Analysis of Decision under Risk." *Econometrica* 47, no. 2 (1979): 263-292.](../notes/behave.html)
+2. [Thaler, Richard. "Mental accounting and consumer choice." *Marketing science* 4, no. 3 (1985): 199-214.](../notes/behave.html)
+3. [Barberis, Nicholas, and Richard Thaler. "A survey of behavioral finance." *Handbook of the Economics of Finance* 1 (2003): 1053-1128.](../notes/behave.html)
+4. [Barberis, Nicholas. "Psychology-based models of asset prices and trading volume." In *Handbook of behavioral economics: applications and foundations 1*, vol. 1, pp. 79-175. North-Holland, 2018.](../notes/behave.html)
 
 ## Cryptocurrency
 

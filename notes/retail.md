@@ -39,7 +39,7 @@
 4. The explanation of predictive power: 
 
    - Hypothesis 1 (**persistence in retail order flow**): as in Chordia and Subrahmanyam (2004), order flows are persistent, and, since the retail buying/selling pressure is also persistent, this could lead directly to the predictability of future returns
-   - Hypothesis 2 (**liquidity provision**): as in Kaniel, Saar, and Titman (2008), these retail traders are contrarian at weekly horizons, and since their contrarian trading provides liquidity to the market, their trades might positively predict future returns.
+   - wHypothesis 2 (**liquidity provision**): as in Kaniel, Saar, and Titman (2008), these retail traders are contrarian at weekly horizons, and since their contrarian trading provides liquidity to the market, their trades might positively predict future returns.
    - Hypothesis 3 **(informed trading)**: as in Kelley and Tetlock (2013), retail investors, especially ag- gressive investors using market orders, may have valuable information about the firm, and thus, their trading could correctly predict the direction of future returns 
    - See paper P2276 - 2277 for the two-stage decomposition.
    - The empirical findings show that persistence in order flow and order flow driven by return reversals (the proxy for liquidity provision) account for about half of the predictive power of the marketable retail order imbalance for future returns. **The other half of this predictive power is attributed to potential informed trading.**

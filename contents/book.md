@@ -37,3 +37,4 @@
 3. Econometrics of Financial High-Frequency Data by Nikolaus Hautsch (chapter 1-3,5,8-9)
 4. Empirical market microstructure: The institutions, economics, and econometrics of securities trading (Full)
 5. Market Microstructure in Practice (Full)
+6. Active Equity Management

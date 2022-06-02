@@ -71,4 +71,6 @@
     * [Out of Sample Predictability](./notes/OOS.md)
     * [Multi-factor in Cryptocurrency](./notes/FF3_cryoto.md)
     * [Quant Machine Learning](./notes/quant_ml.md)
+    * [Behavioral Finance](./notes/behave.md)
+    * [Nonlinear Dimension Reduction](./notes/d-reduct.md)
 

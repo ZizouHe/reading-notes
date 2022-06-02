@@ -12,6 +12,11 @@
 4. Repeated labeling using multiple noisy labelers
 5. Get Another Label? Improving Data Quality and Data Mining Using Multiple, Noisy Labelers
 
+## Dimension Reduction
+
+1. [Visualizing Data using t-SNE]((../notes/d-reduct.html))
+2. [Umap: Uniform manifold approximation and projection for dimension reduction](../notes/d-reduct.html)
+
 ## Learning to Rank
 
 1. A Short Introduction to Learning to Rank
@@ -43,7 +48,3 @@
 3. The Strength of Weak Learnability
 4. The Multiplicative Weights Update Method- A Meta-Algorithm and Applications
 5. Manifold Regularization: A Geometric Framework for Learning from Labeled and Unlabeled Examples
-
-## Visualization
-
-1. Visualizing Data using t-SNE

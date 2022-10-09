@@ -10,6 +10,8 @@
 1. [Ali, Usman, and David Hirshleifer. "Shared analyst coverage: Unifying momentum spillover effects." *Journal of Financial Economics* 136, no. 3 (2020): 649-675.](../notes/Ali_2020_jfe.html)
 1. [Boehmer, Ekkehart, Charles M. Jones, Xiaoyan Zhang, and Xinran Zhang. "Tracking retail investor activity." *The Journal of Finance* 76, no. 5 (2021): 2249-2305.](../notes/retail.html)
 1. Zhai, Xiao-ying, Ying-ying Hou, and Yuan-shun Li. "Investor attention and stock returns under negative shocks: an empirical analysis based on “Dragon and Tiger” list in China." *Journal of Business Economics and Management* 21, no. 3 (2020): 914-941.
+1. Bonne, George, Andrew W. Lo, Abilash Prabhakaran, Kien Wei Siah, Manish Singh, Xinxin Wang, Peter Zangari, and Howard Zhang. "An Artificial Intelligence-Based Industry Peer Grouping System." *The Journal of Financial Data Science* 4, no. 2 (2022): 9-36.
+1. [Bryzgalov, S., S. Lerner, M. Lettau, and M. Pelger (2022). Missing financial data. Working paper.](../notes/miscell.html)
 
 ## Asset Pricing
 
@@ -29,6 +31,7 @@
 14. [Fama, Eugene F., and Kenneth R. French. "Comparing cross-section and time-series factor models." *The Review of Financial Studies* 33, no. 5 (2020): 1891-1926.](../notes/whichbeta.html)
 15. [Kozak, Serhiy, Stefan Nagel, and Shrihari Santosh. "Interpreting factor models." *The Journal of Finance* 73, no. 3 (2018): 1183-1223.](../notes/whichbeta.html)
 16. [Barillas, Francisco, and Jay Shanken. "Which alpha?." *The Review of Financial Studies* 30, no. 4 (2017): 1316-1338.](../notes/whichbeta.html)
+17. [Light, Nathaniel, Denys Maslov, and Oleg Rytchkov. "Aggregation of information about the cross section of stock returns: A latent variable approach." *The Review of Financial Studies* 30, no. 4 (2017): 1339-1381.](../notes/miscell.html)
 
 ## Behavioral Finance
 
@@ -36,6 +39,9 @@
 2. [Thaler, Richard. "Mental accounting and consumer choice." *Marketing science* 4, no. 3 (1985): 199-214.](../notes/behave.html)
 3. [Barberis, Nicholas, and Richard Thaler. "A survey of behavioral finance." *Handbook of the Economics of Finance* 1 (2003): 1053-1128.](../notes/behave.html)
 4. [Barberis, Nicholas. "Psychology-based models of asset prices and trading volume." In *Handbook of behavioral economics: applications and foundations 1*, vol. 1, pp. 79-175. North-Holland, 2018.](../notes/behave.html)
+5. [Da, Zhi, Umit G. Gurun, and Mitch Warachka. "Frog in the pan: Continuous information and momentum." *The review of financial studies* 27, no. 7 (2014): 2171-2218.](../notes/moment.html)
+6. [Bali, Turan G., Nusret Cakici, and Robert F. Whitelaw. "Maxing out: Stocks as lotteries and the cross-section of expected returns." *Journal of financial economics* 99, no. 2 (2011): 427-446.](../notes/moment.html)
+7. [Meursault, Vitaly, Pierre Jinghong Liang, Bryan Routledge, and Madeline Scanlon. "PEAD. txt: Post-Earnings-Announcement Drift Using Text." *Available at SSRN 3778798* (2021).](../notes/moment.html)
 
 ## Cryptocurrency
 

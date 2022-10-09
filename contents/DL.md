@@ -22,6 +22,7 @@
 6. Fully Convolutional Networks for Semantic Segmentation
 7. Swin Transformer: Hierarchical Vision Transformer using Shifted Windows
 8. An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale
+9. [Tabnet: Attentive interpretable tabular learning (Arik and Pfister, AAAI 2021)](../notes/tabnet.html)
 
 ## Deep Causal Inference
 
@@ -37,6 +38,13 @@
 3. Theoretical Guarantees for Sampling and Inference in Generative Models with Latent Diffusions
 4. Deep Double Descent: Where Bigger Models and More Data Hurt
 5. On Lazy Training in Differentiable Programming
+
+## Feature Interaction
+
+1. [Deep & cross network for ad click predictions. (Wang et al., KDD 2017)](../notes/feature_int.html)
+2. [xDeepFM: Combining explicit and implicit feature interactions for recommender systems. (Lian et al., KDD 2018)](../notes/feature_int.html)
+3. [AutoInt: Automatic Feature Interaction Learning via Self-Attentive Neural Networks (Song et al., CIKM 2019)](../notes/feature_int.html)
+4. [S3-Rec: Self-Supervised Learning for Sequential Recommendation with Mutual Information Maximization. (Zhou et al., CIKM 2020)](../notes/feature_int.html)
 
 ## Generative Adversarial Network
 

@@ -4,3 +4,7 @@
 2. How much can behavioral targeting help online advertising?
 3. A Contextual-Bandit Approach to Personalized News Article Recommendation
 4. The Deconfounded Recommender: A Causal Inference Approach to Recommendation
+
+
+
+1. [Kaggle Finance Competition Solution Summary](../notes/kaggle-fin.html)

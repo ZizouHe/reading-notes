@@ -73,4 +73,9 @@
     * [Quant Machine Learning](./notes/quant_ml.md)
     * [Behavioral Finance](./notes/behave.md)
     * [Nonlinear Dimension Reduction](./notes/d-reduct.md)
+    * [Momentum](./notes/moment.md)
+    * [Miscellaneous](./notes/miscell.md)
+    * [TabNet](./notes/tabnet.md)
+    * [Kaggle Finance Competition Solution Summary](./notes/kaggle-fin.md)
+    * [Feature Interaction](./notes/feature_int.md)
 

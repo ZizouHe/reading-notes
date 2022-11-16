@@ -5,6 +5,7 @@
 1. [Cohen, Lauren, Christopher Malloy, and Quoc Nguyen. "Lazy prices." *The Journal of Finance* 75, no. 3 (2020): 1371-1415.](../notes/lazy-prices.html)
 1. [Green, T. Clifton, Ruoyan Huang, Quan Wen, and Dexin Zhou. "Crowdsourced employer reviews and stock returns." *Journal of Financial Economics* 134, no. 1 (2019): 236-251.](../notes/green_2019_jfe.html)
 1. [Lee, Charles MC, Stephen Teng Sun, Rongfei Wang, and Ran Zhang. "Technological links and predictable returns." *Journal of Financial Economics* 132, no. 3 (2019): 76-96.](../notes/Lee_2019_jfe.html)
+1. [Bekkerman, R., E. M. Fich, and N. V. Khimich (2022). The effect of innovation similarity on asset prices: Evidence from patents' big data. *Review of Asset Pricing Studies*](../notes/Lee_2019_jfe.html)
 1. [Da, Zhi, Xing Huang, and Lawrence J. Jin. "Extrapolative beliefs in the cross-section: What can we learn from the crowds?." *Journal of Financial Economics* 140, no. 1 (2021): 175-196.](../notes/Da_2021_jfe.html)
 1. [Parsons, Christopher A., Riccardo Sabbatucci, and Sheridan Titman. "Geographic lead-lag effects." *The Review of Financial Studies* 33, no. 10 (2020): 4721-4770.](../notes/Parsons_2020_rfs.html)
 1. [Ali, Usman, and David Hirshleifer. "Shared analyst coverage: Unifying momentum spillover effects." *Journal of Financial Economics* 136, no. 3 (2020): 649-675.](../notes/Ali_2020_jfe.html)
@@ -12,6 +13,7 @@
 1. Zhai, Xiao-ying, Ying-ying Hou, and Yuan-shun Li. "Investor attention and stock returns under negative shocks: an empirical analysis based on “Dragon and Tiger” list in China." *Journal of Business Economics and Management* 21, no. 3 (2020): 914-941.
 1. Bonne, George, Andrew W. Lo, Abilash Prabhakaran, Kien Wei Siah, Manish Singh, Xinxin Wang, Peter Zangari, and Howard Zhang. "An Artificial Intelligence-Based Industry Peer Grouping System." *The Journal of Financial Data Science* 4, no. 2 (2022): 9-36.
 1. [Bryzgalov, S., S. Lerner, M. Lettau, and M. Pelger (2022). Missing financial data. Working paper.](../notes/miscell.html)
+1. [van Binsbergen, Jules H. Liang Ma, and Michael  Schwert. "The Factor Multiverse: The Role of Interest Rates in Factor Discovery." *SSRN Working Paper* (2022).](../notes/miscell.html)
 
 ## Asset Pricing
 
@@ -32,6 +34,9 @@
 15. [Kozak, Serhiy, Stefan Nagel, and Shrihari Santosh. "Interpreting factor models." *The Journal of Finance* 73, no. 3 (2018): 1183-1223.](../notes/whichbeta.html)
 16. [Barillas, Francisco, and Jay Shanken. "Which alpha?." *The Review of Financial Studies* 30, no. 4 (2017): 1316-1338.](../notes/whichbeta.html)
 17. [Light, Nathaniel, Denys Maslov, and Oleg Rytchkov. "Aggregation of information about the cross section of stock returns: A latent variable approach." *The Review of Financial Studies* 30, no. 4 (2017): 1339-1381.](../notes/miscell.html)
+18. [Pástor, Ľuboš, Robert F. Stambaugh, and Lucian A. Taylor. "Sustainable investing in equilibrium." *Journal of Financial Economics* 142, no. 2 (2021): 550-571.](../notes/ESG.html)
+19. [Pástor, Ľuboš, Robert F. Stambaugh, and Lucian A. Taylor. "Dissecting green returns." *Journal of Financial Economics* 146, no. 2 (2022): 403-424.](../notes/ESG.html)
+20. [Fergis, Kristin, Katelyn Gallagher, Philip Hodges, and Ked Hogan. "Defensive Factor Timing." *The Journal of Portfolio Management* 45, no. 3 (2019): 50-68.](../notes/timing.html)
 
 ## Behavioral Finance
 
@@ -42,6 +47,11 @@
 5. [Da, Zhi, Umit G. Gurun, and Mitch Warachka. "Frog in the pan: Continuous information and momentum." *The review of financial studies* 27, no. 7 (2014): 2171-2218.](../notes/moment.html)
 6. [Bali, Turan G., Nusret Cakici, and Robert F. Whitelaw. "Maxing out: Stocks as lotteries and the cross-section of expected returns." *Journal of financial economics* 99, no. 2 (2011): 427-446.](../notes/moment.html)
 7. [Meursault, Vitaly, Pierre Jinghong Liang, Bryan Routledge, and Madeline Scanlon. "PEAD. txt: Post-Earnings-Announcement Drift Using Text." *Available at SSRN 3778798* (2021).](../notes/moment.html)
+8. [Stambaugh, Robert F., Jianfeng Yu, and Yu Yuan. "Arbitrage asymmetry and the idiosyncratic volatility puzzle." *The Journal of Finance* 70, no. 5 (2015): 1903-1948.](../notes/vol.html)
+9. [Han, Yufeng, Dashan Huang, Dayong Huang and Guofu Zhou, 2022, Expected return, volume, and mispricing, Journal of Financial Economics 143(3), 1295-1315.](../notes/vol.html)
+10. [Atmaz, Adem, and Suleyman Basak. "Belief dispersion in the stock market." *The Journal of Finance* 73, no. 3 (2018): 1225-1279.](../notes/vol.html)
+11. [Lou, Dong, Christopher Polk, and Spyros Skouras. "A tug of war: Overnight versus intraday expected returns." *Journal of Financial Economics* 134, no. 1 (2019): 192-213.](../notes/overnight.html)
+12. [Akbas, Ferhat, Ekkehart Boehmer, Chao Jiang, and Paul D. Koch. "Overnight returns, daytime reversals, and future stock returns." *Journal of Financial Economics* 145, no. 3 (2022): 850-875.](../notes/overnight.html)
 
 ## Cryptocurrency
 

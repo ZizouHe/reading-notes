@@ -6,8 +6,6 @@
 
 - [背景知识：股票多因子模型的回归检验，知乎-石川](https://zhuanlan.zhihu.com/p/40984029)
 
-
-
 ## Main Points
 
 - 使用 TECHRET 因子的 Long/Short 组合收益的时间序列和 Fama-French 三因子（Fama and French 1993）的时间序列在时序上回归，得到的截距恰好就是截面上 L/S 无法被三因子解释的超额收益
@@ -21,3 +19,9 @@
     - 投资者对这类新息的有限注意力（limited attention）；
     - 投资者的套利成本。
   - 如果某个异象和错误定价有关，则该因子在盈余公告期内应该比其他时间内获得更高的收益，这是因为最新的盈余报告有助于修正投资者之前对该股票的估值错误。而反过来，如果该异象是源自风险补偿，我们将不会观察到上述现象
+
+## 升级版科技关联度
+
+- [Bekkerman, R., E. M. Fich, and N. V. Khimich (2022). The effect of innovation similarity on asset prices: Evidence from patents' big data. ***Review of Asset Pricing Studies***](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3147218)
+- [科技关联度 (II)](https://zhuanlan.zhihu.com/p/577519685)
+- Lee et al. (2019) 使用专利类别vector计算科技关联度，Bekkerman et al. (2022) 没有使用专利类别，而是直接对专利进行文本分析，通过提取专业术语并计算其重合度来描述公司之间的相似程度。不出意外，升级版科技关联度“打败”了 Lee, et al. (2019)。这体现在当控制了 Lee, et al. (2019) 的变量之后，新的变量依旧能够获得超额收益，而反之则不然。

@@ -78,4 +78,8 @@
     * [TabNet](./notes/tabnet.md)
     * [Kaggle Finance Competition Solution Summary](./notes/kaggle-fin.md)
     * [Feature Interaction](./notes/feature_int.md)
+    * [ESG](./notes/ESG.md)
+    * [Volatility](./notes/vol.md)
+    * [Overnight Returns](./notes/overnight.md)
+    * [Factor Timing](./notes/timing.md)
 

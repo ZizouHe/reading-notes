@@ -97,8 +97,12 @@
 ## Meta Learning
 
 1. Learning to Learn by Gradient Descent by Gradient Descent
-2. Model-Agnostic Meta-Learning for Fast Adaptation of Deep Networks
+2. [Model-Agnostic Meta-Learning for Fast Adaptation of Deep Networks. (Abbeel and Levine, ICML 2017)](../notes/meta.html)
 3. Optimization as a Model for Few-shot Learning
+4. [Neural architecture search: A survey. (Elsken et al., 2019 JMLR)](../notes/NAS.html)
+5. [Learning Transferable Architectures for Scalable Image Recognition. (Zoph et al., 2018 CVPR )](../notes/NAS.html)
+6. [Neural architecture search with reinforcement learning. (Zoph and Le, 2017 ICLR)](../notes/NAS.html)
+7. [DARTS- Differentiable Architecture Search. (Liu et al., 2019 ICLR)](../notes/NAS.html)
 
 ## Natural Language Processing
 

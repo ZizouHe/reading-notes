@@ -82,4 +82,6 @@
     * [Volatility](./notes/vol.md)
     * [Overnight Returns](./notes/overnight.md)
     * [Factor Timing](./notes/timing.md)
+    * [Neural Architecture Search](./notes/NAS.md)
+    * [Meta Learning](./notes/meta.md)
 

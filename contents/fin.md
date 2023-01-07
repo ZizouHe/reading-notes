@@ -52,6 +52,9 @@
 10. [Atmaz, Adem, and Suleyman Basak. "Belief dispersion in the stock market." *The Journal of Finance* 73, no. 3 (2018): 1225-1279.](../notes/vol.html)
 11. [Lou, Dong, Christopher Polk, and Spyros Skouras. "A tug of war: Overnight versus intraday expected returns." *Journal of Financial Economics* 134, no. 1 (2019): 192-213.](../notes/overnight.html)
 12. [Akbas, Ferhat, Ekkehart Boehmer, Chao Jiang, and Paul D. Koch. "Overnight returns, daytime reversals, and future stock returns." *Journal of Financial Economics* 145, no. 3 (2022): 850-875.](../notes/overnight.html)
+13. [何贵华, 崔宸瑜, 高皓, and 屈源育. "名义价格幻觉——基于证券分析师目标价格预测的经验证据." *金融研究* 492, no. 6 (2021): 189-206.](../notes/miscell.html)
+14. [Liu, Bibo, Huijun Wang, Jianfeng Yu, and Shen Zhao. "Time-varying demand for lottery: Speculation ahead of earnings announcements." *Journal of Financial Economics* 138, no. 3 (2020): 789-817.](../notes/miscell.html)
+15. [Xu, Yongxin, Yuhao Xuan, and Gaoping Zheng. "Internet searching and stock price crash risk: Evidence from a quasi-natural experiment." *Journal of Financial Economics* 141, no. 1 (2021): 255-275.](../notes/miscell.html)
 
 ## Cryptocurrency
 

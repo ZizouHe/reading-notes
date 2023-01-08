@@ -6,7 +6,7 @@
 
 1. Changes to the language and construction of financial reports have strong implications for firms’ future returns and operations. The lack of announcement returns is not due to financial statements becoming less useful over time, but rather to investors missing these subtle but important signals from annual reports at the time of theirs release, perhaps due to the reports’ increased complexity and length
 
-2. Split stocks into 5 quintiles (portfolios) using financial report similarity with prior ones, also construct portfolio which long the nonchanges and short the changes. 
+2. Split stocks into 5 quantiles (portfolios) using financial report similarity with prior ones, also construct portfolio which long the nonchanges and short the changes. 
 3. Potential mechanism behind the results: negative semtiment, higher uncertainty, more litigiousness, CEO/CFO changes (all can be found using text analysis of the reports).
 4. Most crucial section changes within the report: Risk Factors, Management’s Discussion and Analysis.
 5. When investor attention to year-over-year corporate filings is greater, the return predictability results of the changes to the language and construction of financial reports are somewhat weaker.

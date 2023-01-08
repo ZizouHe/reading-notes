@@ -1,4 +1,4 @@
-# Mispricing Factors
+# Stambaugh-Yuan Four Factors
 
 - [Stambaugh, Robert F., and Yu Yuan. "Mispricing factors." *The Review of Financial Studies* 30, no. 4 (2017): 1270-1315.](https://academic.oup.com/rfs/article/30/4/1270/2965095)
 - [主流多因子模型巡礼 第六节](https://zhuanlan.zhihu.com/p/211070896)

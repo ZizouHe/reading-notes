@@ -1,4 +1,4 @@
-# Behavioral Finance
+# Behavioral Finance: an Introduction
 
 - [让你投资亏钱的 15 个“偏差”](https://zhuanlan.zhihu.com/p/38293254)
 - [投资中的 N 种认知偏差，总有一款打败你](https://zhuanlan.zhihu.com/p/48155082)

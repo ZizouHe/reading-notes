@@ -1,4 +1,4 @@
-# Overnight Returns
+# Overnight Return Reserval
 
 - [Lou, Dong, Christopher Polk, and Spyros Skouras. "A tug of war: Overnight versus intraday expected returns." *Journal of Financial Economics* 134, no. 1 (2019): 192-213.](https://www.sciencedirect.com/science/article/pii/S0304405X19300650)
 - [股价拔河赛：期望收益的隔夜和日内部分](https://mp.weixin.qq.com/s?__biz=MzA4MTMzOTQ3Mw==&mid=2650328837&idx=1&sn=cc5f5c40eb3bd22e3892fda985bdf9c1&chksm=879a1a3bb0ed932d76b1d9114bf6ca7aeba8da561f43d3f5ddf20883ff047a5175fb3a461f11&scene=21#wechat_redirect)

@@ -1,6 +1,7 @@
 # Summary
 
 * [Introduction](README.md)
+
 * [Finished List](./contents/already.md)
     * [Bayesian Machine Learning](./contents/bayes.md)
     * [Deep Learning](./contents/DL.md)
@@ -14,6 +15,7 @@
     * [Broker Reports](./contents/broker.md)
     * [Quant Finance Notes](./contents/qfn.md)
     * [Machine Learning Notes](./contents/mln.md)
+    
 * [Reading List](./contents/reading.md)
     * [Bayesian Machine Learning](./contents/bayesing.md)
     * [Deep Learning](./contents/DLing.md)
@@ -21,6 +23,7 @@
     * [Numerical and Optimization](./contents/opting.md)
     * [Traditional Statistics](./contents/stating.md)
     * [Books](./contents/booking.md)
+    
 * [Notes](./contents/notes.md)
     * [Neural ODE](./notes/NeuralODE.md)
     * [Relational Dependency Networks](./notes/RDN.md)
@@ -89,4 +92,6 @@
     * [Neural Architecture Search](./notes/NAS.md)
     * [Meta Learning](./notes/meta.md)
     * [Nominal Price Ilusion](./notes/nominal_illusion.md)
-
+    * [Co-trade Network](./notes/co-trade.md)
+    
+    - [Order Imbalance with Trade Flow Decomposition](./notes/COI_flow_decomp.md)

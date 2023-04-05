@@ -52,6 +52,7 @@
       * The pair’s spread Hurst exponent reveals a mean-reverting character. ($$H < 0.5$$)
       * The pair’s spread diverges and converges within convenient periods. (1 < half life < 12)
       * The pair’s spread reverts to the mean with enough frequency. (yearly mean-cross >= 12)
+* [Co-trade Network](../notes/co-trade.html)
 
 ## Machine Learning
 
@@ -61,6 +62,7 @@
 ## Microstructure
 
 * [Realized Variance and Market Microstructure Noise](../notes/realized_var.html)
+* [Order Imbalance with Trade Flow Decomposition](../notes/COI_flow_decomp.html)
 
 ## Miscellaneous
 

@@ -2,6 +2,7 @@
 
 - [给你的动量选股策略加点“料”](https://zhuanlan.zhihu.com/p/40468929)
 - [PEAD, R.I.P.? PEAD.txt 来代替](https://zhuanlan.zhihu.com/p/400510484)
+- [PEAD异象](https://mp.weixin.qq.com/s/iu8u-UmFJhPLibI5mrY21Q)
 - [Da, Zhi, Umit G. Gurun, and Mitch Warachka. "Frog in the pan: Continuous information and momentum." *The review of financial studies* 27, no. 7 (2014): 2171-2218.](https://academic.oup.com/rfs/article-abstract/27/7/2171/1578455)
 - [Bali, Turan G., Nusret Cakici, and Robert F. Whitelaw. "Maxing out: Stocks as lotteries and the cross-section of expected returns." *Journal of financial economics* 99, no. 2 (2011): 427-446.](https://www.sciencedirect.com/science/article/abs/pii/S0304405X1000190X)
 - [Meursault, Vitaly, Pierre Jinghong Liang, Bryan Routledge, and Madeline Scanlon. "PEAD. txt: Post-Earnings-Announcement Drift Using Text." *Available at SSRN 3778798* (2021).](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3778798)
@@ -34,6 +35,35 @@
 
 1. 动量策略在短期可能会（大幅）跑输市场，因此并不适合所有人（资金）；
 2. 长期来看，动量策略会战胜市场。对于那些过程驱动、以长期盈利为目标（而忽视短期波动）、能够严格遵守交易纪律的投资者来说，动量策略值得配置。
+
+## PEAD
+
+- PEAD的常用因子指标就是SUE、CAR和JUMP
+
+  - SUE：标准化预期外盈利（Standardized Unexpected Earnings，SUE）
+
+  $$
+  S U E=\frac{E_t-E\left(E_t\right)}{\sigma\left(E_t-E\left(E_t\right)\right)}
+  $$
+
+  - CAR：在进行事件研究时，学术上往往用累计异常收益率（Cumulative Abnormal Return，CAR）评估事件效果，异常收益率用的是个股收益减去相同市值大小的股票组合收益率。CAR一般是事件发生前后window内一段时间的异常收益率
+  - JUMP: 最直接的方法就是看t+1日开盘价相对t日收盘价的收益率；也可以同时考虑虑3个交易日的价格变化。
+
+- 可能的解释：
+
+  - 投资者反应不足
+  - 套利存在风险或者套利成本较高
+
+- 和其他异象之间的关系
+
+  - PEAD和价格动量：PEAD盈利动量可以包含价格动量
+  - PEAD和流动性：虽然SUE能获得常见风险因子无法解释的超额收益率，但是这些收益率主要来自于流动性差的股票。流动性差的股票买卖价差高、市场冲击更大以及成交不活跃，导致SUE策略在实际中难以落地。
+  - PEAD 和 机构集中度：PEAD效应和机构投资者占比负相关
+  - PEAD 和 投资者意见分歧度：用超额换手率和标准化未预期成交量作为意见分歧度的proxy，显然意见分歧越大PEAD效果越好
+  - PEAD和特质波动率：特质波动率越高PEAD越显著，因为套利存在风险
+  - PEAD与公告时间点：
+    - 将所有交易日划分星期五和其他日期，**由于周末休市两天**，投资者在星期五时往往会心不在焉，接收和处理新信息时可能会分心，**因此对盈利披露事件的反应敏感性不如其他日期**
+    - **盈利公告多的日期披露业绩的股票**，在业绩披露日，**投资者对盈利信息反应并不是很敏感，PEAD效果更明显**
 
 ## PEAD.txt
 

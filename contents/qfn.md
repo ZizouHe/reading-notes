@@ -26,6 +26,7 @@
 - [Short- and Long-Horizon Behavioral Factors](../notes/DHS-4-factors.html)
 - [Momentum](../notes/moment.html)
 - [Nominal Price Ilusion](../notes/nominal_illusion.html)
+- [PEAD](../notes/PEAD.html)
 
 ## Crypto
 
@@ -58,6 +59,7 @@
 
 * [Out of Sample Predictability](../notes/OOS.html)
 * [Quant Machine Learning](../notes/quant_ml.html)
+* [Time Seris Machine Learning](../notes/mlts.html)
 
 ## Microstructure
 
@@ -85,6 +87,10 @@
   - [Xu, Yongxin, Yuhao Xuan, and Gaoping Zheng. "Internet searching and stock price crash risk: Evidence from a quasi-natural experiment." *Journal of Financial Economics* 141, no. 1 (2021): 255-275.](https://www.sciencedirect.com/science/article/pii/S0304405X21000933)
 
   - [【JFE论文速递】网络搜索和股票价格崩盘风险:准自然实验的证据](https://mp.weixin.qq.com/s/aP_RwZzJNNuc35Gw-YDvLQ)
+
+## Portfolio Construction
+
+- [Risk Parity](../notes/risk_parity.html)
 
 ## General Knowledge
 

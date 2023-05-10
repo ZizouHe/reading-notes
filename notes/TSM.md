@@ -94,7 +94,7 @@ If all assets have the same Sharpe ratio (or mean, if volatilities are the same)
 
 1. 考虑到资产总体上会更多上涨而非下跌，做多过去收益率大于 0 的资产而做空过去收益率小于 0 的资产的时序动量平均而言会有净多头寸。相比之下，截面动量是完全对冲的、资金中性多空组合。To make these strategies directly comparable, we add to the CS strategy a time-varying investment in the market (TVM) equal to the dollar value of the difference between the long and short sides of the TS strategy each month.
 
-2. 作者们进一步将净头寸带来的收益拆分为（静态持仓获取的）**风险溢价和择时收益**：
+2. 作者们进一步将净头寸带来的收益拆分为（静态持仓获取的）风险溢价和择时收益：
    $$
    \begin{aligned}
    R_{t}^{T V M}&=\operatorname{NetLong}_{t} \times \bar{R}_{t}=\sum_{i} w_{i t-1}^{T S} \times \bar{R}_{t}, \\
@@ -107,5 +107,3 @@ If all assets have the same Sharpe ratio (or mean, if volatilities are the same)
    - 择时收益仅在回望期为 1 月时显著，随着回望期变长，择时收益逐渐下降，甚至变为负的。
 
    - 时序动量的确有显著的净多头暴露，且随着回望期变长，净多头暴露也变得更大。因子时序动量的收益主要来自 buy-and-hold 所提供的风险溢价。The TS strategy benefits from the risk premium component due to large net long position in the market. 高beta
-
-   

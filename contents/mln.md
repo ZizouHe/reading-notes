@@ -40,3 +40,6 @@
 - [Trust Region Policy Optimization](../notes/TRPO.html)
 - [Prioritized Experience Replay](../notes/Prior_Exp_Replay.html)
 
+## Time Series
+
+- [Long-term Forecasting with TiDE: Time-series Dense Encoder](../notes/mlts.html)

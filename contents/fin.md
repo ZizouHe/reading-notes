@@ -45,6 +45,7 @@
 26. [Daniel and Moskowitz (2016 JFE) Momentum crashes](../notes/moment.html)
 27. [Atilgan et al. (2020 JFE) Left-tail momentum- Underreaction to bad news, costly arbitrage and equity returns](../notes/moment.html)
 28. Han, Y., Zhou, G., Y. Zhu (2016 JFE). A trend factor: any economic gains from using information over investment horizons?
+29. Cao, Sean Shun, Kai Du, Baozhong Yang, and Alan Zhang. (JAR 2021) Copycat skills and disclosure costs: Evidence from peer companies’ digital footprints.
 
 ## Behavioral Finance
 

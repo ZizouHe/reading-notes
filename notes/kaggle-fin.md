@@ -1,5 +1,9 @@
 # Kaggle
 
+## Kaggle Summary
+
+- [Learnings From the Typical Tabular Pipeline](https://www.kaggle.com/code/rhysie/learnings-from-the-typical-tabular-pipeline)
+
 ## Ubiquant Market Prediction
 
 - [Ubiquant Market Prediction](kaggle.com/competitions/ubiquant-market-prediction)

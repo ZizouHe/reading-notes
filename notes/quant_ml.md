@@ -92,6 +92,12 @@ CSCV 具有以下优点：
 3. CSCV 将整个 T 期数据划分成长度为 $$T/S$$ 的 S 个子集，而非随机的从 T 期内选出一定长度的数据，这保证了策略收益率的时序相关性。
 4. 整个求解 PBO 的过程是 model-free 以及 non-parametric 的；它得到 $$\lambda$$ 的经验分布 $$f(\lambda)$$，进而计算出过拟合的概率，不需要对 PBO 的模型或者参数做任何假设。
 
+
+
+### 机器学习与资产定价: Facts and Fictions
+
+- [机器学习与资产定价: Facts and Fictions](https://zhuanlan.zhihu.com/p/638705301)
+
 ## Machine Learning
 
 ### Some Methods

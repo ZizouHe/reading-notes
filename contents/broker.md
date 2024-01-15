@@ -6,9 +6,11 @@
 
   - 通过筛选量化私募进入前十大流通股东的个股，并与季末对应有龙虎榜股票的营业部买入情况进行匹配。识别量化私募席位营业部。
   - 量化私募营业部异常净流入（出）具有正（负）向超额收益
+
 - [开源金工 | 识别假外资：内地营业部与北上经纪商的共振](https://mp.weixin.qq.com/s/M7wcZGd_1Esn9pg8z26Csg)
 
-  - 北上经纪商托管数据+龙虎榜数据，识别北上券商和内地已经识别出的量化私募营业部的共振行为，识别假外资
+- 北上经纪商托管数据+龙虎榜数据，识别北上券商和内地已经识别出的量化私募营业部的共振行为，识别假外资
+
 - [开源金工 | 机构行为alpha的细分结构：龙虎榜、机构调研、大宗交易](https://mp.weixin.qq.com/s/ct3B77Pa_7ATgdXipli_dw)
   - 龙虎榜机构专用席位细分：单向上榜为不换手机构专用，双向上榜为换手机构专用
 
@@ -17,35 +19,48 @@
   - 在不换手机构专用净流入样本中，随着机构持仓占比提升，超额收益逐渐增加。
 
   - 机构专用买卖席位数量衡量机构买卖强度，机构专用买卖数量能够很好的衡量机构买卖强度。
+
 - [开源金工 | 机构调研个股的潜在超额收益](https://mp.weixin.qq.com/s/ct3B77Pa_7ATgdXipli_dw)
+  
   - 机构调研事前超额收益显著，事后超额收益有一定幅度下滑，即机构调研的多是已经上涨的股票
   - 将机构调研事件作为conditioner，考察月内被调研的个股股票池，构造以下因子的多空组合表现良好
     - 根据上市公司财报数据和分析师一致预期数据构建的业绩超预期因子 SUE
+  
+- [华泰金工 | 利用文本和反转改进机构调研选股](https://mp.weixin.qq.com/s/G-mTLEd6WcOQ8RlSl6OKsg)
+  - 有些情况下，可能是由于股价前期已出现上涨从而吸引了机构投资者的注意力，才会发生针对该股票的调研事件，此时股票的上涨预期已部分兑现，调研后是否会延续上涨存在较大不确定性。因此在发生机构调研的股票中，可能需要规避前期上涨过多的股票，而更多关注股价还在低位的股票。可以取过去60日收益率的相反数在机构调研股票池内构造反转因子。
+
 - [开源金工 | 高频股东数据的隐含信息量](https://mp.weixin.qq.com/s?__biz=MzI1NTYxMjE1Mw==&mid=2247488808&idx=1&sn=0f0bca8380fb56d6e2187e2587ba904f)
   - 低频股东数据：用季报股东数的变化量做因子
   - 高频股东数据：用深交所互动易(irm.cninfo.com.cn)上股东数问答结果对季报股东数数据进行补充，选取回答比较频繁的几百家股票做universe，高频股东变化量因子效果更好
+
 - [ 开源金工 | 扎堆效应的识别：以股东户数变动为例](https://mp.weixin.qq.com/s/ouDcV77WFHawYgvjroyggg)
   - 股东变动数因子效果不错
   - 人均持股占比在时序上的变动 (PerCapitaRatioChange 因子) 比股东变动数因子更稳健
+
 - [开源金工 | 投资者结构与因子收益](https://mp.weixin.qq.com/s/4maNQUaNNjIuBbavcqJ_Sw)
   - 投资者结构可以作为一个condi，量价因子和基本面因子在不同group投资者比例中的IC均单调
   - 基本面因子：单季度营收同比、单季度营业利润同比、单季度净利润环比、分析师预期（SUE）
+
 - UBS | Can we trade on company visits in China?
   - company visits attracts investor attention and positive money flow
   - can trade on these events or take as interactor
   - Wind Institution's Field Research Dataset
+
 - UBS | Collaborative Intelligence: How to combine human and machine insights to generate alpha?
   - On short horizon, analyst view generate significant excess returns while does not load systematically on any quant factors. Therefore, we can aggregate analyst short term insights with quant factors.
   - How to do: long the intersection of top names from both quant factors and analyst views, and short the intersection of the bottom names.
+
 - UBS | A Definitive Approach to Crowding
   - Comprehensive crowding factor using
     - Prime brokerage position data: long/short
     - 13F regulatory filings: long
     - Stock loan data: short
     - UBS internal data: short
+
 - UBS | Collaborative Intelligence: Can Crowding data Enhance Alpha?
   - Combining the crowding data in **UBS | A Definitive Approach to Crowding** with quant factors using the approach in **UBS | Collaborative Intelligence: How to combine human and machine insights to generate alpha?**.
   - **Question**: if a stock is long crowded, this info can enhance alpha if the quant signal is also long, meaning that we should bet more, this is confirmed using backtest. However, from a risk model perspective, shouldn't we sell if a stock is long crowded to avoid excess risk?
+
 - ExtractAlpha | Transcripts Model
   - Transcript data: Earnings Call, Conference, Investor Meeting, etc. 
     - Model1: Word embedding -> BERT -> Sentence sentiment -> company sentiment score
@@ -71,6 +86,8 @@
     - the timing of earnings announcements and whether they are later than anticipated (Companies which are late in announcing, or which announces on days with high news volume, or near weekends and holidays, tend to miss their numbers)
     - the expectation of an earnings loss
     - and the variance of estimates
+
+  
 
 
 ## Momentum & Reversal
@@ -156,6 +173,10 @@
     \mathrm{E}\left[r_{j, t+1}\right]=\sum_i \mathrm{E}_t\left[\beta_{i, t+1}\right] A_{j t, L_i}.
     $$
 
+- [华泰金工 | A股市场及行业的农历月份效应](https://mp.weixin.qq.com/s/_m30IkGwBpvanixIZrmOzA)
+  - 前期报告：华泰金工 | A股市场及行业的月份效应
+  - A股市场存在明显的农历月份效应，农历1月上涨、农历5月下跌比较显著，报告特别统计了腊月十八到正月十八这一时间段内各个指数的平均收益和显著性p值，结果表明春节前后各大指数显著上涨。
+
 ## Fundamental
 
 - 业绩超预期因子
@@ -165,16 +186,16 @@
   - [开源金工 | 盈利预期调整优选组合的构建](https://mp.weixin.qq.com/s/0zGmUywJjn_dGH9yeDt3gg)
 
   - [开源金工 | 业绩超预期Plus组合2.0：基于预期调整的修正](https://mp.weixin.qq.com/s/cjjW8D1If7E4nowrA5_OHQ)
-  
+
   - 披露时间最早的业绩预告未来超额收益表现最好，其次是业绩快报，公布时间最靠后的定期报告未来超额收益水平最低。
-  
+
   - 超预期股票池：
-  
+
     - 业绩超预期的判断标准为:上市公司发布的财报数据超过了最新一期券商分析师对该公司一致预期归母净利润的均值。
     - 业绩超预期的计算：以Q3为例
 
     ![](../notes/pic/EAR_SUP.png)
-  
+
   - 超预期股票池内进一步区分的因子
 
     - **SUE 因子在超预期股票池内的分组表现较好，其适合用来对超预期标的进行进一步的区分。**
@@ -182,16 +203,16 @@
     $$
     S U E=\frac{R_t-E_t}{\left.\sigma\left(R_t-E_t\right)\right)}
     $$
-  
+
     其中 $$R_t$$ 表示财报披露的净利润水平, $$E_t$$ 表示预期的净利闰水平, $$\sigma\left(R_t-E_t\right)$$ 表示 预测偏差的波动率水平。
-  
+
     - 对于业绩超预期个股，市场的表现也呈现出不同的模式，一种是业绩公布后股价反应并不强烈，表明当前股价已经提前反映了业绩超预期表现，其可能的解释是市场中总有一些知情交易者在交易;另一种是业绩公布后的次日股价发生向上跳空，表明业绩超出市场预期尚未被市场完全定价。**我们选取公告日前后一个交易 **$$[T-1, T+1]$$ **的超额收益之和构建超预期收益因子 OER(Over Expectation Return)**
     - 报告发布后的下一个交易日股价是否出现跳空现象。一般而言，股价跳空幅度越大，表明个股业绩超预期幅度越高。
     - 理想反转因子 [开源金工 | 长端动量2.0：长期、低换手、多头显著的量价因子](https://mp.weixin.qq.com/s?__biz=MzI1NTYxMjE1Mw==&mid=2247547796&idx=1&sn=99898719dc33b997ed06f53ad1eaa785&chksm=ea313e02dd46b714298b28246acfa296a74de58203c8d02b65d6672b33891aa746996a41ff04&cur_album_id=1428197421624180736&scene=190#rd)
     - 大单残差因子 [开源金工 | 大单与小单资金流的alpha能力](https://mp.weixin.qq.com/s?__biz=MzI1NTYxMjE1Mw==&mid=2247499023&idx=1&sn=24dbad4491cbe6be1452b86848d829ab)
-  
+
   - 改进超预期股票池
-  
+
     - 分析师行为：若为真正超预期股票，当其发布财报后，分析师往往会上调盈利预期以匹配真实盈利。
     - 交易行为：利用跳空因子和超预期收益OER因子进行区分
 
@@ -200,15 +221,15 @@
     - 盈利预测调整横截面标准差，即分歧度
 
     ![](../notes/pic/FYR.png)
-  
+
     - 分析师盈利预期上调往往能够获得更大超额收益，且上调的分层效果比下调的效果更好。下调分层效果较差的原因即:时效性更低，上调报告间隔的时间要小于下调。
 
     - FYR_DISP 的改进
-  
+
       - 按照时效性对于分析师预期进行半衰期加权
       - 股价跟随性：对于盈利预期调整而言，往往会受到前期市场涨跌的影响，比如当某只股票处于强势的上涨趋势中，分析师更大概率会积极上调盈利预测。**对于跟随市场涨跌的盈利预期调整而言，我们认为其跟风效应强、创新性不足，对于这类预测，我们赋予更低权重。**而那些与市场走势不同的观点可能更有参考价值。
       - 预测准确度：分析师打分
-  
+
     - 分析师羊群效应：我们参照用于刻画交易羊群效应的CSAD指标，则对于股票i，t时刻的分析师的羊群效应因子为
       $$
       C S A D_{-} F R_{i, t}=\frac{1}{m} \sum_{j=1}^m\left|f r_{i, j, t}-f r_{i, c o n, t}\right|
@@ -218,7 +239,29 @@
       \Delta C S A D_{-} F R_{i, t}=\left(C S A D_{-} F R_{i, t}-\frac{1}{N} \sum_{k=0}^{N-1} C S A D_{-} F R_{i, t-k}\right) /\left(\frac{1}{N} \sum_{k=0}^{N-1} C S A D_{-} F R_{i, t-k}\right)
       $$
       在盈利预期上调的样本池中，$$\Delta C S A D_{FR}$$ 呈现明显的正向选 股能力，而在盈利预期下调的样本池中，$$\Delta C S A D_{FR}$$呈现明显的负向选股能力。
-  
+
+- MS Research | Dividend Stock Ideas
+
+  - Two aspects to predict future dividend:
+    - Dividend Policy Resilience: low payout ratio, high dividend growth consistency in the past five years, high free cash flow yield
+    - Balance Sheet Strength: high earnings stability, low accruals, low leverage, no major consensus EPS downgrades.
+
+- UBS Research | What Information is in Analyst Upside Rankings?
+
+  - analyst top upside stock/top downside stock, long-short
+
+- UBS Research | How to pick stocks using quantamental signals?
+
+  - CTA momentum
+    - EMA + MACD type score, normalized by 1-year rolling volatility
+    - stock, industry/sector aggregation
+
+  - Regime probability
+    - break the OECD CLI index into four states, predict state probability + stock historic performance in each state
+    - stock, industry/sector aggregation
+
+  - Crowding; EPS growth (ML vs Consensus); Extreme bond rate momentum (CTA on 10-year treasury yield); Risk targeting; Up/Down Volatility; Options volumes; Adjusted Forward PE ratio; Sector PMI (New orders); Earnings revisions
+
 
 ## Linkage
 
@@ -243,59 +286,169 @@
 - [开源金工 | 从小单资金流行为到股票关联网络](https://mp.weixin.qq.com/s/mdXxUMeiTbJIrTvDyTIUPA)
 
   -  根据每日小单净流入/净流出数据，计算过去N交易日小单同向比例，构造关联度指标。
-  - 优化：
+  -  优化：
     - 稀疏网络
     - 平滑处理
     - 考虑规模协同：N日daily flow vector的 cosine distance
 
+- [华泰金工 | 深挖分析师共同覆盖中的关联因子](https://mp.weixin.qq.com/s/1pQF-vUz-LW3_veEpiANSA)
+
+- [华泰金工 | 分析师共同覆盖因子和图神经网络](https://mp.weixin.qq.com/s/8rFJDL7yCAsqENDllDzSVQ)
+
+  - 分析师共同覆盖间接关联可对直接关联信息进行补充，具有较大挖掘潜力
+
+    - 间接关联计算
+      $$
+      \mathrm{m}_{\mathrm{ij}}=\sum_{\mathrm{k}=1}^{\mathrm{N}} \log \left(\mathrm{n}_{\mathrm{ik}}+1\right) \times \log \left(\mathrm{n}_{\mathrm{kj}}+1\right)
+      $$
+      其中, $$m_{ij}$$ 表示公司 i 和公司 j 的间接关联强度 $$(i \neq j) ， N$$ 表示所有的上市公司数量, $$n_{ik}$$表示公司 i 和公司 k 之间共同覆盖的分析师数量。
+
+    - Ali and Hirshleifer (2019)从三个方面讨论了间接关联可能产生的效应：
+
+      - 间接关联较为隐蔽，不容易被投资者察觉，并且间接关联的数量远超直接关联，想要完全覆盖和利用间接关联公司的信息也存在困难，这意味着间接关联具有较大的挖掘潜力。
+      - 对于那些分析师覆盖数量较少(或直接关联较少)的公司，间接关联造成的股价领先滞后效应可能会更显著。
+      - 间接关联经过多层连接，其领先滞后效应有所衰减，可能不如直接关联那么显著。
+
+    - 如果一家公司有很多直接关联公司，市场难以迅速整合所有关联公司的信息，这种情况下直接关联具有显著的领先滞后效应，而间接关联效果较弱。相反，如果一家公司的直接关联公司很少，那么信息传播效率较高，直接关联公司的信息会快速反映到股价上，此时进一步挖掘间接关联信息可能更有效。因此，我们可以对间接关联强度加以改进
+      $$
+      \begin{gathered}
+      \mathrm{m}_{\mathrm{ij}}=\sum_{\mathrm{k}=1}^{\mathrm{N}} \log \left(\mathrm{n}_{\mathrm{ik}}+1\right) \times \log \left(\mathrm{n}_{\mathrm{kj}}+1\right) \\
+      \mathrm{m}_{\mathrm{ij}}=\frac{\mathrm{m}_{\mathrm{ij}}}{\log \left(\mathrm{num}_{\mathrm{i}}+1\right)}
+      \end{gathered}
+      $$
+
+  - 间接关联和多层关联改进反转因子：在考虑股票自身反转效应的基础上，进一步考虑与之直接关联股票的动量效应，即前期自身跌幅较大，但关联股票涨幅较大的股票，因子取值较大
+
+  - 基于关联事件驱动的逻辑，可利用分析师共同覆盖改进事件因子。股票市场中，A公司发生事件，可能会沿着关联关系将事件的影响传导到其关联的公司，从而对关联公司的股价产生影响
+
+- [兴业金工 | 弱关联关系下的特异性Alpha因子挖掘](https://mp.weixin.qq.com/s/LdY-D0OuhVV2dBNcaG2Pdg)
+
+  - 相似矩阵探索：
+    - 对相似矩阵尾部进行降噪，去掉尾部低相似性的pair，以提升因子的纯度
+    - 直接利用相似矩阵构造因子 (行相加？)
+
+- [兴业金工 | 基于专利分类的科技动量因子选股研究](https://finance.sina.com.cn/stock/hyyj/2019-06-26/doc-ihytcitk7704952.shtml)
+
+  - 专利数据库 -> 构造专利选股因子
+  - 专利分类 -> 公司专利向量 -> Linkage 科技关联度 -> 信号
+
+- [兴业金工 | 产业链视角下的Alpha传导研究](https://mp.weixin.qq.com/s/nSgeTbVuBtsALxcSYPrcYw)
+
+  - 产业链数据可将上市公司财报中数以万计的产品标准化为超千个产品节点，并细分为多个不同的层级。除了最高等级和最低等级之外，每个产品节点均有其对应的父层级（上一层级）与子层级（下一层级）
+  - 可以根据上游->下游 关系图；下游->上游关系图；上游 <-> 下游关系图 分别构造Linkage alpha
+  - 产业链优势地位因子：对于不同的上市公司而言，其主营产品所关联的产品（如上游产品）个数的多少，或许可以度量其在产业链中风险的高低。在跨行业贸易网络中，处于更中心地位的行业比不处于中心地位的行业更容易获得更高的股票收益；同时，中心行业的股票市场风险更大，因为它们更容易受到其他行业冲击的影响
+
+- [兴业金工 | 基本面量化 家电行业景气度模型构建](https://mp.weixin.qq.com/s/6EIQ_7VGJIDpld-pAUb1zg)
+
+- [开源金工 | 从隔夜价格行为到股票关联网络](https://mp.weixin.qq.com/s/Bg6B-c0tORyqi22nRlP1hA)
+
+  - 隔夜价格因子构建
+
+    ![](../notes/pic/linkage_overnight.png)
+
+  - 将股票开盘价与昨天收盘价对比，可将隔夜价格形态分为隔夜高开、隔夜低开与隔夜平开三种。其中，将股票开盘价与昨天最高价对比，可进一步将隔夜高开分为隔夜跳空高开与隔夜非跳空高开；将股票开盘价与昨天最低价对比，可进一步将隔夜低开分为隔夜跳空低开与隔夜非跳空低开。A股市场中，“缺口回补”现象较为普遍。考虑到本文构建关联网络的前提假设在于隔夜涨跌反映隔夜信息，若当天高低开主要受昨天的跳空缺口影响而非隔夜信息，则应剔除此类隔夜涨跌幅，从而提纯隔夜涨跌样本。因此，在过去80个交易日的隔夜涨跌幅样本中，我们剔除昨天形成向上跳空缺口而今天低开的样本点，以及剔除昨天形成向下跳空缺口而今天高开的样本点，从而剔除非隔夜信息主导的隔夜涨跌样本，对Traction_OR因子进行有效增强，构建Traction_ORE因子。
+
+
 ## Machine Learning
 
-- [华泰金工 | 人工智能系列之十二 | 人工智能选股之特征选择](https://mp.weixin.qq.com/s/p4VutHWsqKMk_65YPCWouw)
+- [华泰金工 | 人工智能选股之特征选择](https://mp.weixin.qq.com/s/p4VutHWsqKMk_65YPCWouw)
 
   - 单变量特征选择：有监督 可以根据FDR选择
 
-- [华泰金工 | 人工智能系列之十三 | 人工智能选股之损失函数的改进](https://mp.weixin.qq.com/s/22rJ0xRGhGlIlSR3U0feLA)
+- [华泰金工 | 人工智能选股之损失函数的改进](https://mp.weixin.qq.com/s/22rJ0xRGhGlIlSR3U0feLA)
 
   - 加权损失函数更加适合样本不均衡的分类问题
   - 广义损失函数能降低机器学习模型的换手率 (punish $$T+1$$ 期预测值和$$T$$ 期预测值的差)
   - XgBoost/LGBM 上自定义损失函数：定义梯度和hessian
 
-- [华泰金工 | 人工智能系列之二十一 | 基于遗传规划的选股因子挖掘](https://mp.weixin.qq.com/s/KaGBU_adFl6VrqkG8GundA)
+- [华泰金工 | 基于遗传规划的选股因子挖掘](https://mp.weixin.qq.com/s/KaGBU_adFl6VrqkG8GundA)
 
   - 遗传规划：公式的表示方式 - > 适应度定义 -> 公式的进化方法
   - gplearn改进：定义多种时间序列算子；对待挖掘因子进行传统风格因子中性化
 
-- [华泰金工 | 人工智能系列之三十二 | AlphaNet：因子挖掘神经网络](https://mp.weixin.qq.com/s/NWghDHfqKPTzenDzxnMuGw)
+- [华泰金工 | 再探基于遗传规划的选股因子挖掘](https://mp.weixin.qq.com/s/PV-A26tH79ua4watVI2wzA)
+
+  - 非线性因子：三次方回归残差法 (regress X^3 on X, take residual, similar to Barra SizeNL factor construction)
+  - 多项式拟合法构造因子
+
+- [华泰金工 | 基于遗传规划的一致预期因子](https://mp.weixin.qq.com/s/Ea0woJPw1Nn0TRL5VErBng)
+
+  - 设计了一个三位数据结构来存储一致预期数据：第一维是股票，第二维是交易日，第三维是预测年份。该数据结构具有以下优点：
+    - 解决了年度财务报表公布前后一致预期数据预测年份变动的问题。 
+    - 适配了遗传规划中的矩阵运算算法，算法可在三维数据结构上快速运算得出因子值使得短时间内进行
+
+- [华泰金工 | AlphaNet：因子挖掘神经网络](https://mp.weixin.qq.com/s/NWghDHfqKPTzenDzxnMuGw)
 
   - 个股量价数据图片 -> 特征提取 时间序列“卷积”算子 -> pooling -> fully connected -> target
 
-- [华泰金工 | 人工智能系列之三十七 | 舆情因子和 BERT 情感分类模型](https://mp.weixin.qq.com/s/TMRYqMnBr_be5ZhpDXvdvg)
+- [华泰金工 | 再探AlphaNet：结构和特征优化](https://mp.weixin.qq.com/s/PtVvBTw1qfYfd35Ec1X6ag)
+
+  - 增加一些比率特征，双层特征提取层 (不同lookback window)，增加LSTM/GRU结构
+
+- [华泰金工 | AlphaNet改进：结构和损失函数](https://mp.weixin.qq.com/s/JabWT9xwdmVs8dL8ns9fWg)
+
+  - 自定义Dropout加在二元时间序列操作上，减少计算二元组合数量
+
+- [华泰金工 | 舆情因子和 BERT 情感分类模型](https://mp.weixin.qq.com/s/TMRYqMnBr_be5ZhpDXvdvg)
 
   - 基于金融新闻的舆情因子：wind部分新闻数据是有标注正面负面的
   - BERT句头的 [CLS] 起始符 embedding 用于储存和分类有关的信息，在上面接小网络softmax 分类1/0，微调BERT
   - 用正面新闻数 - 负面新闻数/总数，再在window内做decay构造舆情因子
 
-- [华泰金工 | 人工智能系列之四十一 | 基于 BERT 的分析师研报情感因子](https://mp.weixin.qq.com/s/brVT1tkfr3p_Ll3q4_81jw)
+- [华泰金工 | 基于 BERT 的分析师研报情感因子](https://mp.weixin.qq.com/s/brVT1tkfr3p_Ll3q4_81jw)
 
   - 研报评分因子：朝阳永续整理的研报评级 （卖出、减持、中性、增持、买入）
   - 研报数量因子
   - 研报情感因子：BERT + 微调 + 分类 + decay
   - 研报情感调整因子：分析师正面研报更多，给负面研报更大权重
 
-- [华泰金工 | 人工智能系列之四十三 | 因子观点融入机器学习](https://mp.weixin.qq.com/s/cMLqAua01HLqLSQEkzwnjA)
+- [华泰金工 | 因子观点融入机器学习](https://mp.weixin.qq.com/s/cMLqAua01HLqLSQEkzwnjA)
 
   - 随机森林模型改进：修改XgBoost 使得可指定优先分裂的因子，前K层只用某类因子，这样使得最后训练得到的model更接近这类因子的风格。
 
   - 思考：前K层指定用interactor/conditioner
 
-- [华泰金工 | 人工智能系列之五十一 | 文本 PEAD 选股策略](https://mp.weixin.qq.com/s/Jk9Mter9gyjU8yddc2Q-Kw)
+- [华泰金工 | 文本 PEAD 选股策略](https://mp.weixin.qq.com/s/Jk9Mter9gyjU8yddc2Q-Kw)
 
   - 盈余后价格漂移效应(PEAD)：市场反应不足
   - 传统 SUE 因子基于公告财务数据来衡量 PEAD 效应并预测股票的异常收益
-  - 本文使用的公告为业绩预告，相关文本为分析师点评业绩预告研报文本标题 和摘要
+  - 本文使用的公告为业绩预告，相关文本为**分析师点评业绩预告研报文本标题 和摘要**
   - SUE.txt 使用纯文本，高频词构建标题和摘要词频向量，然后接XGBoost等模型进行预测，将模型预测的上涨和下跌类别的 log-odds 值之差，在进行指数衰减后，作为最终的 SUE.txt 因子。
 
-- [华泰金工 | 人工智能系列之六十四 | 九坤Kaggle量化大赛有哪些启示？](https://mp.weixin.qq.com/s/VKLWLJMy6xg38oddvTO2pQ)
+- [华泰金工 | 文本FADT选股](https://mp.weixin.qq.com/s/GwJV5kBMctpmkevVg6Ci0A)
+
+  - 对分析师**盈利预测调整**研报文本进行挖掘，找出对股价有重要影响的“催化剂”事件，通过分析师盈利预测及评级调整等间接的方式可以对“催化剂”事件进行分析，对盈利预测调整的文本进行识别，找出分析师情感偏正向的调整事件。
+  - 文本 -> 分词 -> 词频向量 -> XGBoost 预测上涨下跌概率
+  - 该因子与系列51 SUE_txt 因子相关性较高，但是residualize之后还有比较好的多头ic
+  - **无论是业绩发布还是盈利预测调整，我们所选择的都是个股发生了较为明显边际变化的场景，而没有选择全部研究报告。前者带来的增量信息使得点评研报信噪比较高；后者并不一定具有增量信息因而部分研报信噪比较低**
+
+- [华泰金工 | 再探文本FADT选股](https://mp.weixin.qq.com/s/GwJV5kBMctpmkevVg6Ci0A)
+
+  - 熵简科技FinBERT：一款在大规模金融领域语料上预训练的中文BERT模型（https://github.com/valuesimplex/FinBERT）。
+  - FinBERT采用的预训练语料主要包括金融财经类新闻、研报或上市公司公告、金融类百科词条，经预处理之后得到约30亿Tokens
+    - 金融财经类新闻：从公开渠道采集的最近十年的金融财经类新闻资讯，约100万篇
+    - 研报/上市公司公告：从公开渠道收集的各类研报和公司公告，来自500多家境内外研究机构，涉及9000家上市公司，包含150多种不同类型的研报，共约200万篇
+    - 金融类百科词条：从Wiki等渠道收集的金融类中文百科词条，约100万条。
+  - FinBERT进行了以下预训练任务：
+    - Financial Whole Word Mask：随机遮住部分字词，让模型预测。这里进一步采用了全词Mask的方法，即对组成同一个词语的汉字全部进行Mask，从而使模型学习到领域内的先验知识，例如金融学概念之间的相关性等
+    - Next Sentence Prediction：引入预测下一句的任务，使模型理解句子间的关系。
+    - 研报行业分类：利用公司点评、行业点评类的研报自动生成了大量带有行业标签的语料，并构建了行业分类的文档级有监督任务。每个行业拥有5k~20k条语料，共计约40万条文档级语料。
+    - 财经新闻的金融实体识别：利用已有的企业工商信息库和公开可查的上市公司董监高信息，基于金融财经新闻构建了命名实体识别类的有监督任务语料，共计约50万条。
+  - 在FinBERT基础上进行微调，采用了2019年发表于机器学习顶级会议ICML的adapter-BERT（http://proceedings.mlr.press/v97/houlsby19a.html），在几乎不影响模型性能的情况下，将需要微调的参数减少到约三百万。
+  - 预训练好的BERT不进行特定场景的微调操作，其CLS层难以对整段文本进行向量编码，这是因为BERT在训练时的两个任务MLM和NSP都不是为了对句子进行编码而设计的，CLS蕴含的信息不一定是充分的文本上下文信息，常规做法是会对BERT进行微调。此处使用带情感标注的万得新闻舆情数据对FinBERT进行微调，使得CLS层能更好地表征文本上下文信息。
+
+- [中金金工 | 如何优化新闻文本因子](https://mp.weixin.qq.com/s/AQMQBNbEE8yG8fAIj0En0Q)
+
+  - 数库科技新闻四级分类
+  - 选取非噪音+有信息增量的新闻
+  - 计入预期 sentiment signal / (sign align sentiment & ret mom) * ( 1 + prev 1 month return)
+  - 行业level聚合
+
+- MS Research | How LLMs can Boost Earnings Call Signals
+
+  - Use LLM to label each earnings call paragraph as relevant or irrelevant, then generate sentiment score only on relevant paragraphs
+
+- [华泰金工 | 九坤Kaggle量化大赛有哪些启示？](https://mp.weixin.qq.com/s/VKLWLJMy6xg38oddvTO2pQ)
 
   - 特征工程引入均值因子对神经网络有效；
 
@@ -313,6 +466,52 @@
   - 时序交叉验证作用不明显；
 
   - 集成神经网络和决策树类模型提升较稳定
+
+- Citi Research | From Machine Learning to Stock Screens: a Rulefit Model
+
+  - 提出解释性更好的随机森林模型：将叶节点的分拆当做dummy variable，总结随机森林的全部dummy variable 进行再一次lasso regression
+
+- [华泰金工 | 新闻舆情分析的HAN网络选股](https://mp.weixin.qq.com/s/5AGgGpTNol9qDItU20zZPQ)
+
+  - word-to-vec -> 词语注意力，加权平均到每条新闻level -> 新闻注意力，加权平均到每天每只股票level -> 新闻时间序列做bi-directional GRU -> 隐藏层注意力加权平均 -> MLP -> signal
+
+- [华泰金工 | 图神经网络选股与Qlib实践](https://mp.weixin.qq.com/s/w5fDB6oAv9dO6vlhf1kmhA)
+
+  - GraphSAGE sample neighbour: 对第k层的每个节点固定采样数量为S_k, 当neighbour数量小于S_k时，采取有放回抽样，否则就无放回抽样
+
+- [华泰金工 | 注意力机制应用于量化选股的多类场景](https://mp.weixin.qq.com/s/DdY3NnuTm7fN_3YEsf3yIQ)
+
+- [华泰金工 | 量化如何追求模糊的正确：有序回归](https://mp.weixin.qq.com/s/k_vXrrZzgZJe4YakVCB7KQ)
+
+- MS Research | Systematic Stock and Sector Selection using Text Sentiment
+
+  - Filter news that are related to detected events associated with earnings, revenues, and dividends. Focus on those news that provide factual/guiding information.
+  - Consider sentiment change signals: short-term - long-term average
+
+- [开源金工 | 遗传算法赋能交易行为因子](https://mp.weixin.qq.com/s/RNibl2W1CjK4tr7KlMWBbw)
+
+  - 算子定义
+
+    ![](../notes/pic/kaiyuan_gp.png)
+
+  - 因子的精细化讨论
+
+    - 主动超大单强度而言，我们可以发现其5分组年化收益并不单调，而且还是负IC，其也说明在拆单现象存在的基础下，对于某只股票而言，划分过于极端的超大单的买卖强度并不能直接代表机构看好程度。
+    - 小单切割是解锁主动超大单强度的正确方式。由于拆单现象的存在，小单中充斥着超大单的拆单产物，当机构看好某只股票时，其往往会以小单进货，再用具备足够市场关注度的超大单来抬升市场情绪，从而达到抬升股价收获利润的目的，所以在小单强度较高处的超大单强度有正向选股效果；相反，若机构不看好某只股票时，其往往会以小单出货，为了防止市场恐慌，机构往往会用超大单来稳住情绪来完成平稳出货，所以在小单强度较低处的超大单强度有负向选股效果
+
+- [华泰金工 | 基于全频段量价特征的选股模型](https://mp.weixin.qq.com/s/qCDaqHSpS_ABiaatW0FC2Q)
+
+  - 低频多任务学习模型 + 参数共享网络
+
+    ![](../notes/pic/multi_task_huatai.png)
+
+
+- [华泰金工 | 自适应网络：从削足适履到量体裁衣](https://mp.weixin.qq.com/s/UBLTFwS3fakXCmv2MPucqQ)
+
+- [兴业金工 | 机器学习模型在交易限制下能否有效预测股票收益？](https://mp.weixin.qq.com/s/5jkoOpYKxK9-3KclSWTXPA)
+  - 在投资者情绪高涨、市场波动性大和市场流动性低的时期， 基于机器学习信号的投资策略（跨所有股票）的盈利能力要高得多。
+  - 深度学习信号为选股而非行业轮动提供了信息。这与识别难以套利股票的错误定价的机器学习信号是一致的
+  - 机器学习策略的多头股票通常是小盘、价值、流动性差的股票，以及价格低、贝塔系数低、过去一个月收益率低（短期输家）、11 个月回报率高（中期赢家）、资产增长率低、股票发行量低、经营业绩高、信用评级覆盖率低、分析师覆盖率低、盈余惊喜高的股票。
 
 ## Order Flow
 
@@ -430,6 +629,23 @@
   - 回看过去20天，计算超大单、大单、中单、小单各自的成交额占比。从各占比因子与对数市值的相关性可以看出，市值越小，超大单与大单成交占比越低，中单与小单成交占比越高。这与我们通常的印象也相符：机构投资者倾向于交 易流动性较好的大盘股，而散户则更热衷于小盘股。
   - 成交占比因子和市值因子有较高相关性，但是剔除市值后的因子ICIR并不理想。解决：用成交占比因子两两回归，得到残差成交占比因子。超大单占比因子剔除大、中、小单因子后都有比较稳定的ICIR。
 
+- [华泰金工 | 神经网络多频率因子挖掘模型](https://mp.weixin.qq.com/s/9h1-l6g2SPQI3OBc2xvoqA)
+  - 针对多频率数据混合模型，我们引入因子增量贡献的思想，设计了一个两阶段训练的增量学习模型。
+    - 第一阶段：只使用日频量价数据训练对应的神经网络分支，即先让网络学习日频级别的量价信息，第一阶段训练直到模型的loss收敛为止。
+    - 第二阶段：将日频量价数据分支网络结构的参数冻结，只前向传播，然后引入15分钟频数据学习残差，即再让网络学习分钟频量价数据能够贡献的增量信息。
+
+- UBS | Identifying Human versus Algo Trading in the China Market
+
+  - Retail Trading Proportion (RTP) = % of retail order/total order number
+    - retail order identification: if only machines are trading in the market, the last digit of any limit order price should be evenly distributed from '0' to '9'. Retail investors prefer to end a price quote with the digit '0',followed by '5', due to the level of rounding up. In the opening call auction, nearly 30% of the order placements end with '0', which indicates it is most likely the retail investor orders dominating the market in this section of the day. We assume this is the natural distribution of number preference for human investors.
+  - Retail Trading Imbalance (RTI) = (B - S)/(B + S) among retail orders, where retail orders are identified by order size <
+    10K rmb, excluding algo trading, whose order size is exact 1 lot size (100 share per order).
+  - Algo Trading Proportion (ATP) = % of algo/all cancellation.
+    - We calculate the time lag between order submission and the corresponding cancellation. We see significantly higher number of cancellations at certain time points:
+      - < 0.25s: cancellation by co-location or high-frequency trading investors
+      - 0.25s; time lag in the SSE order book
+      - 1s, 3s, 5s, 1min, 3min, 5min, 10min: snapshot data time lag
+    - Based on this distribution, we document the number of cancellations with an accurate time lag (0.01s around the above time points, since 0,01s is the minimum time variance unit in the order data time stamp from SSE and SZSE).
 
 
 ## Volatility
@@ -450,6 +666,17 @@
   - 根据AMP将股票分成高中低三组，对于technical alpha的分层作用明显，对于fundamental alpha在高低组的效果很好
   - 短期交易行为对基本面因子的逻辑而言属于干扰项，对价量类因子的逻辑而言则属于加强项。因此, 振幅水平越高，短期交易越活跃，则对基本面因子的削弱越多，而对价量类因子的增强越多。
   - 从预测机制视角出发。高振幅股票的信噪比更高，噪声信息难以改变股票的原有排序，因此，在高振幅股票上的收益预测效果 (IC 均值) 具有天然优势。
+
+- [开源金工 | 关于市场微观结构变迁的故事](https://mp.weixin.qq.com/s/EAGesrPvaBtCUH_HfZI9lA)
+
+  - 市场微观结构变迁的三大特征
+    - 委托交易速度提升：小市值股票的委托平均执行时间缩短最为明显。市场微观结构变迁对主动暴露小市值风格的因子影响会更加显著。
+    - 平均挂单金额缩小
+    - 开盘成交占比增加: 
+      - 日内反转Alpha主要在捕捉市场上的短期错误定价，这部分由投资者的不理智交易的行为导致。早盘主要是机构在主导交易定价，反转逻辑在早盘较难演绎，因子早盘的反转效应最弱，而随着机构交易时段结束，由个人投资者贡献的错误定价Alpha逐渐显现。
+      - 随着交易向早盘集中，错误定价行为也在往前移动，日内的反转Alpha结构在逐渐淡化。然而，机构投资者占据着早盘时段，错误定价转移的方向并不理想，可以设想日内反转效果还会进一步减弱。
+      - 隔夜涨跌幅呈现弱动量效应，而日内涨跌幅则呈现不同程度的反转效应。那么在此基础上，构造反转因子的思路可以是，**将弱动量的隔夜部分剔除而仅保留日内部分，经测试有效**
+
 
 
 ## Smart Money
@@ -507,17 +734,32 @@
 
   - [开源金工 | 北上资金攻守兼顾因子的构造](https://mp.weixin.qq.com/s/HB3YV9Zj3W3mQvsqJ7lN6w)
 
-  - 北上资金交易行为因子可以从历史偏好、定价权和边际变化三大维度展开，基本因子构造方式如下：
+
+    - 北上资金交易行为因子可以从历史偏好、定价权和边际变化三大维度展开，基本因子构造方式如下：
+
 
     ![](../notes/pic/NB.png)
 
-  - 其中成交金额占比、净流入因子表现较为稳定
 
-  - 协同因子控制回撤计算：
+    - 其中成交金额占比、净流入因子表现较为稳定
+    - 协同因子控制回撤计算：
+    
+      - 每个月底计算所有活跃交易机构在每只股票上的仓位变化，计算得到每只股票的t 统计量 (mean / std)
+      - 该值越高，表明不同托管机构的行为越趋一致，因此称为协同性因子。
 
-    - 每个月底计算所有活跃交易机构在每只股票上的仓位变化，计算得到每只股票的t 统计量 (mean / std)
 
-    - 该值越高，表明不同托管机构的行为越趋一致，因此称为协同性因子。
+- [海通量化 | 从优秀基金经理的投资风格到因子组合](https://mp.weixin.qq.com/s/b7sA6rTyyq2GhN1YmIC6rA)
+
+  - 估计方法
+
+  ![](../notes/pic/fund_rsch.png)
+
+  - 一方面，可以选择基金选股偏好 (RHS factor above) 中，权重最高的部分股票构建多头组合。该多头组合也反映了基金经理的风格特征，因此与实际收益也具有较高的可比性和相关性。
+  - 另一方面，也可将回归系数当作因子权重构建复合因子，选择复合因子得分最高的股票构建组合。
+
+- [国信金工 | 券商金股全解析—数据、建模与实践](https://mp.weixin.qq.com/s/f87j4BSTlT9qRMAknlj-BA)
+
+  ![](../notes/pic/guoxin_gold.png)
 
 
 ## Style Rotation
@@ -532,3 +774,24 @@
     3. subtract the weights from the top decile minus the bottom decile to arrive
        at implied sector weights.
     4. Repeat step 1 to 3 for Northbound Positioning and News Sentiment scores.
+- MS Research | Rotation with Traction: Systematic Sector Rotation Framework
+  - 风格轮动
+    - 宏观数据：将以下数据time series z-score 之后加总，市场环境可以被分成四类：above/below the rolling long-term average, and on a rising/falling trend
+      - 经济数据：通胀 (PCE-US)，就业率数据 (private payrolls-US)
+      - 调查问卷：消费者信心指数 (CCI-US)，Purchasing Manager Index (ISM-US)，
+      - 宏观价格：
+        - 黄金、铜
+        - Options-adjusted spread (OAS) of investment-grade bonds. Growing OAS suggests more risk premium demanded by fixed income investors, i.e., more risk averse.
+        - 10年美债、10年-2年美债利差
+        - Cyclicality (long-short return of 36 month beta equity factor. High return suggests that the market is in a risk-on environment. This is related to market preferred exposures to cyclical sectors)
+    - 微观数据
+      - Value: Free cash flow yield; dividend yield
+      - Quality: Gross profit-to-assets; change in long-term debt-to-assets
+      - Momentum: Earnings revision breadth (FY2); residual momentum (12x1M)
+- [海通金工 | 宏观数据在板块轮动中的应用](https://mp.weixin.qq.com/s/1G0sErkSogu_FS-3gJAq-g)
+  - 经济增长类指标：PMI变动指标
+    - 经济上行时期金融、能源以及资源类板块（周期）表现优异；下行时期防御性板块表现优异，包括刚需消费品、消费服务、电子通信等
+  - 流动性指标：期限利差月度变化、M1-M2同比增速月度变化、社会融资规模增速
+  - 国际贸易指标：出口金额同比增速月度变化
+  - 经济不确定指数
+  - 模型：序数回归，只考虑相对排序，每个月从金融、周期、成长和消费中4选2

@@ -95,6 +95,15 @@
     * [Co-trade Network](./notes/co-trade.md)
     
     - [Order Imbalance with Trade Flow Decomposition](./notes/COI_flow_decomp.md)
+    
     - [Time Seris Machine Learning](./notes/mlts.md)
+    
     - [PEAD](./notes/PEAD.md)
+    
     - [Risk Parity](./notes/risk_parity.md)
+    
+    - [NLP in Finance](./notes/nlp_fin.md)
+    
+    - [Self-supervised Learning for Tabular Data](./notes/self_super_tab.md)
+    
+      

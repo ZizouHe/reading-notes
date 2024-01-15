@@ -14,6 +14,7 @@
 - [Temporal Convolutional Network](../notes/TCN.html)
 - [Feature Interaction](../notes/feature_int.html)
 - [Neural Architecture Search](../notes/NAS.html)
+- [Self-supervised Learning for Tabular Data](../notes/self_super_tab.html)
 - [Meta Learning](../notes/meta.html)
 
 ## General Machine Learning

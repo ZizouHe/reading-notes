@@ -21,11 +21,11 @@
   - 机构专用买卖席位数量衡量机构买卖强度，机构专用买卖数量能够很好的衡量机构买卖强度。
 
 - [开源金工 | 机构调研个股的潜在超额收益](https://mp.weixin.qq.com/s/ct3B77Pa_7ATgdXipli_dw)
-  
+
   - 机构调研事前超额收益显著，事后超额收益有一定幅度下滑，即机构调研的多是已经上涨的股票
   - 将机构调研事件作为conditioner，考察月内被调研的个股股票池，构造以下因子的多空组合表现良好
     - 根据上市公司财报数据和分析师一致预期数据构建的业绩超预期因子 SUE
-  
+
 - [华泰金工 | 利用文本和反转改进机构调研选股](https://mp.weixin.qq.com/s/G-mTLEd6WcOQ8RlSl6OKsg)
   - 有些情况下，可能是由于股价前期已出现上涨从而吸引了机构投资者的注意力，才会发生针对该股票的调研事件，此时股票的上涨预期已部分兑现，调研后是否会延续上涨存在较大不确定性。因此在发生机构调研的股票中，可能需要规避前期上涨过多的股票，而更多关注股价还在低位的股票。可以取过去60日收益率的相反数在机构调研股票池内构造反转因子。
 
@@ -87,95 +87,53 @@
     - the expectation of an earnings loss
     - and the variance of estimates
 
-  
+- [开源金工 | 雪球大V用户的选股行为alpha](https://mp.weixin.qq.com/s/yWXtqa9gR2Bfzchj16ktfA)
+  - 数据概览：
+    - **用户基本信息：**超5成用户粉丝数量在2000以下，粉丝数量1万以上用户占比20%；未认证用户占57%，实名认证用户占31%，分析师、基金经理占4%。
+    - **用户自选股：**雪球大V用户加入自选股样本数量多，月均数量约为2.5万个样本。自选股事件收益随用户粉丝数量单调增加，研究达人自选股事件收益优异。
+    - **用户模拟组合**：雪球大V用户模拟组合调仓样本数量多，月均组合调仓样本数量约为2.1万次。研究达人模拟组合买入个股事件收益优异；模拟组合增仓买入幅度越大，事件收益越高。
+
+  - **自选股事件组合**：选择粉丝1万以上的雪球大V用户，按照粉丝数量将自选股样本划分为三个样本：粉丝数量5万以上、粉丝数量2万-5万、粉丝数量1万-2万，并分别构建事件组合。从组合表现上看（图23、表6）：雪球大V用户自选股事件组合收益表现显著优于主要指数，不同粉丝数量的3个组合年化收益率分别为21.0%、17.8%、11.1%，粉丝数量与组合收益呈现正相关。
+  - **模拟组合买入事件**：按照粉丝数量和用户类型等基本指标进行分类，并构建基本事件组合。整体收益表现一般。
+  - **自选股事件组合改进**：选择自选股超额收益波动比（自选股超额收益均值/自选股超额收益标准差）指标来衡量用户的自选股潜在收益水平。我们使用自选股超额收益波动比指标，每期在横截面上排序，并根据用户自选股历史绩效，分别筛选出前20%前40%的样本，构建得到自选股绩效Top20%组合和自选股绩效Top40%组合。
+  - **模拟组合买入事件组合改进**：选择模拟组合收益波动比（模拟组合年化收益/模拟组合年化波动率）指标来衡量用户的自选股潜在收益水平。我们使用模拟组合收益波动比指标，每期在横截面上排序，并根据用户模拟组合历史绩效，分别筛选出前20%前40%的样本，构建得到模拟组合绩效Top20%组合和模拟组合绩效Top40%组合。
 
 
-## Momentum & Reversal
+## Event-driven
 
-- 动量因子
-
-  - [开源金工 | A股市场中如何构造动量因子？](https://mp.weixin.qq.com/s/vx9YWJ5-exUymp1w5Sb9qA) 
-  - [开源金工 | 长端动量2.0：长期、低换手、多头显著的量价因子](https://mp.weixin.qq.com/s?__biz=MzI1NTYxMjE1Mw==&mid=2247547796&idx=1&sn=99898719dc33b997ed06f53ad1eaa785&chksm=ea313e02dd46b714298b28246acfa296a74de58203c8d02b65d6672b33891aa746996a41ff04&cur_album_id=1428197421624180736&scene=190#rd)
-    - A股动量因子效果不好，因为存在比较显著的反转效应，传统改进方式：$$Ret_{t \, month} - Ret_{t-1 \, month} $$
-    - 对动量因子按照振幅进行切割：高振幅区域存在反转效应，低振幅区域存在动量效应。
-      - **切割指标：**振幅选用（最高价-最低价）/前收盘价的定义方式；
-      - **切割对象：**个股alpha收益（股票日收益-市场日收益均值）。股票日收益受市场beta影响，在横截面对比时，若股票日收益对应时点一致，则市场beta不影响股票间相对排序，若股票日收益对应时点不一致，则两股票日收益时点重合度越低，市场beta对股票间相对排序影响越大；
-      - **计算方式**：计算最近N日股票振幅，和每日idiosyncratic return，将振幅低的N/2交易日涨跌幅相加得到低振幅动量因子。
-      - **中性化**: 将动量因子orthogonal 20日反转因子
-
-- 反转因子
-
-  - [开源金工 | A股反转之力的微观来源](https://mp.weixin.qq.com/s/Z4GsSj0kGM5mXxZnl1xs3g)
-  - [开源金工 | 理想反转因子的四年总结](https://mp.weixin.qq.com/s/PnAvQL5gKT3r-qMSdoXZbg)
-  - 理想反转因子的底层逻辑：大单成交。当日单笔成交额越高，涨跌幅反转效应越强 ；当日单笔成交额越低，涨跌幅动量效应越强。
-  - 计算方法：
-    - 对选定股票，回溯取其过去 20日的数据
-    - 计算该股票每日的平均单笔成交额（成交额 /成交笔数），记作TS
-    - TS高的 10个交易日，涨跌幅加总，记作 $$M_{high}$$
-    - TS低的 10个交易日，涨跌幅加总，记作 $$M_{low}$$
-    - 理想反转因子 $$M = M_{high} - M_{low}$$
-  - 改进：
-    - TS计算：用日内逐笔成交额分布的13/16分位
-    - TS计算：原始TS的一阶差分
-    - 理想反转因子计算：20日涨跌幅用TS进行加权平均
-    - 理想反转因子计算：20日涨跌幅序列和20日TS序列的相关性
-
-- [开源金工 | 日内极端收益前后的反转特性与因子构建](https://mp.weixin.qq.com/s/lAFPZTEZJe6E-_ncer0LPg)
-
-  - 计算方法：
-
-    - 日内1分钟收益率序列
-    - 计算 S = | ret - median(ret) |
-    - 取最极端收益率的S和其前一分钟的S，分别排序相加
-    - 取过去20日平均
-
-  - 变种：top 10 最大S的分钟收益率+前一分钟S的排序相加
-
-    ![](../notes/pic/ERR.png)
-
-- [开源金工 | APM因子模型的进阶版](https://mp.weixin.qq.com/s/XL7oawd4EwRpl5we4T3oPw)
-
-  - 原始APM因子计算：20日上午、下午市场中性/Barra中性return累计值的差的t-statstics 再residualize 动量因子
-
-    ![](../notes/pic/APM.png)
-
-  - 改进：用20日隔夜市场中性/Barra中性return累计值替代上午收益。
-
-- [开源金工 | 日内分钟收益率的时序特征](https://mp.weixin.qq.com/s/Mk_DPiWAiCw_5OeYYS0uQg)
-
-  - 计算方式：
-
-    ![](../notes/pic/TCD-0.png)
-
-    ![](../notes/pic/TCD.png)
-
-- [石川量化 | 美股上一个跨越时间尺度的趋势因子](https://zhuanlan.zhihu.com/p/51043407)
-
-  - [Han, Y., Zhou, G., Y. Zhu (2016 JFE). A trend factor: any economic gains from using information over investment horizons?](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2182667)
-
-  - 首先在每个月 t 的最后一个交易日（月频）计算每支股票（用 j 表示）在不同时间尺度 L 的移动平均：
-    $$
-    A_{jt,L} = \text{last L day return for stock j on time t}
-    $$
-
-  - 在每期使用股票最新的移动平均指标和下一期的收益率进行截面回归，得到这些移动均线因子的收益率
-    $$
-    r_{j, t}=\beta_{0, t}+\sum_i \beta_{i, t} A_{j t-1, L_i}+\epsilon_{j, t}, \quad j=1, \cdots, n.
-    $$
-
-  - 时序上取过去12个月的均值来预测下一个选股窗口内各均线因子的预期收益率
-    $$
-    \mathrm{E}_t\left[\beta_{i, t+1}\right]=\frac{1}{12} \sum_{m=1}^{12} \beta_{i, t+1-m}.
-    $$
-
-  - 最终，使用对 $$t + 1$$ 的均线预期收益率 $$\mathrm{E}_t\left[\beta_{i, t+1}\right]$$ 和个股 j 在 t 期的最新均线指标取值就可以计算出每支股票在 $$t + 1$$ 的收益率预测，并以此对股票排序构建趋势因子
-    $$
-    \mathrm{E}\left[r_{j, t+1}\right]=\sum_i \mathrm{E}_t\left[\beta_{i, t+1}\right] A_{j t, L_i}.
-    $$
-
-- [华泰金工 | A股市场及行业的农历月份效应](https://mp.weixin.qq.com/s/_m30IkGwBpvanixIZrmOzA)
-  - 前期报告：华泰金工 | A股市场及行业的月份效应
-  - A股市场存在明显的农历月份效应，农历1月上涨、农历5月下跌比较显著，报告特别统计了腊月十八到正月十八这一时间段内各个指数的平均收益和显著性p值，结果表明春节前后各大指数显著上涨。
+- UBS | Japanese shareholder return events: dividend revisions and buybacks
+  - Feature
+    - Capability: company's financial flexibility to further improve returns
+    - Willingness: companies that have an established track record of shareholder returns
+  - Buyback prediction
+    - Months Since Last Event (Time, Willingness): This feature describes the number of months since the company's latest announced shareholder return event.
+    - Event Net Count - 36 months (Event, Willingness): This is the number of shareholder return events over the last 3 years.
+      ts over the lasty latest announced shareholder return
+    - Net Debt / Equity (Balance Sheet, Capability): A company's leverage should play a strong role in dictating its capability to conduct future buybacks.
+    - 12m Trailing Net Income (Profitability, Capability): The stronger net income a company reports, it increases the likelihood of an announcement.
+    - Retained Earnings to Equity (Balance Sheet, Capability): The relationship between a company's retained earnings to equity and buyback probability exhibits strong downside skewness.
+    - Price to Book 1-year Z-score (Valuation, Willingness): Price to book 1-year Z-score shows that companies that have seen their P/B valuation decline over the last year are more inclined to announce a buyback in the coming 6 months.
+  - Dividend Guidance Revision prediction
+    - Months Since Last Event (Time, Willingness)
+    - Event Net Count - 36months (Event, Willingness)
+    - Composite Momentum (Momentum, Willingness): Unlike buybacks, which are more associated with poor stock performance, this factor confirms what we see in our event window: dividend revisions are associated with strong stock price momentum. We believe that many companies may be more likely to announce a dividend boost following strong stock performance. Dividends are "stickier" than buybacks given the recurring nature and may require a higher bar of confidence from management.
+    - EBIT Margin (Profitability, Capability): EBIT margins exhibit a positive, logarithmic-type relationship with dividend guidance revision probability.
+    - Months Until Next Report (Time, Willingness): Similar to the Months Since Last Event factor, we find that the number of months until next reporting period displays a downward-sloping shape.
+    - Sustainable Income (Quality, Capability): Similar to EBIT Margin, we find that Sustainable Income factor shows a skewed distribution in probability, with companies that have low Sustainable Income scores being extremely unlikely to hike dividend guidance.
+    - Price to Book 3-year Z-score (Valuation, Willingness)
+  - Buyback drift
+    - EBIT Margin (Profitability, Capability): EBIT margin has a largely positive contribution towards indicating strong post buyback announcement drift.
+    - Sales / EV (Valuation, Willingness): Generally, more expensive stocks based on Sales / EV see stronger likelihood of post-announcement drift. This may be due to higher quality (and therefore more expensive) stocks showing continued outperformance. That said, at the tail of the cheaper side (left-hand side), we also see a pick-up in likelihood. This may be due to re-rating of discounted stocks following a buyback announcement.
+    - Distance to Default (Balance Sheet, Capability): Merton Distance to Default measure is helpful in assessing the quality of post-buyback drift.
+    - Months Since Last Down Event (Time, Willingness): Post-announcement drift performance is strongly inversely related to the time since the last event announcement. There is a trade-off in identifying the most recent post-announcement targets relative to the size of the opportunity set.
+    - Price Relative to 52-Week Low (Price, Willingness): Stocks that are closer to their 52-week lows historically show stronger post-announcement drift performance. we believe this may be due to more scope for positive re-rating following an announcement.
+  - Dividend Guidance Revision drift
+    - Dividend Yield (Valuation, Willingness)
+    - EBIT Margin (Profitability, Capability): This may be related to ongoing expectations of future dividend strength (signalling effect).
+    - Distance to Default (Balance Sheet, Capability): Since part of the drift phenomenon comes from the positive signalling value of an event (implying future events are more likely), investors may discount announcements from companies that are closer to financial distress.
+    - Months Since Last Event (Time, Willingness)
+    - Financial Statement Strength for Income Score (Quality, Capability): It shows a negative relationship with performance, which may be related to re-rating for weaker quality companies that announce a dividend and could represent a positive signaling effect.
+    - Payout Ratio (Dividend, Willingness)
 
 ## Fundamental
 
@@ -264,6 +222,28 @@
 
 
 ## Linkage
+
+- [DB Research | The Logistic of Supply Chain Alpha](https://www.longfinance.net/programmes/sustainable-futures/london-accord/reports/the-logistics-of-supply-chain-alpha/)
+
+  - **Supply chain networks is Incomplete**: It tends to have a bias toward larger-cap companies as they are less apt to protect such information, and also because they are under constant market scrutiny.
+
+  - **FactSet data**: According to SEC’s Statement of Financial Accounting Standards No. 14 (SFAS 14), “if 10% or more of the revenue of an enterprise is derived from sales to any single customer, that fact and the amount of revenue from each such customer shall be disclosed” in interim financial reports issued to shareholders. However, 10% is a very high threshold, and the majority of supply chains do not exceed that threshold. A better and more complete picture of the actual supply chain network can be obtained using relationships without the actual sales. For those relationships, FactSet captures them from much wider sources, e.g., companies’ conference call transcripts, capital market presentations, company press releases, company websites, etc.
+
+  - **Industry Bias**: most supplier companies are related to manufacturing, and most customer companies are related to manufacturing and logistics. We need to account for this natural industry bias.
+
+  - **Voluntary Disclosure and Data Asymmetry:** the subject companies can choose whichever supply chain partners they desire to disclose. For example, managers may want to disclose a reliable, large and well-known customer in order to send a positive signal to the capital market.
+
+  - Alphas:
+    - Return momentum: one, six or twelve-month return with equal/sales weighted/COGS weighted/BV weighted/market cap weighted supplier and customer relationships.
+
+    - Fundamental flow: a company’s suppliers ROE (return on equity), ROA (return on assets), earnings yield and gross profit margin to test if these metrics can predict the company’s share price performance. **Companies whose customers have higher profit margins underperform those firms with less profitable customers. This is fairly intuitive because if a company’s customers are fairly profitable with high gross margins, this would entail that its customers have superior pricing power, as opposed to the subject company**
+
+    - Link interactions: Number of total/inward/outward degrees (can be normalized by Sales/COGS/Market Cap/BV etc.)
+
+    -  Social networks factors
+      - Bridge/chokepoints: These companies play a central role in the supply chain, i.e., if they were to be removed from the network, the average length between suppliers and customers would be greatly increased. 
+
+      - Core and Periphery: the cores can reach every other company on the graph within the minimum number of links. The opposite of the core is the periphery.
 
 - Fund 13F linkage
 
@@ -513,6 +493,107 @@
   - 深度学习信号为选股而非行业轮动提供了信息。这与识别难以套利股票的错误定价的机器学习信号是一致的
   - 机器学习策略的多头股票通常是小盘、价值、流动性差的股票，以及价格低、贝塔系数低、过去一个月收益率低（短期输家）、11 个月回报率高（中期赢家）、资产增长率低、股票发行量低、经营业绩高、信用评级覆盖率低、分析师覆盖率低、盈余惊喜高的股票。
 
+## Momentum & Reversal
+
+- 动量因子
+
+  - [开源金工 | A股市场中如何构造动量因子？](https://mp.weixin.qq.com/s/vx9YWJ5-exUymp1w5Sb9qA) 
+  - [开源金工 | 长端动量2.0：长期、低换手、多头显著的量价因子](https://mp.weixin.qq.com/s?__biz=MzI1NTYxMjE1Mw==&mid=2247547796&idx=1&sn=99898719dc33b997ed06f53ad1eaa785&chksm=ea313e02dd46b714298b28246acfa296a74de58203c8d02b65d6672b33891aa746996a41ff04&cur_album_id=1428197421624180736&scene=190#rd)
+    - A股动量因子效果不好，因为存在比较显著的反转效应，传统改进方式：$$Ret_{t \, month} - Ret_{t-1 \, month} $$
+    - 对动量因子按照振幅进行切割：高振幅区域存在反转效应，低振幅区域存在动量效应。
+      - **切割指标：**振幅选用（最高价-最低价）/前收盘价的定义方式；
+      - **切割对象：**个股alpha收益（股票日收益-市场日收益均值）。股票日收益受市场beta影响，在横截面对比时，若股票日收益对应时点一致，则市场beta不影响股票间相对排序，若股票日收益对应时点不一致，则两股票日收益时点重合度越低，市场beta对股票间相对排序影响越大；
+      - **计算方式**：计算最近N日股票振幅，和每日idiosyncratic return，将振幅低的N/2交易日涨跌幅相加得到低振幅动量因子。
+      - **中性化**: 将动量因子orthogonal 20日反转因子
+
+- 反转因子
+
+  - [开源金工 | A股反转之力的微观来源](https://mp.weixin.qq.com/s/Z4GsSj0kGM5mXxZnl1xs3g)
+  - [开源金工 | 理想反转因子的四年总结](https://mp.weixin.qq.com/s/PnAvQL5gKT3r-qMSdoXZbg)
+  - 理想反转因子的底层逻辑：大单成交。当日单笔成交额越高，涨跌幅反转效应越强 ；当日单笔成交额越低，涨跌幅动量效应越强。
+  - 计算方法：
+    - 对选定股票，回溯取其过去 20日的数据
+    - 计算该股票每日的平均单笔成交额（成交额 /成交笔数），记作TS
+    - TS高的 10个交易日，涨跌幅加总，记作 $$M_{high}$$
+    - TS低的 10个交易日，涨跌幅加总，记作 $$M_{low}$$
+    - 理想反转因子 $$M = M_{high} - M_{low}$$
+  - 改进：
+    - TS计算：用日内逐笔成交额分布的13/16分位
+    - TS计算：原始TS的一阶差分
+    - 理想反转因子计算：20日涨跌幅用TS进行加权平均
+    - 理想反转因子计算：20日涨跌幅序列和20日TS序列的相关性
+
+- [开源金工 | 日内极端收益前后的反转特性与因子构建](https://mp.weixin.qq.com/s/lAFPZTEZJe6E-_ncer0LPg)
+
+  - 计算方法：
+
+    - 日内1分钟收益率序列
+    - 计算 S = | ret - median(ret) |
+    - 取最极端收益率的S和其前一分钟的S，分别排序相加
+    - 取过去20日平均
+
+  - 变种：top 10 最大S的分钟收益率+前一分钟S的排序相加
+
+    ![](../notes/pic/ERR.png)
+
+- [开源金工 | APM因子模型的进阶版](https://mp.weixin.qq.com/s/XL7oawd4EwRpl5we4T3oPw)
+
+  - 原始APM因子计算：20日上午、下午市场中性/Barra中性return累计值的差的t-statstics 再residualize 动量因子
+
+    ![](../notes/pic/APM.png)
+
+  - 改进：用20日隔夜市场中性/Barra中性return累计值替代上午收益。
+
+- [开源金工 | 日内分钟收益率的时序特征](https://mp.weixin.qq.com/s/Mk_DPiWAiCw_5OeYYS0uQg)
+
+  - 计算方式：
+
+    ![](../notes/pic/TCD-0.png)
+
+    ![](../notes/pic/TCD.png)
+
+- [石川量化 | 美股上一个跨越时间尺度的趋势因子](https://zhuanlan.zhihu.com/p/51043407)
+
+  - [Han, Y., Zhou, G., Y. Zhu (2016 JFE). A trend factor: any economic gains from using information over investment horizons?](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2182667)
+
+  - 首先在每个月 t 的最后一个交易日（月频）计算每支股票（用 j 表示）在不同时间尺度 L 的移动平均：
+    $$
+    A_{jt,L} = \text{last L day return for stock j on time t}
+    $$
+
+  - 在每期使用股票最新的移动平均指标和下一期的收益率进行截面回归，得到这些移动均线因子的收益率
+    $$
+    r_{j, t}=\beta_{0, t}+\sum_i \beta_{i, t} A_{j t-1, L_i}+\epsilon_{j, t}, \quad j=1, \cdots, n.
+    $$
+
+  - 时序上取过去12个月的均值来预测下一个选股窗口内各均线因子的预期收益率
+    $$
+    \mathrm{E}_t\left[\beta_{i, t+1}\right]=\frac{1}{12} \sum_{m=1}^{12} \beta_{i, t+1-m}.
+    $$
+
+  - 最终，使用对 $$t + 1$$ 的均线预期收益率 $$\mathrm{E}_t\left[\beta_{i, t+1}\right]$$ 和个股 j 在 t 期的最新均线指标取值就可以计算出每支股票在 $$t + 1$$ 的收益率预测，并以此对股票排序构建趋势因子
+    $$
+    \mathrm{E}\left[r_{j, t+1}\right]=\sum_i \mathrm{E}_t\left[\beta_{i, t+1}\right] A_{j t, L_i}.
+    $$
+
+- [华泰金工 | A股市场及行业的农历月份效应](https://mp.weixin.qq.com/s/_m30IkGwBpvanixIZrmOzA)
+
+  - 前期报告：华泰金工 | A股市场及行业的月份效应
+  - A股市场存在明显的农历月份效应，农历1月上涨、农历5月下跌比较显著，报告特别统计了腊月十八到正月十八这一时间段内各个指数的平均收益和显著性p值，结果表明春节前后各大指数显著上涨。
+
+- [开源金工 | 从涨跌停效应到行业反转](https://mp.weixin.qq.com/s/hfROBiuUkkvx1-cBx3A35Q)
+
+  - 行业内的龙头股对非龙头股有着较强的牵引作用，并最终体现为对行业的动量效应
+
+    ![](../notes/pic/ind_ND.png)
+
+  - 行业内涨跌停反转效应：、
+
+    - 每月底，在各一级行业内，回溯取过去T日的成分股数据，并划分出过去T日内的涨跌停股票；
+    - 计算涨跌停股票的T日平均涨跌幅，得到因子R_limit(T)，同时计算剩余股票的T日平均涨跌幅，得到因子R_nolimit(T)。R_nolimit总体呈弱动量效应，回看周期较短时，动量效应更强；R_limit整体呈强反转效应，回看周期在20天~40天时，反转效应更为显著。
+    - 采取回归的方法，以R_limit因子为因变量，回归剔除R_nolimit因子，把得到的残差因子作为新的涨跌停股票行业因子NL。
+
+
 ## Order Flow
 
 - [开源金工 | 主动买卖因子的正确用法](https://mp.weixin.qq.com/s?__biz=MzI1NTYxMjE1Mw==&mid=2247486802&idx=1&sn=c60f0d7c790513358d7e8cc55d6673e2)
@@ -647,35 +728,15 @@
       - 1s, 3s, 5s, 1min, 3min, 5min, 10min: snapshot data time lag
     - Based on this distribution, we document the number of cancellations with an accurate time lag (0.01s around the above time points, since 0,01s is the minimum time variance unit in the order data time stamp from SSE and SZSE).
 
+- UBS | Extracting idiosyncratic ideas from prime brokerage data
 
-## Volatility
+  - We explore a dataset that captures aggregate prime brokerage positions. This is a daily data feed, providing hedge fund activities on both the long and short side. We then feed both the level of positions and corresponding changes at various horizons into a gradient boosting regression model.
 
-- [开源金工 | 振幅因子的隐藏结构](https://mp.weixin.qq.com/s?__biz=MzI1NTYxMjE1Mw==&mid=2247484599&idx=1&sn=f688f2d8adcabac3c41cbbb00b0a023b)
+- [开源金工 | 订单流系列：撤单行为规律初探](https://mp.weixin.qq.com/s/HFpWtE8t2Y0qpThxiZMvhQ)
 
-  - 按照股价维度将传统振幅因子（daily $$high/low - 1$$）切割为：高价态振幅因子和低价态振幅因子。
-
-  - 将振幅加大视为多空博弈强烈的信号，进而视为该价格状态的不稳定性加大，这意味着该价格状态后续将难以维持。相比于低价态，高价态下的“振荡加大-状态跃迁”效应更为强烈。
-
-  - 理想振幅因子：$$V_{high}(\lambda) - V_{low}(\lambda)$$, 具有比较好的负向选股能力，$$\lambda$$ 取20%效果较好。
-
-    ![](/Users/zizou/Zizou/Paper/reading-notes/notes/pic/range_1.png)
-
-- [开源金工 | A股分层效应的普适规律与底层逻辑](https://mp.weixin.qq.com/s/i0jLU7hmwSLMHEcO7_iTPw)
-
-  - AMP = 过去20日日内振幅平均
-  - 根据AMP将股票分成高中低三组，对于technical alpha的分层作用明显，对于fundamental alpha在高低组的效果很好
-  - 短期交易行为对基本面因子的逻辑而言属于干扰项，对价量类因子的逻辑而言则属于加强项。因此, 振幅水平越高，短期交易越活跃，则对基本面因子的削弱越多，而对价量类因子的增强越多。
-  - 从预测机制视角出发。高振幅股票的信噪比更高，噪声信息难以改变股票的原有排序，因此，在高振幅股票上的收益预测效果 (IC 均值) 具有天然优势。
-
-- [开源金工 | 关于市场微观结构变迁的故事](https://mp.weixin.qq.com/s/EAGesrPvaBtCUH_HfZI9lA)
-
-  - 市场微观结构变迁的三大特征
-    - 委托交易速度提升：小市值股票的委托平均执行时间缩短最为明显。市场微观结构变迁对主动暴露小市值风格的因子影响会更加显著。
-    - 平均挂单金额缩小
-    - 开盘成交占比增加: 
-      - 日内反转Alpha主要在捕捉市场上的短期错误定价，这部分由投资者的不理智交易的行为导致。早盘主要是机构在主导交易定价，反转逻辑在早盘较难演绎，因子早盘的反转效应最弱，而随着机构交易时段结束，由个人投资者贡献的错误定价Alpha逐渐显现。
-      - 随着交易向早盘集中，错误定价行为也在往前移动，日内的反转Alpha结构在逐渐淡化。然而，机构投资者占据着早盘时段，错误定价转移的方向并不理想，可以设想日内反转效果还会进一步减弱。
-      - 隔夜涨跌幅呈现弱动量效应，而日内涨跌幅则呈现不同程度的反转效应。那么在此基础上，构造反转因子的思路可以是，**将弱动量的隔夜部分剔除而仅保留日内部分，经测试有效**
+  - 根据订单的特点，将委托划分成交、全撤、部撤和废单四类。部分撤单的委托金额通常比全部撤单要大，而废单相比全撤的报价更消极。卖出委托的挂单金额通常比买入委托的更大，这是因为交易者倾向于分笔买入建仓以隐藏交易意图，或是降低持仓成本。
+  - 基于早盘集合竞价阶段撤单数据 （在9:15至9:20期间，委托的交易订单可以被撤销），我们筛选三类卖方撤单率 (撤单量/自由流通股本) 指标，并将其等权合成得到三小将_TRI因子。
+  - 毒流动性因子：5秒内撤单数量 / 30秒内撤单数量。
 
 
 
@@ -761,6 +822,29 @@
 
   ![](../notes/pic/guoxin_gold.png)
 
+- [开源金工 | 885001指数：优势、复制与超越](https://mp.weixin.qq.com/s/su4H03UIwgNQQnAYJQUmSA)
+
+  - 公募基金在一个完整的自然年需要披露六次持仓信息，分别为四次季报、一次半年报和一次年报。在每个季报期，公募基金仅披露前十大重仓股的持仓占比，而在半年报和年报，公募基金会披露全部的持仓信息。除此之外，公募基金在每个报告期会披露其在证监会和GICS行业的配置比例以及股票和债券的持仓比例。
+
+    虽然半年报和年报在披露信息上更加全面，但同时其也拥有更长的时滞。根据监管要求，公募基金需在季度结束后15个工作日内披露季报，需要在2个月内披露半年报，需要在3个月内披露年报。
+
+    除此之外，上市公司定期披露的十大流通股东提供了基金的隐藏重仓股信息。上市公司的定期报告亦存在一定的时滞，一季报和三季报要求在每个季度结束后的一个月内披露完成，半年报则需在两个月内披露完成，年报则要求最迟在次年四月底前披露完成。
+
+  - 公募基金的仓位测算：二次规划
+
+    - 备选股票通常来源于当期的十大重仓股和最新一期披露的全部持仓的并集。我们根据行业配置信息，对备选股票池进行拓宽。为了避免所选股票在行业内分布不均，我们在每个行业中按照市值排序，选取前3%的个股作为备选标的。这意味着对于权重占比较高的行业，其备选标的亦会相应增加。
+
+    - 在每个季报发布节点，我们回看过去20个交易日，通过最小化跟踪误差来对基金持仓进行拟合。为了简便处理，在拟合期内，假设个股权重不变。
+
+    - **季报持仓补全**
+
+      ![](../notes/pic/mutual_holding_1.png)
+
+    - **持仓高频监测**
+
+      ![](../notes/pic/mutual_holding_2.png)
+
+  - 公募基金的仓位测算：卡尔曼滤波
 
 ## Style Rotation
 
@@ -774,6 +858,7 @@
     3. subtract the weights from the top decile minus the bottom decile to arrive
        at implied sector weights.
     4. Repeat step 1 to 3 for Northbound Positioning and News Sentiment scores.
+
 - MS Research | Rotation with Traction: Systematic Sector Rotation Framework
   - 风格轮动
     - 宏观数据：将以下数据time series z-score 之后加总，市场环境可以被分成四类：above/below the rolling long-term average, and on a rising/falling trend
@@ -788,6 +873,7 @@
       - Value: Free cash flow yield; dividend yield
       - Quality: Gross profit-to-assets; change in long-term debt-to-assets
       - Momentum: Earnings revision breadth (FY2); residual momentum (12x1M)
+
 - [海通金工 | 宏观数据在板块轮动中的应用](https://mp.weixin.qq.com/s/1G0sErkSogu_FS-3gJAq-g)
   - 经济增长类指标：PMI变动指标
     - 经济上行时期金融、能源以及资源类板块（周期）表现优异；下行时期防御性板块表现优异，包括刚需消费品、消费服务、电子通信等
@@ -795,3 +881,52 @@
   - 国际贸易指标：出口金额同比增速月度变化
   - 经济不确定指数
   - 模型：序数回归，只考虑相对排序，每个月从金融、周期、成长和消费中4选2
+
+- [开源金工 | 高频宏观因子构建与资产配置应用](https://mp.weixin.qq.com/s/IX_7h8hBHSv9Ke3891CzyA)
+
+  - 以主成分分析的方式确定影响大类资产的底层宏观因子，并构建资产组合模拟出一套高频宏观因子体系，包括高频经济增长、高频通货膨胀（消费端、生产端）、高频利率因子、高频汇率因子、高频信用因子、高频期限利差。
+
+  - 对于利率因子、汇率因子、信用因子和期限利差，使用市面上已有的相关指数以做多或者做空的方式构造投资组合即可。
+
+  - 对于高频经济增长和高频通货膨胀，构造方式可以分为三步
+
+    1. 真实宏观指标合成低频宏观因子
+
+       ![](../notes/pic/macro_proxy.png)
+
+    2. 筛选领先于低频宏观因子的资产
+
+       ![](../notes/pic/macro_proxy2.png)
+
+    3. 以资产同比收益率为自变量，低频宏观因子同比为因变量，通过滚动多元领先回归确定资产权重，构建投资组合模拟宏观因子走势。
+
+
+## Volatility
+
+- [开源金工 | 振幅因子的隐藏结构](https://mp.weixin.qq.com/s?__biz=MzI1NTYxMjE1Mw==&mid=2247484599&idx=1&sn=f688f2d8adcabac3c41cbbb00b0a023b)
+
+  - 按照股价维度将传统振幅因子（daily $$high/low - 1$$）切割为：高价态振幅因子和低价态振幅因子。
+
+  - 将振幅加大视为多空博弈强烈的信号，进而视为该价格状态的不稳定性加大，这意味着该价格状态后续将难以维持。相比于低价态，高价态下的“振荡加大-状态跃迁”效应更为强烈。
+
+  - 理想振幅因子：$$V_{high}(\lambda) - V_{low}(\lambda)$$, 具有比较好的负向选股能力，$$\lambda$$ 取20%效果较好。
+
+    ![](/Users/zizou/Zizou/Paper/reading-notes/notes/pic/range_1.png)
+
+- [开源金工 | A股分层效应的普适规律与底层逻辑](https://mp.weixin.qq.com/s/i0jLU7hmwSLMHEcO7_iTPw)
+
+  - AMP = 过去20日日内振幅平均
+  - 根据AMP将股票分成高中低三组，对于technical alpha的分层作用明显，对于fundamental alpha在高低组的效果很好
+  - 短期交易行为对基本面因子的逻辑而言属于干扰项，对价量类因子的逻辑而言则属于加强项。因此, 振幅水平越高，短期交易越活跃，则对基本面因子的削弱越多，而对价量类因子的增强越多。
+  - 从预测机制视角出发。高振幅股票的信噪比更高，噪声信息难以改变股票的原有排序，因此，在高振幅股票上的收益预测效果 (IC 均值) 具有天然优势。
+
+- [开源金工 | 关于市场微观结构变迁的故事](https://mp.weixin.qq.com/s/EAGesrPvaBtCUH_HfZI9lA)
+
+  - 市场微观结构变迁的三大特征
+    - 委托交易速度提升：小市值股票的委托平均执行时间缩短最为明显。市场微观结构变迁对主动暴露小市值风格的因子影响会更加显著。
+    - 平均挂单金额缩小
+    - 开盘成交占比增加: 
+      - 日内反转Alpha主要在捕捉市场上的短期错误定价，这部分由投资者的不理智交易的行为导致。早盘主要是机构在主导交易定价，反转逻辑在早盘较难演绎，因子早盘的反转效应最弱，而随着机构交易时段结束，由个人投资者贡献的错误定价Alpha逐渐显现。
+      - 随着交易向早盘集中，错误定价行为也在往前移动，日内的反转Alpha结构在逐渐淡化。然而，机构投资者占据着早盘时段，错误定价转移的方向并不理想，可以设想日内反转效果还会进一步减弱。
+      - 隔夜涨跌幅呈现弱动量效应，而日内涨跌幅则呈现不同程度的反转效应。那么在此基础上，构造反转因子的思路可以是，**将弱动量的隔夜部分剔除而仅保留日内部分，经测试有效**
+

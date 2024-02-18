@@ -3,6 +3,7 @@
 ## Introduction to Momentum
 
 - [Momentum](https://zhuanlan.zhihu.com/p/459019458)
+- [What predicts momentum？](https://mp.weixin.qq.com/s/tb-tGFdYQ0pwoTiuKZTHjw)
 - [残差动量 —— 有理有据还是数据挖掘？](https://zhuanlan.zhihu.com/p/95259084)
 - Momentum construction:
   - Use a one-month gap between the end of the ranking period and the start of the holding period to avoid the short-term reversals shown by Jegadeesh (1990) and Lehmann (1990). 
@@ -13,13 +14,18 @@
   - 知情交易
   - 市场情绪
 - 动量因子改进
-  - 残差动量：由个股的残差收益率计算，定义为个股收益率中无法被给定多因子模型解释的部分。
+  - 波动率管理策略利用过去一段时间的数据估计资产/策略的波动率，进而调整仓位 [Daniel and Moskowitz (2016 JFE) Momentum crashes](https://www.sciencedirect.com/science/article/pii/S0304405X16301490)
+  - 残差动量：由个股的残差收益率计算，定义为个股收益率中无法被给定多因子模型解释的部分。[Blitz (2011). Residual momentum.]()
+  - 动量缺口（momentum gap）：动量缺口对动量的表现有显著为负的影响。具体而言，动量缺口定义为全部股票 t-12 至 t-2 月累计收益的四分位差（或者 90% 分位数减 10% 分位数，二者高度相关）。实证研究表明，动量缺口对动量的未来表现有着显著为负的影响，且非常稳健。据此，若只在动量缺口不是特别高时执行动量策略，便可显著提升策略表现。[Huang （RFS 2021). "The momentum gap and return predictability.](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2318858)
   - 价格高点距离：当前最新价与最高点的距离。
-  - 加速度动量：价格对时序的期数以及期数的平方项回归，并取平方项的系数为加速度动量指标。
-  - Condi on 买方竞争度指标，(condition on crowdness)
+  - 加速度动量：价格对时序的期数以及期数的平方项回归，并取平方项的系数为加速度动量指标。[Chen and Yu (2014) Investor Attention, Visual Price Pattern, and Momentum Investing]()
+  - Condi on 买方竞争度指标，(condition on crowdness) [Hoberg et al. (RFS 2020). Buy-Side competition and momentum profits.](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3132378)
   - 左尾动量：投资者对尾部风险或者坏消息往往反应不足，导致尾部动量得以持续
     - [Atilgan et al. (2020 JFE) Left-tail momentum- Underreaction to bad news, costly arbitrage and equity returns](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3070777)
-    - Investors underestimate the persistence in left-tail risk and overprice stocks with large recent losses. Thus, low returns in the left-tail of the distribution persist into the future causing left-tail return momentum. The left-tail risk anomaly is stronger for stocks that are more likely to be held by retail investors, that receive less investor attention, and that are costlier to arbitrage.
+    - **Rationale**: Investors underestimate the persistence in left-tail risk and overprice stocks with large recent losses. Thus, low returns in the left-tail of the distribution persist into the future causing left-tail return momentum. The left-tail risk anomaly is stronger for stocks that are more likely to be held by retail investors, that receive less investor attention, and that are costlier to arbitrage.
+    - **Measure 1**:The first left-tail risk metric is value-at-risk (VaR) that measures how much the value of an investment declines over a given time period with a given probability. VaR is calculated as the 1st (VaR1) or 5th (VaR5) percentile of the daily returns over the past one year (250 trading days) with the restriction that at least 200 non-missing return observations should exist in the past year. 
+    - **Measure 1**: Alternative measures of left-tail is Expected shortfall (ES). ES is defined as the conditional expectation of a loss given that the loss is beyond the VaR threshold. We define ES as the average of the observations that are less than or equal to the 1st (ES1) or 5th (ES5) percentile of the daily returns for each stock during the past year (250 trading days) with the restriction that at least 200 non-missing return observations should exist in the past year.
+    - **Results**: stocks in the lowest value-at-risk decile outperforms stocks in the highest value-at-risk decile. This relation is driven by the underperformance of stocks with high value-at-risk because the alphas for portfolio 10 are negative and highly significant without exception.
 
 ## Momentum Crashes
 

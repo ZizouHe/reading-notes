@@ -146,3 +146,36 @@ Zhu, Sun, and Chen (2019) 将这个剔除了基本面信息的反转异象称为
 - **A4：**残差动量是多因子模型中存在遗漏变量所致，仅仅是被遗漏的因子的动量。一旦不存在模型设定偏误，残差动量消失。
 - **Q5：**如何理解个股动量因子和其他因子时序无关的实证现象？
 - **A5：**当控制了历史收益率之后，个股动量因子和其他因子有很强的正相关或负相关。个股动量因子和其他因子时变的条件相关性使其看上去和其他因子非条件无关。
+
+
+
+## Factor Timing
+
+- [JPM (2018) The Promises and Pitfalls of Factor Timing](https://jacobslevycenter.wharton.upenn.edu/wp-content/uploads/2017/08/The-Promises-and-Pitfalls-of-Factor-Timing-2.pdf)
+
+  - The Perils and Pitfalls of Factor Timing 
+    - Time-Varying Relationships
+    - Cherry-Picking of Indicators Based on Perfect Hindsight
+    - Data Revisions 
+  -  Main Categories of Factor Predictors
+    - Financial Conditions: Corporate credit spread, TED spread, Money Supply Growth 
+    - Economic Conditions/Macroeconomic Cycle: GDP growth, Capacity Ratio, Consumer Confidence Index 
+    - Sentiment/Risk Sentiment: VIX, ISM PMI 
+    - Valuation: CAPE, Dividend Yield, Earnings Yield, Book-to-Price 
+    - Trend/Momentum/Persistence: Past performance (1 month, 3 months, 6 months, 1 year, 3 years, 5 years) 
+  - Construction:
+    - The portfolio is equally weighted across four factor portfolios: Value, Size, Low Volatility, and Quality.  Once a month, stocks are sorted based on the underlying Value, Size, Low Volatility, and Quality metrics and divided into quintiles.  
+    - The spread in B/P is calculated as the median B/P of the top quintile minus the median B/P of the bottom quintile.  When this spread is large and positive, the factor is attractively priced (cheap). When the spread is negative, the factor is expensive.  
+    - The current spread is compared against an average of the historical spread.  If the former flags a given factor as expensive and it is more than 1 standard deviation outside the historical spread, that factor is removed from the portfolio for 3 years.  The remaining factors are equal-weighted.
+
+- [Risk Momentum: A New Class of Price Patterns](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4062260)
+
+  - Formula
+
+    ![](../notes/pic/risk_mom.png)
+
+  - We buy stocks in the top decile with high RISK values and short those in the bottom decile with low RISK values. Both risk momentum and the risk-based return momentum hold across different times of the day. The risk-based return momentum hold for daily/weekly and monthly.
+
+  - **We show that the persistence in risk is driven by the positive autocorrelation in individual factors and the positive cross-serial lead-lag among anomaly factors.**
+
+  - We document stronger risk-based return momentum in the morning sessions, during periods with more frequent firm news arrivals, when aggregate idiosyncratic volatility is high, and among stocks with greater risk concentration.

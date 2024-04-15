@@ -129,7 +129,7 @@
   - Momentum construction: at beginning of month T+1, calculate signal as closing price at the end of month T-1 divide by the highest price in the past 52 weeks. Skip one month due to strong short-term reversal in China.
     
 
-
+- [Regime Modeling](./notes/regime.md)
 
 ## Portfolio Construction
 

@@ -106,4 +106,6 @@
     
     - [Self-supervised Learning for Tabular Data](./notes/self_super_tab.md)
     
+    - [Regime Modeling](./notes/regime.md)
+    
       

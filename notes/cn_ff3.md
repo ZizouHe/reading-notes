@@ -1,4 +1,13 @@
-# Size and Value in China
+# Size and Value
+
+## Size matters, if you control your junk
+
+- [Asness et al. (JFE 2018) Size matters, if you control your junk](https://www.sciencedirect.com/science/article/pii/S0304405X18301326)
+- [重读AQR Cliff：Size和Quality](https://mp.weixin.qq.com/s/c3WzWKFvs7uwb-NW5Dr4GQ)
+  - 结果表明，质量与Size是负相关，在不同的样本期，剥离质量后，Size的表现更显著。其中测试结果对质量因子的选择不是特别敏感。
+  - 小盘股有高交易成本，更高的市场冲击。流动性风险能够解释大部分的Size因子，即使在控制了质量因子之后，流通性风险依然是Size因子有效的主要因素。
+
+## Size and Value in China
 
 - [Liu, Jianan, Robert F. Stambaugh, and Yu Yuan. "Size and value in China." *Journal of Financial Economics* 134, no. 1 (2019): 48-69.](https://www.sciencedirect.com/science/article/pii/S0304405X19300625)
 - [中国版的 Fama-French 三因子模型](https://zhuanlan.zhihu.com/p/48728998)

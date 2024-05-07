@@ -6,11 +6,8 @@
 
   - 通过筛选量化私募进入前十大流通股东的个股，并与季末对应有龙虎榜股票的营业部买入情况进行匹配。识别量化私募席位营业部。
   - 量化私募营业部异常净流入（出）具有正（负）向超额收益
-
 - [开源金工 | 识别假外资：内地营业部与北上经纪商的共振](https://mp.weixin.qq.com/s/M7wcZGd_1Esn9pg8z26Csg)
-
 - 北上经纪商托管数据+龙虎榜数据，识别北上券商和内地已经识别出的量化私募营业部的共振行为，识别假外资
-
 - [开源金工 | 机构行为alpha的细分结构：龙虎榜、机构调研、大宗交易](https://mp.weixin.qq.com/s/ct3B77Pa_7ATgdXipli_dw)
   - 龙虎榜机构专用席位细分：单向上榜为不换手机构专用，双向上榜为换手机构专用
 
@@ -19,55 +16,44 @@
   - 在不换手机构专用净流入样本中，随着机构持仓占比提升，超额收益逐渐增加。
 
   - 机构专用买卖席位数量衡量机构买卖强度，机构专用买卖数量能够很好的衡量机构买卖强度。
-
 - [开源金工 | 机构调研个股的潜在超额收益](https://mp.weixin.qq.com/s/ct3B77Pa_7ATgdXipli_dw)
 
   - 机构调研事前超额收益显著，事后超额收益有一定幅度下滑，即机构调研的多是已经上涨的股票
   - 将机构调研事件作为conditioner，考察月内被调研的个股股票池，构造以下因子的多空组合表现良好
     - 根据上市公司财报数据和分析师一致预期数据构建的业绩超预期因子 SUE
-
 - [华泰金工 | 利用文本和反转改进机构调研选股](https://mp.weixin.qq.com/s/G-mTLEd6WcOQ8RlSl6OKsg)
   - 有些情况下，可能是由于股价前期已出现上涨从而吸引了机构投资者的注意力，才会发生针对该股票的调研事件，此时股票的上涨预期已部分兑现，调研后是否会延续上涨存在较大不确定性。因此在发生机构调研的股票中，可能需要规避前期上涨过多的股票，而更多关注股价还在低位的股票。可以取过去60日收益率的相反数在机构调研股票池内构造反转因子。
-
 - [开源金工 | 高频股东数据的隐含信息量](https://mp.weixin.qq.com/s?__biz=MzI1NTYxMjE1Mw==&mid=2247488808&idx=1&sn=0f0bca8380fb56d6e2187e2587ba904f)
   - 低频股东数据：用季报股东数的变化量做因子
   - 高频股东数据：用深交所互动易(irm.cninfo.com.cn)上股东数问答结果对季报股东数数据进行补充，选取回答比较频繁的几百家股票做universe，高频股东变化量因子效果更好
-
 - [ 开源金工 | 扎堆效应的识别：以股东户数变动为例](https://mp.weixin.qq.com/s/ouDcV77WFHawYgvjroyggg)
   - 股东变动数因子效果不错
   - 人均持股占比在时序上的变动 (PerCapitaRatioChange 因子) 比股东变动数因子更稳健
-
 - [开源金工 | 投资者结构与因子收益](https://mp.weixin.qq.com/s/4maNQUaNNjIuBbavcqJ_Sw)
   - 投资者结构可以作为一个condi，量价因子和基本面因子在不同group投资者比例中的IC均单调
   - 基本面因子：单季度营收同比、单季度营业利润同比、单季度净利润环比、分析师预期（SUE）
-
 - UBS | Can we trade on company visits in China?
   - company visits attracts investor attention and positive money flow
   - can trade on these events or take as interactor
   - Wind Institution's Field Research Dataset
-
 - UBS | Collaborative Intelligence: How to combine human and machine insights to generate alpha?
   - On short horizon, analyst view generate significant excess returns while does not load systematically on any quant factors. Therefore, we can aggregate analyst short term insights with quant factors.
   - How to do: long the intersection of top names from both quant factors and analyst views, and short the intersection of the bottom names.
-
 - UBS | A Definitive Approach to Crowding
   - Comprehensive crowding factor using
     - Prime brokerage position data: long/short
     - 13F regulatory filings: long
     - Stock loan data: short
     - UBS internal data: short
-
 - UBS | Collaborative Intelligence: Can Crowding data Enhance Alpha?
   - Combining the crowding data in **UBS | A Definitive Approach to Crowding** with quant factors using the approach in **UBS | Collaborative Intelligence: How to combine human and machine insights to generate alpha?**.
   - **Question**: if a stock is long crowded, this info can enhance alpha if the quant signal is also long, meaning that we should bet more, this is confirmed using backtest. However, from a risk model perspective, shouldn't we sell if a stock is long crowded to avoid excess risk?
-
 - ExtractAlpha | Transcripts Model
   - Transcript data: Earnings Call, Conference, Investor Meeting, etc. 
     - Model1: Word embedding -> BERT -> Sentence sentiment -> company sentiment score
     - Model2: Word embedding -> Bag of Words -> Machine Learning predict return
 
   -  The Model has non-trivial correlation to common risk factors, but alpha still remains after removing its factor exposures
-
 - ExtractAlpha | EPS and Revenues Prediction
   - A combination of the following three parts
 
@@ -86,8 +72,8 @@
     - the timing of earnings announcements and whether they are later than anticipated (Companies which are late in announcing, or which announces on days with high news volume, or near weekends and holidays, tend to miss their numbers)
     - the expectation of an earnings loss
     - and the variance of estimates
-
 - [开源金工 | 雪球大V用户的选股行为alpha](https://mp.weixin.qq.com/s/yWXtqa9gR2Bfzchj16ktfA)
+- [开源金工 | 雪球大V用户发帖行为深度挖掘](https://mp.weixin.qq.com/s/yQ0WMdJIZRJjvqyJpIlOJw)
   - 数据概览：
     - **用户基本信息：**超5成用户粉丝数量在2000以下，粉丝数量1万以上用户占比20%；未认证用户占57%，实名认证用户占31%，分析师、基金经理占4%。
     - **用户自选股：**雪球大V用户加入自选股样本数量多，月均数量约为2.5万个样本。自选股事件收益随用户粉丝数量单调增加，研究达人自选股事件收益优异。
@@ -97,6 +83,10 @@
   - **模拟组合买入事件**：按照粉丝数量和用户类型等基本指标进行分类，并构建基本事件组合。整体收益表现一般。
   - **自选股事件组合改进**：选择自选股超额收益波动比（自选股超额收益均值/自选股超额收益标准差）指标来衡量用户的自选股潜在收益水平。我们使用自选股超额收益波动比指标，每期在横截面上排序，并根据用户自选股历史绩效，分别筛选出前20%前40%的样本，构建得到自选股绩效Top20%组合和自选股绩效Top40%组合。
   - **模拟组合买入事件组合改进**：选择模拟组合收益波动比（模拟组合年化收益/模拟组合年化波动率）指标来衡量用户的自选股潜在收益水平。我们使用模拟组合收益波动比指标，每期在横截面上排序，并根据用户模拟组合历史绩效，分别筛选出前20%前40%的样本，构建得到模拟组合绩效Top20%组合和模拟组合绩效Top40%组合。
+  - **雪球大V用户发帖情感分析**
+    - **多空关键词判断发帖多空情感**。“预增”、“扭亏为盈”、“低估”、“量价齐升”等30个看多个股的关键词，判断发帖情感效果优异，其中14个看多关键词样本事件收益超过2%，2个看多关键词样本事件收益超过3%。
+    - **个股关注度影响发帖个股收益**。单只股票发帖样本事件收益0.9%，多只股票样本事件收益0.5%。发帖个股日内关注度上升，事件收益水平整体下降。日内关注1次样本事件收益为1.2%，10次以上关注样本事件收益降为负值。
+    - **发帖情感分析：结合自选股与模拟组合行为**。发帖前用户曾将发帖个股加入自选的样本，事件收益提升至2.0%。发帖前用户曾调仓买入或增仓的个股样本，事件收益提升至2.8%。
 
 
 ## Event-driven
@@ -492,6 +482,12 @@
   - 在投资者情绪高涨、市场波动性大和市场流动性低的时期， 基于机器学习信号的投资策略（跨所有股票）的盈利能力要高得多。
   - 深度学习信号为选股而非行业轮动提供了信息。这与识别难以套利股票的错误定价的机器学习信号是一致的
   - 机器学习策略的多头股票通常是小盘、价值、流动性差的股票，以及价格低、贝塔系数低、过去一个月收益率低（短期输家）、11 个月回报率高（中期赢家）、资产增长率低、股票发行量低、经营业绩高、信用评级覆盖率低、分析师覆盖率低、盈余惊喜高的股票。
+
+- [华泰金工 | 如何捕捉长时间序列量价数据的规律](https://mp.weixin.qq.com/s/Jyzrf_lyuriq9TduwKjYcQ)
+
+  ![](/Users/zizou/Zizou/Paper/reading-notes/notes/pic/patch1.png)
+
+  ![](/Users/zizou/Zizou/Paper/reading-notes/notes/pic/patch2.png)
 
 ## Momentum & Reversal
 

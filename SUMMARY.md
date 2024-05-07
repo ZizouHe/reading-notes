@@ -64,10 +64,9 @@
     * [Q-Factor Model](./notes/q-factor.md)
     * [Short- and Long-Horizon Behavioral Factors](./notes/DHS-4-factors.md)
     * [Stambaugh-Yuan Four Factors](./notes/Stambaugh-Yuan-2017.md)
-    * [Time Series Momentum](./notes/TSM.md)
     * [Chinese NLP](./notes/cn_nlp.md)
     * [Chinese Stock Market Shell Value](./notes/cn_shell.md)
-    * [Size and Value in China](./notes/cn_ff3.md)
+    * [Size and Value](./notes/cn_ff3.md)
     * [Tracking Retail Investor Activity](./notes/retail.md)
     * [Graph Convolution and Graph Attention](./notes/GCN.md)
     * [P-hacking](./notes/phack.md)
@@ -88,7 +87,6 @@
     * [Idiosyncratic Volatility](./notes/ivol.md)
     * [Volume](./notes/volume.md)
     * [Overnight Return Reserval](./notes/overnight.md)
-    * [Factor Timing](./notes/timing.md)
     * [Neural Architecture Search](./notes/NAS.md)
     * [Meta Learning](./notes/meta.md)
     * [Nominal Price Ilusion](./notes/nominal_illusion.md)
@@ -108,4 +106,6 @@
     
     - [Regime Modeling](./notes/regime.md)
     
-      
+    - [Financial Statement Related](./notes/fin_stat.md)
+    
+    - [Deep Learning in Finance](./notes/dl_fin.md)

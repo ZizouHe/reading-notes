@@ -489,6 +489,19 @@
 
   ![](/Users/zizou/Zizou/Paper/reading-notes/notes/pic/patch2.png)
 
+## Macro
+
+- MS Research | Navigating Systematic Alpha in Japan and Trade Implementation
+
+  - USD/JPY and US Treasury Bond yields are the top two global macro that track Value & Growth rotation in Japan.
+  - JPY OIS rate is signal to classify market expectation on the outlook of Japan government bond yields.
+  - JP equities are dominated by price reversal factor over long term, but momentum factor is strong in pre-dividend seasons: March and September. Long momentum in Mar. and Sep. and Short in Apr. and Oct.
+  - Avoiding dividend cut is top priority for all investors in JP equities; historical buyback tracking record is a simple and relevant signal to predict future outperformance.
+  - JP companies with past share buybacks tend to keep outperforming market despite a buyback suspension in the future.
+  - Statistical arbitrary alpha is the most profitable in JP via weekly or daily rebalancing.
+
+  
+
 ## Momentum & Reversal
 
 - 动量因子
@@ -895,6 +908,7 @@
        ![](../notes/pic/macro_proxy2.png)
 
     3. 以资产同比收益率为自变量，低频宏观因子同比为因变量，通过滚动多元领先回归确定资产权重，构建投资组合模拟宏观因子走势。
+
 
 
 ## Volatility

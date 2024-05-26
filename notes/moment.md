@@ -303,6 +303,14 @@ If all assets have the same Sharpe ratio (or mean, if volatilities are the same)
   - **Winners-Only Component**: To address factor underperformance in the post-crisis period, the traditional winners-minus-losers (WML) momentum strategy is replaced with only the winners component. This means that instead of going long on past winners and short on losers, the strategy focuses solely on the winners. (Top 10%)
   - **Threshold Function and Past Volatilities**: The proposed approach replaces constant volatility scaling with a threshold function. Specifically, the strategy exits the momentum trades when the realized volatility exceeds a certain threshold, aiming to avoid periods of high market stress. 
 
+- Yang, Hanlin (2019) On Factor Return Predictability and Factor Momentum
+
+  - WLS-AR: future factor return is predicted by past factor return, weighted by realized vol of factor in the same period.
+    $$
+    \hat{\beta} = \arg \min_{\beta} \sum_{t=1}^T \left(\frac{r_{t+1} - \beta_0 - \beta_1 r_t}{\sigma_t}\right)^2, \; \; \hat{r}_{t+1} = \frac{\hat{\beta}_0 + \hat{\beta}_1 r_t}{\sigma_t}.
+    $$
+    where $$r_t$$ is the monthly return of the factor, $$\sigma_t$$ is the realized (rolling/ema) vol of factor return.
+
   
 
 ## Factor Timing

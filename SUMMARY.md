@@ -15,6 +15,7 @@
     * [Broker Reports](./contents/broker.md)
     * [Quant Finance Notes](./contents/qfn.md)
     * [Machine Learning Notes](./contents/mln.md)
+    * [Temp files](./notes/temp.md)
     
 * [Reading List](./contents/reading.md)
     * [Bayesian Machine Learning](./contents/bayesing.md)
@@ -93,19 +94,11 @@
     * [Co-trade Network](./notes/co-trade.md)
     
     - [Order Imbalance with Trade Flow Decomposition](./notes/COI_flow_decomp.md)
-    
     - [Time Seris Machine Learning](./notes/mlts.md)
-    
     - [PEAD](./notes/PEAD.md)
-    
     - [Risk Parity](./notes/risk_parity.md)
-    
     - [NLP in Finance](./notes/nlp_fin.md)
-    
     - [Self-supervised Learning for Tabular Data](./notes/self_super_tab.md)
-    
     - [Regime Modeling](./notes/regime.md)
-    
     - [Financial Statement Related](./notes/fin_stat.md)
-    
     - [Deep Learning in Finance](./notes/dl_fin.md)

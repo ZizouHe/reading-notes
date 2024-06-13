@@ -48,7 +48,8 @@
   - [Bybee, Leland, Bryan T. Kelly, and Yinan Su. "Narrative asset pricing: Interpretable systematic risk factors from news text." *Johns Hopkins Carey Business School Research Paper* 21-09 (2022).](https://papers.ssrn.com/sol3/Delivery.cfm/SSRN_ID4351922_code2678946.pdf?abstractid=3895277&mirid=1)
   - [Bybee, Leland, et al. *Business news and business cycles*. No. w29344. National Bureau of Economic Research, 2021.](https://www.nber.org/system/files/working_papers/w29344/w29344.pdf)
 
-
+- [Kim, Alex, Maximilian Muhn, and Valeri Nikolaev. "From Transcripts to Insights: Uncovering Corporate Risks Using Generative AI." *arXiv preprint arXiv:2310.17721* (2023).](https://arxiv.org/abs/2310.17721)
+  - This paper explores the application of generative AI tools, such as ChatGPT, in assessing and uncovering corporate risks. The authors develop and validate measures of firm-level risk exposure related to political, climate, and AI-related risks using the GPT 3.5 model. They generate risk summaries and assessments from earnings call transcripts to demonstrate that these AI-based measures have significant information content and can predict firm-level volatility and corporate decisions related to investment and innovation more effectively than existing risk measures.
 
 ## NLP Application
 
@@ -75,6 +76,11 @@
   - Prompt with alpha ideas + some candidate expressions (with detailed explanations) -> LLM -> parser + validation -> evaluation + genetic programming + backtest -> final alpha -> LLM for alpha explanation
 - [Zhang, Boyu, et al. "Enhancing financial sentiment analysis via retrieval augmented large language models." *arXiv preprint arXiv:2310.04027* (2023).](https://arxiv.org/pdf/2310.04027.pdf)
   - RAG: information retrieval from other source to assist news context understanding
+- [Karolyi, Stephen, Thomas Ruchti, and Phong Truong. "Number Processing Constraints and Earnings News." *Management Science* (2024).](https://pubsonline.informs.org/doi/full/10.1287/mnsc.2023.01722)
+  - The study is grounded in neuroscience research indicating that the human brain processes small numbers linearly and large numbers logarithmically, which can lead to an underreaction to larger numbers as their perceived differences become smaller.
+  - The research finds that investors indeed react less to earnings news for stocks with high EPS magnitudes.
+  - The study finds that the effect of number processing constraints is less pronounced for stocks with a high presence of machines or robotic activity, suggesting that non-human market participants are not subject to the same cognitive limitations.
+
 
 
 ## NLP Literature

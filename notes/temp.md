@@ -1,65 +1,5 @@
 # Temp
 
-## The Expected Returns on Machine-Learning Strategies
-
-The paper titled "The Expected Returns on Machine-Learning Strategies" by Vitor Azevedo, Christopher Hoegner, and Mihail Velikov investigates the profitability of machine learning-based anomaly trading strategies in the stock market. The study takes into account transaction costs, post-publication decay, and the impact of the post-decimalization era of high liquidity on these strategies.
-
-Key points from the paper include:
-
-1. **Sophisticated Machine Learning Strategies**: Contrary to previous claims, more advanced machine learning strategies can be profitable. They can achieve net out-of-sample monthly returns of up to 1.42%, even with high turnover rates exceeding 50% and the selection of stocks that are traditionally difficult to arbitrage.
-
-2. **Performance Metrics**: The study uses various machine learning techniques, including Ordinary Least Squares with Huber Loss Function (OLS-HUBER), Elastic Net (ENET), Feedforward Neural Networks (FFNN), Long Short-Term Memory networks (LSTM), and an ensemble model. These models are evaluated based on out-of-sample regression metrics and their ability to generate returns after costs.
-
-3. **Return Predictability**: The paper documents that deep-learning models can predict returns that cannot be explained by common risk factors or limits to arbitrage. A trading strategy using a long short-term memory model yields a significant six-factor generalized (net) alpha of 1.20% with a t-statistic of 3.46.
-
-4. **Cost Mitigation Techniques**: While prevalent techniques can reduce turnover and costs, they do not improve net anomaly performance. The study explores various cost mitigation strategies, such as increasing the holding period, using quintile portfolios, and applying a Buy-Hold-Spread (BHS) strategy.
-
-5. **Post-2005 Performance**: The study finds that machine learning combination signals perform well out-of-sample, even in the high liquidity environment post-2005, and only including anomalies after their publication dates.
-
-6. **Transaction Costs**: The improved liquidity in the post-2005 period means that the trading costs associated with these strategies are relatively low, at 20-25 basis points per month. Despite these costs, most machine learning strategies continue to deliver significant returns.
-
-7. **Generalized Alphas**: The paper also introduces the concept of generalized alphas to evaluate the ability of machine learning strategies to expand the net-of-costs mean-variance efficient frontier based on the six factors of the Fama and French (2018) model.
-
-8. **Implications**: The findings suggest that machine learning strategies can be profitable in the current era of high liquidity and discovered anomalies, challenging previous conclusions that suggested otherwise.
-
-9. **Methodology**: The paper uses an expanding window approach for training data and a fixed-length moving validation set to avoid data snooping or look-ahead bias. It also employs hyperparameter tuning to optimize model parameters.
-
-10. **Conclusion**: The study concludes that machine learning-based trading strategies can yield significant returns even after accounting for transaction costs and other factors, providing valuable insights for both academic research and practical investment strategy design.
-
-The paper contributes to the growing literature on machine learning in asset pricing by focusing on the expected returns of machine learning strategies and carefully considering trading costs and other practical implementation issues.
-
-
-
-## Number Processing Constraints and Earnings News
-
-The paper titled "Number Processing Constraints and Earnings News" by Stephen A. Karolyi, Thomas G. Ruchti, and Phong Truong explores how human neurological constraints in processing numbers may affect stock market reactions to earnings announcements (EAs). Here's a summary of the key points:
-
-1. **Neuroscience Background**: The study is grounded in neuroscience research indicating that the human brain processes small numbers linearly and large numbers logarithmically, which can lead to an underreaction to larger numbers as their perceived differences become smaller.
-
-2. **Hypothesis**: The authors hypothesize that investors will respond less to the same earnings news for stocks with high earnings per share (EPS) magnitudes compared to those with low EPS magnitudes due to these neurological constraints.
-
-3. **Earnings Announcements (EAs)**: EAs are chosen as a setting to test the hypothesis because they are significant corporate events that present investors with numerical data for decision-making.
-
-4. **Earnings Response Coefficient (ERC)**: The study uses the ERC framework to test the hypothesis. The market response to earnings news is expected to increase with the standardized earnings surprise, but the number processing constraints hypothesis predicts a reduced response for high EPS magnitudes.
-
-5. **Findings**: The research finds that investors indeed react less to earnings news for stocks with high EPS magnitudes, which is consistent with the number processing constraints hypothesis. This effect is distinct from other risk-based and behavioral explanations.
-
-6. **Robustness Tests**: The results hold up under various robustness tests, including controlling for stock price levels, limited attention, and other factors that could influence market reactions to earnings news.
-
-7. **Machine Presence**: The study finds that the effect of number processing constraints is less pronounced for stocks with a high presence of machines or robotic activity, suggesting that non-human market participants are not subject to the same cognitive limitations.
-
-8. **Post-Earnings Announcement Drift (PEAD)**: Stocks with high EPS magnitudes are found to have a higher post-EA drift, suggesting that the initial underreaction to earnings news contributes to this phenomenon.
-
-9. **Stock Splits**: The paper uses stock splits as a quasi-experimental design to test the hypothesis further. Stock splits, which increase the number of outstanding shares and thus decrease EPS magnitude, provide a setting to observe changes in market reactions to earnings news.
-
-10. **Implications**: The findings suggest that number processing constraints have implications for stock price efficiency and can contribute to the well-documented phenomenon of underreaction to earnings news and subsequent drift.
-
-11. **Contribution**: The study contributes to the literature at the intersection of accounting, finance, and neuroscience by linking cognitive neuroscience to stock market phenomena and offering a fresh perspective on the systematic underreaction to earnings news.
-
-The paper concludes that human cognitive limitations in number processing can have a significant impact on financial decision-making and market efficiency, and that the advent of machine involvement in trading may mitigate some of these effects.
-
-
-
 ## Identifying Risk Factor Regimes with Machine Learning: Implications for Tactical Asset Allocation
 
 The paper titled "Identifying Risk Factor Regimes with Machine Learning: Implications for Tactical Asset Allocation" by Sheikh Sadik, dated January 2024, explores the use of machine learning (ML) to model and predict shifts in risk factor regimes and their potential impact on tactical asset allocation. Here's a summary of the key points and findings:
@@ -91,90 +31,6 @@ The paper titled "Identifying Risk Factor Regimes with Machine Learning: Implica
 13. **Interpreting the Predicted Regimes**: The paper discusses the use of Shapley Values to interpret the ML model predictions, providing insights into the contribution of each feature to the predicted probabilities.
 
 In conclusion, the paper presents a comprehensive approach to using machine learning for tactical asset allocation by identifying and predicting risk factor regimes. It demonstrates the potential of ML models to improve portfolio construction and risk management through better understanding and utilization of market dynamics.
-
-
-
-## From Transcripts to Insights: Uncovering Corporate Risks Using Generative AI
-
-The paper titled "From Transcripts to Insights: Uncovering Corporate Risks Using Generative AI" by Alex G. Kim, Maximilian Muhn, and Valeri V. Nikolaev explores the application of generative AI tools, such as ChatGPT, in assessing and uncovering corporate risks. The authors develop and validate measures of firm-level risk exposure related to political, climate, and AI-related risks using the GPT 3.5 model. They generate risk summaries and assessments from earnings call transcripts to demonstrate that these AI-based measures have significant information content and can predict firm-level volatility and corporate decisions related to investment and innovation more effectively than existing risk measures.
-
-Key points from the paper include:
-
-1. **AI in Risk Assessment**: The authors leverage large language models (LLMs) to detect and analyze critical corporate risks from textual data, such as earnings call transcripts.
-
-2. **GPT-based Measures**: They use the GPT 3.5 model to create risk exposure measures that outperform traditional measures in predicting stock market volatility and firms' economic outcomes.
-
-3. **Value of General AI Knowledge**: The paper establishes that the information in risk assessments, which utilize the general knowledge of the AI in addition to the text context, is more valuable than that in risk summaries.
-
-4. **Detection of Emerging Risks**: Generative AI is effective at identifying emerging risks, such as AI risk, which has gained significance in recent times.
-
-5. **Performance Outside Training Window**: The measures developed perform well both within and outside the training window of the GPT model, indicating their robustness.
-
-6. **Equity Market Pricing**: The paper also discusses how the risk measures are priced in equity markets, suggesting that they provide useful insights to investors.
-
-7. **Contribution to Literature**: The study contributes to the literature by demonstrating the economic usefulness of AI-powered LLMs in risk assessment and by enhancing the understanding of corporate risks through AI-based technology.
-
-8. **Methodology**: The authors use a variety of econometric models and analyses, including variance decomposition and Fama-MacBeth regressions, to validate their findings.
-
-9. **Implications for Firm Decisions**: The paper shows that firms' investment decisions and actions to mitigate risks, such as lobbying activity and patent filings, are associated with the risk exposure measures generated by the AI.
-
-10. **Robustness Checks**: The results are robust to various research design choices and hold true in out-of-sample tests, suggesting that the AI model's ability to produce valid risk measures is not due to in-sample knowledge.
-
-In conclusion, the paper highlights the potential of generative AI in providing valuable insights into corporate risks at a low cost, which can be useful for investors and corporate decision-makers. However, it also acknowledges the limitations and challenges associated with relying on generative LLMs, such as the sensitivity to prompt quality and the potential for incorrect information.
-
-
-
-## The Ghost in the Machine: Generating Beliefs with Large Language Models
-
-The paper titled "The Ghost in the Machine: Generating Beliefs with Large Language Models" by J. Leland Bybee from Yale University introduces a methodology for generating economic expectations using large language models (LLMs) applied to historical news data. The author makes these key contributions:
-
-1. **Methodology Introduction**: The paper introduces a new method for generating economic expectations using large language models (LLMs) applied to historical news data.
-
-2. **Alignment with Survey Measures**: Generated expectations closely match existing survey measures and capture similar deviations from full-information rational expectations.
-
-3. **Historical Economic Expectations**: The methodology is used to create 120 years of economic expectations, allowing for the construction of a long-term economic sentiment measure.
-
-4. **Economic Sentiment and Bubbles**: The economic sentiment measure is employed to investigate behavioral theories of bubbles, revealing a link between industry exposure to sentiment and the likelihood of a crash along with lower future returns.
-
-5. **Feedback Mechanism**: The study finds a higher degree of feedback between returns and sentiment during run-ups that crash, suggesting return extrapolation as a key bubble mechanism.
-
-6. **Data Sources**: Historical news articles from The Wall Street Journal and The New York Times are used to train the LLM and generate expectations.
-
-7. **Comparison with SPF**: Generated macroeconomic expectations are compared with the Survey of Professional Forecasters (SPF), showing significant correlation with SPF revisions.
-
-8. **Out-of-Sample Validation**: The paper addresses the concern of look-ahead bias by evaluating generated expectations out-of-sample, post-training period of the LLM.
-
-9. **Economic Sentiment Dynamics**: The 120-year time series of economic sentiment is analyzed, showing its correlation with past returns and disconnect from objective measures of expected returns.
-
-10. **Trading Strategy**: A trading strategy based on sentiment betas and impulse response functions is proposed, which predicts crashes with significant accuracy and earns substantial returns.
-
-
-
-## Financial Statement Analysis with Large Language Models
-
-The paper titled "Financial Statement Analysis with Large Language Models" by Alex G. Kim, Maximilian Muhn, and Valeri V. Nikolaev investigates the capability of Large Language Models (LLMs), specifically GPT4, in performing financial statement analysis (FSA) akin to professional human analysts. The authors aim to understand if LLMs can analyze and interpret financial data to predict future earnings without relying on narrative or industry-specific information.
-
-Key findings and contributions of the paper include:
-
-1. **LLM's Capability in FSA**: The study reveals that LLMs, when provided with standardized and anonymous financial statements, can outperform human financial analysts in predicting changes in future earnings. This suggests that LLMs can effectively perform a task traditionally done by humans, which involves numerical analysis and judgment.
-
-2. **Comparison with Human Analysts**: The LLM demonstrates a relative advantage in situations where human analysts typically struggle, such as with small or loss-making companies. The model's performance is on par with or exceeds the performance of human analysts and narrowly trained machine learning models.
-
-3. **Prediction Accuracy**: The LLM's prediction accuracy is comparable to that of a state-of-the-art machine learning model, indicating that LLMs can leverage their vast knowledge base to analyze financial numbers and generate useful insights.
-
-4. **Chain-of-Thought Prompting**: The study employs a "Chain-of-Thought" (CoT) prompting technique, which instructs the LLM to mimic the step-by-step analysis process of human financial analysts. This approach significantly improves the model's predictive performance.
-
-5. **Out-of-Sample Testing**: The paper also presents out-of-sample tests using financial data from 2022 to predict 2023 earnings, which shows that the LLM's predictive ability is not reliant on its training data or memory, but rather on its ability to analyze and interpret new data.
-
-6. **Economic Usefulness**: The authors demonstrate that trading strategies based on the LLM's predictions yield higher Sharpe ratios and alphas compared to strategies based on other models, indicating the potential economic value of using LLMs for financial decision-making.
-
-7. **Information Content of LLM-Generated Texts**: The paper shows that the narratives generated by the LLM during its analysis have informational value and contribute to its predictive ability. These narratives are found to be useful in predicting stock price movements.
-
-8. **Implications for Financial Markets**: The findings suggest that LLMs could play a central role in financial decision-making processes, complementing or potentially replacing some aspects of human analysts' work.
-
-9. **Limitations and Future Research**: While the study provides evidence of LLMs' capabilities in FSA, it also acknowledges the challenges in understanding precisely how and why the model makes accurate predictions. The authors call for further research to explore the integration of LLMs in financial markets and their impact on decision-making.
-
-In conclusion, the paper presents a comprehensive analysis of LLMs' potential to transform financial statement analysis, offering insights into their ability to understand and predict financial outcomes based solely on numerical data. The results highlight the growing relevance of AI in the financial sector and open avenues for future exploration of LLMs in complex decision-making tasks.
 
 
 
@@ -221,3 +77,67 @@ Key contributions of the paper include:
 4. Demonstrating the potential for reduced trading costs and lower single asset risk, contributing to a more diversified and less risky portfolio.
 
 The authors conclude that their graph-theoretical approach to pairs trading could pave the way for numerous innovative modifications to the pairs trading methodology, offering a significant advancement over conventional strategies.
+
+
+
+## A Modular Measure of Business Complexity
+
+The paper titled "A Modular Measure of Business Complexity" by Darren Bernard, Elizabeth Blankespoor, Ties de Kok, and Sara Toynbee from the University of Washington and the University of Texas at Austin, respectively, addresses the challenge of measuring business complexity, which is an important but difficult-to-quantify aspect of business operations that can affect decision-making, valuation, and financial reporting.
+
+The authors develop a novel, modular measure of business complexity using a large language model (LLM) fine-tuned on narrative disclosures and inline XBRL (eXtensible Business Reporting Language) tags. Their approach is guided by the definition of complexity as the processing resources required for a decision-maker to understand the economic substance of a business's transactions and financial position.
+
+Key points from the paper include:
+
+1. **Modular Measure Development**: The authors create a measure that reflects the intuition that information frictions from complexity depend on the user's familiarity and experience with a given transaction type. The measure is captured at the fact-level, allowing for complexity to vary across a firm's transactions.
+2. **Use of LLM**: A large language model is trained on firms' financial reports to proxy for the knowledge and experience of an external user. The model predicts XBRL tags based on the surrounding narrative text, with the complexity measure being one minus the algorithm's confidence in its predictions.
+3. **Validation and Correlation**: The measure is validated through several tests, showing positive correlations with existing measures of complexity, such as financial report length, Fog score, and the number of unique XBRL tags.
+4. **Market and Regulatory Implications**: The paper finds that higher business complexity is associated with slower capital market price adjustments to financial reports and a higher likelihood of filing delays. It also shows that more complex transactions receive more regulatory scrutiny.
+5. **Corporate Decision-Making**: The authors demonstrate that business complexity correlates with greater cash holdings, which may reflect precautionary motives due to increased uncertainty.
+6. **Future Performance**: There is a negative relation between complexity and future performance, suggesting that complex contracts might reduce managers' ability to adapt to changing conditions or fully understand the implications of transactions for firm value.
+7. **Methodological Contributions**: The paper contributes to the literature by introducing novel techniques using GPT algorithms for modeling complex narrative disclosure tasks in accounting and finance.
+8. **Limitations and Opportunities**: The authors acknowledge limitations, such as potential measurement error from the mechanics of training the model and the difficulty of fully disentangling business complexity from reporting complexity. However, they also highlight opportunities for using the model in other areas of financial reports.
+
+The paper concludes by reinforcing the role of complexity as a friction to decision-making and provides a richer and more flexible measure of complexity for future research. It also discusses the potential for the measure to help standard setters and regulators target efforts to reduce complexity for financial statement users.
+
+
+
+## Moving Targets
+
+The paper titled "Moving Targets" by Lauren Cohen from Harvard Business School and NBER, and Quoc Nguyen from DePaul University, explores how managers strategically shift performance targets in their communications with investors and markets. The study uses the complete history of earnings conference call transcripts by U.S. corporations from 2006 to 2020 and employs natural language processing techniques to analyze these calls.
+
+Key findings and themes from the paper include:
+
+1. **Strategic Target Shifting**: Managers are found to strategically shift targets to ensure they meet their own endogenously chosen hurdles. For example, if a company has seen consistent growth in same-store sales, they will emphasize this metric. However, if there is a quarter without growth, they will shift focus to another metric like cost savings or strategic R&D.
+2. **Market Reaction**: When managers change the target, it predicts significant negative returns for the firm. In the quarter following a moved target, firms underperform by up to 99 basis points per month in value-weighted monthly abnormal return.
+3. **Complexity and Persistence**: The effects are stronger with more complex targets, non-financial targets, and the most persistent targets. The paper suggests that investors may have an easier time digesting financial targets compared to non-financial targets.
+4. **Real Activity Measures**: Moving targets predict future earnings, profitability, future news announcements, and the future value of those targets. These predictions appear to be largely unanticipated by the market.
+5. **Robustness Checks**: The documented effects are not driven by firm size, time, industry, or firm events. The results suggest that the return patterns are not due to transaction costs or limits to arbitrage.
+6. **Investor Inattention**: The paper suggests that investors may be differentially inattentive to non-financial targets compared to financial targets. This inattention could be a reason why the information about target changes is not immediately reflected in stock prices.
+7. **Analyst Interaction**: When analysts prompt about dropped targets during conference calls, and CEOs are forced to address them, the moving target effect on returns is considerably reduced.
+8. **Broader Implications**: The paper concludes that understanding the subtle ability to move targets and its implications can be critical for predicting future dynamics in financial markets. It suggests that simple insights from tracking performance targets can contain powerful information that is seemingly being ignored by the capital markets.
+
+The paper contributes to the literature on stock price underreaction, investor inattention, textual analysis in finance and accounting, and the information content of firms' disclosure choices. It also provides a novel perspective on how firms can strategically use target setting and communication to influence investor perceptions and market outcomes.
+
+
+
+The paper "Moving Targets" by Lauren Cohen and Quoc Nguyen employs natural language processing (NLP) techniques to analyze earnings conference call transcripts. Here's a detailed look at their methodology, particularly how they use a large language model (LLM) for their analysis:
+
+1. **Data Collection**: The researchers obtained conference call transcripts from S&P Capital IQ and Refinitiv StreetEvents, which cover a wide range of global companies and provide verbatim representations of corporate events.
+
+2. **NLP Library**: They utilized spaCy, an open-source library for NLP in Python. spaCy includes pre-trained pipelines that consist of multiple components trained on labeled data, such as a tagger, lemmatizer, parser, and entity recognizer.
+
+3. **Identifying Targets**: The researchers identified targets in the transcripts using two main methods:
+   - Named Entity Recognition (NER): They searched for named entities that are categorized as Products, Money, or Percent. For example, product names like "Mac" or "iPhone" were recorded as targets.
+   - Part-of-Speech (POS) Tagging: For sentences containing Money or Percent entities, they used POS tagging to identify the related nouns and noun chunks. For instance, if a sentence mentioned "$1.67 billion" as a Money entity, the model would identify the subject related to this amount, such as "Net income," and record it as a target.
+
+4. **Target Analysis**: The researchers analyzed the frequency and changes in the targets mentioned across different conference calls. They examined how often certain financial metrics or non-financial indicators like product sales were discussed and how these discussions evolved over time.
+
+5. **Quantifying Target Movement**: They calculated a measure called "Moving Targets," which quantifies the degree to which firms change their focus from one reporting period to the next. This measure is based on the similarity between the targets discussed in consecutive conference calls.
+
+6. **Statistical Analysis**: The researchers conducted calendar-time portfolio analysis and Fama-MacBeth cross-sectional regressions to examine the implications of target movement on future stock returns. They controlled for various factors known to influence stock returns, such as firm size, book-to-market ratio, past returns, and standardized unexpected earnings (SUE).
+
+7. **Investor Attention and Analyst Interaction**: To explore the mechanism behind their findings, they looked at the complexity of target sets, the persistence of targets, and the distinction between financial and non-financial targets. They also examined how analyst interactions during conference calls, such as questions about dropped targets, might affect the market's reaction to target movement.
+
+8. **Robustness Checks**: The researchers performed several robustness checks to ensure their findings were not driven by firm characteristics, industry effects, or other factors. They also considered the possibility of limits to arbitrage and transaction costs.
+
+By using an LLM and NLP techniques, the researchers were able to systematically analyze a large corpus of unstructured data from earnings conference calls, providing new insights into how changes in the communication of performance targets can affect investor perceptions and market outcomes.

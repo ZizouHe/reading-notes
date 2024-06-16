@@ -1,0 +1,1901 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Part 1: Reinforcement Learning: An Introduction · Reading List & Notes</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-image-captions/image-captions.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchor-navigation-ex/style/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="RL_Book2.html" />
+    
+    
+    <link rel="prev" href="Double_ML.html" />
+    
+
+    <style>
+    @media only screen and (max-width: 640px) {
+        .book-header .hidden-mobile {
+            display: none;
+        }
+    }
+    </style>
+    <script>
+        window["gitbook-plugin-github-buttons"] = {"buttons":[{"user":"ZizouHe","repo":"reading-notes","type":"star","size":"small"}]};
+    </script>
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../contents/already.html">
+            
+                <a href="../contents/already.html">
+            
+                    
+                    Finished List
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../contents/bayes.html">
+            
+                <a href="../contents/bayes.html">
+            
+                    
+                    Bayesian Machine Learning
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../contents/DL.html">
+            
+                <a href="../contents/DL.html">
+            
+                    
+                    Deep Learning
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="../contents/fin.html">
+            
+                <a href="../contents/fin.html">
+            
+                    
+                    Finance/Quant Finance
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="../contents/CS.html">
+            
+                <a href="../contents/CS.html">
+            
+                    
+                    General CS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.5" data-path="../contents/DS.html">
+            
+                <a href="../contents/DS.html">
+            
+                    
+                    General Data Science
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.6" data-path="../contents/ML.html">
+            
+                <a href="../contents/ML.html">
+            
+                    
+                    Machine Learning
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.7" data-path="../contents/opt.html">
+            
+                <a href="../contents/opt.html">
+            
+                    
+                    Numerical and Optimization
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.8" data-path="../contents/stat.html">
+            
+                <a href="../contents/stat.html">
+            
+                    
+                    Traditional Statistics
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.9" data-path="../contents/book.html">
+            
+                <a href="../contents/book.html">
+            
+                    
+                    Books
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.10" data-path="../contents/broker.html">
+            
+                <a href="../contents/broker.html">
+            
+                    
+                    Broker Reports
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.11" data-path="../contents/qfn.html">
+            
+                <a href="../contents/qfn.html">
+            
+                    
+                    Quant Finance Notes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.12" data-path="../contents/mln.html">
+            
+                <a href="../contents/mln.html">
+            
+                    
+                    Machine Learning Notes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.13" data-path="temp.html">
+            
+                <a href="temp.html">
+            
+                    
+                    Temp files
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.14" data-path="temp_ft.html">
+            
+                <a href="temp_ft.html">
+            
+                    
+                    Temp factor timing
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../contents/reading.html">
+            
+                <a href="../contents/reading.html">
+            
+                    
+                    Reading List
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../contents/bayesing.html">
+            
+                <a href="../contents/bayesing.html">
+            
+                    
+                    Bayesian Machine Learning
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../contents/DLing.html">
+            
+                <a href="../contents/DLing.html">
+            
+                    
+                    Deep Learning
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../contents/MLing.html">
+            
+                <a href="../contents/MLing.html">
+            
+                    
+                    Machine Learning
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="../contents/opting.html">
+            
+                <a href="../contents/opting.html">
+            
+                    
+                    Numerical and Optimization
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5" data-path="../contents/stating.html">
+            
+                <a href="../contents/stating.html">
+            
+                    
+                    Traditional Statistics
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.6" data-path="../contents/booking.html">
+            
+                <a href="../contents/booking.html">
+            
+                    
+                    Books
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../contents/notes.html">
+            
+                <a href="../contents/notes.html">
+            
+                    
+                    Notes
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="NeuralODE.html">
+            
+                <a href="NeuralODE.html">
+            
+                    
+                    Neural ODE
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="RDN.html">
+            
+                <a href="RDN.html">
+            
+                    
+                    Relational Dependency Networks
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="LDA.html">
+            
+                <a href="LDA.html">
+            
+                    
+                    LDA
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="KSD_test.html">
+            
+                <a href="KSD_test.html">
+            
+                    
+                    KSD for Goodness-of-fit Tests
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5" data-path="LTK_test.html">
+            
+                <a href="LTK_test.html">
+            
+                    
+                    LTK Goodness-of-Fit Test
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6" data-path="GaussMixCompress.html">
+            
+                <a href="GaussMixCompress.html">
+            
+                    
+                    Sample Complexity Bounds for Gaussian Mixtures
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.7" data-path="SGMCMC.html">
+            
+                <a href="SGMCMC.html">
+            
+                    
+                    A Complete Recipe for SGMCMC
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.8" data-path="Sharpe_Minima_Works.html">
+            
+                <a href="Sharpe_Minima_Works.html">
+            
+                    
+                    Sharpe Minima Can Generalize
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.9" data-path="Sharpe_Minima_Exp.html">
+            
+                <a href="Sharpe_Minima_Exp.html">
+            
+                    
+                    Large Batch Training and Sharpe Minima
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.10" data-path="RMLHMC.html">
+            
+                <a href="RMLHMC.html">
+            
+                    
+                    Riemann Manifold Langevin and HMC
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.11" data-path="pathSGD.html">
+            
+                <a href="pathSGD.html">
+            
+                    
+                    Path-SGD: Path-normalized Optimization in Deep Neural Networks
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.12" data-path="Empirical_Loss.html">
+            
+                <a href="Empirical_Loss.html">
+            
+                    
+                    Empirical Analysis of DNN Loss Surfaces
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.13" data-path="Good_Semi_Bad_GAN.html">
+            
+                <a href="Good_Semi_Bad_GAN.html">
+            
+                    
+                    Good Semi-supervised Learning that Requires a Bad GAN
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.14" data-path="Faster_Frank_Wolfe.html">
+            
+                <a href="Faster_Frank_Wolfe.html">
+            
+                    
+                    Faster Rates for Frank-Wolfe over Strongly-Convex Sets
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.15" data-path="Fin_Fan_Book.html">
+            
+                <a href="Fin_Fan_Book.html">
+            
+                    
+                    The Element of Financial Econometrics
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.16" data-path="Double_ML.html">
+            
+                <a href="Double_ML.html">
+            
+                    
+                    Double machine learning for treatment effect
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.4.17" data-path="RL_Book1.html">
+            
+                <a href="RL_Book1.html">
+            
+                    
+                    Part 1: Reinforcement Learning: An Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.18" data-path="RL_Book2.html">
+            
+                <a href="RL_Book2.html">
+            
+                    
+                    Part 2: Reinforcement Learning: An Introduction (2)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.19" data-path="TRPO.html">
+            
+                <a href="TRPO.html">
+            
+                    
+                    Trust Region Policy Optimization
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.20" data-path="Prior_Exp_Replay.html">
+            
+                <a href="Prior_Exp_Replay.html">
+            
+                    
+                    Prioritized Experience Replay
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.21" data-path="stein-galton.html">
+            
+                <a href="stein-galton.html">
+            
+                    
+                    A Galtonian Perspective on Shrinkage Estimators
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.22" data-path="lasso.html">
+            
+                <a href="lasso.html">
+            
+                    
+                    Regression Shrinkage and Selection via the Lasso
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.23" data-path="nonpa_inst.html">
+            
+                <a href="nonpa_inst.html">
+            
+                    
+                    Nonparametric Instrumental Regression
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.24" data-path="defi_RFS.html">
+            
+                <a href="defi_RFS.html">
+            
+                    
+                    Decentralized mining in centralized pools
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.25" data-path="ES_2014_majority.html">
+            
+                <a href="ES_2014_majority.html">
+            
+                    
+                    Majority is not enough: Bitcoin mining is vulnerable
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.26" data-path="lazy-prices.html">
+            
+                <a href="lazy-prices.html">
+            
+                    
+                    Lazy Prices
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.27" data-path="wager_athey_pnas_2021.html">
+            
+                <a href="wager_athey_pnas_2021.html">
+            
+                    
+                    Confidence Intervals for Policy Evaluation in Adaptive Experiments
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.28" data-path="kelly_zhang_2021_nips.html">
+            
+                <a href="kelly_zhang_2021_nips.html">
+            
+                    
+                    Statistical Inference with M-Estimators on Adaptively Collected Data
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.29" data-path="realized_var.html">
+            
+                <a href="realized_var.html">
+            
+                    
+                    Realized Variance and Market Microstructure Noise
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.30" data-path="PoS.html">
+            
+                <a href="PoS.html">
+            
+                    
+                    Blockchain without waste: Proof-of-stake
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.31" data-path="green_2019_jfe.html">
+            
+                <a href="green_2019_jfe.html">
+            
+                    
+                    Crowdsourced employer reviews and stock returns
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.32" data-path="SoK.html">
+            
+                <a href="SoK.html">
+            
+                    
+                    A Survey of Attacks on Ethereum Smart Contracts
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.33" data-path="Lee_2019_jfe.html">
+            
+                <a href="Lee_2019_jfe.html">
+            
+                    
+                    Technological Links and Predictable Returns
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.34" data-path="Da_2021_jfe.html">
+            
+                <a href="Da_2021_jfe.html">
+            
+                    
+                    Extrapolative beliefs in the cross-section: What can we learn from the crowds?
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.35" data-path="Parsons_2020_rfs.html">
+            
+                <a href="Parsons_2020_rfs.html">
+            
+                    
+                    Geographic Lead-Lag Effects
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.36" data-path="Ali_2020_jfe.html">
+            
+                <a href="Ali_2020_jfe.html">
+            
+                    
+                    Shared Analyst Coverage: Unifying Momentum Spillover Effects
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.37" data-path="q-factor.html">
+            
+                <a href="q-factor.html">
+            
+                    
+                    Q-Factor Model
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.38" data-path="DHS-4-factors.html">
+            
+                <a href="DHS-4-factors.html">
+            
+                    
+                    Short- and Long-Horizon Behavioral Factors
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.39" data-path="Stambaugh-Yuan-2017.html">
+            
+                <a href="Stambaugh-Yuan-2017.html">
+            
+                    
+                    Stambaugh-Yuan Four Factors
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.40" data-path="cn_nlp.html">
+            
+                <a href="cn_nlp.html">
+            
+                    
+                    Chinese NLP
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.41" data-path="cn_shell.html">
+            
+                <a href="cn_shell.html">
+            
+                    
+                    Chinese Stock Market Shell Value
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.42" data-path="cn_ff3.html">
+            
+                <a href="cn_ff3.html">
+            
+                    
+                    Size and Value
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.43" data-path="retail.html">
+            
+                <a href="retail.html">
+            
+                    
+                    Tracking Retail Investor Activity
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.44" data-path="GCN.html">
+            
+                <a href="GCN.html">
+            
+                    
+                    Graph Convolution and Graph Attention
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.45" data-path="phack.html">
+            
+                <a href="phack.html">
+            
+                    
+                    P-hacking
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.46" data-path="general_tech_dl.html">
+            
+                <a href="general_tech_dl.html">
+            
+                    
+                    General Structures and Techniques in Deep Learning
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.47" data-path="TCN.html">
+            
+                <a href="TCN.html">
+            
+                    
+                    Temporal Convolutional Network
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.48" data-path="whichbeta.html">
+            
+                <a href="whichbeta.html">
+            
+                    
+                    Which Beta?
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.49" data-path="OOS.html">
+            
+                <a href="OOS.html">
+            
+                    
+                    Out of Sample Predictability
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.50" data-path="FF3_cryoto.html">
+            
+                <a href="FF3_cryoto.html">
+            
+                    
+                    Multi-factor in Cryptocurrency
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.51" data-path="quant_ml.html">
+            
+                <a href="quant_ml.html">
+            
+                    
+                    Quant Machine Learning
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.52" data-path="behave.html">
+            
+                <a href="behave.html">
+            
+                    
+                    Behavioral Finance
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.53" data-path="d-reduct.html">
+            
+                <a href="d-reduct.html">
+            
+                    
+                    Nonlinear Dimension Reduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.54" data-path="moment.html">
+            
+                <a href="moment.html">
+            
+                    
+                    Momentum
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.55" data-path="miscell.html">
+            
+                <a href="miscell.html">
+            
+                    
+                    Lottery-like Stocks
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.56" data-path="tabnet.html">
+            
+                <a href="tabnet.html">
+            
+                    
+                    TabNet
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.57" data-path="kaggle-fin.html">
+            
+                <a href="kaggle-fin.html">
+            
+                    
+                    Kaggle Finance Competition Solution Summary
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.58" data-path="feature_int.html">
+            
+                <a href="feature_int.html">
+            
+                    
+                    Feature Interaction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.59" data-path="ESG.html">
+            
+                <a href="ESG.html">
+            
+                    
+                    ESG
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.60" data-path="ivol.html">
+            
+                <a href="ivol.html">
+            
+                    
+                    Idiosyncratic Volatility
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.61" data-path="volume.html">
+            
+                <a href="volume.html">
+            
+                    
+                    Volume
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.62" data-path="overnight.html">
+            
+                <a href="overnight.html">
+            
+                    
+                    Overnight Return Reserval
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.63" data-path="NAS.html">
+            
+                <a href="NAS.html">
+            
+                    
+                    Neural Architecture Search
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.64" data-path="meta.html">
+            
+                <a href="meta.html">
+            
+                    
+                    Meta Learning
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.65" data-path="nominal_illusion.html">
+            
+                <a href="nominal_illusion.html">
+            
+                    
+                    Nominal Price Ilusion
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.66" data-path="co-trade.html">
+            
+                <a href="co-trade.html">
+            
+                    
+                    Co-trade Network
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.67" data-path="COI_flow_decomp.html">
+            
+                <a href="COI_flow_decomp.html">
+            
+                    
+                    Order Imbalance with Trade Flow Decomposition
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.68" data-path="mlts.html">
+            
+                <a href="mlts.html">
+            
+                    
+                    Time Seris Machine Learning
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.69" data-path="PEAD.html">
+            
+                <a href="PEAD.html">
+            
+                    
+                    PEAD
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.70" data-path="risk_parity.html">
+            
+                <a href="risk_parity.html">
+            
+                    
+                    Risk Parity
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.71" data-path="nlp_fin.html">
+            
+                <a href="nlp_fin.html">
+            
+                    
+                    NLP in Finance
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.72" data-path="self_super_tab.html">
+            
+                <a href="self_super_tab.html">
+            
+                    
+                    Self-supervised Learning for Tabular Data
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.73" data-path="regime.html">
+            
+                <a href="regime.html">
+            
+                    
+                    Regime Modeling
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.74" data-path="fin_stat.html">
+            
+                <a href="fin_stat.html">
+            
+                    
+                    Financial Statement Related
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.75" data-path="dl_fin.html">
+            
+                <a href="dl_fin.html">
+            
+                    
+                    Deep Learning in Finance
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Part 1: Reinforcement Learning: An Introduction</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon "></span><a href="#reinforcement-learning-an-introduction-1"><b> </b>Reinforcement Learning: An Introduction (1)</a></li><ul><li><span class="title-icon "></span><a href="#multi-armed-bandits"><b>1. </b>Multi-armed Bandits</a></li><li><span class="title-icon "></span><a href="#finite-markov-decision-processes"><b>2. </b>Finite Markov Decision Processes</a></li><ul><li><span class="title-icon "></span><a href="#notations"><b>2.1. </b>Notations</a></li><li><span class="title-icon "></span><a href="#equations"><b>2.2. </b>Equations</a></li></ul><li><span class="title-icon "></span><a href="#dynamic-programming"><b>3. </b>Dynamic Programming</a></li><ul><li><span class="title-icon "></span><a href="#policy-evaluation"><b>3.1. </b>Policy Evaluation</a></li><li><span class="title-icon "></span><a href="#policy-improvement"><b>3.2. </b>Policy Improvement</a></li><li><span class="title-icon "></span><a href="#policy-iteration"><b>3.3. </b>Policy Iteration</a></li><li><span class="title-icon "></span><a href="#value-iteration"><b>3.4. </b>Value Iteration</a></li></ul><li><span class="title-icon "></span><a href="#monte-carlo-methods"><b>4. </b>Monte Carlo Methods</a></li><ul><li><span class="title-icon "></span><a href="#monte-carlo-prediction"><b>4.1. </b>Monte Carlo Prediction</a></li><li><span class="title-icon "></span><a href="#monte-carlo-control"><b>4.2. </b>Monte Carlo Control</a></li><li><span class="title-icon "></span><a href="#off-policy-prediction-and-control-via-importance-sampling"><b>4.3. </b>Off-policy Prediction and Control via Importance Sampling</a></li><li><span class="title-icon "></span><a href="#optimize-the-off-policy-importance-sampling"><b>4.4. </b>Optimize the Off-policy Importance Sampling</a></li></ul><li><span class="title-icon "></span><a href="#temporal-difference-learning"><b>5. </b>Temporal-Difference Learning</a></li><ul><li><span class="title-icon "></span><a href="#td0-learning-on-policy"><b>5.1. </b>TD(0) Learning: On-policy</a></li><li><span class="title-icon "></span><a href="#q-learning-off-policy-td-control"><b>5.2. </b>Q-learning: Off-policy TD Control</a></li><li><span class="title-icon "></span><a href="#double-q-learning"><b>5.3. </b>Double-Q Learning</a></li></ul><li><span class="title-icon "></span><a href="#n-step-bootstrapping"><b>6. </b>n-step Bootstrapping</a></li><ul><li><span class="title-icon "></span><a href="#n-step-on-policy-learning"><b>6.1. </b>n-step On-policy learning</a></li><li><span class="title-icon "></span><a href="#n-step-off-policy-learning"><b>6.2. </b>n-step Off-policy Learning</a></li><li><span class="title-icon "></span><a href="#per-decision-methods-with-control-variates"><b>6.3. </b>Per-decision Methods with Control Variates</a></li><li><span class="title-icon "></span><a href="#off-policy-learning-without-importance-sampling-the-n-step-tree-backup-algorithm"><b>6.4. </b>Off-policy Learning Without Importance Sampling: The n-step Tree Backup Algorithm</a></li><li><span class="title-icon "></span><a href="#a-unifying-algorithm"><b>6.5. </b>A Unifying Algorithm</a></li></ul></ul></ul></div><a href="#reinforcement-learning-an-introduction-1" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h1 id="reinforcement-learning-an-introduction-1"><a name="reinforcement-learning-an-introduction-1" class="anchor-navigation-ex-anchor" href="#reinforcement-learning-an-introduction-1"><i class="fa fa-link" aria-hidden="true"></i></a> Reinforcement Learning: An Introduction (1)</h1>
+<h2 id="multi-armed-bandits"><a name="multi-armed-bandits" class="anchor-navigation-ex-anchor" href="#multi-armed-bandits"><i class="fa fa-link" aria-hidden="true"></i></a>1. Multi-armed Bandits</h2>
+<p>Denote <script type="math/tex; ">Q(A)</script> the average reward for arm <script type="math/tex; ">A</script>, <script type="math/tex; ">N(A)</script> the number of visits to arm <script type="math/tex; ">A</script>.</p>
+<p><strong><script type="math/tex; ">\epsilon</script>-greedy algorithm</strong></p>
+<p><img src="pic/RL_book/RL_1.png" alt=""></p>
+<p><strong>Upper-Confidence-Bound algorithm</strong></p>
+<p><script type="math/tex; mode=display">
+A_{t} \doteq \underset{a}{\operatorname{argmax}}\left[Q_{t}(a)+c \sqrt{\frac{\ln t}{N_{t}(a)}}\right]
+</script></p>
+<p><strong>Gradient bandit algorithms</strong></p>
+<p><script type="math/tex; mode=display">
+\begin{aligned}
+\operatorname{Pr}\left\{A_{t}=a\right\} &\doteq \frac{e^{H_{t}(a)}}{\sum_{b=1}^{k} e^{H_{t}(b)}} \doteq \pi_{t}(a) \\
+H_{t+1}\left(A_{t}\right) &\doteq H_{t}\left(A_{t}\right)+\alpha\left(R_{t}-\bar{R}_{t}\right)\left(1-\pi_{t}\left(A_{t}\right)\right) \\
+H_{t+1}(a) &\doteq H_{t}(a)-\alpha\left(R_{t}-\bar{R}_{t}\right) \pi_{t}(a), \quad \text { for all } a \neq A_{t}
+\end{aligned}
+</script></p>
+<h2 id="finite-markov-decision-processes"><a name="finite-markov-decision-processes" class="anchor-navigation-ex-anchor" href="#finite-markov-decision-processes"><i class="fa fa-link" aria-hidden="true"></i></a>2. Finite Markov Decision Processes</h2>
+<h3 id="notations"><a name="notations" class="anchor-navigation-ex-anchor" href="#notations"><i class="fa fa-link" aria-hidden="true"></i></a>2.1. Notations</h3>
+<p>Denote <script type="math/tex; ">S_t, R_t, A_t</script> as state, reward and actions at time <script type="math/tex; ">t</script>.</p>
+<p><script type="math/tex; mode=display">
+p\left(s^{\prime}, r \; | \; s, a\right) \doteq \operatorname{Pr}\left\{S_{t}=s^{\prime}, R_{t}=r \; | \; S_{t-1}=s, A_{t-1}=a\right\}
+</script></p>
+<p><script type="math/tex; mode=display">
+r(s, a) \doteq \mathbb{E}\left[R_{t} \; | \; S_{t-1}=s, A_{t-1}=a\right]=\sum_{r \in \mathcal{R}} r \sum_{s^{\prime} \in \mathcal{S}} p\left(s^{\prime}, r \; | \; s, a\right)
+</script></p>
+<p>discounted return:</p>
+<p><script type="math/tex; mode=display">
+G_{t} \doteq R_{t+1}+\gamma R_{t+2}+\gamma^{2} R_{t+3}+\cdots=\sum_{k=0}^{\infty} \gamma^{k} R_{t+k+1} = R_{t+1} + \gamma G_{t+1}
+</script></p>
+<p>state-value function:</p>
+<p><script type="math/tex; mode=display">
+v_{\pi}(s) \doteq \mathbb{E}_{\pi}\left[G_{t} \; | \; S_{t}=s\right]=\mathbb{E}_{\pi}\left[\sum_{k=0}^{\infty} \gamma^{k} R_{t+k+1} \; | \; S_{t}=s\right], \text { for all } s \in \mathcal{S}
+</script></p>
+<p>action-value function:</p>
+<p><script type="math/tex; mode=display">
+q_{\pi}(s, a) \doteq \mathbb{E}_{\pi}\left[G_{t} \; | \; S_{t}=s, A_{t}=a\right]=\mathbb{E}_{\pi}\left[\sum_{k=0}^{\infty} \gamma^{k} R_{t+k+1} \; | \; S_{t}=s, A_{t}=a\right]
+</script></p>
+<p>optimal state-value function:</p>
+<p><script type="math/tex; mode=display">
+v_{*}(s) \doteq \max _{\pi} v_{\pi}(s), \; \; \text { for all } s \in \mathcal{S}
+</script></p>
+<p>Optimal policies also share the same optimal action-value function:</p>
+<p><script type="math/tex; mode=display">
+q_{*}(s, a) \doteq \max _{\pi} q_{\pi}(s, a), \; \; \text { for all } s \in \mathcal{S} \text { and } a \in \mathcal{A}(s)
+</script></p>
+<h3 id="equations"><a name="equations" class="anchor-navigation-ex-anchor" href="#equations"><i class="fa fa-link" aria-hidden="true"></i></a>2.2. Equations</h3>
+<p>Bellman equation for all <script type="math/tex; ">v_\pi</script>:</p>
+<p><script type="math/tex; mode=display">
+\begin{aligned}
+v_{\pi}(s)
+&\doteq \mathbb{E}_{\pi}\left[G_{t} \; | \; S_{t}=s\right] \\
+&=\mathbb{E}_{\pi}\left[R_{t+1}+\gamma G_{t+1} \; | \; S_{t}=s\right] \\
+&=\sum_{a} \pi(a | s) \sum_{s^{\prime}, r} p\left(s^{\prime}, r \; | \; s, a\right)\left[r+\gamma v_{\pi}\left(s^{\prime}\right)\right], \quad \text { for all } s \in \mathcal{S}
+\end{aligned}
+</script></p>
+<p>relation between <script type="math/tex; ">q_\pi</script> and <script type="math/tex; ">v_\pi</script>:</p>
+<p><script type="math/tex; mode=display">
+q_{\pi}(s, a)=\mathbb{E}\left[R_{t+1}+\gamma v_{\pi}\left(S_{t+1}\right) \; | \; S_{t}=s, A_{t}=a\right]
+</script></p>
+<p>Bellman optimality equation:</p>
+<p><script type="math/tex; mode=display">
+\begin{aligned}
+v_{*}(s)
+&=\max _{a \in \mathcal{A}(s)} q_{\pi_{*}}(s, a) \\
+&=\max _{a} \mathbb{E}_{\pi_{*}}\left[G_{t} \; | \; S_{t}=s, A_{t}=a\right] \\
+&=\max _{a} \mathbb{E}_{\pi_{*}}\left[R_{t+1}+\gamma G_{t+1} \; | \; S_{t}=s, A_{t}=a\right] \\
+&=\max _{a} \mathbb{E}\left[R_{t+1}+\gamma v_{*}\left(S_{t+1}\right) \; | \; S_{t}=s, A_{t}=a\right] \\
+&=\max _{a} \sum_{s^{\prime}, r} p\left(s^{\prime}, r \; | \; s, a\right)\left[r+\gamma v_{*}\left(s^{\prime}\right)\right]
+\end{aligned}
+</script></p>
+<p><script type="math/tex; mode=display">
+\begin{aligned}
+q_{*}(s, a) &=\mathbb{E}\left[R_{t+1}+\gamma \max _{a^{\prime}} q_{*}\left(S_{t+1}, a^{\prime}\right) \; | \; S_{t}=s, A_{t}=a\right] \\
+&=\sum_{s^{\prime}, r} p\left(s^{\prime}, r \; | \; s, a\right)\left[r+\gamma \max _{a^{\prime}} q_{*}\left(s^{\prime}, a^{\prime}\right)\right] \end{aligned}
+</script></p>
+<h2 id="dynamic-programming"><a name="dynamic-programming" class="anchor-navigation-ex-anchor" href="#dynamic-programming"><i class="fa fa-link" aria-hidden="true"></i></a>3. Dynamic Programming</h2>
+<p>The term dynamic programming (DP) refers to a collection of algorithms that can be used to compute optimal policies given a perfect model of the environment as a Markov decision process (MDP). In Dynamic Programming, we know exactly what the model is, that is <script type="math/tex; ">p\left(s^{\prime}, r \; | \; s, a\right), \text { for all } s \in \mathcal{S} \text { and } a \in \mathcal{A}(s)</script>.</p>
+<h3 id="policy-evaluation"><a name="policy-evaluation" class="anchor-navigation-ex-anchor" href="#policy-evaluation"><i class="fa fa-link" aria-hidden="true"></i></a>3.1. Policy Evaluation</h3>
+<p><img src="pic/RL_book/RL_2.png" alt=""></p>
+<h3 id="policy-improvement"><a name="policy-improvement" class="anchor-navigation-ex-anchor" href="#policy-improvement"><i class="fa fa-link" aria-hidden="true"></i></a>3.2. Policy Improvement</h3>
+<p><strong>Policy improvement theorem</strong>: Let <script type="math/tex; ">\pi</script> and <script type="math/tex; ">\pi^{\prime}</script> be any pair of deterministic policies such that, for all <script type="math/tex; ">s \in \mathcal{S}</script>,</p>
+<p><script type="math/tex; mode=display">
+q_{\pi}\left(s, \pi^{\prime}(s)\right) \geq v_{\pi}(s)
+</script></p>
+<p>then for all <script type="math/tex; ">s \in \mathcal{S}</script>,</p>
+<p><script type="math/tex; mode=display">
+v_{\pi^{\prime}}(s) \geq v_{\pi}(s)
+</script></p>
+<p>Therefore, the new greedy policy <script type="math/tex; ">\pi^\prime</script> is given by</p>
+<p><script type="math/tex; mode=display">
+\begin{aligned}
+\pi^{\prime}(s)
+& \doteq \underset{a}{\arg \max } q_{\pi}(s, a) \\
+&=\underset{a}{\arg \max } \mathbb{E}\left[R_{t+1}+\gamma v_{\pi}\left(S_{t+1}\right) \; | \;  S_{t}=s, A_{t}=a\right] \\
+&=\underset{a}{\arg \max } \sum_{s^{\prime}, r} p\left(s^{\prime}, r \; | \;  s, a\right)\left[r+\gamma v_{\pi}\left(s^{\prime}\right)\right]
+\end{aligned}
+</script></p>
+<p>If the new policy <script type="math/tex; ">\pi^\prime</script> is just as good as the old one <script type="math/tex; ">\pi</script>, then <script type="math/tex; ">\pi^\prime</script> is the optimal policy (satisfies Bellman optimal equation):</p>
+<p><script type="math/tex; mode=display">
+\begin{aligned}
+v_{\pi^{\prime}}(s)
+&=\max _{a} \mathbb{E}\left[R_{t+1}+\gamma v_{\pi^{\prime}}\left(S_{t+1}\right) \; | \;  S_{t}=s, A_{t}=a\right] \\
+&=\max _{a} \sum_{s^{\prime}, r} p\left(s^{\prime}, r \; | \; s, a\right)\left[r+\gamma v_{\pi^{\prime}}\left(s^{\prime}\right)\right]
+\end{aligned}
+</script></p>
+<h3 id="policy-iteration"><a name="policy-iteration" class="anchor-navigation-ex-anchor" href="#policy-iteration"><i class="fa fa-link" aria-hidden="true"></i></a>3.3. Policy Iteration</h3>
+<p>Combine policy evaluation and policy improvement together, we have:</p>
+<p><img src="pic/RL_book/RL_3.png" alt=""></p>
+<h3 id="value-iteration"><a name="value-iteration" class="anchor-navigation-ex-anchor" href="#value-iteration"><i class="fa fa-link" aria-hidden="true"></i></a>3.4. Value Iteration</h3>
+<p>One drawback to policy iteration is that each of its iterations involves policy evaluation, which may itself be a protracted iterative computation requiring multiple sweeps through the state set.</p>
+<p>We can consider using policy evaluation where it stops after just one sweep (one update of each state). This algorithm is called value iteration.</p>
+<p><img src="pic/RL_book/RL_4.png" alt=""></p>
+<h2 id="monte-carlo-methods"><a name="monte-carlo-methods" class="anchor-navigation-ex-anchor" href="#monte-carlo-methods"><i class="fa fa-link" aria-hidden="true"></i></a>4. Monte Carlo Methods</h2>
+<h3 id="monte-carlo-prediction"><a name="monte-carlo-prediction" class="anchor-navigation-ex-anchor" href="#monte-carlo-prediction"><i class="fa fa-link" aria-hidden="true"></i></a>4.1. Monte Carlo Prediction</h3>
+<p><img src="pic/RL_book/RL_5.png" alt=""></p>
+<p><strong>If a model is not available, then it is particularly useful to estimate action values (the values of state&#x2013;action pairs) rather than state values. With a model (in DP case), state values alone are sufficient to determine a policy; one simply looks ahead one step and chooses whichever action leads to the best combination of reward and next state.</strong></p>
+<h3 id="monte-carlo-control"><a name="monte-carlo-control" class="anchor-navigation-ex-anchor" href="#monte-carlo-control"><i class="fa fa-link" aria-hidden="true"></i></a>4.2. Monte Carlo Control</h3>
+<p>The algorithm is similar with DP case. However, we need to ensure all state-action pairs have a chance to be visited.</p>
+<p><img src="pic/RL_book/RL_6.png" alt=""></p>
+<p>We can eliminate the exploring start assumption by using a <script type="math/tex; ">\epsilon</script>-soft policy as follows:</p>
+<p><img src="pic/RL_book/RL_7.png" alt=""></p>
+<p>It can be shown that</p>
+<p><script type="math/tex; mode=display">
+\begin{aligned}
+q_{\pi}\left(s, \pi^{\prime}(s)\right)
+&=\sum_{a} \pi^{\prime}(a | s) q_{\pi}(s, a) \\
+&=\frac{\varepsilon}{|\mathcal{A}(s)|} \sum_{a} q_{\pi}(s, a)+(1-\varepsilon) \max _{a} q_{\pi}(s, a) \\
+&\geq \frac{\varepsilon}{|\mathcal{A}(s)|} \sum_{a} q_{\pi}(s, a)+(1-\varepsilon) \sum_{a} \frac{\pi(a | s)-\frac{\varepsilon}{|\mathcal{A}(s)|}}{1-\varepsilon} q_{\pi}(s, a) \\
+&= \frac{\varepsilon}{|\mathcal{A}(s)|} \sum_{a} q_{\pi}(s, a)-\frac{\varepsilon}{|\mathcal{A}(s)|} \sum_{a} q_{\pi}(s, a)+\sum_{a} \pi(a | s) q_{\pi}(s, a) \\
+&= v_{\pi}(s)
+\end{aligned}
+</script></p>
+<p>where the greater or equal is because the sum is a weighted average with nonnegative weights summing to <script type="math/tex; ">1</script>, and as such it must be less than or equal to the largest number averaged.</p>
+<p>By the policy improvement theorem <script type="math/tex; ">\pi^\prime</script> is better than <script type="math/tex; ">\pi</script> and equality can hold only when both <script type="math/tex; ">\pi^\prime</script> and <script type="math/tex; ">\pi</script> are optimal among the <script type="math/tex; ">\epsilon</script>-soft policies, that is, when they are better than or equal to all other <script type="math/tex; ">\epsilon</script>-soft policies.</p>
+<h3 id="off-policy-prediction-and-control-via-importance-sampling"><a name="off-policy-prediction-and-control-via-importance-sampling" class="anchor-navigation-ex-anchor" href="#off-policy-prediction-and-control-via-importance-sampling"><i class="fa fa-link" aria-hidden="true"></i></a>4.3. Off-policy Prediction and Control via Importance Sampling</h3>
+<p>A more straightforward approach is to use two policies, one that is learned about and that becomes the optimal policy, and one that is more exploratory and is used to generate behavior. The policy being learned about is called the target policy, and the policy used to generate behavior is called the behavior policy. In this case we say that learning is from data <code>off&apos;&apos; the target policy, and the overall process is termed</code>off&apos;&apos;-policy learning.</p>
+<p>Consider the target policy <script type="math/tex; ">\pi</script> and the behavior policy <script type="math/tex; ">b</script>, under <script type="math/tex; ">\pi</script>, the state-action trajectory start from <script type="math/tex; ">S_t</script> has the probability,</p>
+<p><script type="math/tex; mode=display">
+\begin{array}{l}{\operatorname{Pr}\left\{A_{t}, S_{t+1}, A_{t+1}, \ldots, S_{T} \; | \; S_{t}, A_{t: T-1} \sim \pi\right\}} \\ {\quad=\pi\left(A_{t} \; | \; S_{t}\right) p\left(S_{t+1} \; | \; S_{t}, A_{t}\right) \pi\left(A_{t+1} \; | \; S_{t+1}\right) \cdots p\left(S_{T} \; | \; S_{T-1}, A_{T-1}\right)} \\ {\quad=\prod_{k=t}^{T-1} \pi\left(A_{k} \; | \; S_{k}\right) p\left(S_{k+1} \; | \; S_{k}, A_{k}\right)}\end{array}
+</script></p>
+<p>the relative probability of the trajectory under the target and behavior policies is</p>
+<p><script type="math/tex; mode=display">
+\rho_{t: T-1} \doteq \frac{\prod_{k=t}^{T-1} \pi\left(A_{k} \; | \; S_{k}\right) p\left(S_{k+1} \; | \; S_{k}, A_{k}\right)}{\prod_{k=t}^{T-1} b\left(A_{k} \; | \; S_{k}\right) p\left(S_{k+1} \; | \; S_{k}, A_{k}\right)}=\prod_{k=t}^{T-1} \frac{\pi\left(A_{k} \; | \; S_{k}\right)}{b\left(A_{k} \; | \; S_{k}\right)}
+</script></p>
+<p>Therefore,</p>
+<p><script type="math/tex; mode=display">
+\begin{aligned}
+\mathbb{E} \left[G_t \; | \; S_t\right] = v_b(s), \; \; \mathbb{E}\left[\rho_{t: T-1} G_{t} | S_{t}=s\right]=v_{\pi}(s)
+\end{aligned}
+</script></p>
+<p>To estimate <script type="math/tex; ">v_\pi(s)</script>, we simply scale the returns by the ratios and average the results:</p>
+<p><script type="math/tex; mode=display">
+V(s) \doteq \frac{\sum_{t \in \mathcal{T}(s)} \rho_{t: T(t)-1} G_{t}}{|\mathcal{T}(s)|}, \; \text{ or } \; V(s) \doteq \frac{\sum_{t \in \mathcal{T}(s)} \rho_{t: T(t)-1} G_{t}}{\sum_{t \in \mathcal{T}(s)} \rho_{t: T(t)-1}}
+</script></p>
+<p>where <script type="math/tex; ">\mathcal{T}(s)</script> would only include time steps that were first visits to s within their episodes.</p>
+<p>The incremental implementation of off-policy Monte Carlo evaluation is shown below, where <script type="math/tex; ">C(S_t, A_t)</script> is the cumulative weights.</p>
+<p><img src="pic/RL_book/RL_8.png" alt=""></p>
+<p>The corresponding off-policy MC control algorithm is as follows.</p>
+<p><img src="pic/RL_book/RL_9.png" alt=""></p>
+<p>Notice that <script type="math/tex; ">\pi(S_t)</script> is taken as a greedy policy and only when it coincides with the path of policy $b$, the update will continue within a episode. Therefore, <script type="math/tex; ">\pi(A_t | S_t) = 1</script>.</p>
+<h3 id="optimize-the-off-policy-importance-sampling"><a name="optimize-the-off-policy-importance-sampling" class="anchor-navigation-ex-anchor" href="#optimize-the-off-policy-importance-sampling"><i class="fa fa-link" aria-hidden="true"></i></a>4.4. Optimize the Off-policy Importance Sampling</h3>
+<p>Define <strong>flat partial returns</strong>:</p>
+<p><script type="math/tex; mode=display">
+\bar{G}_{t: h} \doteq R_{t+1}+R_{t+2}+\cdots+R_{h}, \quad 0 \leq t<h \leq T
+</script></p>
+<p>Therefore,</p>
+<p><script type="math/tex; mode=display">
+\begin{aligned} G_{t}
+&\doteq R_{t+1}+\gamma R_{t+2}+\gamma^{2} R_{t+3}+\cdots+\gamma^{T-t-1} R_{T} \\
+&=(1-\gamma) R_{t+1} \\
+&\quad +(1-\gamma) \gamma\left(R_{t+1}+R_{t+2}\right) \\
+&\quad +(1-\gamma) \gamma^{2}\left(R_{t+1}+R_{t+2}+R_{t+3}\right) \\
+&\quad \vdots \\
+&\quad +(1-\gamma) \gamma^{T-t-2}\left(R_{t+1}+R_{t+2}+\cdots+R_{T-1}\right) \\
+&\quad +\gamma^{T-t-1}\left(R_{t+1}+R_{t+2}+\cdots+R_{T}\right) \\
+&= (1-\gamma) \sum_{h=t+1}^{T-1} \gamma^{h-t-1} \bar{G}_{t: h}+\gamma^{T-t-1} \bar{G}_{t: T} \end{aligned}
+</script></p>
+<p>And the ordinary importance-sampling estimator and weighted importance-sampling estimator can be written as,</p>
+<p><script type="math/tex; mode=display">
+\begin{aligned}
+V(s) &\doteq \frac{\sum_{t \in \mathcal{T}(s)}\left((1-\gamma) \sum_{h=t+1}^{T(t)-1} \gamma^{h-t-1} \rho_{t: h-1} \bar{G}_{t: h}+\gamma^{T(t)-t-1} \rho_{t: T(t)-1} \bar{G}_{t: T(t)}\right)}{|\mathcal{T}(s)|} \\
+V(s) &\doteq \frac{\sum_{t \in \mathcal{T}(s)}\left((1-\gamma) \sum_{h=t+1}^{T(t)-1} \gamma^{h-t-1} \rho_{t: h-1} \bar{G}_{t: h}+\gamma^{T(t)-t-1} \rho_{t: T(t)-1} \bar{G}_{t: T(t)}\right)}{\sum_{t \in \mathcal{T}(s)}\left((1-\gamma) \sum_{h=t+1}^{T(t)-1} \gamma^{h-t-1} \rho_{t: h-1}+\gamma^{T(t)-t-1} \rho_{t: T(t)-1}\right)}
+\end{aligned}
+</script></p>
+<p>The essence of the idea is to think of discounting as determining a probability of termination or, equivalently, a degree of partial termination. Therefore, the variance of importance sampling can be reduced.</p>
+<p>In the off-policy estimators, each term of the sum in the numerator is itself a sum:</p>
+<p><script type="math/tex; mode=display">
+\begin{aligned}
+\rho_{t: T-1} G_{t}
+&=\rho_{t: T-1}\left(R_{t+1}+\gamma R_{t+2}+\cdots+\gamma^{T-t-1} R_{T}\right) \\
+&=\rho_{t: T-1} R_{t+1}+\gamma \rho_{t: T-1} R_{t+2}+\cdots+\gamma^{T-t-1} \rho_{t: T-1} R_{T}
+\end{aligned}
+</script></p>
+<p>where</p>
+<p><script type="math/tex; mode=display">
+\rho_{t: T-1} R_{t+1}=\frac{\pi\left(A_{t} \; | \; S_{t}\right)}{b\left(A_{t} \; | \; S_{t}\right)} \frac{\pi\left(A_{t+1} \; | \; S_{t+1}\right)}{b\left(A_{t+1} \; | \; S_{t+1}\right)} \frac{\pi\left(A_{t+2} \; | \; S_{t+2}\right)}{b\left(A_{t+2} \; | \; S_{t+2}\right)} \cdots \frac{\pi\left(A_{T-1} \; | \; S_{T-1}\right)}{b\left(A_{T-1} \; | \; S_{T-1}\right)} R_{t+1}
+</script></p>
+<p>We can show that,</p>
+<p><script type="math/tex; mode=display">
+\begin{aligned}
+\mathbb{E}\left[\rho_{t: T-1} R_{t+1}\right] &=\mathbb{E}\left[\rho_{t: t} R_{t+1}\right] \\
+\mathbb{E}\left[\rho_{t: T-1} R_{t+k}\right] &=\mathbb{E}\left[\rho_{t: t+k-1} R_{t+k}\right]
+\end{aligned}
+</script></p>
+<p>Thus,</p>
+<p><script type="math/tex; mode=display">
+\mathbb{E}\left[\rho_{t: T-1} G_{t}\right] = \mathbb{E}\left[\tilde{G}_{t}\right]
+</script></p>
+<p>where</p>
+<p><script type="math/tex; mode=display">
+\tilde{G}_{t} = \rho_{t: t} R_{t+1}+\gamma \rho_{t: t+1} R_{t+2}+\gamma^{2} \rho_{t: t+2} R_{t+3}+\cdots+\gamma^{T-t-1} \rho_{t: T-1} R_{T}
+</script></p>
+<p>and the ordinary/weighted average of returns can be defined accordingly. This method, known as <strong>Per-decision Importance Sampling</strong>, is useful to reduce the variance of importance sampling.</p>
+<h2 id="temporal-difference-learning"><a name="temporal-difference-learning" class="anchor-navigation-ex-anchor" href="#temporal-difference-learning"><i class="fa fa-link" aria-hidden="true"></i></a>5. Temporal-Difference Learning</h2>
+<h3 id="td0-learning-on-policy"><a name="td0-learning-on-policy" class="anchor-navigation-ex-anchor" href="#td0-learning-on-policy"><i class="fa fa-link" aria-hidden="true"></i></a>5.1. TD(0) Learning: On-policy</h3>
+<p>We know that</p>
+<p><script type="math/tex; mode=display">
+\begin{aligned}
+v_{\pi}(s)
+&\doteq \mathbb{E}_{\pi}\left[G_{t} \; | \; S_{t}=s\right] \\
+&=\mathbb{E}_{\pi}\left[R_{t+1}+\gamma G_{t+1} \; | \; S_{t}=s\right] \\
+&=\mathbb{E}_{\pi}\left[R_{t+1}+\gamma v_{\pi}\left(S_{t+1}\right) \; | \; S_{t}=s\right]
+\end{aligned}
+</script></p>
+<p>TD(0) is a one-step bootstrap method which plug-in the current estimation of value function.</p>
+<p><img src="pic/RL_book/RL_10.png" alt=""></p>
+<p>The TD(0) control algorithm (a.k.a. <strong>Sarsa</strong>) is</p>
+<p><img src="pic/RL_book/RL_11.png" alt=""></p>
+<p>The convergence properties of the Sarsa algorithm depend on the nature of the policy&#x2019;s dependence on Q. For example, one could use <script type="math/tex; ">\epsilon</script>-greedy policies. Sarsa converges with probability <script type="math/tex; ">1</script> to an optimal policy and action-value function as long as all state&#x2013;action pairs are visited an infinite number of times and the policy converges in the limit to the greedy policy.</p>
+<h3 id="q-learning-off-policy-td-control"><a name="q-learning-off-policy-td-control" class="anchor-navigation-ex-anchor" href="#q-learning-off-policy-td-control"><i class="fa fa-link" aria-hidden="true"></i></a>5.2. Q-learning: Off-policy TD Control</h3>
+<p>Notice that in TD(0) algorithm above, the step we take is based on current estimation of <script type="math/tex; ">Q(S_t, A_t)</script> and the bootstrap method we used to update <script type="math/tex; ">Q(S_t,A_t)</script> is also based on current estimation of <script type="math/tex; ">Q(S_t, A_t)</script>. We can consider a off-policy control algorithm decouple the update from current estimation of <script type="math/tex; ">Q(S_t, A_t)</script>.</p>
+<p><script type="math/tex; mode=display">
+Q\left(S_{t}, A_{t}\right) \leftarrow Q\left(S_{t}, A_{t}\right)+\alpha\left[R_{t+1}+\gamma \max _{a} Q\left(S_{t+1}, a\right)-Q\left(S_{t}, A_{t}\right)\right]
+</script></p>
+<p><img src="pic/RL_book/RL_12.png" alt=""></p>
+<p>We may also use expected value instead of maximum one:</p>
+<p><script type="math/tex; mode=display">
+\begin{aligned}
+Q\left(S_{t}, A_{t}\right)
+&\leftarrow Q\left(S_{t}, A_{t}\right)+\alpha\left[R_{t+1}+\gamma \mathbb{E}_{\pi}\left[Q\left(S_{t+1}, A_{t+1}\right) \; | \; S_{t+1}\right]-Q\left(S_{t}, A_{t}\right)\right] \\
+&\leftarrow Q\left(S_{t}, A_{t}\right)+\alpha\left[R_{t+1}+\gamma \sum_{a} \pi\left(a \; | \; S_{t+1}\right) Q\left(S_{t+1}, a\right)-Q\left(S_{t}, A_{t}\right)\right]
+\end{aligned}
+</script></p>
+<h3 id="double-q-learning"><a name="double-q-learning" class="anchor-navigation-ex-anchor" href="#double-q-learning"><i class="fa fa-link" aria-hidden="true"></i></a>5.3. Double-Q Learning</h3>
+<p>In Q-learning the target policy is the greedy policy given the current action values, which is defined with a max, and in Sarsa the policy is often <script type="math/tex; ">\epsilon</script>-greedy, which also involves a maximization operation. In these algorithms, a maximum over estimated values is used implicitly as an estimate of the maximum value, which can lead to a significant positive bias.</p>
+<p>We can consider using two policy together and update one and only one of them each time.</p>
+<p><img src="pic/RL_book/RL_13.png" alt=""></p>
+<h2 id="n-step-bootstrapping"><a name="n-step-bootstrapping" class="anchor-navigation-ex-anchor" href="#n-step-bootstrapping"><i class="fa fa-link" aria-hidden="true"></i></a>6. n-step Bootstrapping</h2>
+<h3 id="n-step-on-policy-learning"><a name="n-step-on-policy-learning" class="anchor-navigation-ex-anchor" href="#n-step-on-policy-learning"><i class="fa fa-link" aria-hidden="true"></i></a>6.1. n-step On-policy learning</h3>
+<p>The complete return is</p>
+<p><script type="math/tex; mode=display">
+G_{t} \doteq R_{t+1}+\gamma R_{t+2}+\gamma^{2} R_{t+3}+\cdots+\gamma^{T-t-1} R_{T}
+</script></p>
+<p>In one-step updates the target is the first reward plus the discounted estimated value of the next state, which we call the one-step return:</p>
+<p><script type="math/tex; mode=display">
+G_{t: t+1} \doteq R_{t+1}+\gamma V_{t}\left(S_{t+1}\right)
+</script></p>
+<p>Similarly, we can define n-step return as</p>
+<p><script type="math/tex; mode=display">
+G_{t: t+n} \doteq R_{t+1}+\gamma R_{t+2}+\cdots+\gamma^{n-1} R_{t+n}+\gamma^{n} V_{t+n-1}\left(S_{t+n}\right)
+</script></p>
+<p>The n-step return has a better prediction error than one-step return under worst case:</p>
+<p><script type="math/tex; mode=display">
+\max _{s}\left|\mathbb{E}_{\pi}\left[G_{t: t+n} \; | \; S_{t}=s\right]-v_{\pi}(s)\right| \leq \gamma^{n} \max _{s}\left|V_{t+n-1}(s)-v_{\pi}(s)\right|
+</script></p>
+<p><img src="pic/RL_book/RL_14.png" alt=""></p>
+<p>and the n-step Sarsa can be derived similarly.</p>
+<p><img src="pic/RL_book/RL_15.png" alt=""></p>
+<h3 id="n-step-off-policy-learning"><a name="n-step-off-policy-learning" class="anchor-navigation-ex-anchor" href="#n-step-off-policy-learning"><i class="fa fa-link" aria-hidden="true"></i></a>6.2. n-step Off-policy Learning</h3>
+<p>Consider the target policy <script type="math/tex; ">\pi</script> and the behavior policy <script type="math/tex; ">b</script>. Define</p>
+<p><script type="math/tex; mode=display">
+\rho_{t: h} \doteq \prod_{k=t}^{\min (h, T-1)} \frac{\pi\left(A_{k} \; | \; S_{k}\right)}{b\left(A_{k} \; | \; S_{k}\right)}
+</script></p>
+<p>Therefore, the off-policy n-step Sarsa is as follows.</p>
+<p><img src="pic/RL_book/RL_16.png" alt=""></p>
+<h3 id="per-decision-methods-with-control-variates"><a name="per-decision-methods-with-control-variates" class="anchor-navigation-ex-anchor" href="#per-decision-methods-with-control-variates"><i class="fa fa-link" aria-hidden="true"></i></a>6.3. Per-decision Methods with Control Variates</h3>
+<p>For the n steps ending at horizon <script type="math/tex; ">h</script>, the n-step return can be written</p>
+<p><script type="math/tex; mode=display">
+G_{t: h}=R_{t+1}+\gamma G_{t+1: h}
+</script></p>
+<p>with <script type="math/tex; ">G_{h: h} \doteq V_{h-1}\left(S_{h}\right)</script>. All of the resulting experience, including the first reward <script type="math/tex; ">R_{t+1}</script> and the next state <script type="math/tex; ">S_{t+1}</script> must be weighted by the importance sampling ratio for time <script type="math/tex; ">t</script>, <script type="math/tex; ">\rho_{t}=\frac{\pi\left(A_{t} \; | \; S_{t}\right)}{b\left(A_{t} \; | \; S_{t}\right)}</script>. If <script type="math/tex; ">\rho_t</script> is zero, a simple weighting would result in the n-step return being zero, which could result in high variance when it was used as a target. Instead, consider</p>
+<p><script type="math/tex; mode=display">
+G_{t: h} \doteq \rho_{t}\left(R_{t+1}+\gamma G_{t+1: h}\right)+\left(1-\rho_{t}\right) V_{h-1}\left(S_{t}\right)
+</script></p>
+<p>If <script type="math/tex; ">\rho_t</script> is zero, we just use current value to update (which causes no change), and since the expected value of <script type="math/tex; ">\rho_t</script> is 1, this above update rule does not change the expected update.</p>
+<p>For n-step expected Sarsa with the following rule:</p>
+<p><script type="math/tex; mode=display">
+Q_{t+n}\left(S_{t}, A_{t}\right) \doteq Q_{t+n-1}\left(S_{t}, A_{t}\right)+\alpha \rho_{t+1: t+n}\left[G_{t: t+n}-Q_{t+n-1}\left(S_{t}, A_{t}\right)\right]
+</script></p>
+<p>we can write its corresponding control covariate method as</p>
+<p><script type="math/tex; mode=display">
+\begin{aligned}
+G_{t: h}
+&\doteq R_{t+1}+\gamma\left(\rho_{t+1} G_{t+1: h}+\bar{V}_{h-1}\left(S_{t+1}\right)-\rho_{t+1} Q_{h-1}\left(S_{t+1}, A_{t+1}\right)\right) \\
+&=R_{t+1}+\gamma \rho_{t+1}\left(G_{t+1: h}-Q_{h-1}\left(S_{t+1}, A_{t+1}\right)\right)+\gamma \bar{V}_{h-1}\left(S_{t+1}\right), \quad t<h \leq T
+\end{aligned}
+</script></p>
+<p>when <script type="math/tex; ">\rho_t = 0</script>, we use the off-policy expectation <script type="math/tex; ">\bar{V}_{t}(s) \doteq \sum_{a} \pi(a | s) Q_{t}(s, a)</script> to make the update. And the expectation of <script type="math/tex; ">\bar{V}_{h-1}\left(S_{t+1}\right)-\rho_{t+1} Q_{h-1}\left(S_{t+1}, A_{t+1}\right)</script> is zero.</p>
+<h3 id="off-policy-learning-without-importance-sampling-the-n-step-tree-backup-algorithm"><a name="off-policy-learning-without-importance-sampling-the-n-step-tree-backup-algorithm" class="anchor-navigation-ex-anchor" href="#off-policy-learning-without-importance-sampling-the-n-step-tree-backup-algorithm"><i class="fa fa-link" aria-hidden="true"></i></a>6.4. Off-policy Learning Without Importance Sampling: The n-step Tree Backup Algorithm</h3>
+<p>We consider a off-policy without importance sampling. In n-step off-policy Sarsa, we estimate <script type="math/tex; ">R_{t+j}, 1 \leq j \leq n</script> using the reward from another policy <script type="math/tex; ">b</script>. We now consider estimate this return with expected value over all actions except the action we take.</p>
+<p>The one-step return (target) is the same as that of Expected Sarsa,</p>
+<p><script type="math/tex; mode=display">
+G_{t: t+1} \doteq R_{t+1}+\gamma \sum_{a} \pi\left(a \; | \; S_{t+1}\right) Q_{t}\left(S_{t+1}, a\right)
+</script></p>
+<p>for <script type="math/tex; ">t < T</script> and the two-step tree-backup return is</p>
+<p><script type="math/tex; mode=display">
+\begin{aligned}
+G_{t: t+2} &\doteq R_{t+1}+\gamma
+ \sum_{a \neq A_{t+1}} \pi\left(a \; | \; S_{t+1}\right) Q_{t+1}\left(S_{t+1}, a\right)
+\\ &\quad \quad \quad \; \; +\gamma \pi\left(A_{t+1} \; | \; S_{t+1}\right)\left(R_{t+2}+\gamma \sum_{a} \pi\left(a \; | \; S_{t+2}\right) Q_{t+1}\left(S_{t+2}, a\right)\right) \\
+&= R_{t+1}+\gamma \sum_{a \neq A_{t+1}} \pi\left(a \; | \; S_{t+1}\right) Q_{t+1}\left(S_{t+1}, a\right)+\gamma \pi\left(A_{t+1} \; | \; S_{t+1}\right) G_{t+1: t+2} \end{aligned}
+</script></p>
+<p>The latter form suggests the general recursive definition of the tree-backup n-step return:</p>
+<p><script type="math/tex; mode=display">
+G_{t: t+n} \doteq R_{t+1}+\gamma \sum_{a \neq A_{t+1}} \pi\left(a \; | \; S_{t+1}\right) Q_{t+n-1}\left(S_{t+1}, a\right)+\gamma \pi\left(A_{t+1} \; | \; S_{t+1}\right) G_{t+1: t+n}
+</script></p>
+<p>This can be illustrated from the backup diagram below.</p>
+<p><img src="pic/RL_book/RL_17.png" alt=""></p>
+<p>and the n-step tree-backup algorithm for control is:</p>
+<p><img src="pic/RL_book/RL_18.png" alt=""></p>
+<h3 id="a-unifying-algorithm"><a name="a-unifying-algorithm" class="anchor-navigation-ex-anchor" href="#a-unifying-algorithm"><i class="fa fa-link" aria-hidden="true"></i></a>6.5. A Unifying Algorithm</h3>
+<p>Consider unifying the importance sampling with tree-backup algorithm. First we write the tree-backup n-step return in terms of the horizon <script type="math/tex; ">h = t + n</script> and then in terms of the expected approximate value <script type="math/tex; ">\overline{V}</script>,</p>
+<p><script type="math/tex; mode=display">
+\begin{aligned}
+G_{t: h}
+&=R_{t+1}+\gamma \sum_{a \neq A_{t+1}} \pi\left(a | S_{t+1}\right) Q_{h-1}\left(S_{t+1}, a\right)+\gamma \pi\left(A_{t+1} | S_{t+1}\right) G_{t+1: h} \\
+&=R_{t+1}+\gamma \bar{V}_{h-1}\left(S_{t+1}\right)-\gamma \pi\left(A_{t+1} | S_{t+1}\right) Q_{h-1}\left(S_{t+1}, A_{t+1}\right)+\gamma \pi\left(A_{t+1} | S_{t+1}\right) G_{t+1: h} \\
+&=R_{t+1}+\gamma \pi\left(A_{t+1} | S_{t+1}\right)\left(G_{t+1: h}-Q_{h-1}\left(S_{t+1}, A_{t+1}\right)\right)+\gamma \bar{V}_{h-1}\left(S_{t+1}\right)
+\end{aligned}
+</script></p>
+<p>after which it is exactly like the <a href="RL_book.html###Per-decision%20Methods%20with%20Control%20Variates">n-step return for Sarsa with control variates</a> except with the action probability <script type="math/tex; ">\pi\left(A_{t+1} | S_{t+1}\right)</script> substituted for the importance-sampling ratio <script type="math/tex; ">\rho_{t+1}</script>. For <script type="math/tex; ">Q(\sigma)</script>, we slide linearly between these two cases:</p>
+<p><script type="math/tex; mode=display">
+G_{t: h} \doteq R_{t+1}+\gamma\left(\sigma_{t+1} \rho_{t+1}+\left(1-\sigma_{t+1}\right) \pi\left(A_{t+1} | S_{t+1}\right)\right)\left(G_{t+1: h}-Q_{h-1}\left(S_{t+1}, A_{t+1}\right)\right) + \gamma \overline{V}_{h-1}(S_{t+1})
+</script></p>
+<p><img src="pic/RL_book/RL_19.png" alt=""></p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="Double_ML.html" class="navigation navigation-prev " aria-label="Previous page: Double machine learning for treatment effect">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="RL_Book2.html" class="navigation navigation-next " aria-label="Next page: Part 2: Reinforcement Learning: An Introduction (2)">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Part 1: Reinforcement Learning: An Introduction","level":"1.4.17","depth":2,"next":{"title":"Part 2: Reinforcement Learning: An Introduction (2)","level":"1.4.18","depth":2,"path":"notes/RL_Book2.md","ref":"./notes/RL_Book2.md","articles":[]},"previous":{"title":"Double machine learning for treatment effect","level":"1.4.16","depth":2,"path":"notes/Double_ML.md","ref":"./notes/Double_ML.md","articles":[]},"dir":"ltr"},"config":{"plugins":["mathjax","image-captions","github","anchors","anchor-navigation-ex","-sharing","sharing-plus@^0.0.2","github-buttons","embed-pdf","livereload"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"github":{"url":"https://github.com/ZizouHe/"},"livereload":{},"search":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":false},"mode":"float","multipleH1":false,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":true},"github-buttons":{"buttons":[{"user":"ZizouHe","repo":"reading-notes","type":"star","size":"small"}]},"mathjax":{"forceSVG":false,"version":"2.6-latest"},"sharing":{"qq":true,"all":["facebook","google","twitter","weibo","qq","linkedin"],"douban":false,"facebook":true,"weibo":true,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":false,"messenger":false,"line":false,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"embed-pdf":{},"image-captions":{"caption":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","align":"right","variable_name":"_pictures"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{"_pictures":[{"backlink":"./notes/RDN.html#fig1.4.2.1","level":"1.4.2","align":"right","list_caption":"Figure: Example (a) data graph and (b) model graph.","alt":"Example (a) data graph and (b) model graph.","nro":1,"url":"./pic/RDN-1.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Example (a) data graph and (b) model graph.","attributes":{},"skip":false,"key":"1.4.2.1"},{"backlink":"./notes/RDN.html#fig1.4.2.2","level":"1.4.2","align":"right","list_caption":"Figure: RDN inference algorithm.","alt":"RDN inference algorithm.","nro":2,"url":"./pic/RDN-2.png","index":2,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"RDN inference algorithm.","attributes":{},"skip":false,"key":"1.4.2.2"},{"backlink":"./notes/Faster_Frank_Wolfe.html#fig1.4.14.1","level":"1.4.14","align":"right","list_caption":"Figure: Frank-Wolfe Algorithm","alt":"Frank-Wolfe Algorithm","nro":3,"url":"./pic/Frank-Wolfe.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Frank-Wolfe Algorithm","attributes":{},"skip":false,"key":"1.4.14.1"},{"backlink":"./notes/Fin_Fan_Book.html#fig1.4.15.1","level":"1.4.15","align":"right","list_caption":"Figure: Efficient Frontier with risk-free asset","alt":"Efficient Frontier with risk-free asset","nro":4,"url":"./pic/Eff_Front_1.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Efficient Frontier with risk-free asset","attributes":{},"skip":false,"key":"1.4.15.1"},{"backlink":"./notes/Fin_Fan_Book.html#fig1.4.15.2","level":"1.4.15","align":"right","list_caption":"Figure: Efficient Frontier without risk-free asset","alt":"Efficient Frontier without risk-free asset","nro":5,"url":"./pic/Eff_Front_2.png","index":2,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Efficient Frontier without risk-free asset","attributes":{},"skip":false,"key":"1.4.15.2"}]},"title":"Reading List & Notes","gitbook":"*"},"file":{"path":"notes/RL_Book1.md","mtime":"2022-10-26T16:39:28.915Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2024-06-16T16:07:48.675Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="https://cdn.mathjax.org/mathjax/2.6-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-mathjax/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing-plus/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github-buttons/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

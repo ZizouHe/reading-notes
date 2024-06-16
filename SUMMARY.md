@@ -16,8 +16,10 @@
     * [Quant Finance Notes](./contents/qfn.md)
     * [Machine Learning Notes](./contents/mln.md)
     * [Temp files](./notes/temp.md)
+    * [Temp factor timing](./notes/temp_ft.md)
     
 * [Reading List](./contents/reading.md)
+    
     * [Bayesian Machine Learning](./contents/bayesing.md)
     * [Deep Learning](./contents/DLing.md)
     * [Machine Learning](./contents/MLing.md)

@@ -379,3 +379,33 @@ Key findings of the study include:
 6. **Conclusion**: The authors conclude that the increased frequency of trend breaks post-GFC has contributed to the weaker performance of trend-following strategies. They demonstrate that a dynamic approach to trend-following, which adapts to market corrections and rebounds, can recover much of the loss experienced by static-window trend following.
 
 The paper contributes to the literature on trend-following investing by highlighting the importance of adapting strategies to account for changes in market dynamics, particularly the frequency of trend breaks. It offers investors a method to potentially improve the performance of their trend-following strategies in the face of market volatility and turning points.
+
+
+
+## Momentum Turning Points
+
+The paper titled "Momentum Turning Points" from the Journal of Financial Economics (2023), authored by Christian L. Goulding, Campbell R. Harvey, and Michele G. Mazzoleni, explores the dynamics of time-series (TS) momentum strategies in the stock market. The authors use slow and fast TS momentum to identify and characterize different market cycles, including Bull, Correction, Bear, and Rebound phases. They develop a model to analyze the performance of these strategies under varying conditions of expected returns and noise levels in realized returns.
+
+Key points from the paper include:
+
+1. **Market Cycles Identification**: The authors distinguish four market cycles based on the agreement or disagreement between slow (12-month) and fast (1-month) momentum indicators. These cycles are:
+   - **Bull**: Both slow and fast momentum indicate a positive trend (uptrend).
+   - **Bear**: Both indicators suggest a negative trend (downtrend).
+   - **Correction**: Slow momentum indicates a positive trend, while fast momentum indicates a negative trend, suggesting a potential turning point from uptrend to downtrend.
+   - **Rebound**: Slow momentum indicates a negative trend, while fast momentum indicates a positive trend, signaling a potential turning point from downtrend to uptrend.
+
+2. **Model Analysis**: The paper presents a model that estimates the mean persistence of U.S. stock market returns and the noise level in realized returns. The model suggests that high persistence and high noise are key characteristics of the market, making the combination of slow and fast momentum signals valuable for trend detection and identifying turning points.
+
+3. **Performance of Momentum Strategies**: The authors find that intermediate-speed momentum portfolios, which blend slow and fast strategies, can translate predictive information in market cycles into positive unconditional alpha. They propose a novel decomposition of this alpha into market timing and volatility timing components.
+
+4. **Macroeconomic and Business Cycle Linkages**: The paper documents that the identified market cycles have close connections to macroeconomic conditions and business cycles. For instance, Bear states, which predict negative expected returns, are more frequent early in recessions and coincide with negative macroeconomic news.
+
+5. **Behavioral and Rational Foundations**: The authors discuss how behavioral models of slow information absorption might explain the prevalence of negative expected return states early in recessions and the transition to positive expected return states later in recessions.
+
+6. **Dynamic Speed Selection**: The paper introduces a dynamic momentum strategy that adjusts its speed based on market cycles, aiming to maximize the Sharpe ratio. This strategy is shown to have out-of-sample performance that can efficiently track the best possible state-dependent performance.
+
+7. **International Evidence**: The authors extend their analysis to international equity markets and find that intermediate-speed strategies generally have higher Sharpe ratios than the average of slow and fast strategies across all markets.
+
+8. **Conclusion**: The paper concludes that intermediate-speed momentum strategies offer several advantages over slow and fast strategies in terms of risk-adjusted performance, tail behavior, and alpha generation. The findings are robust across different markets and suggest that dynamic adjustment of momentum speed based on market cycles can improve performance.
+
+The paper contributes to the literature on momentum investing by providing a deeper understanding of how different momentum strategies perform under various market conditions and by highlighting the importance of market timing and volatility timing in momentum strategy performance.

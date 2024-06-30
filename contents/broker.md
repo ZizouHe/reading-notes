@@ -489,6 +489,9 @@
 
   ![](/Users/zizou/Zizou/Paper/reading-notes/notes/pic/patch2.png)
 
+- MS Research | Insights from Using NLP on Corporate Disclosures
+  - Risk Factor section of 10-K and 10-Q filings. Quantify cosine similarity or Jaccard Index over time.
+
 ## Macro
 
 - MS Research | Navigating Systematic Alpha in Japan and Trade Implementation

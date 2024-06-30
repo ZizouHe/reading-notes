@@ -30,9 +30,9 @@
 
 - [Behavioral Finance: an Introduction](../notes/behave.html)
 - [Short- and Long-Horizon Behavioral Factors](../notes/DHS-4-factors.html)
-- [Momentum](../notes/moment.html)
 - [Nominal Price Ilusion](../notes/nominal_illusion.html)
 - [PEAD](../notes/PEAD.html)
+- [Financial Statement Related](../notes/fin_stat.html)
 
 ## Crypto
 
@@ -70,17 +70,16 @@
   * Multi-industry classification using business description (10K + broker report + earnings call) + Bag of Words + LDA
 
 * [Bagnara, Matteo, and Milad Goodarzi. "Clustering-based sector investing." (2023).](https://papers.ssrn.com/sol3/Delivery.cfm/SSRN_ID4528879_code1661302.pdf?abstractid=4528879&mirid=1)
+  
   * Data: 94 firm characteristics for CRSP from Dacheng Xiu's Paper (Empirical Asset Pricing with Machine Learning)
   * Bisecting K-means clustering
   * Clustering feature importance: rank feature variation/PCA on cluster-centroid vector
-
+  
 * [TT Shi et al. (2023) Production Complementarity and Information Transmission Across Industries](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4190096)
 
   * Sales segment + industry input-output relation to construct linkage (Benchmark Input-Output Surveys of the Bureau of Economic Analysis to identify product complementary relationships)
 
-    ![](D:\Zizou\Paper\reading-notes\notes\pic\BEA-IO.png)
-
-
+    ![](..\notes\pic\BEA-IO.png)
 
 ## Machine Learning
 
@@ -117,7 +116,6 @@
   - [Xu, Yongxin, Yuhao Xuan, and Gaoping Zheng. "Internet searching and stock price crash risk: Evidence from a quasi-natural experiment." *Journal of Financial Economics* 141, no. 1 (2021): 255-275.](https://www.sciencedirect.com/science/article/pii/S0304405X21000933)
 
   - [【JFE论文速递】网络搜索和股票价格崩盘风险:准自然实验的证据](https://mp.weixin.qq.com/s/aP_RwZzJNNuc35Gw-YDvLQ)
-
 - Fund Research
 
   - [抄基金作业可以随随便便成功吗？](https://zhuanlan.zhihu.com/p/582989958)
@@ -129,7 +127,10 @@
   - Momentum construction: at beginning of month T+1, calculate signal as closing price at the end of month T-1 divide by the highest price in the past 52 weeks. Skip one month due to strong short-term reversal in China.
     
 
-- [Regime Modeling](./notes/regime.md)
+## Momentum and Factor Timing
+
+- [Momentum](../notes/moment.html)
+- [Regime Modeling](../notes/regime.html)
 
 ## Portfolio Construction
 

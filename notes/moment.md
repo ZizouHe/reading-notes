@@ -376,6 +376,55 @@ If all assets have the same Sharpe ratio (or mean, if volatilities are the same)
 
   ![](./pic/time_f.png)
 
+- [DiCiurcio, Kevin J., et al. "Equity Factor Timing: A Two-Stage Machine Learning Approach." *Journal of Portfolio Management* 50.3 (2024).](https://eds.p.ebscohost.com/eds/detail/detail?vid=0&sid=ce49541b-f825-48ea-93a1-5b8cd5334fbc%40redis&bdata=JnNpdGU9ZWRzLWxpdmU%3d#AN=174967127&db=bft)
+  - The authors propose a model that adapts to varying market conditions, consisting of two stages. The first stage identifies market risk regimes using supervised and unsupervised (clustering) machine learning techniques. The second stage predicts factor performance within each regime using ensemble supervised machine learning methods (regreggion + classification on top performing factors).
+
+- [Luo, Yin. "Style Factor Timing." *Factor Investing*. Elsevier, 2017. 127-153.](https://www.sciencedirect.com/science/article/pii/B9781785482014500064)
+  - Risk-on/Risk-off Regimes: detection using low-beta factor return (positive return when risk-on)
+  - The paper proposes using macroeconomics, market sentiment, capital markets, and seasonality (January effect, Halloween effect) variables to predict future returns and risks.
+
+- [Boettinger, Marc, and Jason Chen. "The Fab Four of Factor Timing." *Journal of Beta Investment Strategies* 15.1 (2024).](https://search.ebscohost.com/login.aspx?direct=true&profile=ehost&scope=site&authtype=crawler&jrnl=27716511&AN=176065808&h=ze%2F8dgvD%2BcA8H3ETBQZx01EI0ss8meOjTw1E%2BmBLhyO3x0ie3lBY%2B37HxGWk1ory%2F6%2FQTKm%2Ftu17xYcL8d8K3Q%3D%3D&crl=c)
+  - The paper illustrates the relationships between business cycle stages, factor momentum, factor volatility, and tail events with factor returns, showing how these variables can be used to forecast returns.
+  - XGBoost regression for non-linear construction.
+
+- [Kagkadis, Anastasios, et al. "Factor timing with portfolio characteristics." *The Review of Asset Pricing Studies* 14.1 (2024): 84-118.](https://academic.oup.com/raps/article-abstract/14/1/84/7191017)
+  - LHS: reduce a set of factor portfolios to their first five components, using PCA or RPCA.
+  - RHS: PCA/PLS to reduce features, then either select the first characteristic PC or apply LASSO on the whole set of characteristic PCs of each PC portfolio.
+
+- [Kang, Wenjin, K. Geert Rouwenhorst, and Ke Tang. "Crowding and factor returns." *Available at SSRN 3803954* (2021).](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3803954)
+  - High levels of crowding significantly predict low subsequent excess futures returns.
+  - A one standard deviation increase in the crowding metric decreases the return of the momentum factor by around 8% annualized.
+  - The profitability of momentum, value, and basis strategies is found to be higher during months when the strategies are least crowded.
+
+- [Stambaugh, Robert F., Jianfeng Yu, and Yu Yuan. "The short of it: Investor sentiment and anomalies." *Journal of financial economics* 104.2 (2012): 288-302.](https://www.sciencedirect.com/science/article/pii/S0304405X11002649)
+  - The authors use long-short investment strategies to exploit anomalies. They find that these strategies are more profitable following periods of high investor sentiment, particularly on the short side of the strategies, which suggests that overpricing is more prevalent when sentiment is high.
+  - The study uses the market-wide investor sentiment index constructed by Baker and Wurgler (2006) to explore sentiment effects. The sentiment index is based on several measures, including the closed-end fund discount, IPO activity, and market turnover.
+
+- [Barardehi, Yashar H., Vincent Bogousslavsky, and Dmitriy Muravyev. "What drives momentum and reversal? evidence from day and night signals." *Evidence from Day and Night Signals (February 6, 2023)* (2023).](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4069509)
+  - The paper concludes that momentum is primarily driven by investors' underreaction to private information signaled by others' trades, rather than underreaction to public news.
+  - Portfolios formed based on past intraday returns exhibit momentum without long-term reversal.In contrast, portfolios formed based on past overnight returns show only long-term reversal.
+
+- [Gallagher, David R., Peter A. Gardner, and Camille H. Schmidt. "Style factor timing: An application to the portfolio holdings of US fund managers." *Australian Journal of Management* 40.2 (2015): 318-350.](https://journals.sagepub.com/doi/abs/10.1177/0312896213519117?casa_token=zKwdORG-NWIAAAAA:RIOq1BFU8RuYHxcH2Adi75YuBCmTxT4_lkN84rsFJinzAMGLfElYHlstFGBgTCvfjF3ac6bVtQ)
+  - The focus is on four popular factors: market, size, value, and momentum. The authors aim to develop a model using market and macroeconomic variables at the stock level and test it on a large sample of US active equity mutual funds. The study finds that a buy-and-hold strategy based on the highest forecast return each quarter yields an average annual excess return of 7.26% from 1981 to 2011, which is significant at the 1% level.
+
+## Industry Momentum
+
+- [Ge, Shuyi, et al. "Decoding Cross-Stock Predictability: Peer Strength versus Firm-Peer Disparities." *Available at SSRN 4848655* (2024).](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4849902)
+  - Peer Index (PI): measures the relative strength of the industry group
+  - Peer-Deviation Index (PDI) assesses a firm’s relative position within its industry.
+  - Both uses 94 firm characteristics, PI uses industry-level average of features, and PDI uses firm-specific feature deviation from industry mean (industry-level demean). Conduct panel lasso regression to forecast 1-month return.
+  - PI: important features below
+    - industry momentum (1-month return) is a prominent predictor.
+    - value-related factors like book to market (bm).
+    - profitability measures such as change in gross margin (pchsale pchxsga).
+    - Investment and intangible factors like corporate investment (cinvest) and R&D (rd sale).
+  - PDI: important features below
+    - short-term reversal (short 1-month mom), long term momentum.
+    - Fundamental variables include earnings to price (ep), asset growth (agr), return on invested captial (roic), return on equity (roeq), sales to receivables (salerec), R&D (rd sale).
+    - liquidity and friction-related variables: bid-ask spread (baspread), return volatility (retvol), turnover(turn), number of zero trading days (zero-trade), dollar trading volume (dolvol), idiosyncratic volatility (idiovol), volatility of liquid- ity (std turn), illiquidity (ill).
+  - Variation: use only top 30% market-cap names within the industry to conduct PI.
+  - Attribute the predictability of the two peer-based indices to under-reaction to value- relevant information from peer firms given limited cognitive capacity and attention.
+
 ## Defensive Factor Timing
 
 - [Fergis, Kristin, Katelyn Gallagher, Philip Hodges, and Ked Hogan. "Defensive Factor Timing." *The Journal of Portfolio Management* 45, no. 3 (2019): 50-68.](https://jpm.pm-research.com/content/45/3/50.short)

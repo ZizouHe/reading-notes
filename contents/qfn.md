@@ -30,9 +30,9 @@
     $$
     
   - OCI+KCI combined has consistently more relevant than growth factor (as risk factor).
-  
+
   - Firm with higher IAI score has higher momentum scores. 
-  
+
 - Wolfe Research | Patent, Innovation, and Alpha
 
   - Innovation industry: all industries where at least 50% firms have patent grants. High R&D spending (log R&D residualized by log market cap) is negatively correlated to future return, but is positively correlated to future return in innovation industry group. 
@@ -55,6 +55,13 @@
 
   - Investors disagree most on high innovation relevance firms, we can assign higher risk budget to these firms.
 
+- [Lerner, Josh, and Amit Seru. "The use and misuse of patent data: Issues for finance and beyond." *The Review of Financial Studies* 35.6 (2022): 2667-2704.](https://academic.oup.com/rfs/article-abstract/35/6/2667/6324822)
+
+  - **Patent Data Challenges**: Patent data is valuable but can be problematic due to truncation (not all patents are granted by the end of the study period) and changes in inventor composition over time. (Both patent grants and patent citations).
+  - **Biases in Aggregation**: When patent data is aggregated at the firm level, biases can persist even after common adjustment methods are applied.
+  - **Correlation with Firm Characteristics**: Patent and citation biases are correlated with firm characteristics such as size, market-to-book ratio, and R&D intensity.	![](../notes/pic/patent_checklist.png)
+
+
 ## Analyst
 
 - Analyst Forecast Bundling Intensity and Earnings Surprise
@@ -68,6 +75,15 @@
     ![](../notes/pic/br_score.png)
 
   - The use of bundling and the predictive power of BF_Score increase during times of higher macroeconomic uncertainty, when analysts have greater incentives to avoid bold revisions to their earnings forecasts. 
+
+- [Loughran, Tim, and Bill McDonald. "Measuring firm complexity." *Journal of Financial and Quantitative Analysis* (2023): 1-28.](https://www.cambridge.org/core/journals/journal-of-financial-and-quantitative-analysis/article/measuring-firm-complexity/D737FD0A697AF699C5AADD62842ACAB8)
+
+  - Measure firm complexity: use 10-K filing text data. 
+    - RHS: 374 pre-defined words related to firm complexity.
+    - LHS: use audit fees (adjusted by size and industry) as complexity proxy.
+    - Run lasso regression -> identify 50+ words as final firm complexity related set.
+    - Complexity = percentage of complexity word set in 10-K filiing corpus length. 
+
 
 ## Anomalies
 
@@ -144,6 +160,24 @@
 
     ![](..\notes\pic\BEA-IO.png)
 
+- Linkage and information discreteness: 
+
+  - [Da, Zhi, Umit G. Gurun, and Mitch Warachka. "Frog in the pan: Continuous information and momentum." *The review of financial studies* 27, no. 7 (2014): 2171-2218.](https://academic.oup.com/rfs/article-abstract/27/7/2171/1578455)
+
+  - [Huang, Shiyang, et al. "A frog in every pan: Information discreteness and the lead-lag returns puzzle." *Journal of Financial Economics* 145.2 (2022): 83-102.](https://www.sciencedirect.com/science/article/pii/S0304405X21004761)
+
+  - 行为金融学中的温水煮青蛙：人的这种缺陷叫做limited attention（有限注意力）。由于人们的认知资源是有限的，在任何给定的时刻，我们的大脑都偏好去处理那些最显著、最重要的信息，而忽视那些不显著的、经济效应微弱的因素。一系列频繁但微小的变化对于人的吸引力远不如少数却显著的变化；因此投资者对于连续信息造成的股价变化反应不足。
+
+
+  - 信息离散性（information discreteness，ID）：ID 低（说明信息连续性强）的动量才是高质量动量
+    $$
+    ID = \text{sign(过去一段时间的收益率) × (这段时间内下跌交易日\% - 这段时间内上涨收益日\%)}
+    $$
+
+
+  - Da et al. (2014) 说明，与传统动量相比，通过 ID 因子筛选找到的高质量动量能够获得更高的超额收益，且该收益在样本外的持续性更强（这有助于我们降低调仓频率、减少换手率、节约交易成本）。
+  - Information discreteness (ID) serves as a cognitive trigger that reduces investor inattention and improves inter-firm news transmission.
+
 ## Machine Learning
 
 * [Out of Sample Predictability](../notes/OOS.html)
@@ -152,6 +186,12 @@
 * [NLP in Finance](../notes/nlp_fin.html)
 * [Remlinger, Carl, et al. "Expert aggregation for financial forecasting." *arXiv preprint arXiv:2111.15365* (2021).](https://arxiv.org/pdf/2111.15365.pdf)
 * [Liu, Quan, et al. "PREDICTION OF EARNING SURPRISE USING DEEP LEARNING TECHNIQUE."](https://assets.bbhub.io/professional/sites/10/earning_surprise_prediction_china.pdf)
+* [Cong, Lin William, Tengyuan Liang, and Xiao Zhang. "Textual factors: A scalable, interpretable, and data-driven approach to analyzing unstructured information." (2019).](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3307057)
+  * **Textual Factor (TF) Generation**: The authors generate TFs through three main steps:
+    - Representing text using vector word embedding (Word2Vec).
+    - Clustering these vectors using Locality-Sensitive Hashing (LSH) to identify topics.
+    - Applying topic modeling to identify interpretable textual factors. (Use topic exposure as latent factors, apply standard factor analysis framework)
+
 
 ## Microstructure
 
@@ -188,7 +228,10 @@
   - A strong Seasonal February reversal exists. The reversal is associated with a spike in turnover for recent loser stocks, which we attribute to an appetite for lottery-like stocks by retail investors around the Chinese New Year season.
   - Excluding February, there is a strong mid-to-long term momentum signal in China stock market.
   - Momentum construction: at beginning of month T+1, calculate signal as closing price at the end of month T-1 divide by the highest price in the past 52 weeks. Skip one month due to strong short-term reversal in China.
-    
+- [Du, Qianqian, et al. "Concept links and return momentum." *Journal of Banking & Finance* 134 (2022): 106329.](https://www.sciencedirect.com/science/article/pii/S0378426621002806)
+
+  - China theme/concept linkage.
+
 
 ## Momentum and Factor Timing
 

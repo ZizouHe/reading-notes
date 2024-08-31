@@ -1,5 +1,74 @@
 # Quant Finance Notes
 
+## Alternative Data
+
+- [另类数据与分析师盈利预测](https://zhuanlan.zhihu.com/p/621054463)
+  - Dessaint, O., T. Foucault, and L. Fresard (2022). Does alternative data improve financial forecasting? The horizon effect. Working paper.
+  - 假设分析师在进行盈利预测时，需要最优地分配其投入到不同时间尺度预测的精力，从而最小化预测误差以及获取不同时间尺度预测信息的成本这二者之和。另类数据的出现降低了获取短期预测数据的成本，并同时提高了短期预测数据的准确度。因此，它促使分析师将更多的精力投入到获取和分析短期预测信息上，以此来提高短期预测的准确度。然而顾此失彼，由于分析师的精力是有限的，这造成的后果是降低了他们长期预测的准确度。
+
+- Wolfe Research | Global Stock Selection with Proprietary Global Trademark Data
+
+  - USPTO, foreign applications, Madrid filing, international registration
+  - Trademark is not a proxy of advertising spending. Firms with very high advertising spending may over-spend and suffer from agency problem. 
+  - Signal transformations: growth rate, vintage ratio (long term number / short term number), long/short lookback window; residualizing size (log revenue) and sector.
+  - Use life cycle of trademark to construct signals: applications, success rate of application, renewal ratio, trademark age, age dispersion, dispersion in trademark category, secretive foreign priority application (to keep trademark information under protection, and re-file in US using international registration)
+  - Trademark category to construct linkage.
+
+- Wolfe Research | The Intangible Asset Premia
+
+  - KC (Knowledge Capital): accumulate past R&D spending with discount (perpetual inventory method)
+
+  - OC (Organizational Capital): accumulate 30% of past SG&A expenses.
+
+  - IAI (Intangible Asset Intensity), KCI, OCI:
+    $$
+    \begin{aligned}
+    IAI &= \frac{KC + OC}{KC + OC + \text{total asset} - \text{goodwill}}, \\
+    KCI &= \frac{KC}{KC + OC + \text{total asset} - \text{goodwill}}, \\ 
+    OCI &= \frac{OC}{KC + OC + \text{total asset} - \text{goodwill}}.
+    \end{aligned}
+    $$
+    
+  - OCI+KCI combined has consistently more relevant than growth factor (as risk factor).
+  
+  - Firm with higher IAI score has higher momentum scores. 
+  
+- Wolfe Research | Patent, Innovation, and Alpha
+
+  - Innovation industry: all industries where at least 50% firms have patent grants. High R&D spending (log R&D residualized by log market cap) is negatively correlated to future return, but is positively correlated to future return in innovation industry group. 
+  - Signals: 
+    - number of unique patent class / number of patent
+    - Inward citation number, unique inward citation assignee; Outward citation number, unique outward citation assignee
+    - Citation as linkage; patent class as linkage.
+    - Patent maintenance.
+
+- Wolfe Research | Innovation Relevance
+
+  - Total citations for all patents that a firm has cited to form a firm i's knowledge base (**we can normalize within each patent class for citation**)
+    $$
+    \mathrm{Cit}^i_{t} = \sum_{k=1}^{K_t} \mathbb{I}^i_{p_k}  \mathrm{Cit}_t(p_k)
+    $$
+    where indicator of $$p_k$$ indicates whether a patent $$p_k$$ has been cited by firm i, and $$\mathrm{Cit}_t(p_k)$$ is the total number of citations of patent $$p_k$$ at time $$t$$. Then technological obsolescence is defined as the rate of change over a window $$w$$.
+    $$
+    \log \mathrm{Cit}^i_{t} - \ln \mathrm{Cit}^i_{t-w}
+    $$
+
+  - Investors disagree most on high innovation relevance firms, we can assign higher risk budget to these firms.
+
+## Analyst
+
+- Analyst Forecast Bundling Intensity and Earnings Surprise
+
+  - [Barth, Mary E., et al. "Analyst Forecast Bundling Intensity and Earnings Surprise." *Available at SSRN 4839739* (2024).](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4839739)
+
+  - The authors explore how financial analysts convey information about a company's earnings without necessarily making full revisions to their earnings forecasts. They achieve this by increasing what they term 'bundling intensity,' which refers to the extent to which an analyst's report that includes an earnings forecast revision also includes revisions to price targets and/or recommendations that have the same direction as the earnings forecast revision.
+
+  - The researchers have developed a measure called BF_Score at the firm level to quantify bundling intensity. Their findings suggest that BF_Score is a significant predictor of earnings surprises based on analyst forecasts. These surprises often result from biases in consensus earnings forecasts, which are influenced by the information analysts communicate through bundling intensity. Below is definition of BR score, where TP is target price.
+
+    ![](../notes/pic/br_score.png)
+
+  - The use of bundling and the predictive power of BF_Score increase during times of higher macroeconomic uncertainty, when analysts have greater incentives to avoid bold revisions to their earnings forecasts. 
+
 ## Anomalies
 
 - [Crowdsourced employer reviews and stock returns](../notes/green_2019_jfe.html)
@@ -12,12 +81,6 @@
 - [Idiosyncratic Volatility](../notes/ivol.html)
 - [Volume](../notes/volume.html)
 - [ESG](../notes/ESG.html)
-
-## Alternative Data
-
-- [另类数据与分析师盈利预测](https://zhuanlan.zhihu.com/p/621054463)
-  - Dessaint, O., T. Foucault, and L. Fresard (2022). Does alternative data improve financial forecasting? The horizon effect. Working paper.
-  - 假设分析师在进行盈利预测时，需要最优地分配其投入到不同时间尺度预测的精力，从而最小化预测误差以及获取不同时间尺度预测信息的成本这二者之和。另类数据的出现降低了获取短期预测数据的成本，并同时提高了短期预测数据的准确度。因此，它促使分析师将更多的精力投入到获取和分析短期预测信息上，以此来提高短期预测的准确度。然而顾此失彼，由于分析师的精力是有限的，这造成的后果是降低了他们长期预测的准确度。
 
 ## Asset Pricing
 
@@ -131,6 +194,11 @@
 
 - [Momentum](../notes/moment.html)
 - [Regime Modeling](../notes/regime.html)
+- Structural Breaks: Advances in Financial Machine Learning Chapter 17
+  - **CUSUM tests**: These test whether the cumulative forecasting errors significantly deviate from white noise.
+  - **Explosiveness tests:** Beyond deviation from white noise, these test whether the process exhibits exponential growth or collapse, as this is inconsistent with a random walk or stationary process, and it is unsustainable in the long run.
+  - **Right-tail unit-root tests:** These tests evaluate the presence of exponential growth or collapse, while assuming an autoregressive specification.
+  - **Sub/super-martingale tests:** These tests evaluate the presence of exponential growth or collapse under a variety of functional forms.
 
 ## Portfolio Construction
 

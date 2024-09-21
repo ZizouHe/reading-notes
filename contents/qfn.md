@@ -61,6 +61,8 @@
   - **Biases in Aggregation**: When patent data is aggregated at the firm level, biases can persist even after common adjustment methods are applied.
   - **Correlation with Firm Characteristics**: Patent and citation biases are correlated with firm characteristics such as size, market-to-book ratio, and R&D intensity.	![](../notes/pic/patent_checklist.png)
 
+- [Shu, Tao, Xuan Tian, and Xintong Zhan. "Patent quality, firm value, and investor underreaction: Evidence from patent examiner busyness." *Journal of Financial Economics* 143.3 (2022): 1043-1069.](https://www.sciencedirect.com/science/article/pii/S0304405X21004785)
+  - This paper attempts to study the causal effect of examiner busyness on patent quality and firm value. Using a broad set of patent quality measures, we find strong evidence that patents allowed by busy examiners exhibit significantly lower quality.
 
 ## Analyst
 
@@ -76,13 +78,11 @@
 
   - The use of bundling and the predictive power of BF_Score increase during times of higher macroeconomic uncertainty, when analysts have greater incentives to avoid bold revisions to their earnings forecasts. 
 
-- [Loughran, Tim, and Bill McDonald. "Measuring firm complexity." *Journal of Financial and Quantitative Analysis* (2023): 1-28.](https://www.cambridge.org/core/journals/journal-of-financial-and-quantitative-analysis/article/measuring-firm-complexity/D737FD0A697AF699C5AADD62842ACAB8)
+- [He, Jie Jack, and Xuan Tian. "The dark side of analyst coverage: The case of innovation." *Journal of financial economics* 109.3 (2013): 856-878.](https://www.sciencedirect.com/science/article/pii/S0304405X13001086)
 
-  - Measure firm complexity: use 10-K filing text data. 
-    - RHS: 374 pre-defined words related to firm complexity.
-    - LHS: use audit fees (adjusted by size and industry) as complexity proxy.
-    - Run lasso regression -> identify 50+ words as final firm complexity related set.
-    - Complexity = percentage of complexity word set in 10-K filiing corpus length. 
+  - Firms covered by a larger number of analysts generate fewer patents and patents with lower impact. 
+  - The evidence is consistent with the hypothesis that analysts exert too much pressure on managers to meet short-term goals, impeding firms' investment in long-term innovative projects.
+
 
 
 ## Anomalies
@@ -97,6 +97,15 @@
 - [Idiosyncratic Volatility](../notes/ivol.html)
 - [Volume](../notes/volume.html)
 - [ESG](../notes/ESG.html)
+- [Loughran, Tim, and Bill McDonald. "Measuring firm complexity." *Journal of Financial and Quantitative Analysis* (2023): 1-28.](https://www.cambridge.org/core/journals/journal-of-financial-and-quantitative-analysis/article/measuring-firm-complexity/D737FD0A697AF699C5AADD62842ACAB8)
+  - Measure firm complexity: use 10-K filing text data. 
+    - RHS: 374 pre-defined words related to firm complexity.
+    - LHS: use audit fees (adjusted by size and industry) as complexity proxy.
+    - Run lasso regression -> identify 50+ words as final firm complexity related set.
+    - Complexity = percentage of complexity word set in 10-K filiing corpus length. 
+- [Cohen, Lauren, and Dong Lou. "Complicated firms." *Journal of financial economics* 104.2 (2012): 383-400.](https://www.sciencedirect.com/science/article/pii/S0304405X11001899)
+  - Complication of a firm is measured by income segment. 
+  - The more complicated the firm, the more pronounced the return predictability. In addition, we find that sell-side analysts are subject to these same information processing constraints, as their forecast revisions of easy-to-analyze firms predict their future revisions of more complicated firms.
 
 ## Asset Pricing
 
@@ -169,14 +178,31 @@
   - 行为金融学中的温水煮青蛙：人的这种缺陷叫做limited attention（有限注意力）。由于人们的认知资源是有限的，在任何给定的时刻，我们的大脑都偏好去处理那些最显著、最重要的信息，而忽视那些不显著的、经济效应微弱的因素。一系列频繁但微小的变化对于人的吸引力远不如少数却显著的变化；因此投资者对于连续信息造成的股价变化反应不足。
 
 
-  - 信息离散性（information discreteness，ID）：ID 低（说明信息连续性强）的动量才是高质量动量
-    $$
-    ID = \text{sign(过去一段时间的收益率) × (这段时间内下跌交易日\% - 这段时间内上涨收益日\%)}
-    $$
+    - 信息离散性（information discreteness，ID）：ID 低（说明信息连续性强）的动量才是高质量动量
+      $$
+      ID = \text{sign(过去一段时间的收益率) × (这段时间内下跌交易日\% - 这段时间内上涨收益日\%)}
+      $$
 
 
-  - Da et al. (2014) 说明，与传统动量相比，通过 ID 因子筛选找到的高质量动量能够获得更高的超额收益，且该收益在样本外的持续性更强（这有助于我们降低调仓频率、减少换手率、节约交易成本）。
-  - Information discreteness (ID) serves as a cognitive trigger that reduces investor inattention and improves inter-firm news transmission.
+    - Da et al. (2014) 说明，与传统动量相比，通过 ID 因子筛选找到的高质量动量能够获得更高的超额收益，且该收益在样本外的持续性更强（这有助于我们降低调仓频率、减少换手率、节约交易成本）。
+
+
+    - Information discreteness (ID) serves as a cognitive trigger that reduces investor inattention and improves inter-firm news transmission.
+
+- [Yan, Jingda, and Jialin Yu. "Cross-stock momentum and factor momentum." *Journal of Financial Economics* 150.2 (2023): 103716.](https://www.sciencedirect.com/science/article/pii/S0304405X23001563)
+
+  - **Cross-stock momentum:** Based on asymmetry in lead-lag linkages and differences between long-run and short-run co-movements.
+  - **Factor momentum:** The phenomenon where returns of certain factors (like size, value, or industry factors) exhibit momentum.
+  - The asymmetry in cross-stock linkages is a key differentiator from factor momentum. The paper shows that cross-stock momentum is not entirely driven by factor momentum.
+
+- [Chen, Xin, et al. "Attention spillover in asset pricing." *The Journal of Finance* 78.6 (2023): 3515-3559.](https://onlinelibrary.wiley.com/doi/abs/10.1111/jofi.13281)
+
+  - The paper leverages a unique feature of stock display on trading platforms in China, where the order of stock display is determined by the stock's listing code. This feature creates an attention spillover effect, where investors are more likely to notice and trade stocks with listing codes adjacent to those of stocks they currently hold.
+  - The authors propose that overconfident investors, following positive investment experiences, are likely to increase their trading activities and are more likely to direct their attention to neighboring stocks on the display.
+
+- [Jin, Zuben. "Business aspects in focus, investor underreaction and return predictability." *Journal of Corporate Finance* 84 (2024): 102525.](https://www.sciencedirect.com/science/article/pii/S0929119923001748)
+
+  - Conference call transcripts -> topic model -> firm similarity -> linkage signals
 
 ## Machine Learning
 

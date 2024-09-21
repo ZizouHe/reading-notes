@@ -124,6 +124,15 @@
     - Months Since Last Event (Time, Willingness)
     - Financial Statement Strength for Income Score (Quality, Capability): It shows a negative relationship with performance, which may be related to re-rating for weaker quality companies that announce a dividend and could represent a positive signaling effect.
     - Payout Ratio (Dividend, Willingness)
+- UBS | Identifying cross-shareholding unwind target in Japan
+  - Holders positive return before and after unwind events; childs underperform before unwind and rebound after unwind.
+  - ML-based model to identify potential unwind events. Features:
+    - holding position from the child's perspective
+    - unwinding track record
+    - holding concentration from the holder's perspective
+    - other holders' unwinding activities
+    - Fundamental factors
+
 
 ## Fundamental
 
@@ -818,18 +827,17 @@
 
   - [开源金工 | 北上资金攻守兼顾因子的构造](https://mp.weixin.qq.com/s/HB3YV9Zj3W3mQvsqJ7lN6w)
 
+- 北上资金交易行为因子可以从历史偏好、定价权和边际变化三大维度展开，基本因子构造方式如下：
 
-    - 北上资金交易行为因子可以从历史偏好、定价权和边际变化三大维度展开，基本因子构造方式如下：
+![](../notes/pic/NB.png)
 
+- 其中成交金额占比、净流入因子表现较为稳定
 
-    ![](../notes/pic/NB.png)
+  - 协同因子控制回撤计算：
 
+  - 每个月底计算所有活跃交易机构在每只股票上的仓位变化，计算得到每只股票的t 统计量 (mean / std)
 
-    - 其中成交金额占比、净流入因子表现较为稳定
-    - 协同因子控制回撤计算：
-    
-      - 每个月底计算所有活跃交易机构在每只股票上的仓位变化，计算得到每只股票的t 统计量 (mean / std)
-      - 该值越高，表明不同托管机构的行为越趋一致，因此称为协同性因子。
+  - 该值越高，表明不同托管机构的行为越趋一致，因此称为协同性因子。
 
 
 - [海通量化 | 从优秀基金经理的投资风格到因子组合](https://mp.weixin.qq.com/s/b7sA6rTyyq2GhN1YmIC6rA)
@@ -868,6 +876,8 @@
       ![](../notes/pic/mutual_holding_2.png)
 
   - 公募基金的仓位测算：卡尔曼滤波
+
+- UBS | Go with the Flow Insights from Hedge Fund
 
 ## Style Rotation
 

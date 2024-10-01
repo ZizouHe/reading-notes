@@ -64,6 +64,19 @@
 - [Shu, Tao, Xuan Tian, and Xintong Zhan. "Patent quality, firm value, and investor underreaction: Evidence from patent examiner busyness." *Journal of Financial Economics* 143.3 (2022): 1043-1069.](https://www.sciencedirect.com/science/article/pii/S0304405X21004785)
   - This paper attempts to study the causal effect of examiner busyness on patent quality and firm value. Using a broad set of patent quality measures, we find strong evidence that patents allowed by busy examiners exhibit significantly lower quality.
 
+- [Bekkerman, Ron, Eliezer M. Fich, and Natalya V. Khimich. "The effect of innovation similarity on asset prices: Evidence from patents’ big data." *The Review of Asset Pricing Studies* 13.1 (2023): 99-145.](https://academic.oup.com/raps/article-abstract/13/1/99/6656364)
+
+  - [科技关联度 (II)](https://zhuanlan.zhihu.com/p/577519685)
+  - Methodology: 
+    - Patent text analysis: use external sources such as Wikipedia and professional dictionaries to establish the professional termi- nology for every patent in our sample. This process enables us to define two patents as similar if they share the same professional terminology.
+    - Remove “boilerplates” (i.e., long lists of terminology used in patent texts to illus- trate the invention generality).
+    - Patent similarity: Two patents' distance is represented as a vector of their common terms weighted by a TFIDF (term frequency– inverse document frequency) variant.
+    - Firm similarity: log of the sum of similar patent pairs discounted by the age of the newer patent in each pair and normalize it by the log of the product of the total number of patents for each firm in the pair.
+
+  - 基本面解释：For R&D-to-Total Assets and ROA terms, peer firms have both contemporaneous correlation and prediction power.
+  - **信息扩散缓慢的原因是投资者注意力不足，而不是投资者完全完全意识不到关联。**注意力不足意味着投资者未来能认识到关联，因而会有信息的进一步扩散和关联动量。而后者意味着投资者压根就看不到关联的存在，因此也就没关联动量效应了。
+
+
 ## Analyst
 
 - Analyst Forecast Bundling Intensity and Earnings Surprise
@@ -129,10 +142,19 @@
 * [Blockchain without waste: Proof-of-stake](../notes/PoS.html)
 * [A Survey of Attacks on Ethereum Smart Contracts](../notes/SoK.html)
 * [Multi-factor in Cryptocurrency](../notes/FF3_cryoto.html)
+* [Kogan, Shimon, et al. "Are cryptos different? evidence from retail trading." *Journal of Financial Economics* 159 (2024): 103897.](https://www.sciencedirect.com/science/article/pii/S0304405X2400120X)
+  * While investors exhibit contrarian behavior in stocks and gold, they follow a momentum-like strategy with cryptocurrencies, holding onto their investments even after large price movements.
+  * Retail investors may view cryptocurrency price changes as indicators of the likelihood of future widespread adoption, leading them to update their price expectations in the direction of the price change.
+
 
 ## Event
 
 - [Lottery-like Stocks](../notes/miscell.html)
+- [Bargeron, Leonce, and Alice Bonaime. "Why do firms disagree with short sellers? Managerial myopia versus private information." *Journal of Financial and Quantitative Analysis* 55.8 (2020): 2431-2465.](https://www.cambridge.org/core/journals/journal-of-financial-and-quantitative-analysis/article/why-do-firms-disagree-with-short-sellers-managerial-myopia-versus-private-information/4CF658C5427FB1B762F47DEF17D2BBA6)
+  - **Disagreement Definition**: The paper defines disagreement as situations where firms engage in significant share repurchases while short interest increases.
+  - The authors explore whether such repurchases are driven by managerial myopia (an attempt to defend inflated stock prices for short-term gains) or by private information (managers possessing positive, value-relevant information that the market is not yet aware of).
+  - The paper finds that repurchases are more likely motivated by managers' private information rather than agency issues or a defense of overvalued stock.
+
 
 ## Linkage
 

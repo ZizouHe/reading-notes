@@ -76,6 +76,28 @@
   - 基本面解释：For R&D-to-Total Assets and ROA terms, peer firms have both contemporaneous correlation and prediction power.
   - **信息扩散缓慢的原因是投资者注意力不足，而不是投资者完全完全意识不到关联。**注意力不足意味着投资者未来能认识到关联，因而会有信息的进一步扩散和关联动量。而后者意味着投资者压根就看不到关联的存在，因此也就没关联动量效应了。
 
+- [Narrative Momentum](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4912496)
+
+  - Data
+    - The collected news articles are classified into media reservoirs: General, Corporate, FX, and Country Equity.
+    - Articles are classified into 347 narratives: including 53 pre-specified Journal of Economic Literature (JEL) narratives and around 300 additional narratives. The 347 narratives are classified into 14 narrative tags including Geopolitics, Macro, Micro, etc. The narrative series are provided by MKT MediaStats, LLC.
+
+  - Construction
+    - **Narrative Intensities**: Negative (positive) intensity is the fraction of negative (positive) sentiment articles pertaining to a narrative out of the overall discussion, with a value in [0,1].
+    - **Narrative market beta**: whether narratives can explain excess market returns. univariate regressions of the one-month market excess returns on contemporaneous one-month intensity changes.
+    - **stock-level narrative betas**: univariate regression of stock return and intensity changes.
+
+  - Conclusion:
+    - Financial analysts also tend to underreact to narrative-sensitive stocks
+    - Narrative momentum is different from price momentum.
+
+- [Goldman, Eitan, Jordan Martel, and Jan Schneemeier. "A theory of financial media." *Journal of Financial Economics* 145.1 (2022): 239-258.](https://www.sciencedirect.com/science/article/pii/S0304405X21003081)
+
+  - Firms are more likely to manipulate their announcements when media coverage is more extensive.
+  - Negative news is more likely to be reported than positive news.
+  - The presence of financial journalists can lead to more efficient pricing.
+
+
 
 ## Analyst
 
@@ -126,6 +148,9 @@
 - [Which Beta?](../notes/whichbeta.html)
 - [Stambaugh-Yuan Four Factors](../notes/Stambaugh-Yuan-2017.html)
 - [P-hacking](../notes/phack.html)
+- [Chan, Kam Fong, and Terry Marsh. "Asset pricing on earnings announcement days." *Journal of Financial Economics* 144.3 (2022): 1022-1042.](https://www.sciencedirect.com/science/article/pii/S0304405X21002920)
+  - The paper provides evidence that the capital asset pricing model (CAPM) seems to hold on days when influential firms announce earnings, challenging the conventional wisdom that the beta-return relationship is generally flat in the market. The findings have implications for investors, suggesting that strategic trading around earnings announcements could yield significant returns.
+
 
 ## Behavorial Finance
 

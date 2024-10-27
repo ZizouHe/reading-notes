@@ -179,6 +179,9 @@
   - **Disagreement Definition**: The paper defines disagreement as situations where firms engage in significant share repurchases while short interest increases.
   - The authors explore whether such repurchases are driven by managerial myopia (an attempt to defend inflated stock prices for short-term gains) or by private information (managers possessing positive, value-relevant information that the market is not yet aware of).
   - The paper finds that repurchases are more likely motivated by managers' private information rather than agency issues or a defense of overvalued stock.
+- [Boudoukh, Jacob, et al. "Information, trading, and volatility: Evidence from firm-specific news." *The Review of Financial Studies* 32.3 (2019): 992-1033.](https://academic.oup.com/rfs/article-abstract/32/3/992/5061375)
+  - Identified news (relevant to firm events) explains approximately 20%-40% of overnight volatility and 6% during trading hours
+
 
 
 ## Linkage
@@ -250,6 +253,22 @@
 - [Jin, Zuben. "Business aspects in focus, investor underreaction and return predictability." *Journal of Corporate Finance* 84 (2024): 102525.](https://www.sciencedirect.com/science/article/pii/S0929119923001748)
 
   - Conference call transcripts -> topic model -> firm similarity -> linkage signals
+- [Feng, Jian, et al. "Economic Links from Bonds and Cross-Stock Return Predictability." *Available at SSRN 4047776* (2022).](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4047776)
+  - **Main idea: linkage from bond market credit-rating comovements.**
+  - This study identifies a "market segmentation" effect between the equity and bond markets, showing that information from bond markets is often not incorporated promptly by equity market investors.
+  - Firms are connected through "credit-rating comovements," defined as instances when two firms' bond ratings are updated in the same direction within a ±10-day window. 
+
+- [Chen, Xin, and Huaixin Wang. "News Links and Predictable Returns." *Available at SSRN 4458612* (2023).](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4458612)
+  - **Main idea: news-implied linkages in China where firms are connected based on shared media coverage.**
+  - News-based links were established by identifying instances where two firms were mentioned in the same article within a 12-month window. 
+  - The authors perform robustness checks to validate these results, including a placebo test using shared media platforms, demonstrating that only specific news stories—not general media coverage—predict future returns. 
+  - They explore linkage complexity, showing stronger predictability when linkages are more complex (e.g., higher numbers of shared stories or connections).
+
+- [Wang, Huaixin. "The Day and Night Tale of Momentum Spillover Effects." *Available at SSRN 4179413* (2022).](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4262645)
+  - **Main idea: high overnight returns for peer stocks predict elevated opening prices for focal stocks, followed by intraday reversals, while peer intraday returns consistently predict positive future intraday returns for focal stocks.**
+  - Retail investors, who trade primarily on overnight information due to news salience, and professional investors, who engage in intraday trading, correcting the market.
+  - Predictable patterns arise not only from underreaction but from a systematic interplay between the different investor types. Retail-driven overnight price distortions are followed by intraday reversals managed by professionals
+
 
 ## Machine Learning
 
@@ -273,7 +292,6 @@
 
 ## Miscellaneous
 
-- [Factor Timing](../notes/timing.html)
 - Information Aggregation
   - [更有效的信息聚合方法?](https://zhuanlan.zhihu.com/p/529605892)
   - [Light, Nathaniel, Denys Maslov, and Oleg Rytchkov. "Aggregation of information about the cross section of stock returns: A latent variable approach." *The Review of Financial Studies* 30, no. 4 (2017): 1339-1381.](https://academic.oup.com/rfs/article-abstract/30/4/1339/2756101)
@@ -304,17 +322,36 @@
 - [Du, Qianqian, et al. "Concept links and return momentum." *Journal of Banking & Finance* 134 (2022): 106329.](https://www.sciencedirect.com/science/article/pii/S0378426621002806)
 
   - China theme/concept linkage.
+- [Brogaard, Jonathan, et al. "What moves stock prices? The roles of news, noise, and information." *The Review of Financial Studies* 35.9 (2022): 4341-4386.](https://academic.oup.com/rfs/article-abstract/35/9/4341/6493385)
+
+  - **Main idea: This study introduces a decomposition model to quantify these effects, aiming to clarify the contributions of each component to stock price movements.**
+  - The authors develop a return variance decomposition model that categorizes stock price variance into four components:
+    - **Noise**: Non-informational price movements due to liquidity issues, overreaction, and other trading frictions.
+    - **Private Firm-Specific Information**: Informed trading that reveals proprietary insights about a firm.
+    - **Public Firm-Specific Information**: Information from publicly available sources, such as news and announcements.
+    - **Market-Wide Information**: Broad economic or market news that impacts all firms.
+
 
 
 ## Momentum and Factor Timing
 
 - [Momentum](../notes/moment.html)
 - [Regime Modeling](../notes/regime.html)
+- [Factor Timing](../notes/timing.html)
 - Structural Breaks: Advances in Financial Machine Learning Chapter 17
   - **CUSUM tests**: These test whether the cumulative forecasting errors significantly deviate from white noise.
   - **Explosiveness tests:** Beyond deviation from white noise, these test whether the process exhibits exponential growth or collapse, as this is inconsistent with a random walk or stationary process, and it is unsustainable in the long run.
   - **Right-tail unit-root tests:** These tests evaluate the presence of exponential growth or collapse, while assuming an autoregressive specification.
   - **Sub/super-martingale tests:** These tests evaluate the presence of exponential growth or collapse under a variety of functional forms.
+- A tug of war
+  - [Lou, Dong, Christopher Polk, and Spyros Skouras. "A tug of war: Overnight versus intraday expected returns." *Journal of Financial Economics* 134.1 (2019): 192-213.](https://www.sciencedirect.com/science/article/pii/S0304405X19300650)
+  - [Lou, Dong, Christopher Polk, and Spyros Skouras. "The day destroys the night, night extends the day: A clientele perspective on equity premium variation." *London School of Economics Working Paper* (2022).](https://www.carloalberto.org/wp-content/uploads/2023/01/Day-Destroys-The-Night-Night-Extends-The-Day.pdf)
+  - **Main idea: overnight momentum and intraday reversal.**
+  - High overnight returns tend to continue overnight in future months but exhibit a reversal during the intraday period, suggesting a “tug of war” effect. 
+  - Clientele Hypothesis: The study attributes these effects to different types of investors. This segmentation results in a predictable pattern where:
+    - Retail Investors drive demand at the open, impacting overnight returns.
+    - Institutional Investors provide liquidity intraday, which causes reversal effects.
+  - The study reveals a robust negative relation between past overnight returns and future intraday returns, a pattern they describe as "the day destroys the night." Conversely, intraday returns positively forecast overnight returns ("night extends the day"), reflecting a continuation effect. 
 
 ## Portfolio Construction
 

@@ -1666,6 +1666,10 @@ where indicator of <script type="math/tex; ">p_k</script> indicates whether a pa
 <li>The paper finds that repurchases are more likely motivated by managers&apos; private information rather than agency issues or a defense of overvalued stock.</li>
 </ul>
 </li>
+<li><a href="https://academic.oup.com/rfs/article-abstract/32/3/992/5061375" target="_blank">Boudoukh, Jacob, et al. &quot;Information, trading, and volatility: Evidence from firm-specific news.&quot; <em>The Review of Financial Studies</em> 32.3 (2019): 992-1033.</a><ul>
+<li>Identified news (relevant to firm events) explains approximately 20%-40% of overnight volatility and 6% during trading hours</li>
+</ul>
+</li>
 </ul>
 <h2 id="linkage"><a name="linkage" class="anchor-navigation-ex-anchor" href="#linkage"><i class="fa fa-link" aria-hidden="true"></i></a>8. Linkage</h2>
 <ul>
@@ -1752,6 +1756,28 @@ where indicator of <script type="math/tex; ">p_k</script> indicates whether a pa
 <li>Conference call transcripts -&gt; topic model -&gt; firm similarity -&gt; linkage signals</li>
 </ul>
 </li>
+<li><p><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4047776" target="_blank">Feng, Jian, et al. &quot;Economic Links from Bonds and Cross-Stock Return Predictability.&quot; <em>Available at SSRN 4047776</em> (2022).</a></p>
+<ul>
+<li><strong>Main idea: linkage from bond market credit-rating comovements.</strong></li>
+<li>This study identifies a &quot;market segmentation&quot; effect between the equity and bond markets, showing that information from bond markets is often not incorporated promptly by equity market investors.</li>
+<li>Firms are connected through &quot;credit-rating comovements,&quot; defined as instances when two firms&apos; bond ratings are updated in the same direction within a &#xB1;10-day window. </li>
+</ul>
+</li>
+<li><p><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4458612" target="_blank">Chen, Xin, and Huaixin Wang. &quot;News Links and Predictable Returns.&quot; <em>Available at SSRN 4458612</em> (2023).</a></p>
+<ul>
+<li><strong>Main idea: news-implied linkages in China where firms are connected based on shared media coverage.</strong></li>
+<li>News-based links were established by identifying instances where two firms were mentioned in the same article within a 12-month window. </li>
+<li>The authors perform robustness checks to validate these results, including a placebo test using shared media platforms, demonstrating that only specific news stories&#x2014;not general media coverage&#x2014;predict future returns. </li>
+<li>They explore linkage complexity, showing stronger predictability when linkages are more complex (e.g., higher numbers of shared stories or connections).</li>
+</ul>
+</li>
+<li><p><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4262645" target="_blank">Wang, Huaixin. &quot;The Day and Night Tale of Momentum Spillover Effects.&quot; <em>Available at SSRN 4179413</em> (2022).</a></p>
+<ul>
+<li><strong>Main idea: high overnight returns for peer stocks predict elevated opening prices for focal stocks, followed by intraday reversals, while peer intraday returns consistently predict positive future intraday returns for focal stocks.</strong></li>
+<li>Retail investors, who trade primarily on overnight information due to news salience, and professional investors, who engage in intraday trading, correcting the market.</li>
+<li>Predictable patterns arise not only from underreaction but from a systematic interplay between the different investor types. Retail-driven overnight price distortions are followed by intraday reversals managed by professionals</li>
+</ul>
+</li>
 </ul>
 <h2 id="machine-learning"><a name="machine-learning" class="anchor-navigation-ex-anchor" href="#machine-learning"><i class="fa fa-link" aria-hidden="true"></i></a>9. Machine Learning</h2>
 <ul>
@@ -1778,7 +1804,6 @@ where indicator of <script type="math/tex; ">p_k</script> indicates whether a pa
 </ul>
 <h2 id="miscellaneous"><a name="miscellaneous" class="anchor-navigation-ex-anchor" href="#miscellaneous"><i class="fa fa-link" aria-hidden="true"></i></a>11. Miscellaneous</h2>
 <ul>
-<li><a href="../notes/timing.html">Factor Timing</a></li>
 <li><p>Information Aggregation</p>
 <ul>
 <li><a href="https://zhuanlan.zhihu.com/p/529605892" target="_blank">&#x66F4;&#x6709;&#x6548;&#x7684;&#x4FE1;&#x606F;&#x805A;&#x5408;&#x65B9;&#x6CD5;?</a></li>
@@ -1825,16 +1850,42 @@ where indicator of <script type="math/tex; ">p_k</script> indicates whether a pa
 <li>China theme/concept linkage.</li>
 </ul>
 </li>
+<li><p><a href="https://academic.oup.com/rfs/article-abstract/35/9/4341/6493385" target="_blank">Brogaard, Jonathan, et al. &quot;What moves stock prices? The roles of news, noise, and information.&quot; <em>The Review of Financial Studies</em> 35.9 (2022): 4341-4386.</a></p>
+<ul>
+<li><strong>Main idea: This study introduces a decomposition model to quantify these effects, aiming to clarify the contributions of each component to stock price movements.</strong></li>
+<li>The authors develop a return variance decomposition model that categorizes stock price variance into four components:<ul>
+<li><strong>Noise</strong>: Non-informational price movements due to liquidity issues, overreaction, and other trading frictions.</li>
+<li><strong>Private Firm-Specific Information</strong>: Informed trading that reveals proprietary insights about a firm.</li>
+<li><strong>Public Firm-Specific Information</strong>: Information from publicly available sources, such as news and announcements.</li>
+<li><strong>Market-Wide Information</strong>: Broad economic or market news that impacts all firms.</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 <h2 id="momentum-and-factor-timing"><a name="momentum-and-factor-timing" class="anchor-navigation-ex-anchor" href="#momentum-and-factor-timing"><i class="fa fa-link" aria-hidden="true"></i></a>12. Momentum and Factor Timing</h2>
 <ul>
 <li><a href="../notes/moment.html">Momentum</a></li>
 <li><a href="../notes/regime.html">Regime Modeling</a></li>
+<li><a href="../notes/timing.html">Factor Timing</a></li>
 <li>Structural Breaks: Advances in Financial Machine Learning Chapter 17<ul>
 <li><strong>CUSUM tests</strong>: These test whether the cumulative forecasting errors significantly deviate from white noise.</li>
 <li><strong>Explosiveness tests:</strong> Beyond deviation from white noise, these test whether the process exhibits exponential growth or collapse, as this is inconsistent with a random walk or stationary process, and it is unsustainable in the long run.</li>
 <li><strong>Right-tail unit-root tests:</strong> These tests evaluate the presence of exponential growth or collapse, while assuming an autoregressive specification.</li>
 <li><strong>Sub/super-martingale tests:</strong> These tests evaluate the presence of exponential growth or collapse under a variety of functional forms.</li>
+</ul>
+</li>
+<li>A tug of war<ul>
+<li><a href="https://www.sciencedirect.com/science/article/pii/S0304405X19300650" target="_blank">Lou, Dong, Christopher Polk, and Spyros Skouras. &quot;A tug of war: Overnight versus intraday expected returns.&quot; <em>Journal of Financial Economics</em> 134.1 (2019): 192-213.</a></li>
+<li><a href="https://www.carloalberto.org/wp-content/uploads/2023/01/Day-Destroys-The-Night-Night-Extends-The-Day.pdf" target="_blank">Lou, Dong, Christopher Polk, and Spyros Skouras. &quot;The day destroys the night, night extends the day: A clientele perspective on equity premium variation.&quot; <em>London School of Economics Working Paper</em> (2022).</a></li>
+<li><strong>Main idea: overnight momentum and intraday reversal.</strong></li>
+<li>High overnight returns tend to continue overnight in future months but exhibit a reversal during the intraday period, suggesting a &#x201C;tug of war&#x201D; effect. </li>
+<li>Clientele Hypothesis: The study attributes these effects to different types of investors. This segmentation results in a predictable pattern where:<ul>
+<li>Retail Investors drive demand at the open, impacting overnight returns.</li>
+<li>Institutional Investors provide liquidity intraday, which causes reversal effects.</li>
+</ul>
+</li>
+<li>The study reveals a robust negative relation between past overnight returns and future intraday returns, a pattern they describe as &quot;the day destroys the night.&quot; Conversely, intraday returns positively forecast overnight returns (&quot;night extends the day&quot;), reflecting a continuation effect. </li>
 </ul>
 </li>
 </ul>
@@ -1889,7 +1940,7 @@ where indicator of <script type="math/tex; ">p_k</script> indicates whether a pa
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Quant Finance Notes","level":"1.2.11","depth":2,"next":{"title":"Machine Learning Notes","level":"1.2.12","depth":2,"path":"contents/mln.md","ref":"./contents/mln.md","articles":[]},"previous":{"title":"Broker Reports","level":"1.2.10","depth":2,"path":"contents/broker.md","ref":"./contents/broker.md","articles":[]},"dir":"ltr"},"config":{"plugins":["mathjax","image-captions","github","anchors","anchor-navigation-ex","-sharing","sharing-plus@^0.0.2","github-buttons","embed-pdf","livereload"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"github":{"url":"https://github.com/ZizouHe/"},"livereload":{},"search":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":false},"mode":"float","multipleH1":false,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":true},"github-buttons":{"buttons":[{"user":"ZizouHe","repo":"reading-notes","type":"star","size":"small"}]},"mathjax":{"forceSVG":false,"version":"2.6-latest"},"sharing":{"qq":true,"all":["facebook","google","twitter","weibo","qq","linkedin"],"douban":false,"facebook":true,"weibo":true,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":false,"messenger":false,"line":false,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"embed-pdf":{},"image-captions":{"caption":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","align":"right","variable_name":"_pictures"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{"_pictures":[{"backlink":"./notes/RDN.html#fig1.4.2.1","level":"1.4.2","align":"right","list_caption":"Figure: Example (a) data graph and (b) model graph.","alt":"Example (a) data graph and (b) model graph.","nro":1,"url":"./pic/RDN-1.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Example (a) data graph and (b) model graph.","attributes":{},"skip":false,"key":"1.4.2.1"},{"backlink":"./notes/RDN.html#fig1.4.2.2","level":"1.4.2","align":"right","list_caption":"Figure: RDN inference algorithm.","alt":"RDN inference algorithm.","nro":2,"url":"./pic/RDN-2.png","index":2,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"RDN inference algorithm.","attributes":{},"skip":false,"key":"1.4.2.2"},{"backlink":"./notes/Faster_Frank_Wolfe.html#fig1.4.14.1","level":"1.4.14","align":"right","list_caption":"Figure: Frank-Wolfe Algorithm","alt":"Frank-Wolfe Algorithm","nro":3,"url":"./pic/Frank-Wolfe.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Frank-Wolfe Algorithm","attributes":{},"skip":false,"key":"1.4.14.1"},{"backlink":"./notes/Fin_Fan_Book.html#fig1.4.15.1","level":"1.4.15","align":"right","list_caption":"Figure: Efficient Frontier with risk-free asset","alt":"Efficient Frontier with risk-free asset","nro":4,"url":"./pic/Eff_Front_1.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Efficient Frontier with risk-free asset","attributes":{},"skip":false,"key":"1.4.15.1"},{"backlink":"./notes/Fin_Fan_Book.html#fig1.4.15.2","level":"1.4.15","align":"right","list_caption":"Figure: Efficient Frontier without risk-free asset","alt":"Efficient Frontier without risk-free asset","nro":5,"url":"./pic/Eff_Front_2.png","index":2,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Efficient Frontier without risk-free asset","attributes":{},"skip":false,"key":"1.4.15.2"}]},"title":"Reading List & Notes","gitbook":"*"},"file":{"path":"contents/qfn.md","mtime":"2024-10-06T09:06:45.933Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2024-10-06T09:07:39.000Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Quant Finance Notes","level":"1.2.11","depth":2,"next":{"title":"Machine Learning Notes","level":"1.2.12","depth":2,"path":"contents/mln.md","ref":"./contents/mln.md","articles":[]},"previous":{"title":"Broker Reports","level":"1.2.10","depth":2,"path":"contents/broker.md","ref":"./contents/broker.md","articles":[]},"dir":"ltr"},"config":{"plugins":["mathjax","image-captions","github","anchors","anchor-navigation-ex","-sharing","sharing-plus@^0.0.2","github-buttons","embed-pdf","livereload"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"github":{"url":"https://github.com/ZizouHe/"},"livereload":{},"search":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":false},"mode":"float","multipleH1":false,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":true},"github-buttons":{"buttons":[{"user":"ZizouHe","repo":"reading-notes","type":"star","size":"small"}]},"mathjax":{"forceSVG":false,"version":"2.6-latest"},"sharing":{"qq":true,"all":["facebook","google","twitter","weibo","qq","linkedin"],"douban":false,"facebook":true,"weibo":true,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":false,"messenger":false,"line":false,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"embed-pdf":{},"image-captions":{"caption":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","align":"right","variable_name":"_pictures"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{"_pictures":[{"backlink":"./notes/RDN.html#fig1.4.2.1","level":"1.4.2","align":"right","list_caption":"Figure: Example (a) data graph and (b) model graph.","alt":"Example (a) data graph and (b) model graph.","nro":1,"url":"./pic/RDN-1.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Example (a) data graph and (b) model graph.","attributes":{},"skip":false,"key":"1.4.2.1"},{"backlink":"./notes/RDN.html#fig1.4.2.2","level":"1.4.2","align":"right","list_caption":"Figure: RDN inference algorithm.","alt":"RDN inference algorithm.","nro":2,"url":"./pic/RDN-2.png","index":2,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"RDN inference algorithm.","attributes":{},"skip":false,"key":"1.4.2.2"},{"backlink":"./notes/Faster_Frank_Wolfe.html#fig1.4.14.1","level":"1.4.14","align":"right","list_caption":"Figure: Frank-Wolfe Algorithm","alt":"Frank-Wolfe Algorithm","nro":3,"url":"./pic/Frank-Wolfe.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Frank-Wolfe Algorithm","attributes":{},"skip":false,"key":"1.4.14.1"},{"backlink":"./notes/Fin_Fan_Book.html#fig1.4.15.1","level":"1.4.15","align":"right","list_caption":"Figure: Efficient Frontier with risk-free asset","alt":"Efficient Frontier with risk-free asset","nro":4,"url":"./pic/Eff_Front_1.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Efficient Frontier with risk-free asset","attributes":{},"skip":false,"key":"1.4.15.1"},{"backlink":"./notes/Fin_Fan_Book.html#fig1.4.15.2","level":"1.4.15","align":"right","list_caption":"Figure: Efficient Frontier without risk-free asset","alt":"Efficient Frontier without risk-free asset","nro":5,"url":"./pic/Eff_Front_2.png","index":2,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Efficient Frontier without risk-free asset","attributes":{},"skip":false,"key":"1.4.15.2"}]},"title":"Reading List & Notes","gitbook":"*"},"file":{"path":"contents/qfn.md","mtime":"2024-10-27T11:52:05.294Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2024-10-27T11:52:35.141Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

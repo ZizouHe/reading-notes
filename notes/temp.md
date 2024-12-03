@@ -1,3 +1,370 @@
+# Linkage
+
+## Momentum Information Propagation through Global Supply Chain Networks
+
+#### **Introduction**
+The paper introduces a novel customer momentum strategy utilizing global supply chain network data. The authors address a gap in financial strategies by applying their approach to large-scale global supply chains, expanding beyond the traditionally explored US and Japanese stock markets. 
+
+#### **Methodology**
+1. **Network Theory**: This foundational approach models the interactions and relationships within supply chain networks.
+2. **Medium-Term Momentum Propagation**: The authors examine how momentum propagates through supply chains over medium time periods.
+3. **Higher-Layer Customer Information**: The strategy incorporates complex data, such as transaction periods and customer-to-supplier sales ratios.
+
+To validate the model, the authors conducted empirical analyses on global stock markets using a long–short portfolio analysis.
+
+#### **Data**
+The study utilizes:
+- **Supply Chain Data**: Covering 210,000 relationships globally, including approximately 18,000 suppliers and 19,000 customers (e.g., sourced from the FactSet Supply Chain Relationships database as of December 2019).
+- **Quantitative Metrics**: Transaction periods and the sales ratio (percentage of customer relationships contributing to total supplier sales) are key elements.
+
+#### **Findings**
+1. **Performance of the Proposed Strategy**:
+   - Achieved a **4.5% annual return**, outperforming standard momentum strategies from previous studies.
+2. **Global Applicability**:
+   - The strategy proved more effective than previous models (standard and customer momentum), showcasing robustness across diverse financial markets.
+
+#### **Conclusion**
+The proposed momentum strategy leverages supply chain network data to yield superior performance in global financial markets. By integrating advanced data modeling techniques and empirical validations, the study highlights the untapped potential of supply chain analytics in driving financial decision-making.
+
+## The Dynamics of Disagreement
+
+#### **Introduction**
+This paper investigates how differences in investor beliefs (disagreement) evolve in response to large information shocks. The authors use a unique dataset and focus on securities constrained by short selling. Two groups of investors—overreacting optimists and underreacting pessimists—are analyzed to understand their influence on asset pricing.
+
+#### **Methodology**
+The authors employ:
+1. **Portfolio Sorting**: Stocks are sorted based on past returns, institutional ownership ratio (IOR), and short-interest ratio (SIR).
+2. **Cumulative Abnormal Returns (CAR)**: Examines how stock prices deviate over 5 years post-formation.
+3. **Disagreement Measures**: Uses borrowing costs, lending fees, and forecast dispersion as proxies for disagreement.
+4. **Dynamic Modeling**: A heterogeneous-agent model incorporating behavioral biases like overconfidence and slow information diffusion is proposed to explain observed patterns.
+
+#### **Data**
+1. **Period**: Analysis spans from May 1980 to June 2020, with a focus on constrained stocks.
+2. **Sources**:
+   - Stock data: Center for Research in Security Prices (CRSP).
+   - Borrowing fees: Markit database.
+   - Analyst forecasts: IBES database.
+3. **Sample**:
+   - 27 portfolios derived from a 3×3×3 sort on past returns, IOR, and SIR.
+   - Markit lending fee data from 2004 to 2020.
+
+#### **Findings**
+1. **Return Dynamics**:
+   - **Constrained Winners** (stocks with positive shocks): Show prolonged negative returns over 5 years, reflecting overly optimistic beliefs of certain investors.
+   - **Constrained Losers** (stocks with negative shocks): Exhibit negative returns initially, stabilizing after one year as pessimistic beliefs adjust.
+2. **Belief Dynamics**:
+   - Overreacting optimists persist for up to 5 years post-positive shocks.
+   - Disagreement between investors persists over 5 years, as shown by high borrowing costs and forecast dispersion.
+3. **Momentum and Reversal**:
+   - Results align with momentum and reversal patterns but indicate that constrained securities amplify these effects due to limits on arbitrage.
+
+#### **Conclusion**
+The study highlights how differences in investor beliefs contribute to asset pricing anomalies. Constrained stocks reveal long-term belief adjustments, challenging traditional momentum and reversal models. The proposed behavioral model captures these dynamics and offers insights into the persistence of mispricing in financial markets.
+
+## Cross-stock momentum and factor momentum
+
+#### **Introduction**
+This paper explores the dynamics of cross-stock momentum, emphasizing its distinction from factor momentum. It identifies asymmetric and symmetric components within cross-stock linkages, building a comprehensive framework for understanding the lead-lag relationships across stocks. The study highlights the profitability of leveraging data-driven linkages to enhance stock return predictions.
+
+#### **Methodology**
+1. **Principal Portfolio (PP) Method**:
+   - Uses a prediction matrix to relate stock returns to lagged signals across the cross-section of stocks.
+   - Employs singular value decomposition (SVD) for dimensionality reduction and analysis of cross-stock linkages.
+
+2. **Asymmetric and Symmetric Linkages**:
+   - **Asymmetric Linkages**: Capture directional relationships (e.g., whether stock A leads stock B).
+   - **Symmetric Linkages**: Reflect simultaneous co-movements between stocks over different time horizons.
+
+3. **Data Sources**:
+   - Stock data from CRSP spanning 1926–2018.
+   - Industry classifications, analyst coverage, and factor returns from standard financial databases.
+
+#### **Findings**
+1. **Cross-stock Momentum Profitability**:
+   - Generates a **monthly alpha of 1.62%** relative to a five-factor model, highlighting its economic significance.
+   - Asymmetric components alone provide a monthly alpha of 1.02%, underscoring their unique contribution.
+
+2. **Comparison with Factor Momentum**:
+   - Cross-stock momentum differs from factor momentum through the presence of asymmetric relationships, which are absent in factor momentum.
+   - Factor momentum profits are mainly driven by high cross-stock links.
+
+3. **Time-varying Linkages**:
+   - Cross-stock linkages are less persistent than previously identified linkages, such as those based on geographic or industry connections.
+   - Predictability is attributed to short-term, time-varying linkages.
+
+4. **Machine Learning Insights**:
+   - SVD results confirm that key cross-stock momentum features align with theoretical expectations, validating the framework’s utility.
+
+#### **Conclusion**
+The study establishes cross-stock momentum as a distinct and profitable strategy, driven by asymmetric lead-lag relationships. By leveraging data-driven linkages and advanced modeling techniques, it provides insights into the interplay between cross-stock and factor momentum. This contributes significantly to the asset pricing and portfolio management literature.
+
+## Understanding momentum and reversal
+
+#### **Introduction**
+The paper revisits the momentum and long-term reversal phenomena in financial markets through the lens of conditional asset pricing models. The central question addresses whether these phenomena can be explained by time-varying risk compensation linked to dynamic factor exposures.
+
+---
+
+#### **Methodology**
+1. **Data**:
+   - Spans 1966–2014.
+   - Over 12,800 unique stocks and 1.4 million stock-month observations.
+   - Employs characteristics such as momentum, long-term reversal, and firm-specific traits.
+
+2. **Instrumented Principal Component Analysis (IPCA)**:
+   - The key modeling framework allowing time-varying factor exposures (betas) driven by observable firm characteristics.
+   - Uses latent factors instead of predefined ones (e.g., Fama-French factors) for better flexibility and accuracy.
+
+3. **Empirical Models**:
+   - Models conditional factor loadings based on firm traits.
+   - Tests various return predictors (momentum, residual momentum, and model-based expected returns).
+
+---
+
+#### **Findings**
+1. **Momentum and Conditional Risk**:
+   - Momentum is strongly linked to time-varying risk exposure.
+   - The conditional factor model explains a significant portion of the momentum premium.
+   - Raw momentum signals provide an 8.3% annualized return; the model-based strategy achieves 33.6%, with much higher precision.
+
+2. **Long-Term Reversal**:
+   - Long-term reversal is partially captured by the same conditional risk framework, though it remains distinct from momentum effects.
+   - Time-varying factors subsume predictive power from both momentum and reversal signals.
+
+3. **Residual Momentum**:
+   - Contrasts with previous findings; residual momentum (momentum in residuals after controlling for conditional factors) is less significant.
+   - Suggests that most of the momentum phenomenon is driven by conditional factor exposures rather than idiosyncratic components.
+
+4. **Out-of-Sample Performance**:
+   - The IPCA model maintains predictive strength even in out-of-sample tests.
+   - Produces robust results with an annualized Sharpe ratio of 2.29 compared to 0.48 for traditional momentum.
+
+5. **Robustness**:
+   - Excluding momentum or all return variables still preserves significant explanatory power.
+   - Results are consistent across different test specifications and with alternate factor structures.
+
+---
+
+#### **Conclusion**
+The study demonstrates that conditional factor models, which account for dynamic risk exposures, can explain much of the momentum and reversal phenomena. These findings challenge previous notions that momentum is purely an anomaly or a residual effect, positioning it instead as a manifestation of systematic risk compensation.
+
+## Psychological barrier and cross-firm return predictability
+
+#### **Introduction**
+The paper investigates the delayed price response to news about economically linked firms, such as suppliers and customers, through the lens of the psychological anchoring effect of the 52-week high price. The study posits that this effect distorts belief updating and contributes to market inefficiencies like underreaction to public information.
+
+---
+
+#### **Methodology**
+1. **Data**:
+   - Timeframe: January 1981 to December 2018.
+   - Includes supplier firms traded on NYSE, Amex, and Nasdaq.
+   - Customer-supplier link data derived from Compustat customer segment files.
+
+2. **Key Variables**:
+   - **Customer Returns (CR)**: Equal-weighted returns of a firm's customers.
+   - **Nearness to the 52-Week High (PRC)**: Ratio of a stock’s month-end price to its 52-week high price.
+
+3. **Portfolio Sorting**:
+   - Double sorting firms by customer returns (CR) and PRC into 25 portfolios.
+   - Analysis of Fama-French-Carhart (FFC4) alphas for each portfolio.
+
+4. **Return Decomposition**:
+   - Splits returns into components: customer momentum, 52-week high effect, and their interaction.
+   - Fama-MacBeth regressions are used to compute these components.
+
+---
+
+#### **Findings**
+1. **52-Week High Effect**:
+   - The nearness to the 52-week high significantly moderates the predictability of supplier returns based on customer returns.
+   - Returns for firms close to their 52-week high are higher when customers exhibit strong performance.
+
+2. **Interaction Effect**:
+   - Interaction between CR and PRC produces a positive and significant FFC4 alpha of 1.44% per month, explaining a substantial portion of customer momentum.
+
+3. **Analyst Behavior**:
+   - Analysts’ reactions to news about linked firms are influenced by the 52-week high effect, resulting in underreaction to economically relevant news.
+
+4. **Robustness**:
+   - Results hold under alternative risk adjustments (e.g., Fama-French models) and across other economic linkages like geographic and industry momentum.
+
+---
+
+#### **Conclusion**
+The study introduces the 52-week high effect as a psychological barrier that distorts market responses to news about linked firms. This effect significantly contributes to cross-firm return predictability and provides a unified explanation for the underreaction observed in customer and geographic momentum strategies.
+
+
+
+## Style Switching and Asset Pricing
+
+#### **Introduction**
+The paper investigates how style-switching behavior in asset allocation impacts asset pricing and market dynamics. Style switching refers to investors reallocating funds between investment styles based on past performance, leading to cross-asset momentum and reversal patterns.
+
+---
+
+#### **Methodology**
+1. **Conceptual Framework**:
+   - A portfolio choice model integrating **characteristics-based trading** and **extrapolative beliefs**.
+   - Identifies **dual styles** (assets negatively correlated in characteristics) and **twin styles** (positively correlated).
+   - Examines how demand shifts between dual and twin styles affect price dynamics.
+
+2. **Empirical Strategy**:
+   - Dual and twin styles are constructed using **cosine similarity** of firm characteristics (value, profitability, investment, volatility, momentum).
+   - Data sources include CRSP and Compustat (1963–2021).
+
+3. **Portfolio Analysis**:
+   - Stocks are sorted into quintile portfolios based on dual and twin style signals.
+   - Analyzes return spreads and their persistence over different horizons.
+
+4. **Regression Analysis**:
+   - Fama-MacBeth regressions test the robustness of the cross-asset momentum and reversal effects.
+   - Controls for industry effects, shared analyst coverage, and firm-specific characteristics.
+
+---
+
+#### **Data**
+- Sample includes NYSE, NASDAQ, and AMEX stocks (1963–2021).
+- Variables: firm characteristics (e.g., book-to-market ratio, profitability, momentum), institutional ownership, and macroeconomic factors.
+- Additional data on institutional trading (13F filings) and retail trading (TAQ millisecond tools).
+
+---
+
+#### **Findings**
+1. **Cross-Asset Reversals and Momentum**:
+   - **Dual styles** exhibit **reversal patterns**: Stocks with high dual-style returns tend to underperform subsequently.
+   - **Twin styles** display **momentum patterns**: Stocks with high twin-style returns tend to outperform.
+
+2. **Institutional Trading**:
+   - Institutional investors drive style-switching, reallocating funds based on dual/twin performance.
+   - Active institutions (e.g., hedge funds) are primary agents of style-based demand shifts.
+
+3. **Short Sellers and Retail Investors**:
+   - Short sellers align with style-switching behavior, increasing short interest in high-dual stocks.
+   - Retail investors exhibit style-following tendencies, but with less consistent patterns.
+
+4. **Long-Term Effects**:
+   - Style strategy returns reverse after 30 months, indicating price deviations due to demand shifts eventually normalize.
+
+5. **Macroeconomic Insensitivity**:
+   - Style effects are weakly correlated with macroeconomic conditions, supporting the behavioral rather than systematic risk-driven nature of the findings.
+
+---
+
+#### **Conclusion**
+The study identifies style switching as a significant driver of cross-asset return predictability, creating distinct momentum and reversal effects. These findings highlight the role of active institutional trading in shaping market dynamics and offer new insights into the interplay between investor behavior and asset pricing.
+
+## Similar Stocks
+
+#### **Introduction**
+This paper examines the concept of similarity investing, which measures the similarity between stocks based on characteristics such as size, book-to-market ratio, operating profitability, investment-to-assets, and price. The study investigates how the past returns of a stock's similar stocks predict its future performance, identifying a new return anomaly distinct from existing explanations like style investing or factor momentum.
+
+---
+
+#### **Methodology**
+1. **Similarity Measure**:
+   - Similarity between stocks is quantified using the Euclidean distance in a multi-dimensional space of standardized firm characteristics.
+   - Characteristics include price, size, book-to-market, operating profitability, and investment-to-assets.
+
+2. **Portfolio Construction**:
+   - Stocks are sorted monthly into decile portfolios based on the past returns of their 50 most similar stocks (Residual Similarity Measure, RSIM).
+   - A long-short strategy is constructed by taking long positions in portfolios with high similar-stock returns and short positions in portfolios with low similar-stock returns.
+
+3. **Regression Analysis**:
+   - Fama-MacBeth regressions are employed to account for firm-specific characteristics and control for other anomalies (e.g., momentum, reversal).
+
+4. **Robustness Tests**:
+   - Controlled for style investing, industry momentum, economic linkages, and factor momentum.
+   - Used high-dimensional similarity measures involving 171 firm-level characteristics to extend analysis.
+
+---
+
+#### **Data**
+- **Period**: 1963–2019.
+- **Sources**:
+  - Stock returns: CRSP.
+  - Firm characteristics: Compustat.
+  - Retail trading data: TAQ and ISSM for 1983–2000.
+  - Institutional holdings: Thomson Reuters 13F data.
+
+---
+
+#### **Findings**
+1. **Predictability of Similarity Returns**:
+   - Stocks with high similar-stock returns outperform those with low similar-stock returns by **1.44% per month (CAPM alpha)** and **1.39% (Fama-French five-factor alpha)**.
+   - The predictability is robust across multiple controls and alternative similarity measures.
+
+2. **Mechanism**:
+   - Evidence supports **continued overreaction** rather than underreaction as the primary driver.
+   - Retail investor behavior, including attention spillover and categorical trading, plays a significant role.
+   - Retail order imbalance increases for high similar-stock return portfolios, reflecting stronger demand from individual investors.
+
+3. **High-Dimensional Characteristics**:
+   - Extending the similarity measure to 171 characteristics strengthens the predictive power, increasing monthly return spreads by 32%.
+
+4. **Role of Retail vs. Institutional Investors**:
+   - The similarity effect is stronger among firms with low institutional ownership, suggesting retail investors are primary drivers.
+
+5. **International Evidence**:
+   - Results generalize across 38 international markets, with significant return spreads consistent across regions.
+
+---
+
+#### **Conclusion**
+The paper establishes the similarity effect as a robust return anomaly driven by behavioral factors, particularly retail investor attention and demand. The findings contribute to asset pricing literature by highlighting a distinct mechanism of cross-sectional predictability that persists after accounting for known anomalies.
+
+## Joint News, Attention Spillover, and Market Returns
+
+#### **Introduction**
+This study introduces a novel measure of joint news coverage—news articles that mention multiple firms—and examines its influence on market returns and investor behavior. The paper demonstrates how joint news coverage generates attention spillover across firms, resulting in market overvaluation and subsequent return reversals. The analysis is built on extensive datasets of over 2.6 million news articles and investor activity records.
+
+---
+
+#### **Methodology**
+1. **Data**:
+   - News Data: 2.6 million articles (1996–2014) from Thomson Reuters and S&P 500 index firms.
+   - Investor Attention: Derived from SEC EDGAR filing downloads (5.97 million unique IPs).
+   - Stock Data: CRSP and Compustat for financial variables.
+   - Market Variables: Economic indicators (e.g., VIX, macro uncertainty indices) and market frictions (e.g., short interest ratios).
+
+2. **News Measures**:
+   - **Joint News**: Articles mentioning multiple firms; aggregated to a market-level indicator (JointNewsM).
+   - **Self News**: Articles mentioning only one firm; less significant in marketwide effects.
+
+3. **Attention Spillover Analysis**:
+   - Abnormal Google search volume and EDGAR IP activities used to quantify attention shifts.
+   - Eigenvector centrality measures firm importance in news coverage networks.
+
+4. **Market Return Predictability**:
+   - Regression models evaluate JointNewsM's power to predict future market returns.
+   - Instrumental variable approach uses sensational non-financial news as an exogenous shock to validate causality.
+
+---
+
+#### **Findings**
+1. **Market Predictability**:
+   - JointNewsM strongly and negatively predicts one-month-ahead market returns.
+   - Predictability persists for up to six months, indicating market overvaluation driven by attention spillovers.
+   - In-sample \( R^2 \): 3.93%; Out-of-sample \( R^2 \): 6.52%.
+
+2. **Investor Attention Spillovers**:
+   - Joint news increases Google search activity and EDGAR filings for connected firms, more so than self news.
+   - A one standard deviation increase in joint news leads to a 20.3% rise in new EDGAR downloads.
+
+3. **Economic Gains**:
+   - Predictive models using JointNewsM yield annualized certainty equivalent returns (CER) gains up to 9.31%.
+   - Sharpe ratios of portfolios based on JointNewsM exceed those of buy-and-hold strategies.
+
+4. **Behavioral vs. Rational Mechanisms**:
+   - Stronger predictability during high uncertainty and market friction periods suggests behavioral (mispricing) over rational explanations (risk-sharing).
+
+---
+
+#### **Conclusion**
+The paper establishes joint news coverage as a significant driver of market-wide attention spillovers, contributing to temporary overvaluation and subsequent reversals. These effects underscore the critical role of media networks in influencing investor behavior and market dynamics, providing robust tools for market prediction and investment strategies.
+
+
+
 # Temp
 
 ## Identifying Risk Factor Regimes with Machine Learning: Implications for Tactical Asset Allocation
@@ -31,34 +398,6 @@ The paper titled "Identifying Risk Factor Regimes with Machine Learning: Implica
 13. **Interpreting the Predicted Regimes**: The paper discusses the use of Shapley Values to interpret the ML model predictions, providing insights into the contribution of each feature to the predicted probabilities.
 
 In conclusion, the paper presents a comprehensive approach to using machine learning for tactical asset allocation by identifying and predicting risk factor regimes. It demonstrates the potential of ML models to improve portfolio construction and risk management through better understanding and utilization of market dynamics.
-
-
-
-## Predicting Performance Using Consumer Big Data
-
-The paper titled "Predicting Performance Using Consumer Big Data," authored by Kenneth Froot, Namho Kang, Gideon Ozik, and Ronnie Sadka, explores the efficacy of consumer big data as a tool for predicting firms' fundamentals and stock returns. Here's a summary of the key points:
-
-1. **Proxies for Corporate Sales**: The authors construct three proxies for real-time corporate sales using distinct information sources: in-store foot traffic (IN-STORE), web traffic to companies' websites (WEB), and consumers' interest level in corporate brands and products (BRAND).
-
-2. **Sample and Timeframe**: The study uses data from a sample of 330 firms over the period 2009–2020.
-
-3. **Significant Profitability**: Trading strategies using these proxies result in significant net-of-transaction-costs profitability.
-
-4. **Pandemic Impact**: During the pandemic, there was a significant increase in WEB activity and a notable decrease in IN-STORE, reflecting a shift from physical stores to online platforms.
-
-5. **Information Dissemination**: The study suggests that information from IN-STORE and BRAND is not immediately available to investors, while WEB information is more rapidly diffused.
-
-6. **Performance During Pandemic**: The results indicate that information diffusion worsened during the pandemic, with an increased return predictability of sales proxies.
-
-7. **Portfolio Returns**: The paper examines the performance of portfolio strategies based on the sales proxies and finds that they provide positive alphas, indicating profitability after considering transaction costs.
-
-8. **Consumer Activities Shift**: The COVID-19 pandemic has significantly impacted consumer behavior, leading to a decrease in in-store activities and an increase in online activities.
-
-9. **Predictability of Returns**: The predictability of portfolio returns using sales proxies increased during the pandemic, suggesting slower information dissemination compared to the pre-pandemic period.
-
-10. **Conclusion**: The paper concludes that big data on consumer activities can predict firms' fundamentals and stock returns, with different proxies reflecting different aspects of market fundamentals and information dissemination speed.
-
-The paper is set to be published in the April 2022 issue of the Journal of Portfolio Management.
 
 
 
@@ -167,32 +506,6 @@ Key points from the paper include:
 8. **Conclusion**: The paper concludes that market states can predict future security returns and that an industry's performance in the past can predict its future performance in different market states. This has implications for asset selection, allocation, and pricing, and is particularly important for investors looking to understand the changing risk/return profiles of different industries.
 
 The paper provides empirical evidence that supports the use of market states in investment strategies and contributes to the literature on asset allocation and industry performance.
-
-
-
-## Communicating Corporate Culture in Labor Markets: Evidence from Job Postings
-
-The paper titled "Communicating Corporate Culture in Labor Markets: Evidence from Job Postings" by Joseph Pacelli, Tianshuo Shi, and Yuan Zou from Harvard Business School investigates how companies use job postings to convey their corporate culture and the impact of these communications on attracting employees. Here's a summary of the key points:
-
-1. **Importance of Corporate Culture**: The study emphasizes that corporate culture is a critical factor considered by job seekers, with some estimates suggesting that over 50% of job seekers consider culture as important as salary.
-
-2. **Job Postings as a Communication Tool**: The authors focus on job postings as a direct way for firms to disclose their values to prospective employees. They note that effective job postings can help reduce information asymmetry and search costs for job seekers.
-
-3. **Measuring Culture in Job Postings**: Using advanced machine learning methods, the authors develop a comprehensive dictionary of corporate values across nearly 25 million job postings issued by approximately 5,000 companies from 2010 to 2020.
-
-4. **Trends in Culture Communication**: The study reveals a significant increase in culture-oriented job postings over the sample period, with a focus on values such as quality, innovation, and respect. There is also meaningful industry variation in how much corporate culture is emphasized in job postings.
-
-5. **Firms with Strong Cultures**: Firms that have strong external ratings and infrequent employment violations are more likely to advertise their corporate culture in their job postings.
-
-6. **Impact of Culture Information on Hiring**: The main analyses demonstrate that culture information in job postings attracts job seekers, as it is associated with higher worker inflows. This effect is more pronounced following the Black Lives Matter movement, which increased the importance of culture to job seekers.
-
-7. **Information Asymmetry**: The study finds that culture information in job postings has a weaker effect on attracting employees when alternative sources of information about firm culture are more readily available, such as larger facilities or firms with high-quality reviews on external job review sites.
-
-8. **Robustness of Findings**: The authors conduct several robustness checks, including using an entropy-balancing method to control for differences between firms that provide culture information in their job postings and those that do not.
-
-9. **Implications for Workers and Firms**: The study concludes that job postings are an important mechanism for communicating cultural values to prospective employees and attracting talent. It suggests that firms can benefit from advertising their values in job postings.
-
-The paper contributes to the literature by providing empirical evidence on the role of job postings in communicating corporate culture and its impact on labor market outcomes. It also has practical implications for firms in crafting effective job postings to attract the right talent.
 
 
 
@@ -408,5 +721,4 @@ The finance paper titled "Selling Fast and Buying Slow: Heuristics and Trading P
 9. **Conclusion**: The paper concludes that institutional investors display systematic heuristics in their selling decisions, which can be costly, and that these heuristics are linked to the asymmetric allocation of cognitive resources towards buying at the expense of selling.
 
 The paper provides valuable insights into the behavioral biases of expert investors and contributes to the literature on heuristics and biases in financial decision-making.
-
 

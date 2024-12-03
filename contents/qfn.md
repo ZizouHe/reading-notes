@@ -97,6 +97,31 @@
   - Negative news is more likely to be reported than positive news.
   - The presence of financial journalists can lead to more efficient pricing.
 
+- [Froot, Kenneth, et al. "Predicting Performance Using Consumer Big Data." *Journal of Portfolio Management* 48.3 (2022).](https://scholar.harvard.edu/files/kenfroot/files/Predicting_Performance_Using_Consumer_Big_Data-Aug18.2021.pdf)
+  - **Proxies for Corporate Sales**: The authors construct three proxies for real-time corporate sales using distinct information sources: in-store foot traffic (IN-STORE), web traffic to companies' websites (WEB), and consumers' interest level in corporate brands and products (BRAND).
+  - Predict SUE, SUR, Analyst forecast error.
+  - Check analyst coverage and media exposure, and market attention level to see if the market consensus really matters, whether we want to trade the surprise from consensus or just the quarterly change. 
+
+- Wolfe Research | Global shipping and supply chain alpha
+
+  - S&P global panjiva supply chain intelleigence (US, Brazil, India, Mexico); FactSet (US only)
+  - BOL: bill of lading form.
+  - Features: 
+    - shipping volume (predict sales), (level/growth)
+    - supplier, product, country of origin (diversity)
+    - supply-chain network (company's position in supply chain)
+    - shipping network momentum
+
+- Wolfe Research | Alpha insights from global job postings data
+
+  - RavenPack dataset (most likely use LinkUp)
+  - Term construction: job postings level/growth (we can use SOC median salary as importance weight); technical skill intensity, level/growth, uniqueness in skills, adoption of new technical skills, skill importance (TF-IDF).
+
+- DB Research | Macro and Micro JobEconomics
+
+  - LinkUp job posting dataset: scrape from company website. Data since 2007, description data since 2014. Includes SOC job classification, geolocation data, and technical skills data. Most coverage in the USA.
+  - Term construction similar for micro.
+  - Macro: use to predict employment, PMI index, CPI, retail, consumer sentiment.
 
 
 ## Analyst
@@ -159,6 +184,14 @@
 - [Nominal Price Ilusion](../notes/nominal_illusion.html)
 - [PEAD](../notes/PEAD.html)
 - [Financial Statement Related](../notes/fin_stat.html)
+- Wolfe Research | Seeking alpha from insider transactions
+  - Form 4 fillings from EDGAR database
+  - Findings:
+    - Insider purchases are more effective than sales (might be personal liquidity needs)
+    - Insider purchases after positive earnings surprise is a strong confirmatory signal
+    - Collective insider purchases by multiple executives is strong
+    - Infrequent insider transactions are more informative than reoccurring trades. 
+
 
 ## Crypto
 
@@ -226,18 +259,16 @@
   - [Huang, Shiyang, et al. "A frog in every pan: Information discreteness and the lead-lag returns puzzle." *Journal of Financial Economics* 145.2 (2022): 83-102.](https://www.sciencedirect.com/science/article/pii/S0304405X21004761)
 
   - 行为金融学中的温水煮青蛙：人的这种缺陷叫做limited attention（有限注意力）。由于人们的认知资源是有限的，在任何给定的时刻，我们的大脑都偏好去处理那些最显著、最重要的信息，而忽视那些不显著的、经济效应微弱的因素。一系列频繁但微小的变化对于人的吸引力远不如少数却显著的变化；因此投资者对于连续信息造成的股价变化反应不足。
-
-
-    - 信息离散性（information discreteness，ID）：ID 低（说明信息连续性强）的动量才是高质量动量
-      $$
-      ID = \text{sign(过去一段时间的收益率) × (这段时间内下跌交易日\% - 这段时间内上涨收益日\%)}
-      $$
-
-
-    - Da et al. (2014) 说明，与传统动量相比，通过 ID 因子筛选找到的高质量动量能够获得更高的超额收益，且该收益在样本外的持续性更强（这有助于我们降低调仓频率、减少换手率、节约交易成本）。
-
-
-    - Information discreteness (ID) serves as a cognitive trigger that reduces investor inattention and improves inter-firm news transmission.
+  
+  - 信息离散性（information discreteness，ID）：ID 低（说明信息连续性强）的动量才是高质量动量
+  
+  $$
+  ID = \text{sign(过去一段时间的收益率) × (这段时间内下跌交易日\% - 这段时间内上涨收益日\%)}
+  $$
+  
+  - Da et al. (2014) 说明，与传统动量相比，通过 ID 因子筛选找到的高质量动量能够获得更高的超额收益，且该收益在样本外的持续性更强（这有助于我们降低调仓频率、减少换手率、节约交易成本）。
+  
+  - Information discreteness (ID) serves as a cognitive trigger that reduces investor inattention and improves inter-firm news transmission.
 
 - [Yan, Jingda, and Jialin Yu. "Cross-stock momentum and factor momentum." *Journal of Financial Economics* 150.2 (2023): 103716.](https://www.sciencedirect.com/science/article/pii/S0304405X23001563)
 
@@ -284,6 +315,18 @@
     - Clustering these vectors using Locality-Sensitive Hashing (LSH) to identify topics.
     - Applying topic modeling to identify interpretable textual factors. (Use topic exposure as latent factors, apply standard factor analysis framework)
 
+## Macro
+
+- [He, Wei, Zhiwei Su, and Jianfeng Yu. "Macroeconomic perceptions, financial constraints, and anomalies." *Journal of Financial Economics* 162 (2024): 103952.](https://www.sciencedirect.com/science/article/pii/S0304405X24001752)
+
+  - [石川：主观宏观经济感知、财务约束和股票收益](https://mp.weixin.qq.com/s/4xnEeeYvEOw68pPdzSXuYg)
+
+  ![](../notes/pic/macro_perception_1.png)
+
+  ![](../notes/pic/macro_perception_2.png)
+
+  - 当主观预期上调的时候，财务约束更大的公司未来的预期收益率更低。当主观预期下调的时候，财务约束更大的公司未来的预期收益率更高。
+  - Factor timing
 
 ## Microstructure
 
@@ -352,6 +395,24 @@
     - Retail Investors drive demand at the open, impacting overnight returns.
     - Institutional Investors provide liquidity intraday, which causes reversal effects.
   - The study reveals a robust negative relation between past overnight returns and future intraday returns, a pattern they describe as "the day destroys the night." Conversely, intraday returns positively forecast overnight returns ("night extends the day"), reflecting a continuation effect. 
+- [Jiang, Jingwen, Bryan Kelly, and Dacheng Xiu. "(Re‐) Imag (in) ing price trends." *The Journal of Finance* 78.6 (2023): 3193-3249.](https://onlinelibrary.wiley.com/doi/abs/10.1111/jofi.13268)
+  - **CNN on OCHL charts**: open, close, high, and low prices, trading volume, and moving average price over the past 5, 20, and 60 days to forecast short (five-day), medium (20-day), and long (60-day) horizons return.
+  - **Transfer learning**: they show that the predictive patterns identified by the CNN from daily U.S. stock data transfer well to international markets and to other time scales. 
+
+- [Han, Yufeng, Guofu Zhou, and Yingzi Zhu. "A trend factor: Any economic gains from using information over investment horizons?." *Journal of Financial Economics* 122.2 (2016): 352-375.](https://www.sciencedirect.com/science/article/pii/S0304405X16301271)
+  - Construct various lag lengths moving average to cover different time horizons, ranging from short-term (3–20 days) to long-term (up to 1000 days).
+  - Each month, the expected return for each stock is predicted using a cross-sectional regression of returns on the normalized MA signals.
+  - Then use the estimated coefficients for next month return prediction.
+
+## NLP
+
+- Wolfe Research | Text mining unstructured corporate filing data
+  - EDGAR 10-K and 10-Q filings (by section comparison)
+  - Features:
+    - Sentiment and tone analysis
+    - chanes in sentiment
+    - distance measures (YoY embedding/BoW)
+
 
 ## Portfolio Construction
 

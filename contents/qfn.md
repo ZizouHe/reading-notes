@@ -420,14 +420,15 @@
 
   - In this paper, we separate the regression model that examines propagation from customers and the regression model that examines propagation from suppliers and then estimate the coefficients of the following two regression models:
 
-    $$
-    P_{i, t}=\alpha_{0, t}+\alpha_{1, t} P_{i, t-1}+\alpha_{2, t} M_{i, t-1}+\alpha_{3, t} D_i+\alpha_{4, t} C_{i, t-1}+\alpha_{5, t} C C_{i, t-1}+\varepsilon_{i, t}
-    $$
+  $$
+  P_{i, t}=\alpha_{0, t}+\alpha_{1, t} P_{i, t-1}+\alpha_{2, t} M_{i, t-1}+\alpha_{3, t} D_i+\alpha_{4, t} C_{i, t-1}+\alpha_{5, t} C C_{i, t-1}+\varepsilon_{i, t}
+  $$
+  
+  
 
-
-    $$
-    P_{i, t}=\alpha_{0, t}+\alpha_{1, t} P_{i, t-1}+\alpha_{2, t} M_{i, t-1}+\alpha_{3, t} D_i+\alpha_{4, t} S_{i, t-1}+\alpha_{5, t} S S_{i, t-1}+\varepsilon_{i, t}
-    $$
+$$
+P_{i, t}=\alpha_{0, t}+\alpha_{1, t} P_{i, t-1}+\alpha_{2, t} M_{i, t-1}+\alpha_{3, t} D_i+\alpha_{4, t} S_{i, t-1}+\alpha_{5, t} S S_{i, t-1}+\varepsilon_{i, t}
+$$
 
 ![](../notes/pic/spchain2.png)
 
@@ -464,31 +465,26 @@
     \end{aligned}
     $$
 
-    where $$\boldsymbol{W}=\boldsymbol{O}^{-\frac{1}{2}} \boldsymbol{A} \boldsymbol{O}^{-\frac{1}{2}}$$ is the normalized adjacency matrix. Specifically, $$\boldsymbol{A}$$ is a $$N \times N$$ adjacency matrix indicating the connections between assets with diagonal elements as 0 , and $$\boldsymbol{O}=\operatorname{diag}\left\{n_1, \ldots, n_N\right\}$$, where $$n_i=\sum_j \boldsymbol{A}[i, j], \forall i$$. Therefore $$\boldsymbol{W} \cdot \boldsymbol{v}_{t-1}, \boldsymbol{W} \cdot \boldsymbol{v}_{t-5: t-2}$$, $$\boldsymbol{W} \cdot \boldsymbol{v}_{t-22: t-6}$$ represent the neighborhood aggregation over daily, weekly, and monthly horizons. $$\gamma_d, \gamma_w, \gamma_m$$ represent the effects from connected neighbors over different horizons.
+    where $$\boldsymbol{W}=\boldsymbol{O}^{-\frac{1}{2}} \boldsymbol{A} \boldsymbol{O}^{-\frac{1}{2}}$$ is the normalized adjacency matrix. Specifically, $$\boldsymbol{A}$$ is a $$N \times N$$ adjacency matrix indicating the connections between assets with diagonal elements as 0 , and $$\boldsymbol{O}=\operatorname{diag}\left\{n_1, \ldots, n_N\right\}$$, where $$n_i=\sum_j \boldsymbol{A}[i, j], \forall i$$. Therefore $$\boldsymbol{W} \cdot \boldsymbol{v}_{t-1}, \boldsymbol{W} \cdot \boldsymbol{v}_{t-5: t-2}$$, $$\boldsymbol{W} \cdot \boldsymbol{v}_{t-22: t-6}$$ represent the neighborhood aggregation over daily, weekly, and monthly horizons. $$\gamma_d, \gamma_w, \gamma_m$$ represent the effects from connected neighbors over different horizons. Moreover, we apply the idea of the graph effect to modeling correlations according to the model
 
-    
-
-    Moreover, we apply the idea of the graph effect to modeling correlations according to
-
-    the model
     $$
     \begin{aligned}
      \boldsymbol{x}_t= & \boldsymbol{\alpha}^{(R)}+\underbrace{\beta_d^{(R)} \boldsymbol{x}_{t-1}+\beta_w^{(R)} \boldsymbol{x}_{t-5: t-2}+\beta_m^{(R)} \boldsymbol{x}_{t-22: t-6}}_{\text {Self }} \\
     & +\underbrace{\gamma_d^{(R)} \widetilde{\boldsymbol{W}} \boldsymbol{x}_{t-1}+\gamma_w^{(R)} \widetilde{\boldsymbol{W}} \boldsymbol{x}_{t-5: t-2}+\gamma_m^{(R)} \widetilde{\boldsymbol{W}} \boldsymbol{x}_{t-22: t-6}}_{\text {Graph }}+\boldsymbol{u}_t^{(R)},
     \end{aligned}
     $$
-
+    
     where $$\widetilde{\boldsymbol{W}}=\widetilde{\boldsymbol{O}}^{-\frac{1}{2}} \tilde{\boldsymbol{A}} \tilde{\boldsymbol{O}}^{-\frac{1}{2}}$$ is the normalized adjacency matrix. Specifically, $$\tilde{\boldsymbol{A}}$$ is a $$N^{\#} \times N^{\#}$$ $$\left(N^{\#}=N(N-1) / 2\right)$$ adjacency matrix indicating the connections between pairwise correlations with diagonal elements as 0 , and $$\widetilde{O}=\operatorname{diag}\left\{\widetilde{n}_1, \ldots, \widetilde{n}_H\right\}$$, where $$\widetilde{n}_i=\sum_i \widetilde{A}[i, j], \forall i$$​.
-
+    
   - Choices of graphs
-
+  
     - Variance: Complete, Sector, Graph-Lasso
     - Correlation: Complete, Line graph
 
     Given a graph $$\mathcal{G}$$, its line graph $$L(\mathcal{G})$$ is a graph such that
     - each node of $$L(\mathcal{G})$$ represents an edge of $$\mathcal{G}$$;
     - two nodes of $$L(\mathcal{G})$$ are adjacent if and only if their corresponding edges share a common endpoint in $$\mathcal{G}$$.
-
+  
 - [He, Wei, et al. "Similar stocks." *Available at SSRN 3815595* (2021).](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3815595)
 
   - Similarity between two stocks is measured by the distance between their characteristics such as price, size, book-to-market, operating profitability, and investment-to-assets. 
@@ -667,7 +663,9 @@
 
     - The linear form IPCA has been extended to DNN in [Gu, Shihao, Bryan Kelly, and Dacheng Xiu. "Autoencoder asset pricing models." *Journal of Econometrics* 222.1 (2021): 429-450.](https://www.sciencedirect.com/science/article/pii/S0304407620301998)
 
-
+- [Della Vedova, Joshua, Andrew Grant, and P. Joakim Westerholm. "Investor behavior at the 52-Week high." *Journal of Financial and Quantitative Analysis* 58.7 (2023): 2852-2889.](https://www.cambridge.org/core/journals/journal-of-financial-and-quantitative-analysis/article/investor-behavior-at-the-52week-high/5D1C7CA21396521F3B41D91B06A25BE1)
+  - Individual investors are more likely to sell stocks near the 52WH due to the **disposition effect** (a tendency to sell assets that have increased in value) and **anchoring bias** (relying too heavily on the 52WH as a reference point).
+  - Stocks that experience high levels of limit order selling by individual investors at and around the 52WH tend to have abnormally high returns in the period following the 52WH.
 
 ## NLP
 

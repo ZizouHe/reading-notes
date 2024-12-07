@@ -339,34 +339,6 @@ The paper titled "Ambiguity about volatility and investor behavior" from the Jou
 
 This study contributes to the literature by providing empirical evidence on how ambiguity, as opposed to just risk, affects the trading decisions of individual investors, highlighting the need for a nuanced understanding of investor behavior under conditions of uncertainty.
 
-
-
-## Investor Behavior at the 52 Week High
-
-This finance paper titled "Investor Behavior at the 52 Week High" by Joshua Della Vedova, Andrew Grant, and P. Joakim Westerholm, explores how individual investors influence the 52-week high (52WH) effect in stock prices. The 52WH is the highest price a stock has reached in the past year, and it's a significant reference point for investors. The study uses detailed trading data from the NASDAQ Helsinki exchange to analyze the behavior of individual and institutional investors.
-
-Key Findings:
-
-1. **Increased Volume and Returns at 52WH**: The study finds that as stocks approach their 52WH, there is a significant increase in trading volume and a tendency for stocks to continue performing well after reaching this price point, a phenomenon referred to as the 52WH effect.
-
-2. **Individual Investor Behavior**: Individual investors tend to sell more as the stock price nears the 52WH, particularly using limit orders. This behavior suggests anchoring, where investors use the 52WH as a reference point to make decisions.
-
-3. **Institutional Investor Benefit**: The selling by individual investors at the 52WH benefits institutional investors who act as counterparties, often buying at these prices and benefiting from the subsequent price increase.
-
-4. **Anchoring and Disposition Effects**: The study suggests that individual investors are more likely to sell stocks near the 52WH due to the disposition effect (a tendency to sell assets that have increased in value) and anchoring bias (relying too heavily on the 52WH as a reference point).
-
-5. **Impact of Market Uncertainty**: During periods of market uncertainty, individual investors are more likely to sell stocks at the 52WH, potentially exacerbating the 52WH effect.
-
-6. **Post-52WH Returns**: The paper finds that stocks that experience high levels of limit order selling by individual investors at and around the 52WH tend to have abnormally high returns in the period following the 52WH.
-
-7. **Data and Methodology**: The study uses a unique dataset that allows for the classification of trades by investor type (individual or institutional) and order type (limit or market), providing a granular view of trading behavior.
-
-8. **Implications for Investor Performance**: The findings suggest that individual investors' tendency to anchor to the 52WH and use limit orders may contribute to their overall underperformance relative to institutional investors.
-
-The paper contributes to the literature on behavioral finance by providing evidence that individual investors' trading behavior around the 52WH has significant implications for stock price dynamics and their own investment performance. It also highlights the role of institutional investors in exploiting the opportunities created by individual investors' behavior.
-
-
-
 ## When Smart Beta Meets Machine Learning and Portfolio Optimization
 
 The finance paper titled "When Smart Beta Meets Machine Learning and Portfolio Optimization" by Jason Hsu, Xiaoyang Liu, Vivek Viswanathan, and Yingfan Xia explores the integration of smart beta strategies with machine learning techniques and portfolio optimization. Here's a summary of the key findings and discussions in the paper:

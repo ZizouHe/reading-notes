@@ -1783,11 +1783,45 @@ where indicator of <script type="math/tex; ">p_k</script> indicates whether a pa
 </li>
 <li><p><a href="https://www.sciencedirect.com/science/article/pii/S0304405X23001563" target="_blank">Yan, Jingda, and Jialin Yu. &quot;Cross-stock momentum and factor momentum.&quot; <em>Journal of Financial Economics</em> 150.2 (2023): 103716.</a></p>
 <ul>
-<li><strong>Cross-stock momentum:</strong> Based on asymmetry in lead-lag linkages and differences between long-run and short-run co-movements.</li>
-<li><strong>Factor momentum:</strong> The phenomenon where returns of certain factors (like size, value, or industry factors) exhibit momentum.</li>
-<li>The asymmetry in cross-stock linkages is a key differentiator from factor momentum. The paper shows that cross-stock momentum is not entirely driven by factor momentum.</li>
+<li><p><strong>Cross-stock momentum:</strong> Based on asymmetry in lead-lag linkages and differences between long-run and short-run co-movements.</p>
+</li>
+<li><p><strong>Factor momentum:</strong> The phenomenon where returns of certain factors (like size, value, or industry factors) exhibit momentum.</p>
+</li>
+<li><p>The asymmetry in cross-stock linkages is a key differentiator from factor momentum. The paper shows that cross-stock momentum is not entirely driven by factor momentum.</p>
+</li>
+<li><p>The author used <strong>Principal Portfolio (PP) Methodology</strong>  invented in <a href="https://onlinelibrary.wiley.com/doi/abs/10.1111/jofi.13199" target="_blank">Kelly (JoF 2023) Principal Portfolios</a>. The Principal Portfolio (PP) methodology optimizes portfolio returns by leveraging cross-stock predictability captured in the <strong>Prediction Matrix</strong>. This approach extends traditional asset pricing by incorporating cross-stock signals.</p>
+</li>
+<li><p>The <strong>Prediction Matrix</strong>, <script type="math/tex; ">\hat{\Phi}_t</script>, aggregates the relationship between lagged signals (<script type="math/tex; ">S_{\tau-1}</script>) and returns (<script type="math/tex; ">R_\tau</script>) over a rolling window <script type="math/tex; ">T</script>:
+<script type="math/tex; mode=display">
+    \hat{\Phi}_t = \frac{1}{T} \sum_{\tau=t-T+1}^{t} R_{\tau} S_{\tau-1}^\top
+    </script>
+Diagonal Elements: Capture own-stock predictability, <script type="math/tex; ">E[R_{i,t+1} S_{i,t}]</script>.</p>
+<p>Off-Diagonal Elements: Represent cross-stock predictability, <script type="math/tex; ">E[R_{i,t+1} S_{j,t}]</script>.</p>
+<p>Signals (<script type="math/tex; ">S_{t-1}</script>) are normalized within <script type="math/tex; ">[-0.5, 0.5]</script> to reduce noise and manage outliers. The matrix is lagged by one period to ensure independence between returns and predictors.</p>
+</li>
+<li><p><strong>SVD</strong>: The Prediction Matrix is decomposed via SVD:
+<script type="math/tex; mode=display">
+    \hat{\Phi}_t = U \Sigma V^\top = \sum_{k=1}^n \lambda_k u_k v_k^\top
+    </script>
+<strong><script type="math/tex; ">U</script>, <script type="math/tex; ">V</script></strong>: Orthogonal matrices with left (<script type="math/tex; ">u_k</script>) and right (<script type="math/tex; ">v_k</script>) singular vectors.</p>
+<p><strong><script type="math/tex; ">\Sigma</script></strong>: Diagonal matrix of singular values (<script type="math/tex; ">\lambda_k</script>) ranked by importance.</p>
+<p>This decomposition simplifies identifying key patterns in cross-stock return predictability.</p>
+</li>
+<li><p><strong>Portfolio Construction</strong>: Portfolio weights (<script type="math/tex; ">w_t</script>) are derived by combining signals and the prediction matrix. Optimal weights maximize return subject to a constraint on matrix norm:
+<script type="math/tex; mode=display">
+    w_t = L^\top S_t \quad \text{with} \quad L = \sum_{k=1}^K v_k u_k^\top
+    </script>
+<strong><script type="math/tex; ">K</script></strong>: Number of leading components retained for dimensionality reduction. Usually <script type="math/tex; ">K < T</script>.</p>
+<p>Principal Portfolios (PPs): Constructed by linear combinations of <script type="math/tex; ">v_k</script> and <script type="math/tex; ">u_k</script>, balancing computational simplicity and predictive power.</p>
+<p>The PP return is:</p>
+<p><script type="math/tex; mode=display">
+    w_t^\top R_{t+1} = S_t^\top \left( \sum_{k=1}^K v_k u_k^\top \right) R_{t+1}
+    </script></p>
+</li>
 </ul>
 </li>
+</ul>
+<ul>
 <li><p><a href="https://onlinelibrary.wiley.com/doi/abs/10.1111/jofi.13281" target="_blank">Chen, Xin, et al. &quot;Attention spillover in asset pricing.&quot; <em>The Journal of Finance</em> 78.6 (2023): 3515-3559.</a></p>
 <ul>
 <li>The paper leverages a unique feature of stock display on trading platforms in China, where the order of stock display is determined by the stock&apos;s listing code. This feature creates an attention spillover effect, where investors are more likely to notice and trade stocks with listing codes adjacent to those of stocks they currently hold.</li>
@@ -1819,6 +1853,185 @@ where indicator of <script type="math/tex; ">p_k</script> indicates whether a pa
 <li><strong>Main idea: high overnight returns for peer stocks predict elevated opening prices for focal stocks, followed by intraday reversals, while peer intraday returns consistently predict positive future intraday returns for focal stocks.</strong></li>
 <li>Retail investors, who trade primarily on overnight information due to news salience, and professional investors, who engage in intraday trading, correcting the market.</li>
 <li>Predictable patterns arise not only from underreaction but from a systematic interplay between the different investor types. Retail-driven overnight price distortions are followed by intraday reversals managed by professionals</li>
+</ul>
+</li>
+<li><p>Data-driven graph learning</p>
+<ul>
+<li><p><a href="https://arxiv.org/abs/2308.11294" target="_blank">Pu et al. (2023) Network Momentum across Asset Classes</a></p>
+</li>
+<li><p>features: 8 in total, MOM and MACD. </p>
+<p><img src="../notes/pic/net_mom.png" alt=""></p>
+</li>
+<li><p>From <a href="http://proceedings.mlr.press/v51/kalofolias16.html" target="_blank">Kalofolias (AAAI 2016) How to learn a graph from smooth signals</a>, we can define a convex optimization problem:
+<script type="math/tex; mode=display">
+    \begin{aligned} \label{L2G}
+    \min_{\mathbf{A}_t} \; \; & \operatorname{tr}\left(\mathbf{V}_t^{\top}\left(\mathbf{D}_t-\mathbf{A}_t\right) \mathbf{V}_t\right)-\alpha \mathbf{1}^{\top} \log \left(\mathbf{A}_t \mathbf{1}\right)+\beta\left\|\mathbf{A}_t\right\|_F^2 \\
+    \text { s.t. } & \mathbf{A}_{i j, t}=\mathbf{A}_{j i, t}, \quad \mathbf{A}_{i j, t} \geq 0 \quad \forall i \neq j
+    \end{aligned}
+    </script>
+where <script type="math/tex; ">V_t \in \mathbb{R}^{N \times 8\delta}</script> is the feature matrix with <script type="math/tex; ">\delta</script>-days lookback window, where <script type="math/tex; ">\mathbf{D}_t</script> is a diagonal matrix with <script type="math/tex; ">\mathbf{D}_{i i, t}=\sum_j \mathbf{A}_{i j, t}</script>. The graph adjacency matrix <script type="math/tex; ">\mathbf{A}_t</script> we want to estimate represents the network at day t for constructing network momentum, with the <script type="math/tex; ">i j</script>-th entry <script type="math/tex; ">\mathbf{A}_{i j, t}</script> measuring the strength of similarity of individual momentum between asset i and asset j. In the objective function, the first trace term measures the spectral variations of <script type="math/tex; ">V_t</script> on the learned graph adjacency matrix <script type="math/tex; ">A_t</script>, encouraging connections between nodes with similar features. It is derived from Laplacian smoothness under the mild assumption that each column of <script type="math/tex; ">V_t</script>&#x200B;&#x200B; is a low-pass graph signal.</p>
+</li>
+<li><p>The above is derived from: Consider a matrix <script type="math/tex; ">X \in \mathbb{R}^{m \times n}=\left[x_1, \ldots, x_m\right]^{\top}</script>, where each row <script type="math/tex; ">x_i \in \mathbb{R}^n</script> resides on one of m nodes of an undirected graph G. In this way, each of the n columns of X can be seen as a signal on the same graph. A simple assumption about data residing on graphs, but also the most widely used one is that it changes smoothly between connected nodes. An easy way to quantify how smooth is a set of vectors <script type="math/tex; ">x_1, \ldots, x_m \in \mathbb{R}^n</script> on a given weighted undirected graph is through the function
+<script type="math/tex; mode=display">
+    \frac{1}{2} \sum_{i, j} W_{i j}\left\|x_i-x_j\right\|^2=\operatorname{tr}\left(X^{\top} L X\right),
+    </script></p>
+<p>where <script type="math/tex; ">W_{i j} \in \mathbb{R}_{+}</script> denotes the weight of the edge between nodes i and j and <script type="math/tex; ">L=D-W</script> is the graph Laplacian, <script type="math/tex; ">D_{i i}=\sum_j W i j</script> being the diagonal weighted degree matrix. In words, if two vectors <script type="math/tex; ">x_i</script> and <script type="math/tex; ">x_j</script> from a smooth set reside on two well connected nodes (i.e. <script type="math/tex; ">W_{i j}</script> is large), they are expected to have a small distance <script type="math/tex; ">\left\|x_i-x_j\right\|</script> so that <script type="math/tex; ">\operatorname{tr}\left(X^{\top} L X\right)</script> is small.</p>
+</li>
+<li><p>In our empirical analysis, we combine <script type="math/tex; ">K=5</script> distinct graphs learned from <script type="math/tex; ">\mathbf{V}_t</script> from five different lookback windows such that <script type="math/tex; ">\delta \in\{252,504,756,1008,1260\}</script> trading days as follows:
+(graph ensemble) <script type="math/tex; ">\; \; \overline{\mathbf{A}}_t=\frac{1}{K} \sum_{k=1}^K \mathbf{A}_t^{(k)}</script>.</p>
+<p>To mitigate the effects of scale differences in constructing network momentum, which may arise due to the difference in the number of connections certain assets have - with some connected to numerous other assets and others only to a few - we also apply a graph normalisation as follows: </p>
+<p>(graph normalisation) <script type="math/tex; ">\; \; \tilde{\mathbf{A}}_t=\overline{\mathbf{D}}_t^{-1 / 2} \overline{\mathbf{A}}_t \overline{\mathbf{D}}_t^{-1 / 2}</script>, where <script type="math/tex; ">\overline{\mathbf{D}}_t</script> is a diagonal matrix with <script type="math/tex; ">\overline{\mathbf{D}}_{i i, t}=\sum_j \overline{\mathbf{A}}_{i j, t}</script>&#x200B;&#x200B;.</p>
+</li>
+<li><p>Another way to solve above equation (#mjx-eqn-<l2g>) is described in <a href="https://arxiv.org/abs/2308.12212" target="_blank">Pu et al. (2023) Learning to Learn Financial Networks for Optimising Momentum Strategies</a>. </l2g></p>
+<p><img src="../notes/pic/net_mom2.png" alt=""></p>
+<p>The Algo L2G reformulates optimisationbased graph learning into an unrolling neural network. By leveraging the inherent modularity of neural networks, where different layers can be easily stacked for forward propagation, we propose to incorporate an additional layer into L2G for directly constructing network momentum. </p>
+<p><img src="../notes/pic/net_mom3.png" alt=""></p>
+<p>A upgrade version of L2G algorithm is described in <a href="https://proceedings.neurips.cc/paper/2021/hash/21e4ef94f2a6b23597efabaec584b504-Abstract.html" target="_blank">Pu et al. (NIPS 2021) Learning to learn graph topologies</a></p>
+</li>
+</ul>
+</li>
+<li><p><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4209543" target="_blank">de Bodt, Eric, B. Espen Eckbo, and Richard Roll. &quot;Competition shocks, rival reactions, and stock return comovement.&quot; <em>Journal of Financial and Quantitative Analysis, forthcoming, Tuck School of Business Working Paper</em> 3218544 (2024).</a></p>
+<ul>
+<li><strong>Methodology</strong>: The authors use a novel test statistic to discriminate between two hypotheses: increased product differentiation (H1) or increased standardization (leading to decreased return comovement) and cost-cutting (leading to increased return comovement) (H2). They exploit changes in stock return comovement following tariff cuts to infer strategic reactions.</li>
+<li><strong>Empirical Findings</strong>: The study finds that tariff cuts lead to a significant increase in return comovement, particularly among &quot;followers&quot; within an industry, suggesting a move towards greater standardization and cost-cutting strategies (H2) rather than increased product differentiation (H1).</li>
+<li><strong>Leader definition</strong>: sales-based market shares, financial ratios and R&amp;D.</li>
+</ul>
+</li>
+<li><p><a href="https://academic.oup.com/rfs/article-abstract/35/9/4300/6470574" target="_blank">Eisdorfer, Assaf, et al. &quot;Competition links and stock returns.&quot; <em>The Review of Financial Studies</em> 35.9 (2022): 4300-4340.</a></p>
+<ul>
+<li>Consider a firm&#x2019;s competitiveness based on the manner by which other firms mention it on their 10-K filings.</li>
+<li>C-Rank: 10-K cross-mention graph + page-rank algo -&gt; preferred measure of firm-level competition rank</li>
+<li>A firm&#x2019;s effective competition status stems mostly from competing with companies outside of its sector.</li>
+<li>C-Rank might identify an element of a firm&#x2019;s risk profile. If the firm is &#x201C;targeted&#x201D; by strong competitors, it can increase the uncertainty about the firm&#x2019;s future performance and value, then the outperformance of high C-Rank firms might manifest compensation for risk.</li>
+</ul>
+</li>
+<li><p><a href="https://search.proquest.com/openview/e7341d6a32f04d45d47b962642ed963d/1?pq-origsite=gscholar&amp;cbl=49137" target="_blank">Yamamoto, Rei, Naoya Kawadai, and Hiroki Miyahara. &quot;Momentum information propagation through global supply chain networks.&quot; <em>Journal of Portfolio Management</em> 47.8 (2021): 197-211.</a></p>
+<ul>
+<li><p>Use factset supply chain data</p>
+</li>
+<li><p><strong>Customer Momentum</strong>:  Here we assume that a company has N customers, and let <script type="math/tex; ">w_{i j}^{\text {sales }}</script> be the sales ratio; thus, customer momentum is defined by the following:
+<script type="math/tex; mode=display">
+    \operatorname{cmom}_i^{1 M}=\sum_{j=1}^{N_i} w_{i j}^{\text {sales }} \operatorname{mom}_j^{1 M}, i=1,2, \ldots, N
+    </script></p>
+</li>
+<li><p><strong>Weighting Method Based on Network Centrality</strong>: almost all of the sales ratios are unavailable. Thus, we use network centrality in network theory as the weight of customer momentum. Let <script type="math/tex; ">c_{ij}</script> be the <a href="https://networkx.org/documentation/stable/reference/algorithms/generated/networkx.algorithms.centrality.edge_betweenness_centrality.html" target="_blank">edge betweenness centrality</a> between supplier i and customer j.
+<script type="math/tex; mode=display">
+    \begin{aligned}
+    \operatorname{cmom}_i^{1 M}&=\sum_{j=1}^{N_i} w_{i j}^{\text {centrality }} \operatorname{mom}_j^{1 M}, i=1,2, \ldots, N \\
+    w_{i j}^{\text {centrality }} &= c_{ij} / \sum_{j=1}^{N_i} c_{ij}
+    \end{aligned}
+    </script></p>
+</li>
+<li><p><strong>Multilayer Customer Information</strong></p>
+<p><img src="../notes/pic/spchain.png" alt=""></p>
+</li>
+</ul>
+</li>
+<li><p><a href="https://www.saa.or.jp/english/professional/pdf/2020_Tsuchiya.pdf" target="_blank">Earnings Propagation Effects through the Global Supply Chain Network</a></p>
+<ul>
+<li><p>In this paper, we separate the regression model that examines propagation from customers and the regression model that examines propagation from suppliers and then estimate the coefficients of the following two regression models:</p>
+<p><script type="math/tex; mode=display">
+    P_{i, t}=\alpha_{0, t}+\alpha_{1, t} P_{i, t-1}+\alpha_{2, t} M_{i, t-1}+\alpha_{3, t} D_i+\alpha_{4, t} C_{i, t-1}+\alpha_{5, t} C C_{i, t-1}+\varepsilon_{i, t}
+    </script></p>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code>{% math %}
+P_{i, t}=\alpha_{0, t}+\alpha_{1, t} P_{i, t-1}+\alpha_{2, t} M_{i, t-1}+\alpha_{3, t} D_i+\alpha_{4, t} S_{i, t-1}+\alpha_{5, t} S S_{i, t-1}+\varepsilon_{i, t}
+{% endmath %}
+</code></pre><p><img src="../notes/pic/spchain2.png" alt=""></p>
+<ul>
+<li><p>Deep GNN methods</p>
+<ul>
+<li><a href="https://www.sciencedirect.com/science/article/pii/S0890838924002002" target="_blank">Wu, Mian, et al. &quot;Firm connection and equity return predictability&#x2013;Graph-based machine learning methods.&quot; <em>The British Accounting Review</em> (2024): 101436.</a><ul>
+<li>Four types of linkage: analyst co-coverage, geographical, industrial, and technological linkage.</li>
+<li>GAT for each linkage type and only through connected firms under each linkage -&gt; aggregate all four linkage output -&gt; LSTM -&gt; output</li>
+</ul>
+</li>
+<li><a href="https://ojs.aaai.org/index.php/AAAI/article/view/16077" target="_blank">Cheng, Rui, and Qing Li. &quot;Modeling the momentum spillover effect for stock prediction via attribute-driven graph attention networks.&quot; <em>Proceedings of the AAAI Conference on artificial intelligence</em>. Vol. 35. No. 1. 2021.</a><ul>
+<li>merge technical indicators and textual media features preserving their interactions -&gt; RNN -&gt; GAT -&gt; Output</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a href="https://academic.oup.com/jfec/advance-article-abstract/doi/10.1093/jjfinec/nbae026/7889003" target="_blank">Zhang, Chao, et al. &quot;Graph-based methods for forecasting realized covariances.&quot; <em>Journal of Financial Econometrics</em> (2024): nbae026.</a></p>
+<ul>
+<li><p>Previous HAR-DRD method: decomposing the return covariance matrix into the diagonal matrix of realized volatilities and the correlation matrix:
+<script type="math/tex; mode=display">
+    \boldsymbol{H}_t=\boldsymbol{D}_t \boldsymbol{R}_t \boldsymbol{D}_t,
+    </script></p>
+<p>where <script type="math/tex; ">D_t</script> is the diagonal matrix with the elements of the square roots of <script type="math/tex; ">\boldsymbol{v}_t</script> on the main diagonal, that is, <script type="math/tex; ">\boldsymbol{D}_t[i, i]=\sqrt{v_{i, t}}, \forall i</script>, and <script type="math/tex; ">\boldsymbol{D}_t[i, j]=0, \forall i \neq j</script> . <script type="math/tex; ">\boldsymbol{R}_t</script> is the correlation matrix. We can estimate above using
+<script type="math/tex; mode=display">
+    \begin{aligned}
+    & \boldsymbol{v}_t=\boldsymbol{\alpha}^{(D)}+\beta_d^{(D)} \boldsymbol{v}_{t-1}+\beta_w^{(D)} \boldsymbol{v}_{t-5: t-2}+\beta_m^{(D)} \boldsymbol{v}_{t-22: t-6}+\boldsymbol{u}_t^{(D)} \\
+    & \boldsymbol{x}_t=\boldsymbol{\alpha}^{(R)}+\beta_d^{(R)} \boldsymbol{x}_{t-1}+\beta_w^{(R)} \boldsymbol{x}_{t-5: t-2}+\beta_m^{(R)} \boldsymbol{x}_{t-22: t-6}+\boldsymbol{u}_t^{(R)}
+    \end{aligned}
+    </script></p>
+<p>where <script type="math/tex; ">\boldsymbol{x}_t=\operatorname{vech}\left(\boldsymbol{R}_t\right)</script> is the <script type="math/tex; ">N^{\#}=N(N-1) / 2</script> dimensional vectorized version of the lower triangular part of <script type="math/tex; ">\boldsymbol{R}_t</script> and <script type="math/tex; ">\boldsymbol{x}_{t-5: t-2}</script> (resp. <script type="math/tex; ">\boldsymbol{x}_{t-22: t-6}</script> ) is computed as <script type="math/tex; ">\frac{1}{4} \sum_{k=2}^5 x_{t-k}</script> (resp. <script type="math/tex; ">\frac{1}{17} \sum_{k=6}^{22} x_{t-k}</script> ).</p>
+</li>
+<li><p>Using graph information, we can estimate variance and correlation as follows,
+<script type="math/tex; mode=display">
+    \begin{aligned}
+    \boldsymbol{v}_t= & \boldsymbol{\alpha}^{(D)}+\underbrace{\beta_d^{(D)} \boldsymbol{v}_{t-1}+\beta_w^{(D)} \boldsymbol{v}_{t-5: t-2}+\boldsymbol{\beta}_m^{(D)} \boldsymbol{v}_{t-22: t-6}}_{\text {Self }} \\
+    & +\underbrace{\gamma_d^{(D)} \boldsymbol{W} \cdot \boldsymbol{v}_{t-1}+\gamma_w^{(D)} \boldsymbol{W} \cdot \boldsymbol{v}_{t-5: t-2}+\gamma_m^{(D)} \boldsymbol{W} \cdot \boldsymbol{v}_{t-22: t-6}}_{\text {Graph }}+\boldsymbol{u}_t^{(D)}
+    \end{aligned}
+    </script></p>
+<p>where <script type="math/tex; ">\boldsymbol{W}=\boldsymbol{O}^{-\frac{1}{2}} \boldsymbol{A} \boldsymbol{O}^{-\frac{1}{2}}</script> is the normalized adjacency matrix. Specifically, <script type="math/tex; ">\boldsymbol{A}</script> is a <script type="math/tex; ">N \times N</script> adjacency matrix indicating the connections between assets with diagonal elements as 0 , and <script type="math/tex; ">\boldsymbol{O}=\operatorname{diag}\left\{n_1, \ldots, n_N\right\}</script>, where <script type="math/tex; ">n_i=\sum_j \boldsymbol{A}[i, j], \forall i</script>. Therefore <script type="math/tex; ">\boldsymbol{W} \cdot \boldsymbol{v}_{t-1}, \boldsymbol{W} \cdot \boldsymbol{v}_{t-5: t-2}</script>, <script type="math/tex; ">\boldsymbol{W} \cdot \boldsymbol{v}_{t-22: t-6}</script> represent the neighborhood aggregation over daily, weekly, and monthly horizons. <script type="math/tex; ">\gamma_d, \gamma_w, \gamma_m</script> represent the effects from connected neighbors over different horizons.</p>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code>Moreover, we apply the idea of the graph effect to modeling correlations according to
+
+the model
+
+    \begin{aligned}
+     \boldsymbol{x}_t= &amp; \boldsymbol{\alpha}^{(R)}+\underbrace{\beta_d^{(R)} \boldsymbol{x}_{t-1}+\beta_w^{(R)} \boldsymbol{x}_{t-5: t-2}+\beta_m^{(R)} \boldsymbol{x}_{t-22: t-6}}_{\text {Self }} \\
+    &amp; +\underbrace{\gamma_d^{(R)} \widetilde{\boldsymbol{W}} \boldsymbol{x}_{t-1}+\gamma_w^{(R)} \widetilde{\boldsymbol{W}} \boldsymbol{x}_{t-5: t-2}+\gamma_m^{(R)} \widetilde{\boldsymbol{W}} \boldsymbol{x}_{t-22: t-6}}_{\text {Graph }}+\boldsymbol{u}_t^{(R)},
+    \end{aligned}
+    
+
+where \widetilde{\boldsymbol{W}}=\widetilde{\boldsymbol{O}}^{-\frac{1}{2}} \tilde{\boldsymbol{A}} \tilde{\boldsymbol{O}}^{-\frac{1}{2}} is the normalized adjacency matrix. Specifically, \tilde{\boldsymbol{A}} is a N^{\#} \times N^{\#} \left(N^{\#}=N(N-1) / 2\right) adjacency matrix indicating the connections between pairwise correlations with diagonal elements as 0 , and \widetilde{O}=\operatorname{diag}\left\{\widetilde{n}_1, \ldots, \widetilde{n}_H\right\}, where \widetilde{n}_i=\sum_i \widetilde{A}[i, j], \forall i&#x200B;.
+</code></pre><ul>
+<li><p>Choices of graphs</p>
+<ul>
+<li>Variance: Complete, Sector, Graph-Lasso</li>
+<li>Correlation: Complete, Line graph</li>
+</ul>
+<p>Given a graph <script type="math/tex; ">\mathcal{G}</script>, its line graph <script type="math/tex; ">L(\mathcal{G})</script> is a graph such that</p>
+<ul>
+<li>each node of <script type="math/tex; ">L(\mathcal{G})</script> represents an edge of <script type="math/tex; ">\mathcal{G}</script>;</li>
+<li>two nodes of <script type="math/tex; ">L(\mathcal{G})</script> are adjacent if and only if their corresponding edges share a common endpoint in <script type="math/tex; ">\mathcal{G}</script>.</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3815595" target="_blank">He, Wei, et al. &quot;Similar stocks.&quot; <em>Available at SSRN 3815595</em> (2021).</a></p>
+<ul>
+<li>Similarity between two stocks is measured by the distance between their characteristics such as price, size, book-to-market, operating profitability, and investment-to-assets. </li>
+<li>Retail investor behavior, including attention spillover and categorical trading, plays a significant role. Retail order imbalance increases for high similar-stock return portfolios, reflecting stronger demand from individual investors.</li>
+<li>The similarity effect is stronger among firms with low institutional ownership, suggesting retail investors are primary drivers.</li>
+</ul>
+</li>
+<li><p><a href="https://arxiv.org/abs/1703.02715" target="_blank">Guo, Li, et al. &quot;Joint news, attention spillover, and market returns.&quot; <em>arXiv preprint arXiv:1703.02715</em> (2017).</a></p>
+<ul>
+<li>Joint news has a higher degree of attention spillover than self-mentioned news. Measured by increase in Google search activity and EDGAR filings for connected firms, more so than self news.</li>
+<li>Define the degree of investor attention spillover to a given firm <em>i</em>, from firms connected to <em>i</em> through joint coverage, <script type="math/tex; ">\text{JointNews}^i</script>, as the centrality-weighted (node centrality) sum of abnormal joint news coverage across the connected firms.</li>
+<li>Both JointNews and Market-JointNews (aggregation to market level) istrongly and negatively predicts the one-month-ahead (market) return. It increases the overall attention to the firms and resulting in high valuation and low future stock returns.</li>
+</ul>
+</li>
+<li><p><a href="https://www.sciencedirect.com/science/article/pii/S0304405X21002725" target="_blank">Huang, Shiyang, Tse-Chun Lin, and Hong Xiang. &quot;Psychological barrier and cross-firm return predictability.&quot; <em>Journal of Financial Economics</em> 142.1 (2021): 338-356.</a></p>
+<ul>
+<li>When a firm&#x2019;s economically linked firms have good (bad) news, and its stock price is near (far from) the 52-week high, it has an underreaction to the good (bad) news about economically linked firms.</li>
+<li>The nearness to the 52-week high significantly moderates the predictability of supplier returns based on customer returns. <strong>Long-term returns for firms close to their 52-week high are higher when customers exhibit strong performance.</strong></li>
+</ul>
+</li>
+<li><p><a href="https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1540-6261.2010.01578.x" target="_blank">Menzly, Lior, and Oguzhan Ozbas. &quot;Market segmentation and cross&#x2010;predictability of returns.&quot; <em>The Journal of Finance</em> 65.4 (2010): 1555-1580.</a></p>
+<ul>
+<li>The extent of cross-predictability is negatively related to the level of information in the market, measured by the level of analyst coverage or by the level of institutional ownership.</li>
+<li>Analyst coverage measure: analyst is considered actively engaged in a stock for a 12-month period after making an EPS forecast on that stock.</li>
+<li>Institutional ownership measure: sum the holdings of institutional investors in the stock at a given quarter-end report date and then divide by the number of outstanding shares. An alternative proxy is the number of different institutional investors in the stock.</li>
 </ul>
 </li>
 </ul>
@@ -1922,17 +2135,22 @@ where indicator of <script type="math/tex; ">p_k</script> indicates whether a pa
 </ul>
 <h2 id="momentum-and-factor-timing"><a name="momentum-and-factor-timing" class="anchor-navigation-ex-anchor" href="#momentum-and-factor-timing"><i class="fa fa-link" aria-hidden="true"></i></a>13. Momentum and Factor Timing</h2>
 <ul>
-<li><a href="../notes/moment.html">Momentum</a></li>
-<li><a href="../notes/regime.html">Regime Modeling</a></li>
-<li><a href="../notes/timing.html">Factor Timing</a></li>
-<li>Structural Breaks: Advances in Financial Machine Learning Chapter 17<ul>
+<li><p><a href="../notes/moment.html">Momentum</a></p>
+</li>
+<li><p><a href="../notes/regime.html">Regime Modeling</a></p>
+</li>
+<li><p><a href="../notes/timing.html">Factor Timing</a></p>
+</li>
+<li><p>Structural Breaks: Advances in Financial Machine Learning Chapter 17</p>
+<ul>
 <li><strong>CUSUM tests</strong>: These test whether the cumulative forecasting errors significantly deviate from white noise.</li>
 <li><strong>Explosiveness tests:</strong> Beyond deviation from white noise, these test whether the process exhibits exponential growth or collapse, as this is inconsistent with a random walk or stationary process, and it is unsustainable in the long run.</li>
 <li><strong>Right-tail unit-root tests:</strong> These tests evaluate the presence of exponential growth or collapse, while assuming an autoregressive specification.</li>
 <li><strong>Sub/super-martingale tests:</strong> These tests evaluate the presence of exponential growth or collapse under a variety of functional forms.</li>
 </ul>
 </li>
-<li>A tug of war<ul>
+<li><p>A tug of war</p>
+<ul>
 <li><a href="https://www.sciencedirect.com/science/article/pii/S0304405X19300650" target="_blank">Lou, Dong, Christopher Polk, and Spyros Skouras. &quot;A tug of war: Overnight versus intraday expected returns.&quot; <em>Journal of Financial Economics</em> 134.1 (2019): 192-213.</a></li>
 <li><a href="https://www.carloalberto.org/wp-content/uploads/2023/01/Day-Destroys-The-Night-Night-Extends-The-Day.pdf" target="_blank">Lou, Dong, Christopher Polk, and Spyros Skouras. &quot;The day destroys the night, night extends the day: A clientele perspective on equity premium variation.&quot; <em>London School of Economics Working Paper</em> (2022).</a></li>
 <li><strong>Main idea: overnight momentum and intraday reversal.</strong></li>
@@ -1956,6 +2174,53 @@ where indicator of <script type="math/tex; ">p_k</script> indicates whether a pa
 <li>Construct various lag lengths moving average to cover different time horizons, ranging from short-term (3&#x2013;20 days) to long-term (up to 1000 days).</li>
 <li>Each month, the expected return for each stock is predicted using a cross-sectional regression of returns on the normalized MA signals.</li>
 <li>Then use the estimated coefficients for next month return prediction.</li>
+</ul>
+</li>
+<li><p>Momentum with ML/DL</p>
+<ul>
+<li><a href="https://arxiv.org/abs/1904.04912" target="_blank">Lim, Bryan, Stefan Zohren, and Stephen Roberts. &quot;Enhancing time series momentum strategies using deep neural networks.&quot; <em>arXiv preprint arXiv:1904.04912</em> (2019).</a><ul>
+<li>Using 8 MOM + MACD features with some look-back window, train DNN to optimize Sharpe/expected return.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a href="https://academic.oup.com/rfs/article-abstract/36/6/2431/6760882" target="_blank">Daniel, Kent, Alexander Klos, and Simon Rottke. &quot;The dynamics of disagreement.&quot; <em>The Review of Financial Studies</em> 36.6 (2023): 2431-2467.</a></p>
+<ul>
+<li><p>This paper investigates how differences in investor beliefs (disagreement) evolve in response to large information shocks. The authors use a unique dataset and focus on securities constrained by short selling.</p>
+</li>
+<li><p>Example</p>
+<p><img src="../notes/pic/disagree.png" alt=""></p>
+</li>
+<li><p>Therefore, with short-sell restriction, the price at t0 will always reveal the view of optimistic agents.</p>
+</li>
+<li><p>After a positive price shock, the beliefs of the most optimistic agents are too optimistic at time 0 and decay towards rational beliefs over a roughly 5-year period which results in a strong, persistent negative abnormal returns.</p>
+</li>
+<li><p>After a negative price shocks, the beliefs of the most optimistic agents are also too optimistic, suggesting these agents initially underreact to the new negative information, but that this underreaction is resolved after only 1 year which results in the shorter-lived negative abnormal returns.</p>
+<p><img src="../notes/pic/disagree2.png" alt=""></p>
+</li>
+</ul>
+</li>
+<li><p><a href="https://www.sciencedirect.com/science/article/pii/S0304405X21000878" target="_blank">Kelly, Bryan T., Tobias J. Moskowitz, and Seth Pruitt. &quot;Understanding momentum and reversal.&quot; <em>Journal of financial economics</em> 140.3 (2021): 726-743.</a></p>
+<ul>
+<li><p>Momentum is strongly linked to time-varying risk exposure. The conditional factor model explains a significant portion of the momentum premium.</p>
+</li>
+<li><p>Candidate models are residual momentum, traditional momentum and conditional factor model defined by IPCA. IPCA estimator is defined as the conditional expectation of the factor component of returns, <script type="math/tex; ">\beta_{i, t}^{\prime} \lambda_t</script>, where <script type="math/tex; ">\lambda_t=E_t\left[f_{t+1}\right]</script>. To focus squarely on the role of time-varying risk exposures, our analysis treats the expected factor return as constant: <script type="math/tex; ">E_t\left(f_{t+1}\right)=\lambda</script>. </p>
+</li>
+<li><p>IPCA <a href="https://www.sciencedirect.com/science/article/pii/S0304405X19301151" target="_blank">Kelly, Pruitt, and Su (JFE 2019)</a> explain: 
+<script type="math/tex; mode=display">
+    r_{i, t+1}=\underbrace{\left(z_{i, t}^{\prime} \Gamma\right)}_{\beta_{i, t}} f_{t+1}+\epsilon_{i, t+1}
+    </script>
+where <script type="math/tex; ">r_{i, t+1}</script> is the future asset <script type="math/tex; ">i</script> return in period <script type="math/tex; ">t+1</script>, <script type="math/tex; ">z_{i, t} \in \R^{L}</script> is time-varying observable asset characteristics (instrument vector), <script type="math/tex; ">\Gamma \in \R^{L \times K}</script> is a fixed mapping from observable characteristics to  latent risk factors, <script type="math/tex; ">f_{t+1} \in \R^K</script> is the latent factor return. This esti</p>
+<ul>
+<li>In traditional asset pricing, <script type="math/tex; ">\beta_{i, t}</script> is factor exposure for asset i estimated by Fama-Macbeth and <script type="math/tex; ">f_{t+1}</script>&#x200B; is the (double-sorted) factor (portfolio) return (FF 3/5 factors). </li>
+<li>IPCA allows time-varying observable characteristics, inference from not only return-covariance, and parameter efficient (no need to estimate <script type="math/tex; ">\mathcal{O}(N \times K)</script> factor exposure, but <script type="math/tex; ">\mathcal{O}(L \times K)</script> mapping). It is similar to BARRA model but maps to low-dimentional latent risk factor space.</li>
+<li>Kelly, Pruitt, and Su (JFE 2019) propose to estimate <script type="math/tex; ">\Gamma, f_{t+1}</script>&#x200B;&#x200B; recursively</li>
+</ul>
+<p><img src="../notes/pic/IPCA.png" alt=""></p>
+<ul>
+<li>The linear form IPCA has been extended to DNN in <a href="https://www.sciencedirect.com/science/article/pii/S0304407620301998" target="_blank">Gu, Shihao, Bryan Kelly, and Dacheng Xiu. &quot;Autoencoder asset pricing models.&quot; <em>Journal of Econometrics</em> 222.1 (2021): 429-450.</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -2023,7 +2288,7 @@ where indicator of <script type="math/tex; ">p_k</script> indicates whether a pa
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Quant Finance Notes","level":"1.2.11","depth":2,"next":{"title":"Machine Learning Notes","level":"1.2.12","depth":2,"path":"contents/mln.md","ref":"./contents/mln.md","articles":[]},"previous":{"title":"Broker Reports","level":"1.2.10","depth":2,"path":"contents/broker.md","ref":"./contents/broker.md","articles":[]},"dir":"ltr"},"config":{"plugins":["mathjax","image-captions","github","anchors","anchor-navigation-ex","-sharing","sharing-plus@^0.0.2","github-buttons","embed-pdf","livereload"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"github":{"url":"https://github.com/ZizouHe/"},"livereload":{},"search":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":false},"mode":"float","multipleH1":false,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":true},"github-buttons":{"buttons":[{"user":"ZizouHe","repo":"reading-notes","type":"star","size":"small"}]},"mathjax":{"forceSVG":false,"version":"2.6-latest"},"sharing":{"qq":true,"all":["facebook","google","twitter","weibo","qq","linkedin"],"douban":false,"facebook":true,"weibo":true,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":false,"messenger":false,"line":false,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"embed-pdf":{},"image-captions":{"caption":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","align":"right","variable_name":"_pictures"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{"_pictures":[{"backlink":"./notes/RDN.html#fig1.4.2.1","level":"1.4.2","align":"right","list_caption":"Figure: Example (a) data graph and (b) model graph.","alt":"Example (a) data graph and (b) model graph.","nro":1,"url":"./pic/RDN-1.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Example (a) data graph and (b) model graph.","attributes":{},"skip":false,"key":"1.4.2.1"},{"backlink":"./notes/RDN.html#fig1.4.2.2","level":"1.4.2","align":"right","list_caption":"Figure: RDN inference algorithm.","alt":"RDN inference algorithm.","nro":2,"url":"./pic/RDN-2.png","index":2,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"RDN inference algorithm.","attributes":{},"skip":false,"key":"1.4.2.2"},{"backlink":"./notes/Faster_Frank_Wolfe.html#fig1.4.14.1","level":"1.4.14","align":"right","list_caption":"Figure: Frank-Wolfe Algorithm","alt":"Frank-Wolfe Algorithm","nro":3,"url":"./pic/Frank-Wolfe.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Frank-Wolfe Algorithm","attributes":{},"skip":false,"key":"1.4.14.1"},{"backlink":"./notes/Fin_Fan_Book.html#fig1.4.15.1","level":"1.4.15","align":"right","list_caption":"Figure: Efficient Frontier with risk-free asset","alt":"Efficient Frontier with risk-free asset","nro":4,"url":"./pic/Eff_Front_1.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Efficient Frontier with risk-free asset","attributes":{},"skip":false,"key":"1.4.15.1"},{"backlink":"./notes/Fin_Fan_Book.html#fig1.4.15.2","level":"1.4.15","align":"right","list_caption":"Figure: Efficient Frontier without risk-free asset","alt":"Efficient Frontier without risk-free asset","nro":5,"url":"./pic/Eff_Front_2.png","index":2,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Efficient Frontier without risk-free asset","attributes":{},"skip":false,"key":"1.4.15.2"}]},"title":"Reading List & Notes","gitbook":"*"},"file":{"path":"contents/qfn.md","mtime":"2024-11-21T14:58:42.600Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2024-12-03T16:28:49.303Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Quant Finance Notes","level":"1.2.11","depth":2,"next":{"title":"Machine Learning Notes","level":"1.2.12","depth":2,"path":"contents/mln.md","ref":"./contents/mln.md","articles":[]},"previous":{"title":"Broker Reports","level":"1.2.10","depth":2,"path":"contents/broker.md","ref":"./contents/broker.md","articles":[]},"dir":"ltr"},"config":{"plugins":["mathjax","image-captions","github","anchors","anchor-navigation-ex","-sharing","sharing-plus@^0.0.2","github-buttons","embed-pdf","livereload"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"github":{"url":"https://github.com/ZizouHe/"},"livereload":{},"search":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":false},"mode":"float","multipleH1":false,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":true},"github-buttons":{"buttons":[{"user":"ZizouHe","repo":"reading-notes","type":"star","size":"small"}]},"mathjax":{"forceSVG":false,"version":"2.6-latest"},"sharing":{"qq":true,"all":["facebook","google","twitter","weibo","qq","linkedin"],"douban":false,"facebook":true,"weibo":true,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":false,"messenger":false,"line":false,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"embed-pdf":{},"image-captions":{"caption":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","align":"right","variable_name":"_pictures"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{"_pictures":[{"backlink":"./notes/RDN.html#fig1.4.2.1","level":"1.4.2","align":"right","list_caption":"Figure: Example (a) data graph and (b) model graph.","alt":"Example (a) data graph and (b) model graph.","nro":1,"url":"./pic/RDN-1.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Example (a) data graph and (b) model graph.","attributes":{},"skip":false,"key":"1.4.2.1"},{"backlink":"./notes/RDN.html#fig1.4.2.2","level":"1.4.2","align":"right","list_caption":"Figure: RDN inference algorithm.","alt":"RDN inference algorithm.","nro":2,"url":"./pic/RDN-2.png","index":2,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"RDN inference algorithm.","attributes":{},"skip":false,"key":"1.4.2.2"},{"backlink":"./notes/Faster_Frank_Wolfe.html#fig1.4.14.1","level":"1.4.14","align":"right","list_caption":"Figure: Frank-Wolfe Algorithm","alt":"Frank-Wolfe Algorithm","nro":3,"url":"./pic/Frank-Wolfe.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Frank-Wolfe Algorithm","attributes":{},"skip":false,"key":"1.4.14.1"},{"backlink":"./notes/Fin_Fan_Book.html#fig1.4.15.1","level":"1.4.15","align":"right","list_caption":"Figure: Efficient Frontier with risk-free asset","alt":"Efficient Frontier with risk-free asset","nro":4,"url":"./pic/Eff_Front_1.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Efficient Frontier with risk-free asset","attributes":{},"skip":false,"key":"1.4.15.1"},{"backlink":"./notes/Fin_Fan_Book.html#fig1.4.15.2","level":"1.4.15","align":"right","list_caption":"Figure: Efficient Frontier without risk-free asset","alt":"Efficient Frontier without risk-free asset","nro":5,"url":"./pic/Eff_Front_2.png","index":2,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Efficient Frontier without risk-free asset","attributes":{},"skip":false,"key":"1.4.15.2"}]},"title":"Reading List & Notes","gitbook":"*"},"file":{"path":"contents/qfn.md","mtime":"2024-12-07T15:46:01.929Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2024-12-07T15:53:40.539Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

@@ -259,22 +259,62 @@
   - [Huang, Shiyang, et al. "A frog in every pan: Information discreteness and the lead-lag returns puzzle." *Journal of Financial Economics* 145.2 (2022): 83-102.](https://www.sciencedirect.com/science/article/pii/S0304405X21004761)
 
   - 行为金融学中的温水煮青蛙：人的这种缺陷叫做limited attention（有限注意力）。由于人们的认知资源是有限的，在任何给定的时刻，我们的大脑都偏好去处理那些最显著、最重要的信息，而忽视那些不显著的、经济效应微弱的因素。一系列频繁但微小的变化对于人的吸引力远不如少数却显著的变化；因此投资者对于连续信息造成的股价变化反应不足。
-  
+
   - 信息离散性（information discreteness，ID）：ID 低（说明信息连续性强）的动量才是高质量动量
-  
+
   $$
   ID = \text{sign(过去一段时间的收益率) × (这段时间内下跌交易日\% - 这段时间内上涨收益日\%)}
   $$
-  
+
   - Da et al. (2014) 说明，与传统动量相比，通过 ID 因子筛选找到的高质量动量能够获得更高的超额收益，且该收益在样本外的持续性更强（这有助于我们降低调仓频率、减少换手率、节约交易成本）。
-  
+
   - Information discreteness (ID) serves as a cognitive trigger that reduces investor inattention and improves inter-firm news transmission.
 
 - [Yan, Jingda, and Jialin Yu. "Cross-stock momentum and factor momentum." *Journal of Financial Economics* 150.2 (2023): 103716.](https://www.sciencedirect.com/science/article/pii/S0304405X23001563)
 
   - **Cross-stock momentum:** Based on asymmetry in lead-lag linkages and differences between long-run and short-run co-movements.
+
   - **Factor momentum:** The phenomenon where returns of certain factors (like size, value, or industry factors) exhibit momentum.
+
   - The asymmetry in cross-stock linkages is a key differentiator from factor momentum. The paper shows that cross-stock momentum is not entirely driven by factor momentum.
+
+  - The author used **Principal Portfolio (PP) Methodology**  invented in [Kelly (JoF 2023) Principal Portfolios](https://onlinelibrary.wiley.com/doi/abs/10.1111/jofi.13199). The Principal Portfolio (PP) methodology optimizes portfolio returns by leveraging cross-stock predictability captured in the **Prediction Matrix**. This approach extends traditional asset pricing by incorporating cross-stock signals.
+
+  - The **Prediction Matrix**, $$\hat{\Phi}_t$$, aggregates the relationship between lagged signals ($$S_{\tau-1}$$) and returns ($$R_\tau$$) over a rolling window $$T$$:
+    $$
+    \hat{\Phi}_t = \frac{1}{T} \sum_{\tau=t-T+1}^{t} R_{\tau} S_{\tau-1}^\top
+    $$
+    Diagonal Elements: Capture own-stock predictability, $$E[R_{i,t+1} S_{i,t}]$$.
+
+    Off-Diagonal Elements: Represent cross-stock predictability, $$E[R_{i,t+1} S_{j,t}]$$.
+
+    Signals ($$S_{t-1}$$) are normalized within $$[-0.5, 0.5]$$ to reduce noise and manage outliers. The matrix is lagged by one period to ensure independence between returns and predictors.
+
+  - **SVD**: The Prediction Matrix is decomposed via SVD:
+    $$
+    \hat{\Phi}_t = U \Sigma V^\top = \sum_{k=1}^n \lambda_k u_k v_k^\top
+    $$
+    **$$U$$, $$V$$**: Orthogonal matrices with left ($$u_k$$) and right ($$v_k$$) singular vectors.
+
+    **$$\Sigma$$**: Diagonal matrix of singular values ($$\lambda_k$$) ranked by importance.
+
+    This decomposition simplifies identifying key patterns in cross-stock return predictability.
+
+  - **Portfolio Construction**: Portfolio weights ($$w_t$$) are derived by combining signals and the prediction matrix. Optimal weights maximize return subject to a constraint on matrix norm:
+    $$
+    w_t = L^\top S_t \quad \text{with} \quad L = \sum_{k=1}^K v_k u_k^\top
+    $$
+    **$$K$$**: Number of leading components retained for dimensionality reduction. Usually $$K < T$$.
+
+    Principal Portfolios (PPs): Constructed by linear combinations of $$v_k$$ and $$u_k$$, balancing computational simplicity and predictive power.
+
+    The PP return is:
+
+    $$
+    w_t^\top R_{t+1} = S_t^\top \left( \sum_{k=1}^K v_k u_k^\top \right) R_{t+1}
+    $$
+
+  
 
 - [Chen, Xin, et al. "Attention spillover in asset pricing." *The Journal of Finance* 78.6 (2023): 3515-3559.](https://onlinelibrary.wiley.com/doi/abs/10.1111/jofi.13281)
 
@@ -284,6 +324,7 @@
 - [Jin, Zuben. "Business aspects in focus, investor underreaction and return predictability." *Journal of Corporate Finance* 84 (2024): 102525.](https://www.sciencedirect.com/science/article/pii/S0929119923001748)
 
   - Conference call transcripts -> topic model -> firm similarity -> linkage signals
+
 - [Feng, Jian, et al. "Economic Links from Bonds and Cross-Stock Return Predictability." *Available at SSRN 4047776* (2022).](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4047776)
   - **Main idea: linkage from bond market credit-rating comovements.**
   - This study identifies a "market segmentation" effect between the equity and bond markets, showing that information from bond markets is often not incorporated promptly by equity market investors.
@@ -300,6 +341,182 @@
   - Retail investors, who trade primarily on overnight information due to news salience, and professional investors, who engage in intraday trading, correcting the market.
   - Predictable patterns arise not only from underreaction but from a systematic interplay between the different investor types. Retail-driven overnight price distortions are followed by intraday reversals managed by professionals
 
+- Data-driven graph learning
+
+  - [Pu et al. (2023) Network Momentum across Asset Classes](https://arxiv.org/abs/2308.11294)
+
+  - features: 8 in total, MOM and MACD. 
+
+    ![](../notes/pic/net_mom.png)
+
+  - From [Kalofolias (AAAI 2016) How to learn a graph from smooth signals](http://proceedings.mlr.press/v51/kalofolias16.html), we can define a convex optimization problem:
+    $$
+    \begin{aligned} \label{L2G}
+    \min_{\mathbf{A}_t} \; \; & \operatorname{tr}\left(\mathbf{V}_t^{\top}\left(\mathbf{D}_t-\mathbf{A}_t\right) \mathbf{V}_t\right)-\alpha \mathbf{1}^{\top} \log \left(\mathbf{A}_t \mathbf{1}\right)+\beta\left\|\mathbf{A}_t\right\|_F^2 \\
+    \text { s.t. } & \mathbf{A}_{i j, t}=\mathbf{A}_{j i, t}, \quad \mathbf{A}_{i j, t} \geq 0 \quad \forall i \neq j
+    \end{aligned}
+    $$
+    where $$V_t \in \mathbb{R}^{N \times 8\delta}$$ is the feature matrix with $$\delta$$-days lookback window, where $$\mathbf{D}_t$$ is a diagonal matrix with $$\mathbf{D}_{i i, t}=\sum_j \mathbf{A}_{i j, t}$$. The graph adjacency matrix $$\mathbf{A}_t$$ we want to estimate represents the network at day t for constructing network momentum, with the $$i j$$-th entry $$\mathbf{A}_{i j, t}$$ measuring the strength of similarity of individual momentum between asset i and asset j. In the objective function, the first trace term measures the spectral variations of $$V_t$$ on the learned graph adjacency matrix $$A_t$$, encouraging connections between nodes with similar features. It is derived from Laplacian smoothness under the mild assumption that each column of $$V_t$$​​ is a low-pass graph signal.
+
+  - The above is derived from: Consider a matrix $$X \in \mathbb{R}^{m \times n}=\left[x_1, \ldots, x_m\right]^{\top}$$, where each row $$x_i \in \mathbb{R}^n$$ resides on one of m nodes of an undirected graph G. In this way, each of the n columns of X can be seen as a signal on the same graph. A simple assumption about data residing on graphs, but also the most widely used one is that it changes smoothly between connected nodes. An easy way to quantify how smooth is a set of vectors $$x_1, \ldots, x_m \in \mathbb{R}^n$$ on a given weighted undirected graph is through the function
+    $$
+    \frac{1}{2} \sum_{i, j} W_{i j}\left\|x_i-x_j\right\|^2=\operatorname{tr}\left(X^{\top} L X\right),
+    $$
+
+    where $$W_{i j} \in \mathbb{R}_{+}$$ denotes the weight of the edge between nodes i and j and $$L=D-W$$ is the graph Laplacian, $$D_{i i}=\sum_j W i j$$ being the diagonal weighted degree matrix. In words, if two vectors $$x_i$$ and $$x_j$$ from a smooth set reside on two well connected nodes (i.e. $$W_{i j}$$ is large), they are expected to have a small distance $$\left\|x_i-x_j\right\|$$ so that $$\operatorname{tr}\left(X^{\top} L X\right)$$ is small.
+
+  - In our empirical analysis, we combine $$K=5$$ distinct graphs learned from $$\mathbf{V}_t$$ from five different lookback windows such that $$\delta \in\{252,504,756,1008,1260\}$$ trading days as follows:
+    (graph ensemble) $$\; \; \overline{\mathbf{A}}_t=\frac{1}{K} \sum_{k=1}^K \mathbf{A}_t^{(k)}$$.
+
+    To mitigate the effects of scale differences in constructing network momentum, which may arise due to the difference in the number of connections certain assets have - with some connected to numerous other assets and others only to a few - we also apply a graph normalisation as follows: 
+
+    (graph normalisation) $$\; \; \tilde{\mathbf{A}}_t=\overline{\mathbf{D}}_t^{-1 / 2} \overline{\mathbf{A}}_t \overline{\mathbf{D}}_t^{-1 / 2}$$, where $$\overline{\mathbf{D}}_t$$ is a diagonal matrix with $$\overline{\mathbf{D}}_{i i, t}=\sum_j \overline{\mathbf{A}}_{i j, t}$$​​.
+
+  - Another way to solve above equation (\#mjx-eqn-<L2G>) is described in [Pu et al. (2023) Learning to Learn Financial Networks for Optimising Momentum Strategies](https://arxiv.org/abs/2308.12212). 
+
+    ![](../notes/pic/net_mom2.png)
+
+    The Algo L2G reformulates optimisationbased graph learning into an unrolling neural network. By leveraging the inherent modularity of neural networks, where different layers can be easily stacked for forward propagation, we propose to incorporate an additional layer into L2G for directly constructing network momentum. 
+
+    ![](../notes/pic/net_mom3.png)
+
+    A upgrade version of L2G algorithm is described in [Pu et al. (NIPS 2021) Learning to learn graph topologies](https://proceedings.neurips.cc/paper/2021/hash/21e4ef94f2a6b23597efabaec584b504-Abstract.html)
+
+- [de Bodt, Eric, B. Espen Eckbo, and Richard Roll. "Competition shocks, rival reactions, and stock return comovement." *Journal of Financial and Quantitative Analysis, forthcoming, Tuck School of Business Working Paper* 3218544 (2024).](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4209543)
+
+  - **Methodology**: The authors use a novel test statistic to discriminate between two hypotheses: increased product differentiation (H1) or increased standardization (leading to decreased return comovement) and cost-cutting (leading to increased return comovement) (H2). They exploit changes in stock return comovement following tariff cuts to infer strategic reactions.
+  - **Empirical Findings**: The study finds that tariff cuts lead to a significant increase in return comovement, particularly among "followers" within an industry, suggesting a move towards greater standardization and cost-cutting strategies (H2) rather than increased product differentiation (H1).
+  - **Leader definition**: sales-based market shares, financial ratios and R&D.
+
+- [Eisdorfer, Assaf, et al. "Competition links and stock returns." *The Review of Financial Studies* 35.9 (2022): 4300-4340.](https://academic.oup.com/rfs/article-abstract/35/9/4300/6470574)
+
+  - Consider a firm’s competitiveness based on the manner by which other firms mention it on their 10-K filings.
+  - C-Rank: 10-K cross-mention graph + page-rank algo -> preferred measure of firm-level competition rank
+  - A firm’s effective competition status stems mostly from competing with companies outside of its sector.
+  - C-Rank might identify an element of a firm’s risk profile. If the firm is “targeted” by strong competitors, it can increase the uncertainty about the firm’s future performance and value, then the outperformance of high C-Rank firms might manifest compensation for risk.
+
+- [Yamamoto, Rei, Naoya Kawadai, and Hiroki Miyahara. "Momentum information propagation through global supply chain networks." *Journal of Portfolio Management* 47.8 (2021): 197-211.](https://search.proquest.com/openview/e7341d6a32f04d45d47b962642ed963d/1?pq-origsite=gscholar&cbl=49137)
+
+  - Use factset supply chain data
+
+  - **Customer Momentum**:  Here we assume that a company has N customers, and let $$w_{i j}^{\text {sales }}$$ be the sales ratio; thus, customer momentum is defined by the following:
+    $$
+    \operatorname{cmom}_i^{1 M}=\sum_{j=1}^{N_i} w_{i j}^{\text {sales }} \operatorname{mom}_j^{1 M}, i=1,2, \ldots, N
+    $$
+
+  - **Weighting Method Based on Network Centrality**: almost all of the sales ratios are unavailable. Thus, we use network centrality in network theory as the weight of customer momentum. Let $$c_{ij}$$ be the [edge betweenness centrality](https://networkx.org/documentation/stable/reference/algorithms/generated/networkx.algorithms.centrality.edge_betweenness_centrality.html) between supplier i and customer j.
+    $$
+    \begin{aligned}
+    \operatorname{cmom}_i^{1 M}&=\sum_{j=1}^{N_i} w_{i j}^{\text {centrality }} \operatorname{mom}_j^{1 M}, i=1,2, \ldots, N \\
+    w_{i j}^{\text {centrality }} &= c_{ij} / \sum_{j=1}^{N_i} c_{ij}
+    \end{aligned}
+    $$
+
+  - **Multilayer Customer Information**
+
+    ![](../notes/pic/spchain.png)
+
+- [Earnings Propagation Effects through the Global Supply Chain Network](https://www.saa.or.jp/english/professional/pdf/2020_Tsuchiya.pdf)
+
+  - In this paper, we separate the regression model that examines propagation from customers and the regression model that examines propagation from suppliers and then estimate the coefficients of the following two regression models:
+
+    $$
+    P_{i, t}=\alpha_{0, t}+\alpha_{1, t} P_{i, t-1}+\alpha_{2, t} M_{i, t-1}+\alpha_{3, t} D_i+\alpha_{4, t} C_{i, t-1}+\alpha_{5, t} C C_{i, t-1}+\varepsilon_{i, t}
+    $$
+
+
+    $$
+    P_{i, t}=\alpha_{0, t}+\alpha_{1, t} P_{i, t-1}+\alpha_{2, t} M_{i, t-1}+\alpha_{3, t} D_i+\alpha_{4, t} S_{i, t-1}+\alpha_{5, t} S S_{i, t-1}+\varepsilon_{i, t}
+    $$
+
+![](../notes/pic/spchain2.png)
+
+- Deep GNN methods
+
+  - [Wu, Mian, et al. "Firm connection and equity return predictability–Graph-based machine learning methods." *The British Accounting Review* (2024): 101436.](https://www.sciencedirect.com/science/article/pii/S0890838924002002)
+    - Four types of linkage: analyst co-coverage, geographical, industrial, and technological linkage.
+    - GAT for each linkage type and only through connected firms under each linkage -> aggregate all four linkage output -> LSTM -> output
+  - [Cheng, Rui, and Qing Li. "Modeling the momentum spillover effect for stock prediction via attribute-driven graph attention networks." *Proceedings of the AAAI Conference on artificial intelligence*. Vol. 35. No. 1. 2021.](https://ojs.aaai.org/index.php/AAAI/article/view/16077)
+    - merge technical indicators and textual media features preserving their interactions -> RNN -> GAT -> Output
+
+- [Zhang, Chao, et al. "Graph-based methods for forecasting realized covariances." *Journal of Financial Econometrics* (2024): nbae026.](https://academic.oup.com/jfec/advance-article-abstract/doi/10.1093/jjfinec/nbae026/7889003)
+
+  - Previous HAR-DRD method: decomposing the return covariance matrix into the diagonal matrix of realized volatilities and the correlation matrix:
+    $$
+    \boldsymbol{H}_t=\boldsymbol{D}_t \boldsymbol{R}_t \boldsymbol{D}_t,
+    $$
+
+    where $$D_t$$ is the diagonal matrix with the elements of the square roots of $$\boldsymbol{v}_t$$ on the main diagonal, that is, $$\boldsymbol{D}_t[i, i]=\sqrt{v_{i, t}}, \forall i$$, and $$\boldsymbol{D}_t[i, j]=0, \forall i \neq j$$ . $$\boldsymbol{R}_t$$ is the correlation matrix. We can estimate above using
+    $$
+    \begin{aligned}
+    & \boldsymbol{v}_t=\boldsymbol{\alpha}^{(D)}+\beta_d^{(D)} \boldsymbol{v}_{t-1}+\beta_w^{(D)} \boldsymbol{v}_{t-5: t-2}+\beta_m^{(D)} \boldsymbol{v}_{t-22: t-6}+\boldsymbol{u}_t^{(D)} \\
+    & \boldsymbol{x}_t=\boldsymbol{\alpha}^{(R)}+\beta_d^{(R)} \boldsymbol{x}_{t-1}+\beta_w^{(R)} \boldsymbol{x}_{t-5: t-2}+\beta_m^{(R)} \boldsymbol{x}_{t-22: t-6}+\boldsymbol{u}_t^{(R)}
+    \end{aligned}
+    $$
+
+    where $$\boldsymbol{x}_t=\operatorname{vech}\left(\boldsymbol{R}_t\right)$$ is the $$N^{\#}=N(N-1) / 2$$ dimensional vectorized version of the lower triangular part of $$\boldsymbol{R}_t$$ and $$\boldsymbol{x}_{t-5: t-2}$$ (resp. $$\boldsymbol{x}_{t-22: t-6}$$ ) is computed as $$\frac{1}{4} \sum_{k=2}^5 x_{t-k}$$ (resp. $$\frac{1}{17} \sum_{k=6}^{22} x_{t-k}$$ ).
+
+  - Using graph information, we can estimate variance and correlation as follows,
+    $$
+    \begin{aligned}
+    \boldsymbol{v}_t= & \boldsymbol{\alpha}^{(D)}+\underbrace{\beta_d^{(D)} \boldsymbol{v}_{t-1}+\beta_w^{(D)} \boldsymbol{v}_{t-5: t-2}+\boldsymbol{\beta}_m^{(D)} \boldsymbol{v}_{t-22: t-6}}_{\text {Self }} \\
+    & +\underbrace{\gamma_d^{(D)} \boldsymbol{W} \cdot \boldsymbol{v}_{t-1}+\gamma_w^{(D)} \boldsymbol{W} \cdot \boldsymbol{v}_{t-5: t-2}+\gamma_m^{(D)} \boldsymbol{W} \cdot \boldsymbol{v}_{t-22: t-6}}_{\text {Graph }}+\boldsymbol{u}_t^{(D)}
+    \end{aligned}
+    $$
+
+    where $$\boldsymbol{W}=\boldsymbol{O}^{-\frac{1}{2}} \boldsymbol{A} \boldsymbol{O}^{-\frac{1}{2}}$$ is the normalized adjacency matrix. Specifically, $$\boldsymbol{A}$$ is a $$N \times N$$ adjacency matrix indicating the connections between assets with diagonal elements as 0 , and $$\boldsymbol{O}=\operatorname{diag}\left\{n_1, \ldots, n_N\right\}$$, where $$n_i=\sum_j \boldsymbol{A}[i, j], \forall i$$. Therefore $$\boldsymbol{W} \cdot \boldsymbol{v}_{t-1}, \boldsymbol{W} \cdot \boldsymbol{v}_{t-5: t-2}$$, $$\boldsymbol{W} \cdot \boldsymbol{v}_{t-22: t-6}$$ represent the neighborhood aggregation over daily, weekly, and monthly horizons. $$\gamma_d, \gamma_w, \gamma_m$$ represent the effects from connected neighbors over different horizons.
+
+    
+
+    Moreover, we apply the idea of the graph effect to modeling correlations according to
+
+    the model
+    $$
+    \begin{aligned}
+     \boldsymbol{x}_t= & \boldsymbol{\alpha}^{(R)}+\underbrace{\beta_d^{(R)} \boldsymbol{x}_{t-1}+\beta_w^{(R)} \boldsymbol{x}_{t-5: t-2}+\beta_m^{(R)} \boldsymbol{x}_{t-22: t-6}}_{\text {Self }} \\
+    & +\underbrace{\gamma_d^{(R)} \widetilde{\boldsymbol{W}} \boldsymbol{x}_{t-1}+\gamma_w^{(R)} \widetilde{\boldsymbol{W}} \boldsymbol{x}_{t-5: t-2}+\gamma_m^{(R)} \widetilde{\boldsymbol{W}} \boldsymbol{x}_{t-22: t-6}}_{\text {Graph }}+\boldsymbol{u}_t^{(R)},
+    \end{aligned}
+    $$
+
+    where $$\widetilde{\boldsymbol{W}}=\widetilde{\boldsymbol{O}}^{-\frac{1}{2}} \tilde{\boldsymbol{A}} \tilde{\boldsymbol{O}}^{-\frac{1}{2}}$$ is the normalized adjacency matrix. Specifically, $$\tilde{\boldsymbol{A}}$$ is a $$N^{\#} \times N^{\#}$$ $$\left(N^{\#}=N(N-1) / 2\right)$$ adjacency matrix indicating the connections between pairwise correlations with diagonal elements as 0 , and $$\widetilde{O}=\operatorname{diag}\left\{\widetilde{n}_1, \ldots, \widetilde{n}_H\right\}$$, where $$\widetilde{n}_i=\sum_i \widetilde{A}[i, j], \forall i$$​.
+
+  - Choices of graphs
+
+    - Variance: Complete, Sector, Graph-Lasso
+    - Correlation: Complete, Line graph
+
+    Given a graph $$\mathcal{G}$$, its line graph $$L(\mathcal{G})$$ is a graph such that
+    - each node of $$L(\mathcal{G})$$ represents an edge of $$\mathcal{G}$$;
+    - two nodes of $$L(\mathcal{G})$$ are adjacent if and only if their corresponding edges share a common endpoint in $$\mathcal{G}$$.
+
+- [He, Wei, et al. "Similar stocks." *Available at SSRN 3815595* (2021).](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3815595)
+
+  - Similarity between two stocks is measured by the distance between their characteristics such as price, size, book-to-market, operating profitability, and investment-to-assets. 
+  - Retail investor behavior, including attention spillover and categorical trading, plays a significant role. Retail order imbalance increases for high similar-stock return portfolios, reflecting stronger demand from individual investors.
+  - The similarity effect is stronger among firms with low institutional ownership, suggesting retail investors are primary drivers.
+
+- [Guo, Li, et al. "Joint news, attention spillover, and market returns." *arXiv preprint arXiv:1703.02715* (2017).](https://arxiv.org/abs/1703.02715)
+
+  - Joint news has a higher degree of attention spillover than self-mentioned news. Measured by increase in Google search activity and EDGAR filings for connected firms, more so than self news.
+  - Define the degree of investor attention spillover to a given firm *i*, from firms connected to *i* through joint coverage, $$\text{JointNews}^i$$, as the centrality-weighted (node centrality) sum of abnormal joint news coverage across the connected firms.
+  - Both JointNews and Market-JointNews (aggregation to market level) istrongly and negatively predicts the one-month-ahead (market) return. It increases the overall attention to the firms and resulting in high valuation and low future stock returns.
+
+- [Huang, Shiyang, Tse-Chun Lin, and Hong Xiang. "Psychological barrier and cross-firm return predictability." *Journal of Financial Economics* 142.1 (2021): 338-356.](https://www.sciencedirect.com/science/article/pii/S0304405X21002725)
+
+  - When a firm’s economically linked firms have good (bad) news, and its stock price is near (far from) the 52-week high, it has an underreaction to the good (bad) news about economically linked firms.
+  - The nearness to the 52-week high significantly moderates the predictability of supplier returns based on customer returns. **Long-term returns for firms close to their 52-week high are higher when customers exhibit strong performance.**
+
+- [Menzly, Lior, and Oguzhan Ozbas. "Market segmentation and cross‐predictability of returns." *The Journal of Finance* 65.4 (2010): 1555-1580.](https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1540-6261.2010.01578.x)
+
+  - The extent of cross-predictability is negatively related to the level of information in the market, measured by the level of analyst coverage or by the level of institutional ownership.
+  - Analyst coverage measure: analyst is considered actively engaged in a stock for a 12-month period after making an EPS forecast on that stock.
+  - Institutional ownership measure: sum the holdings of institutional investors in the stock at a given quarter-end report date and then divide by the number of outstanding shares. An alternative proxy is the number of different institutional investors in the stock.
+
+  
+
+  
+
+  
 
 ## Machine Learning
 
@@ -379,13 +596,17 @@
 ## Momentum and Factor Timing
 
 - [Momentum](../notes/moment.html)
+
 - [Regime Modeling](../notes/regime.html)
+
 - [Factor Timing](../notes/timing.html)
+
 - Structural Breaks: Advances in Financial Machine Learning Chapter 17
   - **CUSUM tests**: These test whether the cumulative forecasting errors significantly deviate from white noise.
   - **Explosiveness tests:** Beyond deviation from white noise, these test whether the process exhibits exponential growth or collapse, as this is inconsistent with a random walk or stationary process, and it is unsustainable in the long run.
   - **Right-tail unit-root tests:** These tests evaluate the presence of exponential growth or collapse, while assuming an autoregressive specification.
   - **Sub/super-martingale tests:** These tests evaluate the presence of exponential growth or collapse under a variety of functional forms.
+
 - A tug of war
   - [Lou, Dong, Christopher Polk, and Spyros Skouras. "A tug of war: Overnight versus intraday expected returns." *Journal of Financial Economics* 134.1 (2019): 192-213.](https://www.sciencedirect.com/science/article/pii/S0304405X19300650)
   - [Lou, Dong, Christopher Polk, and Spyros Skouras. "The day destroys the night, night extends the day: A clientele perspective on equity premium variation." *London School of Economics Working Paper* (2022).](https://www.carloalberto.org/wp-content/uploads/2023/01/Day-Destroys-The-Night-Night-Extends-The-Day.pdf)
@@ -395,6 +616,7 @@
     - Retail Investors drive demand at the open, impacting overnight returns.
     - Institutional Investors provide liquidity intraday, which causes reversal effects.
   - The study reveals a robust negative relation between past overnight returns and future intraday returns, a pattern they describe as "the day destroys the night." Conversely, intraday returns positively forecast overnight returns ("night extends the day"), reflecting a continuation effect. 
+
 - [Jiang, Jingwen, Bryan Kelly, and Dacheng Xiu. "(Re‐) Imag (in) ing price trends." *The Journal of Finance* 78.6 (2023): 3193-3249.](https://onlinelibrary.wiley.com/doi/abs/10.1111/jofi.13268)
   - **CNN on OCHL charts**: open, close, high, and low prices, trading volume, and moving average price over the past 5, 20, and 60 days to forecast short (five-day), medium (20-day), and long (60-day) horizons return.
   - **Transfer learning**: they show that the predictive patterns identified by the CNN from daily U.S. stock data transfer well to international markets and to other time scales. 
@@ -403,6 +625,49 @@
   - Construct various lag lengths moving average to cover different time horizons, ranging from short-term (3–20 days) to long-term (up to 1000 days).
   - Each month, the expected return for each stock is predicted using a cross-sectional regression of returns on the normalized MA signals.
   - Then use the estimated coefficients for next month return prediction.
+
+- Momentum with ML/DL
+
+  - [Lim, Bryan, Stefan Zohren, and Stephen Roberts. "Enhancing time series momentum strategies using deep neural networks." *arXiv preprint arXiv:1904.04912* (2019).](https://arxiv.org/abs/1904.04912)
+    - Using 8 MOM + MACD features with some look-back window, train DNN to optimize Sharpe/expected return.
+
+- [Daniel, Kent, Alexander Klos, and Simon Rottke. "The dynamics of disagreement." *The Review of Financial Studies* 36.6 (2023): 2431-2467.](https://academic.oup.com/rfs/article-abstract/36/6/2431/6760882)
+
+  - This paper investigates how differences in investor beliefs (disagreement) evolve in response to large information shocks. The authors use a unique dataset and focus on securities constrained by short selling.
+
+  - Example
+
+    ![](../notes/pic/disagree.png)
+
+  - Therefore, with short-sell restriction, the price at t0 will always reveal the view of optimistic agents.
+
+  - After a positive price shock, the beliefs of the most optimistic agents are too optimistic at time 0 and decay towards rational beliefs over a roughly 5-year period which results in a strong, persistent negative abnormal returns.
+
+  - After a negative price shocks, the beliefs of the most optimistic agents are also too optimistic, suggesting these agents initially underreact to the new negative information, but that this underreaction is resolved after only 1 year which results in the shorter-lived negative abnormal returns.
+
+    ![](../notes/pic/disagree2.png)
+
+- [Kelly, Bryan T., Tobias J. Moskowitz, and Seth Pruitt. "Understanding momentum and reversal." *Journal of financial economics* 140.3 (2021): 726-743.](https://www.sciencedirect.com/science/article/pii/S0304405X21000878)
+
+  - Momentum is strongly linked to time-varying risk exposure. The conditional factor model explains a significant portion of the momentum premium.
+
+  - Candidate models are residual momentum, traditional momentum and conditional factor model defined by IPCA. IPCA estimator is defined as the conditional expectation of the factor component of returns, $$\beta_{i, t}^{\prime} \lambda_t$$, where $$\lambda_t=E_t\left[f_{t+1}\right]$$. To focus squarely on the role of time-varying risk exposures, our analysis treats the expected factor return as constant: $$E_t\left(f_{t+1}\right)=\lambda$$. 
+
+  - IPCA [Kelly, Pruitt, and Su (JFE 2019)](https://www.sciencedirect.com/science/article/pii/S0304405X19301151) explain: 
+    $$
+    r_{i, t+1}=\underbrace{\left(z_{i, t}^{\prime} \Gamma\right)}_{\beta_{i, t}} f_{t+1}+\epsilon_{i, t+1}
+    $$
+    where $$r_{i, t+1}$$ is the future asset $$i$$ return in period $$t+1$$, $$z_{i, t} \in \R^{L}$$ is time-varying observable asset characteristics (instrument vector), $$\Gamma \in \R^{L \times K}$$ is a fixed mapping from observable characteristics to  latent risk factors, $$f_{t+1} \in \R^K$$ is the latent factor return. This esti
+
+    - In traditional asset pricing, $$\beta_{i, t}$$ is factor exposure for asset i estimated by Fama-Macbeth and $$f_{t+1}$$​ is the (double-sorted) factor (portfolio) return (FF 3/5 factors). 
+    - IPCA allows time-varying observable characteristics, inference from not only return-covariance, and parameter efficient (no need to estimate $$\mathcal{O}(N \times K)$$ factor exposure, but $$\mathcal{O}(L \times K)$$ mapping). It is similar to BARRA model but maps to low-dimentional latent risk factor space.
+    - Kelly, Pruitt, and Su (JFE 2019) propose to estimate $$\Gamma, f_{t+1}$$​​ recursively
+
+    ![](../notes/pic/IPCA.png)
+
+    - The linear form IPCA has been extended to DNN in [Gu, Shihao, Bryan Kelly, and Dacheng Xiu. "Autoencoder asset pricing models." *Journal of Econometrics* 222.1 (2021): 429-450.](https://www.sciencedirect.com/science/article/pii/S0304407620301998)
+
+
 
 ## NLP
 

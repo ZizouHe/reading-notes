@@ -325,6 +325,10 @@
 
   - Conference call transcripts -> topic model -> firm similarity -> linkage signals
 
+- [Zhang, Zhiyu, et al. "Uncovering interfirm links through textual topic similarity: A comomentum analysis in financial markets." *The British Accounting Review* (2024): 101446.](https://www.sciencedirect.com/science/article/pii/S0890838924002105)
+
+  - cross-firm similarity measure based on the various topics extracted from Management Discussion and Analysis texts
+
 - [Feng, Jian, et al. "Economic Links from Bonds and Cross-Stock Return Predictability." *Available at SSRN 4047776* (2022).](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4047776)
   - **Main idea: linkage from bond market credit-rating comovements.**
   - This study identifies a "market segmentation" effect between the equity and bond markets, showing that information from bond markets is often not incorporated promptly by equity market investors.
@@ -423,7 +427,7 @@
   $$
   P_{i, t}=\alpha_{0, t}+\alpha_{1, t} P_{i, t-1}+\alpha_{2, t} M_{i, t-1}+\alpha_{3, t} D_i+\alpha_{4, t} C_{i, t-1}+\alpha_{5, t} C C_{i, t-1}+\varepsilon_{i, t}
   $$
-  
+
   
 
 $$
@@ -439,6 +443,12 @@ $$
     - GAT for each linkage type and only through connected firms under each linkage -> aggregate all four linkage output -> LSTM -> output
   - [Cheng, Rui, and Qing Li. "Modeling the momentum spillover effect for stock prediction via attribute-driven graph attention networks." *Proceedings of the AAAI Conference on artificial intelligence*. Vol. 35. No. 1. 2021.](https://ojs.aaai.org/index.php/AAAI/article/view/16077)
     - merge technical indicators and textual media features preserving their interactions -> RNN -> GAT -> Output
+  - [FinHGNN: A conditional heterogeneous graph learning to address relational attributes for stock predictions](https://www.sciencedirect.com/science/article/pii/S0020025522012853)
+    - Node type: firm (fundamentals on LSTM embedding), analyst (CBOW embedding), news theme (CBOW embedding)
+    - Edge type: firm-firm, theme-theme, analyst-analyst, theme-firm, analyst-firm
+    - GAT on different link type then aggregate
+  - [Graph representation learning for similarity stocks analysis](https://idp.springer.com/authorize/casa?redirect_uri=https://link.springer.com/article/10.1007/s11265-022-01755-6)
+    - knowledge graph construction -> graph representation learning -> stock embedding, similarity, momentum spillover
 
 - [Zhang, Chao, et al. "Graph-based methods for forecasting realized covariances." *Journal of Financial Econometrics* (2024): nbae026.](https://academic.oup.com/jfec/advance-article-abstract/doi/10.1093/jjfinec/nbae026/7889003)
 
@@ -473,9 +483,9 @@ $$
     & +\underbrace{\gamma_d^{(R)} \widetilde{\boldsymbol{W}} \boldsymbol{x}_{t-1}+\gamma_w^{(R)} \widetilde{\boldsymbol{W}} \boldsymbol{x}_{t-5: t-2}+\gamma_m^{(R)} \widetilde{\boldsymbol{W}} \boldsymbol{x}_{t-22: t-6}}_{\text {Graph }}+\boldsymbol{u}_t^{(R)},
     \end{aligned}
     $$
-    
+  
     where $$\widetilde{\boldsymbol{W}}=\widetilde{\boldsymbol{O}}^{-\frac{1}{2}} \tilde{\boldsymbol{A}} \tilde{\boldsymbol{O}}^{-\frac{1}{2}}$$ is the normalized adjacency matrix. Specifically, $$\tilde{\boldsymbol{A}}$$ is a $$N^{\#} \times N^{\#}$$ $$\left(N^{\#}=N(N-1) / 2\right)$$ adjacency matrix indicating the connections between pairwise correlations with diagonal elements as 0 , and $$\widetilde{O}=\operatorname{diag}\left\{\widetilde{n}_1, \ldots, \widetilde{n}_H\right\}$$, where $$\widetilde{n}_i=\sum_i \widetilde{A}[i, j], \forall i$$​.
-    
+  
   - Choices of graphs
   
     - Variance: Complete, Sector, Graph-Lasso
@@ -483,7 +493,9 @@ $$
 
     Given a graph $$\mathcal{G}$$, its line graph $$L(\mathcal{G})$$ is a graph such that
     - each node of $$L(\mathcal{G})$$ represents an edge of $$\mathcal{G}$$;
-    - two nodes of $$L(\mathcal{G})$$ are adjacent if and only if their corresponding edges share a common endpoint in $$\mathcal{G}$$.
+    - two nodes of $$L(\mathcal{G})$$ are adjacent if and only if their corresponding edges share a common endpoint in $$\mathcal{G}$$​.
+  
+  - Extension: [Graph neural networks for forecasting multivariate realized volatility with spillover effects](https://arxiv.org/abs/2308.01419)
   
 - [He, Wei, et al. "Similar stocks." *Available at SSRN 3815595* (2021).](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3815595)
 
@@ -675,6 +687,9 @@ $$
     - Sentiment and tone analysis
     - chanes in sentiment
     - distance measures (YoY embedding/BoW)
+- [Learning Fundamentals from Text](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5047947)
+  - Use attention machenism to weigh the importance of different paragraphs in a document, focusing on those that are most relevant to market reactions.  The document-level aggregated vector is then used to predict the target variable, which is the direction of stock returns around the filing date.
+
 
 
 ## Portfolio Construction

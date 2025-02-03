@@ -219,6 +219,11 @@
 
   - Crowding; EPS growth (ML vs Consensus); Extreme bond rate momentum (CTA on 10-year treasury yield); Risk targeting; Up/Down Volatility; Options volumes; Adjusted Forward PE ratio; Sector PMI (New orders); Earnings revisions
 
+- MS Research | Stock Selection based on Director Compensation
+
+  - Total director compensation after exclude size and sector effect has positive long-term return impact.
+
+
 
 ## Linkage
 

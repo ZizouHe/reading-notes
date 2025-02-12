@@ -1,3 +1,157 @@
+# 25-02-12
+
+## The Use and Usefulness of Big Data in Finance: Evidence from Financial Analysts
+
+The article titled "The Use and Usefulness of Big Data in Finance: Evidence from Financial Analysts" by Feng Chi, Byoung-Hyoun Hwang, and Yaping Zheng, published in Management Science, investigates how financial analysts are adopting alternative data in their analyses and the impact of this adoption on their earnings forecasts and trading commissions.
+
+### Research Background
+
+Sell-side financial analysts play a crucial role in financial markets by gathering and analyzing information about publicly traded companies to provide insights and opinions to investors. The advent of modern information technologies and data analytics has introduced "big data" or "alternative data," which can generate timely, comprehensive, and accurate insights. This study examines whether analysts are adopting alternative data and how this adoption affects their forecasts and the value they provide to investors.
+
+### Methods and Data
+
+The study employs textual analysis of analysts' written reports to determine the extent to which they incorporate alternative data. The researchers used the Investext database to collect analyst reports for companies listed in the Dow Jones Industrial Average (DJI) from June 2009 to May 2019. They identified reports that explicitly reference the use of alternative data by searching for keywords related to in-house data science teams and external alternative data vendors. The final sample included 64,018 reports from 1,002 analysts at 55 brokerage firms.
+
+### Key Findings
+
+1. **Adoption of Alternative Data**: By 2009-2010, 11% of analysts in the sample explicitly referenced the use of alternative data in at least one report, increasing to 28% by 2018-2019. The study identified eight categories of alternative data: app usage, sentiment, employee, geospatial, point of sale, satellite image, web traffic, and others.
+2. **Forecast Accuracy**: Analysts who reported using alternative data produced more accurate earnings forecasts. The study used a difference-in-differences specification and found that the adoption of alternative data was associated with a significant improvement in forecast accuracy, equivalent to having covered the corresponding firm for an additional 3.6 years.
+3. **Trading Commissions**: Analysts' adoption of alternative data positively correlated with higher trading commissions received by their brokerages. The study used institutional-investor trade data from ANcerno and found that analysts who referenced alternative data received an additional $11,858.82 in trading commissions in the first three months following their report.
+4. **Impact on Investors**: The study hypothesized that analysts' use of alternative data could level the playing field between hedge funds and non-hedge-fund investors. By analyzing transaction-based calendar-time portfolios, the researchers found that when analysts incorporated alternative data, the performance gap between hedge funds and non-hedge funds narrowed, with non-hedge funds achieving returns similar to those of hedge funds.
+
+### Additional Analyses
+
+- **Resource Limitations and Intermittent Usefulness**: The study explored why not all analysts adopt alternative data. It found that resource limitations, such as the absence of in-house data science teams, and intermittent usefulness, such as the lack of clear signals from alternative data, were significant factors.
+- **Strategic Considerations**: Analysts may strategically avoid disclosing their use of alternative data to prevent imitation by competitors. The study found limited evidence of this, as imitation did not significantly affect the original analyst's trading commissions.
+- **Small Firms**: The study extended its analysis to smaller firms and found that analysts less frequently adopted alternative data for these firms, likely due to lower investor interest and potentially lower data quality.
+
+### Conclusions
+
+The study concludes that financial analysts are increasingly adopting alternative data, which enhances the accuracy of their earnings forecasts and the value they provide to investors. This adoption helps level the playing field between different types of investors and highlights the continued importance of human expertise in financial analysis, even in the era of big data. The findings suggest that analysts who adapt to technological advancements can maintain their relevance and utility in financial markets.
+
+## Does Alternative Data Improve Financial Forecasting? The Horizon Effect
+
+This paper, titled "Does Alternative Data Improve Financial Forecasting? The Horizon Effect," published in The Journal of Finance in June 2024, investigates whether the availability of alternative data improves financial forecasting, particularly focusing on the short-term versus long-term effects.
+
+### Research Background
+
+The digitization of information has led to a significant increase in alternative data, such as social media, web traffic, credit card data, and geolocation data. This study explores the impact of such data on financial forecasting, particularly how it affects the informativeness of short-term and long-term forecasts. Existing research suggests that alternative data is more informative for short-term outcomes, but its impact on long-term forecasts is less clear.
+
+### Theoretical Framework
+
+The authors develop a theoretical model where a forecaster (analyst) predicts both short-term and long-term earnings of a firm. The analyst collects two types of information: short-term information relevant to both short- and long-term earnings, and long-term information relevant only to long-term earnings. The analyst faces a multitasking cost, meaning that increasing effort on one task makes effort on the other task more costly. The model predicts that if the cost of obtaining short-term information decreases, the analyst will allocate more effort to short-term information and less to long-term information. This shift can improve the informativeness of short-term forecasts but may reduce the informativeness of long-term forecasts, especially when the correlation between short- and long-term earnings is low or the multitasking cost is high.
+
+### Empirical Analysis
+
+The authors test their theoretical predictions using data from sell-side equity analysts' forecasts from the I/B/E/S database, covering the period from 1983 to 2017. They measure the informativeness of an analyst's forecasts at a given horizon by the R² of a regression of realized earnings on the analyst's forecasts.
+
+#### Key Findings
+
+1. **Long-Run Evolution of Forecast Informativeness**:
+   - The study finds that the informativeness of short-term forecasts (less than one year) has improved over time, while the informativeness of long-term forecasts (beyond two years) has declined.
+   - The term structure of forecast informativeness (the relationship between R² and forecasting horizon) has steepened over time, particularly since 2005.
+2. **Industry-Level Analysis**:
+   - The steepening of the term structure is more pronounced in industries where analysts use more alternative data, as measured by references to alternative data in their reports.
+3. **StockTwits Data**:
+   - The introduction of the social media platform StockTwits in 2009 provides a natural experiment to study the impact of increased exposure to short-term-oriented data.
+   - Analysts with greater exposure to StockTwits data show a significant improvement in the informativeness of their short-term forecasts but a decline in the informativeness of their long-term forecasts.
+   - The slope of the term structure becomes steeper for analysts with higher exposure to StockTwits data, particularly for those covering more firms (higher multitasking cost) and firms with less autocorrelated earnings.
+
+### Conclusions
+
+The study concludes that the availability of short-term-oriented alternative data can lead to a reallocation of analysts' effort towards short-term information collection, improving the informativeness of short-term forecasts but potentially reducing the informativeness of long-term forecasts. This effect is more pronounced in industries with higher usage of alternative data and for analysts facing higher multitasking costs or covering firms with less autocorrelated earnings. The findings highlight the trade-offs in the allocation of effort between short- and long-term forecasting tasks and suggest that the benefits of alternative data may not uniformly extend to long-term financial forecasting.
+
+## What do measures of real-time corporate sales tell us about earnings surprises and post-announcement returns?
+
+This paper, titled "What do measures of real-time corporate sales tell us about earnings surprises and post-announcement returns?", investigates the relationship between real-time corporate sales data and earnings surprises, as well as post-announcement returns. The authors, Kenneth Froot, Namho Kang, Gideon Ozik, and Ronnie Sadka, use data from approximately 50 million mobile devices to develop real-time proxies for retail corporate sales, capturing both within-quarter and post-quarter information.
+
+### Research Background
+
+The study addresses the information asymmetry around earnings announcements, focusing on how managers' private information affects earnings disclosures and subsequent stock returns. The authors construct real-time sales indexes (WQS and PQS) to measure consumer activity within and after the quarter, respectively. These indexes are derived from big data sources, such as mobile device activity, to provide a timely and accurate reflection of consumer behavior.
+
+### Methodology and Data
+
+The authors use data from MKT MediaStats, LLC, which includes information from approximately 50 million mobile devices, tablets, and desktops. They focus on 50 US retail firms, constructing two indexes: WQS (within-quarter sales activity) and PQS (post-quarter sales activity). These indexes are calculated as the log difference between the number of consumer events aggregated over the quarter and the quarterly average of the number of events over the previous four quarters.
+
+### Key Findings
+
+1. **Predictive Power of WQS:**
+   - WQS significantly predicts current-period revenue growth, announcement surprises, and analyst forecast errors. For example, the R² from a regression of quarterly revenue growth on WQS is 39%.
+   - The average announcement excess return for stocks in the highest quintile of WQS is 2.14%, while that for the lowest quintile is -1.26%, resulting in a return differential of 3.4% over the five-day period around earnings announcement dates.
+2. **Post-Quarter Information (PQS):**
+   - PQS is negatively related to announcement returns but positively related to post-announcement returns, suggesting that managers understate positive post-quarter information at the time of earnings announcements.
+   - The negative relationship between PQS and announcement returns is stronger when PQS is positive, indicating asymmetric disclosure behavior by managers.
+3. **Disclosure Channels:**
+   - **Discretionary Accruals:** No significant relationship between discretionary accruals and PQS, suggesting managers do not use accruals to distort PQS.
+   - **Management Forecasts (Bundled Forecasts):** Managers issue more pessimistic forecasts when PQS is positive, with a higher likelihood of realized earnings exceeding these forecasts.
+   - **Conference Call Tone:** Managerial tone during conference calls is negatively related to PQS, particularly when PQS is positive, indicating managers use tone to understate positive information.
+4. **Insider Trading:**
+   - The negative relationship between PQS and announcement returns is stronger when insiders subsequently purchase shares, suggesting managers may understate positive information to create buying opportunities.
+   - Post-announcement returns are positively predicted by PQS, especially when insiders purchase shares, reinforcing the idea that managers use disclosure distortions for personal gain.
+
+### Conclusions
+
+The study concludes that managers do not fully disclose their private post-quarter information and instead bias their disclosures downward, particularly when the information is positive. This behavior is motivated by personal trading opportunities, as evidenced by the stronger relationship between PQS and announcement returns when insiders subsequently purchase shares. The findings highlight the importance of real-time sales data in understanding earnings surprises and post-announcement returns, as well as the potential for managerial discretion in disclosures to influence market perceptions and stock prices.
+
+## A Good Sketch is Better than A Long Speech: Evaluate Delinquency Risk through Real-Time Video Analysis
+
+This paper, titled "A Good Sketch is Better than A Long Speech: Evaluate Delinquency Risk through Real-Time Video Analysis," explores an innovative method to assess borrowers' creditworthiness in consumer credit markets using machine-learning-based analyses of real-time video data capturing borrowers' behavior during loan applications. The study finds that borrowers' micro-facial expressions of happiness and fear are significantly associated with their future loan delinquency likelihood, providing important implications for fintech lenders and policymakers.
+
+### Research Background
+
+According to the World Bank's Global Financial Development Report, over 2.5 billion adults lack bank accounts, and only 7% of adults in developing countries have credit cards. This lack of creditworthiness information and limited access to financial services can lead to poverty and societal inequality. Evaluating delinquency risk is crucial for the inclusiveness of consumer credit markets. Traditional methods of assessing creditworthiness, such as personal information, credit bureau scores, and digital footprints, can be limited, especially for borrowers without extensive credit histories. This study proposes using real-time video data to capture borrowers' micro-facial expressions as a complementary method to assess credit risk.
+
+### Methods
+
+The study utilizes a proprietary video database from a leading fintech company in China, Shanghai Qiaopan Technology, which records borrowers' behavior during loan application processes. The researchers applied a machine-learning-based video analysis to identify borrowers' micro-facial expressions, focusing on happiness and fear, and evaluated their credit quality by examining the association between these expressions and future loan delinquency.
+
+The video analysis process involves:
+
+1. **Initial Processing**: Dividing video clips into frames, enhancing image quality, and identifying the applicant.
+2. **Facial Analysis**: Detecting facial landmarks and recognizing facial action units (AUs) to capture facial muscle activations.
+3. **Expression Evaluation**: Evaluating and recognizing expressions such as happiness, sadness, and fear based on the Facial Action Coding System (FACS).
+
+### Key Findings
+
+1. **Happiness and Delinquency**: The study finds that the extent of borrowers' happiness micro-facial expressions is negatively associated with loan delinquency likelihood. This suggests that borrowers who display more happiness during the application process are less likely to default on their loans.
+2. **Fear and Delinquency**: Conversely, the degree of fear micro-facial expressions is positively associated with delinquency risk. Borrowers who display more fear are more likely to default on their loans.
+3. **Incremental Discriminatory Power**: The study demonstrates that borrowers' micro-facial expressions provide significant and incremental discriminatory power compared to their internal credit scores with the fintech lender. The area under the curve (AUC) for the model using both internal credit scores and micro-expression data is 62.7%, compared to 60.5% for the model using only internal credit scores.
+
+### Additional Analyses
+
+1. **Out-of-Sample Tests**: The results of out-of-sample tests suggest that the discriminatory power of the scoring system is robust and not overstated by overfitting.
+2. **Robustness Tests**: The findings remain consistent across different measures of loan delinquency, facial expressions, and sample selections, including analyses based on gender and application time.
+3. **Exogenous Factors**: The study controls for exogenous factors such as holidays, air quality, and weather conditions, finding that the effects of facial expressions on delinquency likelihood are not driven by these factors.
+4. **Cross-Province Analyses**: The study examines the variation of findings across different provinces in China, finding that the happiness effect is stronger for borrowers with less financial support, and the fear effect is stronger for borrowers with weaker insurance protections.
+
+### Conclusions
+
+The study concludes that real-time video analysis of borrowers' micro-facial expressions can provide valuable information for assessing creditworthiness in consumer credit markets. This method operates through two economic mechanisms related to the adequacy and uncertainty of borrowers' future income. The findings suggest that this innovative credit assessment strategy can help reduce information asymmetries and enhance financial inclusion, particularly in areas where traditional financial services are limited. The study provides practical implications for fintech lenders and policymakers to adopt new financial technologies and innovative data sources to improve credit assessment and expand financial services to underserved populations.
+
+## Real-time revenue and firm disclosure
+
+The article titled "Real-time revenue and firm disclosure" by Elizabeth Blankespoor, Bradley E. Hendricks, Joseph Piotroski, and Christina Synn examines how firms make disclosure decisions when they receive continuous, real-time information about their revenues. The authors use transaction-level credit and debit card sales data for retail firms to construct a weekly measure of abnormal revenue and analyze how firms decide to disclose this information.
+
+### Research Background
+
+The study investigates the disclosure dynamics of firms when they receive real-time revenue information. Managers often face a complex decision-making process regarding what and when to disclose information to the public. This study aims to understand how firms manage the disclosure of real-time revenue data, particularly focusing on the timing and nature of disclosures, and the role of factors such as analyst coverage, institutional ownership, and litigation risk in influencing these decisions.
+
+### Data and Methodology
+
+The authors use a proprietary database of 1.6 billion transaction-level credit and debit card sales from 2012 to early 2016 for a sample of retail firms. This data is used to construct a weekly measure of abnormal revenue for each firm. The abnormal revenue is calculated by comparing the real-time revenue data to the market's expectation of quarterly revenue based on analyst forecasts. The study validates the informativeness of this abnormal revenue measure by examining its correlation with future stock returns, unexpected quarterly revenue, and management forecast news.
+
+### Key Findings
+
+1. **Informativeness of Real-time Revenue**: The study finds that real-time revenue information is informative and can predict future outcomes, but it is not immediately incorporated into stock prices. This suggests that managers have private information that is not fully reflected in market prices.
+2. **Disclosure Dynamics**: Firms are less likely to disclose abnormally negative news early in the quarter. As the quarter progresses, firms reduce their withholding of negative news, likely due to the impending earnings announcement disciplining managers to provide negative news. This pattern is more pronounced in firms with high analyst coverage, high institutional ownership, or high litigation risk.
+3. **Analyst Coverage and Institutional Ownership**: The study finds that firms with higher analyst coverage and institutional ownership are more likely to disclose negative news as the quarter progresses, suggesting that these factors act as disciplining mechanisms. In contrast, firms with low analyst coverage or institutional ownership show less disclosure of negative news.
+4. **Litigation Risk**: Firms with higher litigation risk are also more likely to disclose negative news later in the quarter, indicating that litigation risk plays a role in disciplining managers to disclose negative information.
+5. **Insider Trading**: The study also examines insider trading behavior and finds that managers are more likely to sell shares in weeks with abnormally negative revenue news if they do not disclose the information. However, when managers choose to disclose negative news, there is a decrease in insider selling, suggesting that disclosure and insider trading are substitutes.
+
+### Conclusion
+
+The study concludes that real-time revenue information is valuable and that managers exercise discretion in its release. The findings highlight the importance of continuous information flow and the role of disciplining mechanisms such as analyst coverage, institutional ownership, and litigation risk in influencing disclosure decisions. The study contributes to the literature on disclosure dynamics and the use of alternative data sources in financial research. Future research could further explore the impact of real-time information on other aspects of corporate disclosure and governance.
+
 # 25-02-03
 
 ## Detecting Misreported Accounting: A Machine Learning Approach using Text Data

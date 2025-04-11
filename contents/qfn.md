@@ -143,8 +143,6 @@
   - Firms covered by a larger number of analysts generate fewer patents and patents with lower impact. 
   - The evidence is consistent with the hypothesis that analysts exert too much pressure on managers to meet short-term goals, impeding firms' investment in long-term innovative projects.
 
-
-
 ## Anomalies
 
 - [Crowdsourced employer reviews and stock returns](../notes/green_2019_jfe.html)
@@ -215,7 +213,55 @@
 - [Boudoukh, Jacob, et al. "Information, trading, and volatility: Evidence from firm-specific news." *The Review of Financial Studies* 32.3 (2019): 992-1033.](https://academic.oup.com/rfs/article-abstract/32/3/992/5061375)
   - Identified news (relevant to firm events) explains approximately 20%-40% of overnight volatility and 6% during trading hours
 
+## Fundamental
 
+- [Valuing Stocks With Earnings](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4892475)
+
+  - Traditional earnings like GAAP earnings: high transitory volatility
+  - Use Street Earnings:
+    - Adjusts a company’s reported earnings to exclude non-recurring, non-operational, or one-time items. It aims to reflect the underlying, sustainable profitability of a business by filtering out short-term noise, providing investors and analysts with a clearer picture of long-term value creation.
+    - Derived from analyst adjustments (e.g., I/B/E/S consensus estimates from Thomas Reuters)
+
+- PE / PB / PS
+
+  - PE（市盈率）：核心逻辑：PE反映企业盈利能力的定价效率，适用于盈利稳定、可预测性强的行业。
+
+    1. 消费行业（食品饮料、家电、零售）
+       - 需求刚性，现金流稳定，盈利波动小（如伊利股份、贵州茅台）
+       - 例如：消费行业PE通常基于长期稳定的净利润计算，适合用PE判断估值高低。
+    2. 医药医疗行业
+       - 老龄化趋势下需求持续增长，创新药企业成熟期盈利稳定（如恒瑞医药）
+       - 注意：研发阶段的生物医药企业可能亏损，需结合其他指标（如PS）。
+    3. 传统制造业（机械、汽车零部件）
+       - 技术成熟，竞争格局清晰，盈利增长平稳（如三一重工）
+    4. 公用事业（电力、燃气）
+       - 垄断性强，盈利受政策调控，PE可反映长期现金流价值
+
+  - PB（市净率）核心逻辑：PB衡量企业净资产价值，适用于资产密集或盈利波动大的行业。
+
+    1. 强周期行业（有色金属、钢铁、化工）
+       - 盈利受大宗商品价格影响大，PE在周期低谷时失效，PB更稳定（如中国神华）
+
+    2. 金融行业（银行、券商、保险）
+       - 资产规模大且易量化（如银行信贷资产），PB反映资产质量与安全边际（如工商银行）
+
+    3. 重资产行业（房地产、航空、航运）
+       - 固定资产占比高，PB可评估清算价值（如万科A）
+
+    4. 科技硬件制造（半导体、消费电子）
+       - 设备和专利等资产价值显著，但需注意技术迭代风险（如中芯国际）
+
+  - PS（市销率）核心逻辑：PS关注营收增长潜力，适用于高投入、高增长但盈利滞后的行业。
+
+    1. 新兴科技行业（人工智能、云计算、半导体）
+       - 初期研发投入大，盈利周期长，营收增速替代盈利成为核心指标（如英伟达、特斯拉）
+    2. 生物医药与医疗器械
+       - 创新药研发阶段亏损，但市场潜力大，PS反映管线价值（如Moderna）
+    3. 新能源与高端制造（锂电池、光伏）
+       - 行业扩张期需大量资本开支，PS衡量市场份额争夺能力（如宁德时代）
+
+    4. 互联网与平台经济（电商、社交媒体）
+       - 用户增长优先于盈利，PS结合用户价值评估（如亚马逊、字节跳动）
 
 ## Linkage
 
@@ -539,6 +585,9 @@ $$
     - Representing text using vector word embedding (Word2Vec).
     - Clustering these vectors using Locality-Sensitive Hashing (LSH) to identify topics.
     - Applying topic modeling to identify interpretable textual factors. (Use topic exposure as latent factors, apply standard factor analysis framework)
+* Detecting Misreported Accounting A Machine Learning Approach using Text Data
+  * 10-K filing MD&A part -> extract text -> train on SEC AAERs misreported identifier
+
 
 ## Macro
 
@@ -552,6 +601,37 @@ $$
 
   - 当主观预期上调的时候，财务约束更大的公司未来的预期收益率更低。当主观预期下调的时候，财务约束更大的公司未来的预期收益率更高。
   - Factor timing
+
+- BAB beta factor
+
+  - [Campbell, John Y., and Tuomo Vuolteenaho. "Bad beta, good beta." *American Economic Review* 94.5 (2004): 1249-1275.](https://www.aeaweb.org/articles?id=10.1257/0002828043052240)
+
+    - CAPM贝塔分解为两个组成部分：一个反映市场对未来现金流的新闻，另一个反映市场对折现率的新闻。
+    - 现金流Beta衡量股票收益与公司基本面现金流冲击的相关性。这类冲击反映企业盈利、分红政策或行业前景等长期、永久性变化对股票价值的影响。衡量股票对基本面长期风险的暴露，对应“坏Beta”，需高溢价补偿。
+    - 折现率Beta衡量股票收益与市场折现率冲击的相关性。这类冲击反映投资者对未来现金流预期风险的短期调整（如利率变化、风险偏好波动），导致股价的暂时性波动。例如，美联储加息（提高贴现率）可能短期内压低所有股票估值，但长期影响有限。衡量股票对市场短期情绪或政策风险的暴露，对应“好Beta”，溢价较低。
+
+    ![](../notes/pic/BBGB.png)
+
+  - [Frazzini, Andrea, and Lasse Heje Pedersen. "Betting against beta." *Journal of financial economics* 111.1 (2014): 1-25.](https://www.sciencedirect.com/science/article/pii/S0304405X13002675)
+
+    - 杠杆约束
+      - 机构投资者的限制：共同基金、养老基金等机构常面临严格的杠杆限制（如监管要求或内部风控规则），无法自由借贷以放大投资规模。
+      - 个人投资者的限制：普通投资者可能因保证金要求、信用额度或风险厌恶心理而难以有效使用杠杆。杠杆约束的现实背景
+
+    - 当杠杆受限时，投资者无法直接通过借贷放大风险，转而通过调整资产配置比例间接实现类似效果：
+      - 超配高Beta资产：高Beta资产（如小盘股、高波动股票）在市场上涨时涨幅更大，下跌时跌幅更深。投资者通过增持这些资产，可以在不借贷的情况下“模拟”杠杆效果，追求更高的收益潜力。
+      - 低配低Beta资产：低Beta资产（如大盘蓝筹股、债券）风险较低，但收益弹性不足。
+    - 需求推动高Beta资产价格虚高：当大量投资者涌入高Beta资产时，其价格被推高，导致预期收益下降。低Beta资产被低估：低Beta资产因需求不足而被抛售，价格被低估，预期收益上升。
+    - BAB因子与小盘股效应并不矛盾：规模因子SMB和价值因子HML (在控制市场Beta后) 独立于市场Beta。
+    - BAB因子通过做空高beta股票，做多低beta股票 (带杠杆)，来构造零beta投资组合。
+
+  - Herculano, Miguel C. "Betting Against (Bad) Beta." *arXiv preprint arXiv:2409.00416* (2024).
+
+    - 结合以上两文，构造BABB因子。
+    - 通过双重排序（Double-Sorting），同时筛选低Beta和低现金流Beta的股票：
+      1. 第一层排序：按市场Beta（β）将股票分为高、中、低三组；
+      2. 第二层排序：在每组内按现金流Beta（β_CF）再次排序，构建3×3组合；
+      3. 最终策略：做多低Beta/低现金流Beta组合，做空高Beta/高现金流Beta组合。
 
 ## Microstructure
 

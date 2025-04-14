@@ -1620,6 +1620,12 @@ where indicator of <script type="math/tex; ">p_k</script> indicates whether a pa
 <li>Macro: use to predict employment, PMI index, CPI, retail, consumer sentiment.</li>
 </ul>
 </li>
+<li><p>The Use and Usefulness of Big Data in Finance: Evidence from Financial Analysts</p>
+<ul>
+<li>The paper offers robust evidence that the integration of alternative data into analyst reports is both increasing and economically valuable. </li>
+<li>By improving earnings forecast accuracy and bolstering the trading commission revenue (<strong>as a proxy for Sell-side analysts&#x2019; value, data from ANcerno&apos;s institutional investor trade data </strong>) of brokerages, alternative data serves as a tool to enhance the relevance of sell-side research in a rapidly evolving data landscape. </li>
+</ul>
+</li>
 </ul>
 <h2 id="analyst"><a name="analyst" class="anchor-navigation-ex-anchor" href="#analyst"><i class="fa fa-link" aria-hidden="true"></i></a>2. Analyst</h2>
 <ul>
@@ -1677,8 +1683,50 @@ where indicator of <script type="math/tex; ">p_k</script> indicates whether a pa
 <li><a href="../notes/whichbeta.html">Which Beta?</a></li>
 <li><a href="../notes/Stambaugh-Yuan-2017.html">Stambaugh-Yuan Four Factors</a></li>
 <li><a href="../notes/phack.html">P-hacking</a></li>
-<li><a href="https://www.sciencedirect.com/science/article/pii/S0304405X21002920" target="_blank">Chan, Kam Fong, and Terry Marsh. &quot;Asset pricing on earnings announcement days.&quot; <em>Journal of Financial Economics</em> 144.3 (2022): 1022-1042.</a><ul>
+<li><p><a href="https://www.sciencedirect.com/science/article/pii/S0304405X21002920" target="_blank">Chan, Kam Fong, and Terry Marsh. &quot;Asset pricing on earnings announcement days.&quot; <em>Journal of Financial Economics</em> 144.3 (2022): 1022-1042.</a></p>
+<ul>
 <li>The paper provides evidence that the capital asset pricing model (CAPM) seems to hold on days when influential firms announce earnings, challenging the conventional wisdom that the beta-return relationship is generally flat in the market. The findings have implications for investors, suggesting that strategic trading around earnings announcements could yield significant returns.</li>
+</ul>
+</li>
+<li><p><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3706995" target="_blank">Hu, Xiaolu, Malick O. Sy, and Liuren Wu. &quot;A factor model of company relative valuation.&quot; <em>Available at SSRN 3706995</em> (2020).</a></p>
+<ul>
+<li><p><strong>Relative Value Metric</strong></p>
+<p>The paper defines the company&#x2019;s relative value as:
+<script type="math/tex; mode=display">
+    q = \ln\left(\frac{MV}{TA}\right)
+    </script>
+where MV is the market value of the company (constructed from total assets adjusted by replacing book equity with market capitalization for the common stock component) and TA is total assets. </p>
+</li>
+<li><p>The authors collect 23 descriptive measures (or &#x201C;descriptors&#x201D;) of firm characteristics covering eight broad categories:</p>
+<ul>
+<li><strong>Profitability:</strong> e.g., realized return on assets (RoA) and analyst forecast RoA.</li>
+<li><strong>Growth:</strong> e.g., long-term growth (LTG) forecasts, one-year and five-year historical growth rates.</li>
+<li><strong>Investment:</strong> e.g., capital expenditure ratios, R&amp;D spending, retained earnings.</li>
+<li><strong>Liquidity:</strong> e.g., working capital ratio, slack ratio, various liquidity ratios, and trading liquidity.</li>
+<li><strong>Leverage:</strong> Measured by book debt-to-equity ratio.</li>
+<li><strong>Market Risk:</strong> Captured by the firm&#x2019;s stock beta.</li>
+<li><strong>Size:</strong> Usually expressed as the natural logarithm of total assets.</li>
+<li><strong>Momentum:</strong> Measured by stock return momentum over six- and 12-month horizons.</li>
+</ul>
+</li>
+<li><p>The authors combine similar descriptors within each category into single valuation factors. They do this by first standardizing each descriptor (using winsorization and z-score transformation) and then averaging them to form a factor. When multiple descriptors exist within a category, a Bayesian weighted approach is implemented: Weights are estimated via a constrained regression (imposing that weights sum to one) with an equal-weighting prior.</p>
+</li>
+<li><p>Once the eight factors are constructed, the relative value of each company is modeled through a cross-sectional contemporaneous regression at each date 
+<script type="math/tex; mode=display">
+    q_t = G_t d_t + F_t c_t + e_t
+    </script>
+where:</p>
+<ul>
+<li>q_t is the vector of standardized logarithmic relative value across companies.</li>
+<li>G_t is a matrix of industry dummy variables (based on 49 industry groups from SIC codes) to serve as a local bias correction.</li>
+<li>F_t represents the matrix of valuation factors.</li>
+<li>c_t contains the cross-sectional slope estimates (i.e., the market pricing of each valuation factor).</li>
+<li>e_t is the regression residual that represents the temporary misvaluation (mispricing) of individual companies.</li>
+</ul>
+</li>
+<li><p>The regression residuals (e_t) from the model, which capture the deviation of a company&#x2019;s actual relative value from the &#x201C;fair&#x201D; value predicted by the model, are interpreted as temporary mispricing. A long-short portfolio that goes long on companies with the lowest residuals (undervalued) and short on those with the highest residuals (overvalued) delivers strong performance</p>
+</li>
+<li></li>
 </ul>
 </li>
 </ul>
@@ -1810,6 +1858,48 @@ where indicator of <script type="math/tex; ">p_k</script> indicates whether a pa
 </li>
 </ol>
 </li>
+</ul>
+</li>
+<li><p><a href="https://link.springer.com/article/10.1007/s11142-022-09703-2" target="_blank">Blankespoor, Elizabeth, et al. &quot;Real-time revenue and firm disclosure.&quot; <em>Review of Accounting Studies</em> 27.3 (2022): 1079-1116.</a></p>
+<ul>
+<li><p>Disclosure Patterns and Timing:</p>
+<ul>
+<li><p>Withholding of Negative News Early in the Quarter:</p>
+<p>Managers are less likely to issue a revenue forecast (i.e., voluntary disclosure) when real-time abnormal revenue is negative during the early part of the fiscal quarter.</p>
+</li>
+<li><p>Increased Disclosure as the Quarter Progresses:</p>
+<p>As the quarter moves closer to the mandatory earnings announcement, the withholding of negative news diminishes. This change is likely driven by an increase in litigation risk, heightened analyst scrutiny, and the expectation that the impending public revelation will force managers to disclose bad news.</p>
+</li>
+<li><p>Asymmetry in Disclosure:</p>
+<p>The analysis shows that it is primarily the &#x201C;bad news&#x201D; (i.e., weeks with abnormal revenues in the bottom quartile) that is withheld early, whereas there is no significant increase in the voluntary disclosure of good news. This finding is consistent with classic disclosure models where economic incentives lead firms to delay negative information until external disciplinary mechanisms (like investor reaction or legal risk) compel disclosure.</p>
+</li>
+</ul>
+</li>
+<li><p>Market Reaction and Insider Trading:</p>
+<ul>
+<li><p>Delayed Incorporation into Stock Prices:</p>
+<p>Although the real-time revenue measure is strongly informative&#x2014;as evidenced by its positive correlation with future abnormal returns&#x2014;the market does not fully and immediately price in the information. The gradual &#x201C;leakage&#x201D; of performance signals over the quarter suggests a dynamic process of information disclosure.</p>
+</li>
+<li><p>Insider Trading Behavior:</p>
+<p>The paper documents that in weeks where there is significant abnormally negative real-time revenue and no corresponding public disclosure, insider managers are more likely to sell their shares. This behavior implies that managers might use their private information for personal gain when they choose not to disclose.</p>
+</li>
+</ul>
+</li>
+<li><p>Role of Disciplinary Mechanisms:</p>
+<ul>
+<li>The withholding and subsequent release of information are found to be more pronounced in firms characterized by:<ul>
+<li>High Analyst Coverage: Greater monitoring by equity analysts increases pressure on managers to eventually release negative information.</li>
+<li>High Institutional Ownership: With more sophisticated investors monitoring performance, non-disclosure becomes costlier.</li>
+<li>High Litigation Risk: The prospect of legal or reputational consequences forces managers to disclose adverse information as the quarter&#x2019;s end nears.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a href="https://www.sciencedirect.com/science/article/pii/S0304405X17300776" target="_blank">Froot, Kenneth, et al. &quot;What do measures of real-time corporate sales say about earnings surprises and post-announcement returns?.&quot; <em>Journal of Financial Economics</em> 125.1 (2017): 143-162.</a></p>
+<ul>
+<li>Managerial Disclosure Behavior:The behavior captured by the PQS (Post&#x2010;quarter Sales (PQS): Sales activity occurring after quarter-end but before the earnings announcement) measure indicates that managers do not fully disclose all privately held post-quarter performance information at the earnings announcement. Instead, they understate positive signals&#x2014;resulting in lower-than-expected announcement returns and delayed price adjustments in the post-announcement period. This may be driven, in part, by personal trading motivations.</li>
 </ul>
 </li>
 </ul>
@@ -2450,7 +2540,7 @@ where <script type="math/tex; ">r_{i, t+1}</script> is the future asset <script 
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Quant Finance Notes","level":"1.2.11","depth":2,"next":{"title":"Machine Learning Notes","level":"1.2.12","depth":2,"path":"contents/mln.md","ref":"./contents/mln.md","articles":[]},"previous":{"title":"Broker Reports","level":"1.2.10","depth":2,"path":"contents/broker.md","ref":"./contents/broker.md","articles":[]},"dir":"ltr"},"config":{"plugins":["mathjax","image-captions","github","anchors","anchor-navigation-ex","-sharing","sharing-plus@^0.0.2","github-buttons","embed-pdf","livereload"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"github":{"url":"https://github.com/ZizouHe/"},"livereload":{},"search":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":false},"mode":"float","multipleH1":false,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":true},"github-buttons":{"buttons":[{"user":"ZizouHe","repo":"reading-notes","type":"star","size":"small"}]},"mathjax":{"forceSVG":false,"version":"2.6-latest"},"sharing":{"qq":true,"all":["facebook","google","twitter","weibo","qq","linkedin"],"douban":false,"facebook":true,"weibo":true,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":false,"messenger":false,"line":false,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"embed-pdf":{},"image-captions":{"caption":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","align":"right","variable_name":"_pictures"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{"_pictures":[{"backlink":"./notes/RDN.html#fig1.4.2.1","level":"1.4.2","align":"right","list_caption":"Figure: Example (a) data graph and (b) model graph.","alt":"Example (a) data graph and (b) model graph.","nro":1,"url":"./pic/RDN-1.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Example (a) data graph and (b) model graph.","attributes":{},"skip":false,"key":"1.4.2.1"},{"backlink":"./notes/RDN.html#fig1.4.2.2","level":"1.4.2","align":"right","list_caption":"Figure: RDN inference algorithm.","alt":"RDN inference algorithm.","nro":2,"url":"./pic/RDN-2.png","index":2,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"RDN inference algorithm.","attributes":{},"skip":false,"key":"1.4.2.2"},{"backlink":"./notes/Faster_Frank_Wolfe.html#fig1.4.14.1","level":"1.4.14","align":"right","list_caption":"Figure: Frank-Wolfe Algorithm","alt":"Frank-Wolfe Algorithm","nro":3,"url":"./pic/Frank-Wolfe.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Frank-Wolfe Algorithm","attributes":{},"skip":false,"key":"1.4.14.1"},{"backlink":"./notes/Fin_Fan_Book.html#fig1.4.15.1","level":"1.4.15","align":"right","list_caption":"Figure: Efficient Frontier with risk-free asset","alt":"Efficient Frontier with risk-free asset","nro":4,"url":"./pic/Eff_Front_1.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Efficient Frontier with risk-free asset","attributes":{},"skip":false,"key":"1.4.15.1"},{"backlink":"./notes/Fin_Fan_Book.html#fig1.4.15.2","level":"1.4.15","align":"right","list_caption":"Figure: Efficient Frontier without risk-free asset","alt":"Efficient Frontier without risk-free asset","nro":5,"url":"./pic/Eff_Front_2.png","index":2,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Efficient Frontier without risk-free asset","attributes":{},"skip":false,"key":"1.4.15.2"}]},"title":"Reading List & Notes","gitbook":"*"},"file":{"path":"contents/qfn.md","mtime":"2025-04-06T20:38:41.308Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2025-04-11T03:50:04.773Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Quant Finance Notes","level":"1.2.11","depth":2,"next":{"title":"Machine Learning Notes","level":"1.2.12","depth":2,"path":"contents/mln.md","ref":"./contents/mln.md","articles":[]},"previous":{"title":"Broker Reports","level":"1.2.10","depth":2,"path":"contents/broker.md","ref":"./contents/broker.md","articles":[]},"dir":"ltr"},"config":{"plugins":["mathjax","image-captions","github","anchors","anchor-navigation-ex","-sharing","sharing-plus@^0.0.2","github-buttons","embed-pdf","livereload"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"github":{"url":"https://github.com/ZizouHe/"},"livereload":{},"search":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":false},"mode":"float","multipleH1":false,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":true},"github-buttons":{"buttons":[{"user":"ZizouHe","repo":"reading-notes","type":"star","size":"small"}]},"mathjax":{"forceSVG":false,"version":"2.6-latest"},"sharing":{"qq":true,"all":["facebook","google","twitter","weibo","qq","linkedin"],"douban":false,"facebook":true,"weibo":true,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":false,"messenger":false,"line":false,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"embed-pdf":{},"image-captions":{"caption":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","align":"right","variable_name":"_pictures"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{"_pictures":[{"backlink":"./notes/RDN.html#fig1.4.2.1","level":"1.4.2","align":"right","list_caption":"Figure: Example (a) data graph and (b) model graph.","alt":"Example (a) data graph and (b) model graph.","nro":1,"url":"./pic/RDN-1.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Example (a) data graph and (b) model graph.","attributes":{},"skip":false,"key":"1.4.2.1"},{"backlink":"./notes/RDN.html#fig1.4.2.2","level":"1.4.2","align":"right","list_caption":"Figure: RDN inference algorithm.","alt":"RDN inference algorithm.","nro":2,"url":"./pic/RDN-2.png","index":2,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"RDN inference algorithm.","attributes":{},"skip":false,"key":"1.4.2.2"},{"backlink":"./notes/Faster_Frank_Wolfe.html#fig1.4.14.1","level":"1.4.14","align":"right","list_caption":"Figure: Frank-Wolfe Algorithm","alt":"Frank-Wolfe Algorithm","nro":3,"url":"./pic/Frank-Wolfe.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Frank-Wolfe Algorithm","attributes":{},"skip":false,"key":"1.4.14.1"},{"backlink":"./notes/Fin_Fan_Book.html#fig1.4.15.1","level":"1.4.15","align":"right","list_caption":"Figure: Efficient Frontier with risk-free asset","alt":"Efficient Frontier with risk-free asset","nro":4,"url":"./pic/Eff_Front_1.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Efficient Frontier with risk-free asset","attributes":{},"skip":false,"key":"1.4.15.1"},{"backlink":"./notes/Fin_Fan_Book.html#fig1.4.15.2","level":"1.4.15","align":"right","list_caption":"Figure: Efficient Frontier without risk-free asset","alt":"Efficient Frontier without risk-free asset","nro":5,"url":"./pic/Eff_Front_2.png","index":2,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Efficient Frontier without risk-free asset","attributes":{},"skip":false,"key":"1.4.15.2"}]},"title":"Reading List & Notes","gitbook":"*"},"file":{"path":"contents/qfn.md","mtime":"2025-04-13T17:12:31.146Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2025-04-14T03:56:07.264Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

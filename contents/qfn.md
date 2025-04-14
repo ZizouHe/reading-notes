@@ -123,6 +123,12 @@
   - Term construction similar for micro.
   - Macro: use to predict employment, PMI index, CPI, retail, consumer sentiment.
 
+- The Use and Usefulness of Big Data in Finance: Evidence from Financial Analysts
+
+  - The paper offers robust evidence that the integration of alternative data into analyst reports is both increasing and economically valuable. 
+  - By improving earnings forecast accuracy and bolstering the trading commission revenue (**as a proxy for Sell-side analysts’ value, data from ANcerno's institutional investor trade data **) of brokerages, alternative data serves as a tool to enhance the relevance of sell-side research in a rapidly evolving data landscape. 
+
+
 
 ## Analyst
 
@@ -173,6 +179,47 @@
 - [P-hacking](../notes/phack.html)
 - [Chan, Kam Fong, and Terry Marsh. "Asset pricing on earnings announcement days." *Journal of Financial Economics* 144.3 (2022): 1022-1042.](https://www.sciencedirect.com/science/article/pii/S0304405X21002920)
   - The paper provides evidence that the capital asset pricing model (CAPM) seems to hold on days when influential firms announce earnings, challenging the conventional wisdom that the beta-return relationship is generally flat in the market. The findings have implications for investors, suggesting that strategic trading around earnings announcements could yield significant returns.
+
+- [Hu, Xiaolu, Malick O. Sy, and Liuren Wu. "A factor model of company relative valuation." *Available at SSRN 3706995* (2020).](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3706995)
+
+  - **Relative Value Metric**
+
+    The paper defines the company’s relative value as:
+    $$
+    q = \ln\left(\frac{MV}{TA}\right)
+    $$
+    where MV is the market value of the company (constructed from total assets adjusted by replacing book equity with market capitalization for the common stock component) and TA is total assets. 
+
+  - The authors collect 23 descriptive measures (or “descriptors”) of firm characteristics covering eight broad categories:
+
+    - **Profitability:** e.g., realized return on assets (RoA) and analyst forecast RoA.
+    - **Growth:** e.g., long-term growth (LTG) forecasts, one-year and five-year historical growth rates.
+    - **Investment:** e.g., capital expenditure ratios, R&D spending, retained earnings.
+    - **Liquidity:** e.g., working capital ratio, slack ratio, various liquidity ratios, and trading liquidity.
+    - **Leverage:** Measured by book debt-to-equity ratio.
+    - **Market Risk:** Captured by the firm’s stock beta.
+    - **Size:** Usually expressed as the natural logarithm of total assets.
+    - **Momentum:** Measured by stock return momentum over six- and 12-month horizons.
+
+  - The authors combine similar descriptors within each category into single valuation factors. They do this by first standardizing each descriptor (using winsorization and z-score transformation) and then averaging them to form a factor. When multiple descriptors exist within a category, a Bayesian weighted approach is implemented: Weights are estimated via a constrained regression (imposing that weights sum to one) with an equal-weighting prior.
+
+  - Once the eight factors are constructed, the relative value of each company is modeled through a cross-sectional contemporaneous regression at each date 
+    $$
+    q_t = G_t d_t + F_t c_t + e_t
+    $$
+    where:
+
+    - q_t is the vector of standardized logarithmic relative value across companies.
+    - G_t is a matrix of industry dummy variables (based on 49 industry groups from SIC codes) to serve as a local bias correction.
+    - F_t represents the matrix of valuation factors.
+    - c_t contains the cross-sectional slope estimates (i.e., the market pricing of each valuation factor).
+    - e_t is the regression residual that represents the temporary misvaluation (mispricing) of individual companies.
+
+  - The regression residuals (e_t) from the model, which capture the deviation of a company’s actual relative value from the “fair” value predicted by the model, are interpreted as temporary mispricing. A long-short portfolio that goes long on companies with the lowest residuals (undervalued) and short on those with the highest residuals (overvalued) delivers strong performance
+
+  - 
+
+    
 
 
 ## Behavorial Finance
@@ -262,6 +309,45 @@
 
     4. 互联网与平台经济（电商、社交媒体）
        - 用户增长优先于盈利，PS结合用户价值评估（如亚马逊、字节跳动）
+
+- [Blankespoor, Elizabeth, et al. "Real-time revenue and firm disclosure." *Review of Accounting Studies* 27.3 (2022): 1079-1116.](https://link.springer.com/article/10.1007/s11142-022-09703-2)
+
+  - Disclosure Patterns and Timing:
+
+    - Withholding of Negative News Early in the Quarter:
+
+      Managers are less likely to issue a revenue forecast (i.e., voluntary disclosure) when real-time abnormal revenue is negative during the early part of the fiscal quarter.
+
+    - Increased Disclosure as the Quarter Progresses:
+
+      As the quarter moves closer to the mandatory earnings announcement, the withholding of negative news diminishes. This change is likely driven by an increase in litigation risk, heightened analyst scrutiny, and the expectation that the impending public revelation will force managers to disclose bad news.
+
+    - Asymmetry in Disclosure:
+
+      The analysis shows that it is primarily the “bad news” (i.e., weeks with abnormal revenues in the bottom quartile) that is withheld early, whereas there is no significant increase in the voluntary disclosure of good news. This finding is consistent with classic disclosure models where economic incentives lead firms to delay negative information until external disciplinary mechanisms (like investor reaction or legal risk) compel disclosure.
+
+  - Market Reaction and Insider Trading:
+
+    - Delayed Incorporation into Stock Prices:
+
+      Although the real-time revenue measure is strongly informative—as evidenced by its positive correlation with future abnormal returns—the market does not fully and immediately price in the information. The gradual “leakage” of performance signals over the quarter suggests a dynamic process of information disclosure.
+
+    - Insider Trading Behavior:
+
+      The paper documents that in weeks where there is significant abnormally negative real-time revenue and no corresponding public disclosure, insider managers are more likely to sell their shares. This behavior implies that managers might use their private information for personal gain when they choose not to disclose.
+
+  - Role of Disciplinary Mechanisms:
+    - The withholding and subsequent release of information are found to be more pronounced in firms characterized by:
+      - High Analyst Coverage: Greater monitoring by equity analysts increases pressure on managers to eventually release negative information.
+      - High Institutional Ownership: With more sophisticated investors monitoring performance, non-disclosure becomes costlier.
+      - High Litigation Risk: The prospect of legal or reputational consequences forces managers to disclose adverse information as the quarter’s end nears.
+
+- [Froot, Kenneth, et al. "What do measures of real-time corporate sales say about earnings surprises and post-announcement returns?." *Journal of Financial Economics* 125.1 (2017): 143-162.](https://www.sciencedirect.com/science/article/pii/S0304405X17300776)
+
+  - Managerial Disclosure Behavior:The behavior captured by the PQS (Post‐quarter Sales (PQS): Sales activity occurring after quarter-end but before the earnings announcement) measure indicates that managers do not fully disclose all privately held post-quarter performance information at the earnings announcement. Instead, they understate positive signals—resulting in lower-than-expected announcement returns and delayed price adjustments in the post-announcement period. This may be driven, in part, by personal trading motivations.
+
+    
+
 
 ## Linkage
 

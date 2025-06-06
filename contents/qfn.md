@@ -128,7 +128,11 @@
   - The paper offers robust evidence that the integration of alternative data into analyst reports is both increasing and economically valuable. 
   - By improving earnings forecast accuracy and bolstering the trading commission revenue (**as a proxy for Sell-side analysts’ value, data from ANcerno's institutional investor trade data **) of brokerages, alternative data serves as a tool to enhance the relevance of sell-side research in a rapidly evolving data landscape. 
 
-
+- [Armstrong, Chris, Yaniv Konchitchki, and Biwen Zhang. "Digital traffic, financial performance, and stock valuation." (2023).](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4416683)
+  - Digital traffic (website pageview, visit, **visit duration**, other statistics) can predict quarterly earnings KPIs. It provides additional information to analyst consensus and market consensus (positive stock return). 
+  - All these effects only apply to firms with consumer-oriented websites. A website is defined as consumer-oriented if it satisfies at least one of the following conditions: (i) it allows direct transactions by customers. Examples include amazon.com, nike.com, and bestbuy.com; (ii) the website itself is the product, and visits to these websites are de facto consumption of products. Examples include nytimes.com, google.com, facebook.com, netflix.com; (iii) while the website is not directly geared towards customer transactions, the website hosts detailed product information and is likely to attract visits from existing and prospective customers. Examples include nissanusa.com and bmwusa.com.
+  - The Authors define a alternative value measure: market-to-visits, market-to-pageviews.
+  - **Data from SimilarWeb.**
 
 ## Analyst
 
@@ -148,6 +152,11 @@
 
   - Firms covered by a larger number of analysts generate fewer patents and patents with lower impact. 
   - The evidence is consistent with the hypothesis that analysts exert too much pressure on managers to meet short-term goals, impeding firms' investment in long-term innovative projects.
+
+- [Kumar, Alok, Ville Rantala, and Rosy Xu. "Social learning and analyst behavior." *Journal of financial economics* 143.1 (2022): 434-461.](https://www.sciencedirect.com/science/article/pii/S0304405X21002774)
+
+  - The paper extends the literature on analyst herding by demonstrating that sell-side analysts not only mimic peers’ forecasts for the same firm but also update their beliefs based on information gleaned from peers covering different firms within their portfolio.
+
 
 ## Anomalies
 
@@ -174,9 +183,13 @@
 ## Asset Pricing
 
 - [Q-Factor Model](../notes/q-factor.html)
+
 - [Which Beta?](../notes/whichbeta.html)
+
 - [Stambaugh-Yuan Four Factors](../notes/Stambaugh-Yuan-2017.html)
+
 - [P-hacking](../notes/phack.html)
+
 - [Chan, Kam Fong, and Terry Marsh. "Asset pricing on earnings announcement days." *Journal of Financial Economics* 144.3 (2022): 1022-1042.](https://www.sciencedirect.com/science/article/pii/S0304405X21002920)
   - The paper provides evidence that the capital asset pricing model (CAPM) seems to hold on days when influential firms announce earnings, challenging the conventional wisdom that the beta-return relationship is generally flat in the market. The findings have implications for investors, suggesting that strategic trading around earnings announcements could yield significant returns.
 
@@ -217,8 +230,6 @@
 
   - The regression residuals (e_t) from the model, which capture the deviation of a company’s actual relative value from the “fair” value predicted by the model, are interpreted as temporary mispricing. A long-short portfolio that goes long on companies with the lowest residuals (undervalued) and short on those with the highest residuals (overvalued) delivers strong performance
 
-  - 
-
     
 
 
@@ -236,6 +247,9 @@
     - Insider purchases after positive earnings surprise is a strong confirmatory signal
     - Collective insider purchases by multiple executives is strong
     - Infrequent insider transactions are more informative than reoccurring trades. 
+- [Wang, Feifei, Xuemin Sterling Yan, and Lingling Zheng. "Institutional trading, news, and accounting anomalies." *Journal of Accounting and Economics* 78.1 (2024): 101686.](https://www.sciencedirect.com/science/article/pii/S0165410124000168)
+  - Institutional investors' trading behavior is influenced more by news sentiment than by the anomalies themselves. Institutions tend to trade “in the wrong direction.” In the sample of overreaction anomalies, they are net sellers of the long leg relative to the short leg
+
 
 
 ## Crypto
@@ -845,6 +859,12 @@ $$
   - Individual investors are more likely to sell stocks near the 52WH due to the **disposition effect** (a tendency to sell assets that have increased in value) and **anchoring bias** (relying too heavily on the 52WH as a reference point).
   - Stocks that experience high levels of limit order selling by individual investors at and around the 52WH tend to have abnormally high returns in the period following the 52WH.
 
+- [Murray, Scott, Yusen Xia, and Houping Xiao. "Charting by machines." *Journal of Financial Economics* 153 (2024): 103791.](https://www.sciencedirect.com/science/article/pii/S0304405X2400014X)
+
+  - The ML models inputs: 12 monthly cumulative return, LHS: the upcoming month excess return.
+  - ML model prediction is signigicantly positive even after controlling for popular risk factors.
+
+
 ## NLP
 
 - Wolfe Research | Text mining unstructured corporate filing data
@@ -856,7 +876,17 @@ $$
 - [Learning Fundamentals from Text](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5047947)
   - Use attention machenism to weigh the importance of different paragraphs in a document, focusing on those that are most relevant to market reactions.  The document-level aggregated vector is then used to predict the target variable, which is the direction of stock returns around the filing date.
 
+- [Lee, Charles MC, and Qinlin Zhong. "Shall we talk? The role of interactive investor platforms in corporate communication." *Journal of Accounting and Economics* 74.2-3 (2022): 101524.](https://www.sciencedirect.com/science/article/pii/S0165410122000477)
 
+  - Investor interactive platforms (IIPs) in China
+
+  - random sample of around 50,000 questions and then employed a state-of-the-art BERT-based algorithm to classify the remaining 2.45 million postings.
+
+    - **Findings:** About 80% of questions seek clarification or explanation about specific items in financial reports or company operations, 16.6% are comments or suggestions to management, and the remaining questions pertain to verifying rumors or addressing misunderstandings.
+
+  - These platforms alleviate common investor challenges, stimulate trading, improve market liquidity, and enhance the informativeness of stock prices.
+
+    
 
 ## Portfolio Construction
 

@@ -15,6 +15,7 @@
     * [Broker Reports](./contents/broker.md)
     * [Quant Finance Notes](./contents/qfn.md)
     * [Machine Learning Notes](./contents/mln.md)
+    * [Factor Calendar](./contents/factor_cal.md)
     * [Temp files](./notes/temp.md)
     * [O3-mini files](./notes/o3mini.md)
     

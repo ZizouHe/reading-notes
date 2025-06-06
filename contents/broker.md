@@ -132,6 +132,10 @@
     - holding concentration from the holder's perspective
     - other holders' unwinding activities
     - Fundamental factors
+- UBS | Investing with Activists in Japan
+  - FactSet Corporate Governance: global activist compain details -> identify activists -> FactSet Ownership -> activist holding percentage (and change of holding) in Japan. 
+  - There are about 70 activists campaign each year in Japan.
+
 
 
 ## Fundamental
@@ -775,7 +779,9 @@
   - 基于早盘集合竞价阶段撤单数据 （在9:15至9:20期间，委托的交易订单可以被撤销），我们筛选三类卖方撤单率 (撤单量/自由流通股本) 指标，并将其等权合成得到三小将_TRI因子。
   - 毒流动性因子：5秒内撤单数量 / 30秒内撤单数量。
 
-
+- UBS | Revisiting the Stock Connect Scheme
+  - Northbound holding stop daily update in 2024.
+  - HKEX shows daily short availability before market open (if more than 300,000 shares, it will be shown as "Available"). Available sell is capped at 1% of total northbound holdings. Usually 75% stock connect names have exact available short shares.
 
 ## Smart Money
 

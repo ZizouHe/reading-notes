@@ -314,20 +314,7 @@
                 <a href="../notes/temp.html">
             
                     
-                    Temp files
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.2.15" data-path="../notes/o3mini.html">
-            
-                <a href="../notes/o3mini.html">
-            
-                    
-                    O3-mini files
+                    Reading Todo List
             
                 </a>
             
@@ -1674,6 +1661,11 @@ where indicator of <script type="math/tex; ">p_k</script> indicates whether a pa
 <li>The paper extends the literature on analyst herding by demonstrating that sell-side analysts not only mimic peers&#x2019; forecasts for the same firm but also update their beliefs based on information gleaned from peers covering different firms within their portfolio.</li>
 </ul>
 </li>
+<li><p><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5171848" target="_blank">Alpha in Analysts</a></p>
+<ul>
+<li>Our empirical analysis shows that while the average analyst does not generate statistically significant alpha relative to the returns of a long-only portfolio benchmark, a subset of analysts exhibits persistent alpha. Motivated by this heterogeneity, we introduce a &quot;fund-of-analysts&quot; framework that first predicts analyst performance and then dynamically allocates weights across analysts based on predicted analyst performances.</li>
+</ul>
+</li>
 </ul>
 <h2 id="anomalies"><a name="anomalies" class="anchor-navigation-ex-anchor" href="#anomalies"><i class="fa fa-link" aria-hidden="true"></i></a>3. Anomalies</h2>
 <ul>
@@ -2266,13 +2258,20 @@ P_{i, t}=\alpha_{0, t}+\alpha_{1, t} P_{i, t-1}+\alpha_{2, t} M_{i, t-1}+\alpha_
 </ul>
 <h2 id="machine-learning"><a name="machine-learning" class="anchor-navigation-ex-anchor" href="#machine-learning"><i class="fa fa-link" aria-hidden="true"></i></a>10. Machine Learning</h2>
 <ul>
-<li><a href="../notes/OOS.html">Out of Sample Predictability</a></li>
-<li><a href="../notes/quant_ml.html">Quant Machine Learning</a></li>
-<li><a href="../notes/mlts.html">Time Seris Machine Learning</a></li>
-<li><a href="../notes/nlp_fin.html">NLP in Finance</a></li>
-<li><a href="https://arxiv.org/pdf/2111.15365.pdf" target="_blank">Remlinger, Carl, et al. &quot;Expert aggregation for financial forecasting.&quot; <em>arXiv preprint arXiv:2111.15365</em> (2021).</a></li>
-<li><a href="https://assets.bbhub.io/professional/sites/10/earning_surprise_prediction_china.pdf" target="_blank">Liu, Quan, et al. &quot;PREDICTION OF EARNING SURPRISE USING DEEP LEARNING TECHNIQUE.&quot;</a></li>
-<li><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3307057" target="_blank">Cong, Lin William, Tengyuan Liang, and Xiao Zhang. &quot;Textual factors: A scalable, interpretable, and data-driven approach to analyzing unstructured information.&quot; (2019).</a><ul>
+<li><p><a href="../notes/OOS.html">Out of Sample Predictability</a></p>
+</li>
+<li><p><a href="../notes/quant_ml.html">Quant Machine Learning</a></p>
+</li>
+<li><p><a href="../notes/mlts.html">Time Seris Machine Learning</a></p>
+</li>
+<li><p><a href="../notes/nlp_fin.html">NLP in Finance</a></p>
+</li>
+<li><p><a href="https://arxiv.org/pdf/2111.15365.pdf" target="_blank">Remlinger, Carl, et al. &quot;Expert aggregation for financial forecasting.&quot; <em>arXiv preprint arXiv:2111.15365</em> (2021).</a></p>
+</li>
+<li><p><a href="https://assets.bbhub.io/professional/sites/10/earning_surprise_prediction_china.pdf" target="_blank">Liu, Quan, et al. &quot;PREDICTION OF EARNING SURPRISE USING DEEP LEARNING TECHNIQUE.&quot;</a></p>
+</li>
+<li><p><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3307057" target="_blank">Cong, Lin William, Tengyuan Liang, and Xiao Zhang. &quot;Textual factors: A scalable, interpretable, and data-driven approach to analyzing unstructured information.&quot; (2019).</a></p>
+<ul>
 <li><strong>Textual Factor (TF) Generation</strong>: The authors generate TFs through three main steps:<ul>
 <li>Representing text using vector word embedding (Word2Vec).</li>
 <li>Clustering these vectors using Locality-Sensitive Hashing (LSH) to identify topics.</li>
@@ -2281,8 +2280,25 @@ P_{i, t}=\alpha_{0, t}+\alpha_{1, t} P_{i, t-1}+\alpha_{2, t} M_{i, t-1}+\alpha_
 </li>
 </ul>
 </li>
-<li>Detecting Misreported Accounting A Machine Learning Approach using Text Data<ul>
+<li><p>Detecting Misreported Accounting A Machine Learning Approach using Text Data</p>
+<ul>
 <li>10-K filing MD&amp;A part -&gt; extract text -&gt; train on SEC AAERs misreported identifier</li>
+</ul>
+</li>
+<li><p>Global and local fitting</p>
+<ul>
+<li><p><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4620157" target="_blank">Hellum, Oliver, Lasse Heje Pedersen, and Anders R&#xF8;nn-Nielsen. &quot;How Global Is Predictability? The Power of Financial Transfer Learning.&quot; <em>The Power of Financial Transfer Learning (November 1, 2023)</em> (2023).</a></p>
+<ul>
+<li>Combine local model with global model, either using two stage hard transfer where global model is in the first stage and local model is in the second stage with L2 penalty on value away from global value</li>
+<li>This can be a one-stage soft transfer learning as well (P21 in paper)</li>
+</ul>
+</li>
+<li><p><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5224253" target="_blank">Hanauer, Matthias X., et al. &quot;Do Machine Learning Models Need to Be Sector Experts?.&quot; <em>Available at SSRN</em> (2025).</a></p>
+<ul>
+<li>Hybrid model that incorporates uniform models with industry-specific ideas is the best.</li>
+<li>Hybrid models are trained on returns in excess of industry medians, and features are normalized within industries, which reduces noise along the cross industry dimension. And unlike the industry-specific Specialist models, the Hybrid approach avoids partitioning the cross-section of stocks into small subsamples. </li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -2593,7 +2609,7 @@ where <script type="math/tex; ">r_{i, t+1}</script> is the future asset <script 
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Quant Finance Notes","level":"1.2.11","depth":2,"next":{"title":"Machine Learning Notes","level":"1.2.12","depth":2,"path":"contents/mln.md","ref":"./contents/mln.md","articles":[]},"previous":{"title":"Broker Reports","level":"1.2.10","depth":2,"path":"contents/broker.md","ref":"./contents/broker.md","articles":[]},"dir":"ltr"},"config":{"plugins":["mathjax","image-captions","github","anchors","anchor-navigation-ex","-sharing","sharing-plus@^0.0.2","github-buttons","embed-pdf","livereload"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"github":{"url":"https://github.com/ZizouHe/"},"livereload":{},"search":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":false},"mode":"float","multipleH1":false,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":true},"github-buttons":{"buttons":[{"user":"ZizouHe","repo":"reading-notes","type":"star","size":"small"}]},"mathjax":{"forceSVG":false,"version":"2.6-latest"},"sharing":{"qq":true,"all":["facebook","google","twitter","weibo","qq","linkedin"],"douban":false,"facebook":true,"weibo":true,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":false,"messenger":false,"line":false,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"embed-pdf":{},"image-captions":{"caption":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","align":"right","variable_name":"_pictures"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{"_pictures":[{"backlink":"./notes/RDN.html#fig1.4.2.1","level":"1.4.2","align":"right","list_caption":"Figure: Example (a) data graph and (b) model graph.","alt":"Example (a) data graph and (b) model graph.","nro":1,"url":"./pic/RDN-1.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Example (a) data graph and (b) model graph.","attributes":{},"skip":false,"key":"1.4.2.1"},{"backlink":"./notes/RDN.html#fig1.4.2.2","level":"1.4.2","align":"right","list_caption":"Figure: RDN inference algorithm.","alt":"RDN inference algorithm.","nro":2,"url":"./pic/RDN-2.png","index":2,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"RDN inference algorithm.","attributes":{},"skip":false,"key":"1.4.2.2"},{"backlink":"./notes/Faster_Frank_Wolfe.html#fig1.4.14.1","level":"1.4.14","align":"right","list_caption":"Figure: Frank-Wolfe Algorithm","alt":"Frank-Wolfe Algorithm","nro":3,"url":"./pic/Frank-Wolfe.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Frank-Wolfe Algorithm","attributes":{},"skip":false,"key":"1.4.14.1"},{"backlink":"./notes/Fin_Fan_Book.html#fig1.4.15.1","level":"1.4.15","align":"right","list_caption":"Figure: Efficient Frontier with risk-free asset","alt":"Efficient Frontier with risk-free asset","nro":4,"url":"./pic/Eff_Front_1.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Efficient Frontier with risk-free asset","attributes":{},"skip":false,"key":"1.4.15.1"},{"backlink":"./notes/Fin_Fan_Book.html#fig1.4.15.2","level":"1.4.15","align":"right","list_caption":"Figure: Efficient Frontier without risk-free asset","alt":"Efficient Frontier without risk-free asset","nro":5,"url":"./pic/Eff_Front_2.png","index":2,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Efficient Frontier without risk-free asset","attributes":{},"skip":false,"key":"1.4.15.2"}]},"title":"Reading List & Notes","gitbook":"*"},"file":{"path":"contents/qfn.md","mtime":"2025-04-20T03:11:15.772Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2025-06-06T01:15:34.141Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Quant Finance Notes","level":"1.2.11","depth":2,"next":{"title":"Machine Learning Notes","level":"1.2.12","depth":2,"path":"contents/mln.md","ref":"./contents/mln.md","articles":[]},"previous":{"title":"Broker Reports","level":"1.2.10","depth":2,"path":"contents/broker.md","ref":"./contents/broker.md","articles":[]},"dir":"ltr"},"config":{"plugins":["mathjax","image-captions","github","anchors","anchor-navigation-ex","-sharing","sharing-plus@^0.0.2","github-buttons","embed-pdf","livereload"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"github":{"url":"https://github.com/ZizouHe/"},"livereload":{},"search":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":false},"mode":"float","multipleH1":false,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":true},"github-buttons":{"buttons":[{"user":"ZizouHe","repo":"reading-notes","type":"star","size":"small"}]},"mathjax":{"forceSVG":false,"version":"2.6-latest"},"sharing":{"qq":true,"all":["facebook","google","twitter","weibo","qq","linkedin"],"douban":false,"facebook":true,"weibo":true,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":false,"messenger":false,"line":false,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"embed-pdf":{},"image-captions":{"caption":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","align":"right","variable_name":"_pictures"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{"_pictures":[{"backlink":"./notes/RDN.html#fig1.4.2.1","level":"1.4.2","align":"right","list_caption":"Figure: Example (a) data graph and (b) model graph.","alt":"Example (a) data graph and (b) model graph.","nro":1,"url":"./pic/RDN-1.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Example (a) data graph and (b) model graph.","attributes":{},"skip":false,"key":"1.4.2.1"},{"backlink":"./notes/RDN.html#fig1.4.2.2","level":"1.4.2","align":"right","list_caption":"Figure: RDN inference algorithm.","alt":"RDN inference algorithm.","nro":2,"url":"./pic/RDN-2.png","index":2,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"RDN inference algorithm.","attributes":{},"skip":false,"key":"1.4.2.2"},{"backlink":"./notes/Faster_Frank_Wolfe.html#fig1.4.14.1","level":"1.4.14","align":"right","list_caption":"Figure: Frank-Wolfe Algorithm","alt":"Frank-Wolfe Algorithm","nro":3,"url":"./pic/Frank-Wolfe.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Frank-Wolfe Algorithm","attributes":{},"skip":false,"key":"1.4.14.1"},{"backlink":"./notes/Fin_Fan_Book.html#fig1.4.15.1","level":"1.4.15","align":"right","list_caption":"Figure: Efficient Frontier with risk-free asset","alt":"Efficient Frontier with risk-free asset","nro":4,"url":"./pic/Eff_Front_1.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Efficient Frontier with risk-free asset","attributes":{},"skip":false,"key":"1.4.15.1"},{"backlink":"./notes/Fin_Fan_Book.html#fig1.4.15.2","level":"1.4.15","align":"right","list_caption":"Figure: Efficient Frontier without risk-free asset","alt":"Efficient Frontier without risk-free asset","nro":5,"url":"./pic/Eff_Front_2.png","index":2,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Efficient Frontier without risk-free asset","attributes":{},"skip":false,"key":"1.4.15.2"}]},"title":"Reading List & Notes","gitbook":"*"},"file":{"path":"contents/qfn.md","mtime":"2025-08-03T23:50:05.146Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2025-08-05T02:55:23.700Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

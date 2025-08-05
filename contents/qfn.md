@@ -3,9 +3,10 @@
 ## Alternative Data
 
 - [另类数据与分析师盈利预测](https://zhuanlan.zhihu.com/p/621054463)
+  
   - Dessaint, O., T. Foucault, and L. Fresard (2022). Does alternative data improve financial forecasting? The horizon effect. Working paper.
   - 假设分析师在进行盈利预测时，需要最优地分配其投入到不同时间尺度预测的精力，从而最小化预测误差以及获取不同时间尺度预测信息的成本这二者之和。另类数据的出现降低了获取短期预测数据的成本，并同时提高了短期预测数据的准确度。因此，它促使分析师将更多的精力投入到获取和分析短期预测信息上，以此来提高短期预测的准确度。然而顾此失彼，由于分析师的精力是有限的，这造成的后果是降低了他们长期预测的准确度。
-
+  
 - Wolfe Research | Global Stock Selection with Proprietary Global Trademark Data
 
   - USPTO, foreign applications, Madrid filing, international registration
@@ -156,6 +157,11 @@
 - [Kumar, Alok, Ville Rantala, and Rosy Xu. "Social learning and analyst behavior." *Journal of financial economics* 143.1 (2022): 434-461.](https://www.sciencedirect.com/science/article/pii/S0304405X21002774)
 
   - The paper extends the literature on analyst herding by demonstrating that sell-side analysts not only mimic peers’ forecasts for the same firm but also update their beliefs based on information gleaned from peers covering different firms within their portfolio.
+
+- [Alpha in Analysts](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5171848)
+
+  - Our empirical analysis shows that while the average analyst does not generate statistically significant alpha relative to the returns of a long-only portfolio benchmark, a subset of analysts exhibits persistent alpha. Motivated by this heterogeneity, we introduce a "fund-of-analysts" framework that first predicts analyst performance and then dynamically allocates weights across analysts based on predicted analyst performances.
+
 
 
 ## Anomalies
@@ -666,27 +672,44 @@ $$
   - Analyst coverage measure: analyst is considered actively engaged in a stock for a 12-month period after making an EPS forecast on that stock.
   - Institutional ownership measure: sum the holdings of institutional investors in the stock at a given quarter-end report date and then divide by the number of outstanding shares. An alternative proxy is the number of different institutional investors in the stock.
 
-  
-
-  
-
-  
 
 ## Machine Learning
 
 * [Out of Sample Predictability](../notes/OOS.html)
+
 * [Quant Machine Learning](../notes/quant_ml.html)
+
 * [Time Seris Machine Learning](../notes/mlts.html)
+
 * [NLP in Finance](../notes/nlp_fin.html)
+
 * [Remlinger, Carl, et al. "Expert aggregation for financial forecasting." *arXiv preprint arXiv:2111.15365* (2021).](https://arxiv.org/pdf/2111.15365.pdf)
+
 * [Liu, Quan, et al. "PREDICTION OF EARNING SURPRISE USING DEEP LEARNING TECHNIQUE."](https://assets.bbhub.io/professional/sites/10/earning_surprise_prediction_china.pdf)
+
 * [Cong, Lin William, Tengyuan Liang, and Xiao Zhang. "Textual factors: A scalable, interpretable, and data-driven approach to analyzing unstructured information." (2019).](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3307057)
   * **Textual Factor (TF) Generation**: The authors generate TFs through three main steps:
     - Representing text using vector word embedding (Word2Vec).
     - Clustering these vectors using Locality-Sensitive Hashing (LSH) to identify topics.
     - Applying topic modeling to identify interpretable textual factors. (Use topic exposure as latent factors, apply standard factor analysis framework)
+
 * Detecting Misreported Accounting A Machine Learning Approach using Text Data
   * 10-K filing MD&A part -> extract text -> train on SEC AAERs misreported identifier
+
+* Global and local fitting
+
+  * [Hellum, Oliver, Lasse Heje Pedersen, and Anders Rønn-Nielsen. "How Global Is Predictability? The Power of Financial Transfer Learning." *The Power of Financial Transfer Learning (November 1, 2023)* (2023).](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4620157)
+
+    * Combine local model with global model, either using two stage hard transfer where global model is in the first stage and local model is in the second stage with L2 penalty on value away from global value
+    * This can be a one-stage soft transfer learning as well (P21 in paper)
+
+  * [Hanauer, Matthias X., et al. "Do Machine Learning Models Need to Be Sector Experts?." *Available at SSRN* (2025).](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5224253)
+
+    * Hybrid model that incorporates uniform models with industry-specific ideas is the best.
+    * Hybrid models are trained on returns in excess of industry medians, and features are normalized within industries, which reduces noise along the cross industry dimension. And unlike the industry-specific Specialist models, the Hybrid approach avoids partitioning the cross-section of stocks into small subsamples. 
+
+    
+
 
 
 ## Macro

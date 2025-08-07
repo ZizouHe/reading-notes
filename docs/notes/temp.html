@@ -1463,7 +1463,7 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><ul><li><span class="title-icon "></span><a href="#breaking-bad-trends"><b>1. </b>Breaking Bad Trends</a></li><li><span class="title-icon "></span><a href="#momentum-turning-points"><b>2. </b>Momentum Turning Points</a></li><li><span class="title-icon "></span><a href="#style-switching-and-asset-pricing"><b>3. </b>Style Switching and Asset Pricing</a></li><li><span class="title-icon "></span><a href="#price-discovery-and-trading-after-hours"><b>4. </b>Price Discovery and Trading After Hours</a></li><li><span class="title-icon "></span><a href="#moving-targets"><b>5. </b>Moving Targets</a></li><li><span class="title-icon "></span><a href="#confirmatory-bias-in-financial-markets"><b>6. </b>Confirmatory Bias in Financial Markets</a></li><li><span class="title-icon "></span><a href="#what-drives-momentum-and-reversal"><b>7. </b>What Drives Momentum and Reversal?</a></li><li><span class="title-icon "></span><a href="#todo"><b>8. </b>Todo</a></li></ul></ul></div><a href="#" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h2 id="breaking-bad-trends"><a name="breaking-bad-trends" class="anchor-navigation-ex-anchor" href="#breaking-bad-trends"><i class="fa fa-link" aria-hidden="true"></i></a>1. Breaking Bad Trends</h2>
+                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><ul><li><span class="title-icon "></span><a href="#breaking-bad-trends"><b>1. </b>Breaking Bad Trends</a></li><li><span class="title-icon "></span><a href="#momentum-turning-points"><b>2. </b>Momentum Turning Points</a></li><li><span class="title-icon "></span><a href="#style-switching-and-asset-pricing"><b>3. </b>Style Switching and Asset Pricing</a></li><li><span class="title-icon "></span><a href="#price-discovery-and-trading-after-hours"><b>4. </b>Price Discovery and Trading After Hours</a></li><li><span class="title-icon "></span><a href="#moving-targets"><b>5. </b>Moving Targets</a></li><li><span class="title-icon "></span><a href="#confirmatory-bias-in-financial-markets"><b>6. </b>Confirmatory Bias in Financial Markets</a></li><li><span class="title-icon "></span><a href="#what-drives-momentum-and-reversal"><b>7. </b>What Drives Momentum and Reversal?</a></li><li><span class="title-icon "></span><a href="#selling-fast-and-buying-slow-heuristics-and-trading-performance-of-institutional-investors"><b>8. </b>Selling Fast and Buying Slow: Heuristics and Trading Performance of Institutional Investors</a></li><li><span class="title-icon "></span><a href="#ambiguity-about-volatility-and-investor-behavior"><b>9. </b>Ambiguity about volatility and investor behavior</a></li><li><span class="title-icon "></span><a href="#pairs-trading-using-a-novel-graphical-matching-approach"><b>10. </b>Pairs Trading Using a Novel Graphical Matching Approach</a></li><li><span class="title-icon "></span><a href="#using-gpt-models-to-measure-the-complexity-of-business-transactions"><b>11. </b>Using GPT models to measure the complexity of business transactions</a></li><li><span class="title-icon "></span><a href="#identifying-risk-factor-regimes-with-machine-learning-implications-for-tactical-asset-allocation"><b>12. </b>Identifying Risk Factor Regimes with Machine Learning: Implications for Tactical Asset Allocation</a></li><li><span class="title-icon "></span><a href="#todo"><b>13. </b>Todo</a></li></ul></ul></div><a href="#" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h2 id="breaking-bad-trends"><a name="breaking-bad-trends" class="anchor-navigation-ex-anchor" href="#breaking-bad-trends"><i class="fa fa-link" aria-hidden="true"></i></a>1. Breaking Bad Trends</h2>
 <p><strong>1. Motivation and Definitions</strong></p>
 <ul>
 <li><strong>Trend-following</strong> (time-series momentum) strategies go long (buy) when recent past returns are positive and short (sell) when negative.</li>
@@ -1800,19 +1800,187 @@
 <li><strong>Reversal</strong> predominantly reflects <strong>public&#x2010;news corrections</strong>.</li>
 </ul>
 <p>This distinction not only clarifies the drivers of these classic anomalies but also suggests that trading strategies should consider the <strong>timing</strong> of information arrival when harvesting momentum or avoiding reversal risk.</p>
-<h2 id="todo"><a name="todo" class="anchor-navigation-ex-anchor" href="#todo"><i class="fa fa-link" aria-hidden="true"></i></a>8. Todo</h2>
+<h2 id="selling-fast-and-buying-slow-heuristics-and-trading-performance-of-institutional-investors"><a name="selling-fast-and-buying-slow-heuristics-and-trading-performance-of-institutional-investors" class="anchor-navigation-ex-anchor" href="#selling-fast-and-buying-slow-heuristics-and-trading-performance-of-institutional-investors"><i class="fa fa-link" aria-hidden="true"></i></a>8. Selling Fast and Buying Slow: Heuristics and Trading Performance of Institutional Investors</h2>
+<p><strong>1. Background &amp; Research Question</strong></p>
+<p>Are experienced institutional investors subject to heuristics, and do these biases differ when they buy versus when they sell? The authors examine whether market experts&#x2014;who manage large, concentrated portfolios&#x2014;display skill symmetrically across buying and selling, or whether one decision systematically underperforms .</p>
+<p><strong>2. Data</strong></p>
+<ul>
+<li><strong>Source</strong>: Inalytics Ltd database of 783 long-only equity portfolios (average AUM $573 million) from 2000&#x2013;2016, covering 4.4 million high-stakes trades .</li>
+<li><strong>Characteristics</strong>: Portfolios are highly active, hold on average 78 stocks, and deviate substantially from benchmarks, with limited cash and no leverage.</li>
+</ul>
+<p><strong>3. Methodology</strong></p>
+<ul>
+<li><p><strong>Counterfactuals</strong>: For each buy (sell), compare realized factor-neutral returns to a &#x201C;no-skill&#x201D; strategy that randomly buys (sells) another held position for the same dollar amount.</p>
+</li>
+<li><p><strong>Value-added measure</strong>:</p>
+<p>\Delta R<em>{\text{buy}} = R</em>{\text{buy}} - R<em>{\text{hold}}, \quad \Delta R</em>{\text{sell}} = R<em>{\text{hold}} - R</em>{\text{sell}}</p>
+<p>computed over horizons from 1 week to 1 year .</p>
+</li>
+<li><p><strong>Inference</strong>: Double-clustered standard errors allow serial and cross-sectional correlation.</p>
+</li>
+</ul>
+<p><strong>4. Main Findings</strong></p>
+<ul>
+<li><strong>Buying skill</strong>: Stocks purchased outperform the random-buy benchmark by about <strong>120 bp per annum</strong> over a 1-year horizon .</li>
+<li><strong>Selling underperformance</strong>: Stocks sold underperform the random-sell benchmark by about <strong>80 bp per annum</strong> at 1 year .</li>
+<li><strong>Robustness</strong>: Results hold across alternative weighting schemes, matching on characteristics (size, momentum, volatility), excluding microcaps or illiquid names, and unadjusted returns.</li>
+</ul>
+<p><strong>5. Mechanism: Asymmetric Attention &amp; Heuristics</strong></p>
+<ul>
+<li><strong>Cognitive allocation</strong>: Managers devote more effort to finding buys; sales receive less systematic attention .</li>
+<li><strong>Two-stage selling heuristic</strong>:<ol>
+<li><strong>Selection</strong>: Attention focuses on positions with <strong>extreme prior returns</strong>.</li>
+<li><strong>Disposition</strong>: Within that set, they sell the <strong>least-conviction</strong> ideas&#x2014;those with lower intended portfolio weight&#x2014;leading to costly premature exits.</li>
+</ol>
+</li>
+</ul>
+<p><strong>6. Earnings-Announcement Evidence</strong></p>
+<p>On days when firms in the portfolio release earnings, selling performance jumps by over <strong>150 bp per annum</strong>, matching buying skill&#x2014;suggesting PMs <em>can</em> sell well when attention is directed .</p>
+<p><strong>7. Conclusions &amp; Implications</strong></p>
+<p>Even top-tier institutional investors succumb to costly selling heuristics, sacrificing significant alpha. The authors recommend:</p>
+<ul>
+<li><strong>Enhanced feedback</strong> on selling performance (e.g., counterfactual reports)</li>
+<li><strong>Decision aids</strong> or alternative selling rules to mitigate attention-driven biases .</li>
+</ul>
+<p>This study highlights that selling, not just buying, is a critical locus of behavioral bias&#x2014;even among market experts.</p>
+<h2 id="ambiguity-about-volatility-and-investor-behavior"><a name="ambiguity-about-volatility-and-investor-behavior" class="anchor-navigation-ex-anchor" href="#ambiguity-about-volatility-and-investor-behavior"><i class="fa fa-link" aria-hidden="true"></i></a>9. Ambiguity about volatility and investor behavior</h2>
+<p><strong>1. Research Question &amp; Contribution</strong></p>
+<p>The paper asks how <strong>time-varying aggregate ambiguity about volatility</strong>&#x2014;measured by the V-VSTOXX (the 30-day implied volatility of the Euro Stoxx&#x2019;s implied volatility)&#x2014;affects individual investors&#x2019; trading and risk-taking . Unlike prior work that focuses on cross-sectional ambiguity aversion, this study exploits <strong>daily innovations in market-based and survey&#x2010;based ambiguity</strong> to trace <em>within-person</em> responses over time.</p>
+<p><strong>2. Data</strong></p>
+<ul>
+<li><strong>Sample</strong>: Over <strong>100,000</strong> retail clients of a major German online broker, covering <strong>23.4 million</strong> trades from <strong>March 2010 to December 2015</strong>.</li>
+<li><strong>Ambiguity Measures</strong>:<ol>
+<li><strong>Short-term</strong>: V-VSTOXX innovations (daily).</li>
+<li><strong>Long-term</strong>: Interquartile range of professional GDP&#x2010;forecast standard deviations (quarterly).</li>
+</ol>
+</li>
+<li><strong>Investor Survey</strong>: A random subset (n = 644) completed an Ellsberg-urn task, classifying them as ambiguity-averse, neutral, or seeking .</li>
+</ul>
+<p><strong>3. Methodology</strong></p>
+<p>Panel regressions with <strong>investor fixed effects</strong>, relating daily dV-VSTOXX to:</p>
+<ol>
+<li><p><strong>Activity</strong>: Probability of logging in or trading on a given day.</p>
+</li>
+<li><p><strong>Risk-taking</strong>: Excess buy&#x2013;sell imbalances (demeaned by each investor&#x2019;s one-year average) .</p>
+<p>Models control for innovations in expected volatility (dVSTOXX), sentiment (FEARS), market returns, calendar effects, and investor wealth.</p>
+</li>
+</ol>
+<p><strong>4. Key Findings</strong></p>
+<ol>
+<li><strong>Higher Ambiguity &#x2192; More Activity</strong><ul>
+<li>A one-unit rise in dV-VSTOXX raises the daily login likelihood by 0.12 pp and trading likelihood by 0.02 pp (both p &lt; 0.01), economically comparable to well-known attention and wealth effects .</li>
+</ul>
+</li>
+<li><strong>Higher Ambiguity &#x2192; Less Risk-Taking</strong><ul>
+<li>Ambiguity shocks <strong>reduce</strong> investors&#x2019; excess buy&#x2013;sell imbalances, indicating a <strong>pull-back from risky assets</strong> that persists for at least ten days .</li>
+</ul>
+</li>
+<li><strong>Heterogeneity by Ambiguity Aversion</strong><ul>
+<li>Surveyed <strong>ambiguity-averse</strong> investors react <strong>four times more strongly</strong> to V-VSTOXX shocks than the average client, whereas neutral or seeking investors show no significant response .</li>
+</ul>
+</li>
+<li><strong>Robustness</strong><ul>
+<li>Results hold using the dispersion of forecasters, alternative market-based (Brenner &amp; Izhakian) and newspaper&#x2010;based (EPU) measures of ambiguity, and after controlling for expected volatility .</li>
+</ul>
+</li>
+</ol>
+<p><strong>5. Implications</strong></p>
+<p>Individual investors not only buy less but also <strong>sell more cautiously</strong> when volatility ambiguity spikes&#x2014;especially if they are ambiguity-averse&#x2014;suggesting that <strong>trading decisions</strong>, not just initial portfolio choice, amplify the classic &#x201C;buy high, sell low&#x201D; patterns under uncertainty. This has important implications for understanding retail flow dynamics and designing tools to mitigate ambiguity&#x2010;driven behavior.</p>
+<h2 id="pairs-trading-using-a-novel-graphical-matching-approach"><a name="pairs-trading-using-a-novel-graphical-matching-approach" class="anchor-navigation-ex-anchor" href="#pairs-trading-using-a-novel-graphical-matching-approach"><i class="fa fa-link" aria-hidden="true"></i></a>10. Pairs Trading Using a Novel Graphical Matching Approach</h2>
+<p><strong>1. Background &amp; Motivation</strong></p>
+<p>Traditional pairs-trading portfolios select highly cointegrated asset pairs, but often include multiple pairs sharing the same stock. This overlap raises portfolio variance through positive covariance among spreads and drives up transaction costs via higher turnover. The authors propose a graph-theoretic solution to build lower-risk, more diversified pairs portfolios .</p>
+<p><strong>2. Graphical Matching Method</strong></p>
+<ul>
+<li><strong>Graph construction</strong>: Represent each stock as a node and each candidate pair as an edge weighted by the strength of cointegration (e.g., negative ADF t-statistic).</li>
+<li><strong>Maximum weight matching</strong>: Compute a matching (set of edges sharing no nodes) that maximizes total edge weight. This ensures each stock appears in at most one pair, eliminating shared-asset covariance and capping portfolio size at &#x230A;N/2&#x230B; for N stocks .</li>
+</ul>
+<p><strong>3. Theoretical Analysis</strong></p>
+<ul>
+<li><strong>Return moments</strong>: Derive closed-form expressions for the mean, variance, and covariance of returns for both cointegrated and non-cointegrated pairs (Theorems 1&#x2013;4).</li>
+<li><strong>Portfolio Sharpe</strong>: Show analytically that excluding shared-stock covariance (m = 0) raises the portfolio&#x2019;s Sharpe ratio from ~0.50 under the baseline to ~1.18 under matching, principally by cutting variance in half .</li>
+</ul>
+<p><strong>4. Empirical Implementation &amp; Results</strong></p>
+<ul>
+<li><strong>Simulation setup</strong>: Use S&amp;P 500 data (2017&#x2013;2023), monthly rebalancing, two-year rolling windows for cointegration tests and spread regression. Compare:<ul>
+<li><strong>Baseline</strong>: Top 250 pairs by lowest p-value.</li>
+<li><strong>Matching</strong>: Maximum-weight matching of all candidate edges, selecting &#x2264; 250 disjoint pairs.</li>
+</ul>
+</li>
+<li><strong>Trading signals</strong>: Both z-score (standardized spread) and robust q-score (quantile-based) triggers.</li>
+<li><strong>Performance</strong>:<ul>
+<li><strong>Gross Sharpe</strong>: Matching &#x2248; 1.23 vs Baseline &#x2248; 0.48 (S&amp;P 500 &#x2248; 0.59).</li>
+<li><strong>Net returns</strong> (after realistic 1% annual turnover cost): Matching &#x2248; 7&#x2013;8% p.a. vs Baseline negative.</li>
+<li><strong>Turnover &amp; Concentration</strong>: Matching reduces turnover by ~66% and enforces single-stock concentration = 1, whereas baseline&#x2019;s concentration averages &gt; 10 </li>
+</ul>
+</li>
+</ul>
+<p><strong>5. Conclusions &amp; Extensions</strong></p>
+<p>Graphical matching transforms pairs trading by systematically avoiding shared-stock overlap, yielding superior risk-adjusted returns, lower trading costs, and muted drawdowns. The framework naturally extends to hypergraph &#x201C;multi-asset&#x201D; strategies and alternative edge-weight definitions, opening rich avenues for future portfolio-construction research .</p>
+<h2 id="using-gpt-models-to-measure-the-complexity-of-business-transactions"><a name="using-gpt-models-to-measure-the-complexity-of-business-transactions" class="anchor-navigation-ex-anchor" href="#using-gpt-models-to-measure-the-complexity-of-business-transactions"><i class="fa fa-link" aria-hidden="true"></i></a>11. Using GPT models to measure the complexity of business transactions</h2>
+<p><strong>1. Motivation &amp; Definition</strong></p>
+<p>The authors introduce <strong>business complexity</strong> as a decision-maker&#x2019;s difficulty in understanding the economic substance of a firm&#x2019;s transactions and financial position. Traditional proxies (e.g., report length, Fog index) miss aspects like transaction uniqueness. They propose an algorithmic, fact-level measure to capture this construct .</p>
+<p><strong>2. Data &amp; Methodology</strong></p>
+<ol>
+<li><strong>Data</strong>: 58,148 iXBRL-tagged 10-K and 10-Q filings (July 2016&#x2013;May 2024), comprising over eight million numeric &#x201C;facts&#x201D; in footnotes.</li>
+<li><strong>Model</strong>: Fine-tune Meta&#x2019;s open-source Llama 3 (8B) on 200,000 sentences with embedded iXBRL tags, teaching it to predict each tag based on surrounding text .</li>
+<li><strong>Complexity Measure</strong>: For each fact, complexity = 1 &#x2013; (model&#x2019;s confidence), where confidence is derived from token probabilities on the predicted tag .</li>
+</ol>
+<p><strong>3. Validation</strong></p>
+<ul>
+<li><strong>Fact-level</strong>: Confidence correlates 0.75 with tag-prediction accuracy; standard tags yield 90% vs. 78% confidence on custom tags .</li>
+<li><strong>Firm-level</strong>: Average filing complexity negatively predicts the speed of price discovery (intra-period timeliness), even after controlling for length, Fog, segment count, and unique-tag proxies .</li>
+</ul>
+<p><strong>4. Disaggregation &amp; Category-Level Insights</strong></p>
+<ul>
+<li><strong>Within-filing heterogeneity</strong>: Firms&#x2019; filings show substantial variation across individual facts.</li>
+<li><strong>By transaction type</strong>: Collaborative arrangements, government assistance, and contingencies rank among the most complex; earnings per share and goodwill among the least .</li>
+</ul>
+<p><strong>5. Debt Complexity Application</strong></p>
+<p>Focusing on debt contracts, the paper finds:</p>
+<ul>
+<li><strong>Determinants</strong>: Higher debt complexity in smaller, riskier, less profitable, and less&#x2010;covered firms&#x2014;consistent with financial constraints .</li>
+<li><strong>Outcomes</strong>:<ol>
+<li><strong>Interest persistence</strong>: Complex-debt firms exhibit more stable interest expenses quarter to quarter.</li>
+<li><strong>Performance in stress</strong>: During the July 2021&#x2013;June 2022 tightening cycle, firms with more complex debt outperformed peers, suggesting complexity can mitigate financing risk .</li>
+</ol>
+</li>
+</ul>
+<p><strong>6. Conclusion</strong></p>
+<p>The GPT-based, iXBRL-driven measure delivers a flexible, disaggregated proxy for business complexity. It:</p>
+<ul>
+<li>Captures transaction uniqueness beyond standard text measures</li>
+<li>Impedes price formation, reflecting real processing costs</li>
+<li>Reveals why vulnerable firms adopt complex debt to manage risk</li>
+</ul>
+<p>This fact-level approach opens avenues for future research on complexity in other disclosure contexts and across different user sophistication levels .</p>
+<h2 id="identifying-risk-factor-regimes-with-machine-learning-implications-for-tactical-asset-allocation"><a name="identifying-risk-factor-regimes-with-machine-learning-implications-for-tactical-asset-allocation" class="anchor-navigation-ex-anchor" href="#identifying-risk-factor-regimes-with-machine-learning-implications-for-tactical-asset-allocation"><i class="fa fa-link" aria-hidden="true"></i></a>12. Identifying Risk Factor Regimes with Machine Learning: Implications for Tactical Asset Allocation</h2>
+<ol>
+<li><p><strong>Motivation &amp; Regime Tagging</strong></p>
+<p>Financial risk factors (e.g. equity returns) exhibit distinct &#x201C;crash&#x201D; vs. &#x201C;normal&#x201D; regimes that&#x2014;if detected ex-ante&#x2014;can guide tactical tilts. This paper defines an <strong>Equity Factor</strong> as a 7-index global basket and <strong>tags crash periods</strong> whenever its cumulative drawdown breaches &#x2013;10%, including both peak-to-trough and trough-to-recovery phases .</p>
+</li>
+<li><p><strong>Feature Construction &amp; Selection</strong></p>
+<p>Over <strong>500 features</strong> are engineered from real-time market and macro data: index returns, FX forwards, commodity and volatility surfaces, CDS spreads, economic-surprise indices, Mahalanobis turbulence, absorption ratio, risk-adjusted momentum, skewness/kurtosis, option-flow signals, term-structure slopes, and more . A univariate filter&#x2014;combining point-biserial correlations and mutual-information rankings&#x2014;reduces this to the most predictive subset before modeling.</p>
+</li>
+<li><p><strong>Machine-Learning Framework</strong></p>
+<p>Six classifiers (Logit, SVM, Random Forest, XGBoost, Neural Net, plus a Probit + PCA benchmark) are trained in a <strong>rolling, temporal 4-fold cross-validation</strong> with hyperparameter tuning. <strong>Shapley values</strong> from cooperative game theory provide feature-level interpretability, mitigating the &#x201C;black-box&#x201D; concern .</p>
+</li>
+<li><p><strong>Out-of-Sample Performance</strong></p>
+<p>The <strong>ensemble average</strong> of all ML models achieves the highest ROC AUC, Brier Skill, F1 and Matthews&#x2019; MCC scores. When used to time one-month ahead crash probabilities in a simple long-only equity strategy, the ML ensemble delivers a <strong>Sharpe &#x2248; 0.80</strong>&#x2014;well above trend-following, VIX-timing, volatility-targeting, and hidden-Markov benchmarks (each 0.52&#x2013;0.76) . Spanning regressions confirm the ML signals generate statistically significant alpha versus those benchmarks.</p>
+</li>
+<li><p><strong>Tactical Applications</strong></p>
+<ul>
+<li><strong>Probability-Weighted Rotation</strong>: Allocating dynamically between &#x2018;risk-on&#x2019; (equities, high yield) and &#x2018;risk-off&#x2019; (IG bonds, inflation-linked, gold, CTA) buckets based on predicted crash probability improves portfolio Sharpe by ~0.1 versus a static 80/20 split.</li>
+<li><strong>Regime-Aware Risk Views</strong>: Incorporating the same probabilities into covariance forecasts and risk-parity allocations yields further gains, demonstrating broad applicability beyond pure timing .</li>
+</ul>
+<p>By systematically tagging regimes, leveraging rich feature sets, and applying interpretable ML, this approach meaningfully enhances tactical asset-allocation decisions.</p>
+</li>
+</ol>
+<h2 id="todo"><a name="todo" class="anchor-navigation-ex-anchor" href="#todo"><i class="fa fa-link" aria-hidden="true"></i></a>13. Todo</h2>
 <ul>
 <li>Factor Timing</li>
-<li>Estimating General Equilibrium Spillovers of Large-Scale Shocks</li>
-<li>Ambiguity about volatility and investor behavior</li>
 <li>When Smart Beta Meets Machine Learning and Portfolio Optimization</li>
-<li>Selling Fast and Buying Slow: Heuristics and Trading Performance of Institutional Investors</li>
 <li>The Virtue of Complexity in Return Prediction</li>
 <li>The Prediction Framework and High-Dimensional Approximation</li>
-<li>Ambiguity about Volatility and Investor Behavior</li>
-<li>Identifying Risk Factor Regimes with Machine Learning: Implications for Tactical Asset Allocation</li>
-<li>Pairs Trading Using a Novel Graphical Matching Approach</li>
-<li>A Modular Measure of Business Complexity</li>
 <li>Influence of Market States on Security Returns</li>
 </ul>
 
@@ -1858,7 +2026,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Reading Todo List","level":"1.2.14","depth":2,"next":{"title":"Reading List","level":"1.3","depth":1,"path":"contents/reading.md","ref":"./contents/reading.md","articles":[{"title":"Bayesian Machine Learning","level":"1.3.1","depth":2,"path":"contents/bayesing.md","ref":"./contents/bayesing.md","articles":[]},{"title":"Deep Learning","level":"1.3.2","depth":2,"path":"contents/DLing.md","ref":"./contents/DLing.md","articles":[]},{"title":"Machine Learning","level":"1.3.3","depth":2,"path":"contents/MLing.md","ref":"./contents/MLing.md","articles":[]},{"title":"Numerical and Optimization","level":"1.3.4","depth":2,"path":"contents/opting.md","ref":"./contents/opting.md","articles":[]},{"title":"Traditional Statistics","level":"1.3.5","depth":2,"path":"contents/stating.md","ref":"./contents/stating.md","articles":[]},{"title":"Books","level":"1.3.6","depth":2,"path":"contents/booking.md","ref":"./contents/booking.md","articles":[]}]},"previous":{"title":"Factor Calendar","level":"1.2.13","depth":2,"path":"contents/factor_cal.md","ref":"./contents/factor_cal.md","articles":[]},"dir":"ltr"},"config":{"plugins":["mathjax","image-captions","github","anchors","anchor-navigation-ex","-sharing","sharing-plus@^0.0.2","github-buttons","embed-pdf","livereload"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"github":{"url":"https://github.com/ZizouHe/"},"livereload":{},"search":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":false},"mode":"float","multipleH1":false,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":true},"github-buttons":{"buttons":[{"user":"ZizouHe","repo":"reading-notes","type":"star","size":"small"}]},"mathjax":{"forceSVG":false,"version":"2.6-latest"},"sharing":{"qq":true,"all":["facebook","google","twitter","weibo","qq","linkedin"],"douban":false,"facebook":true,"weibo":true,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":false,"messenger":false,"line":false,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"embed-pdf":{},"image-captions":{"caption":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","align":"right","variable_name":"_pictures"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{"_pictures":[{"backlink":"./notes/RDN.html#fig1.4.2.1","level":"1.4.2","align":"right","list_caption":"Figure: Example (a) data graph and (b) model graph.","alt":"Example (a) data graph and (b) model graph.","nro":1,"url":"./pic/RDN-1.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Example (a) data graph and (b) model graph.","attributes":{},"skip":false,"key":"1.4.2.1"},{"backlink":"./notes/RDN.html#fig1.4.2.2","level":"1.4.2","align":"right","list_caption":"Figure: RDN inference algorithm.","alt":"RDN inference algorithm.","nro":2,"url":"./pic/RDN-2.png","index":2,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"RDN inference algorithm.","attributes":{},"skip":false,"key":"1.4.2.2"},{"backlink":"./notes/Faster_Frank_Wolfe.html#fig1.4.14.1","level":"1.4.14","align":"right","list_caption":"Figure: Frank-Wolfe Algorithm","alt":"Frank-Wolfe Algorithm","nro":3,"url":"./pic/Frank-Wolfe.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Frank-Wolfe Algorithm","attributes":{},"skip":false,"key":"1.4.14.1"},{"backlink":"./notes/Fin_Fan_Book.html#fig1.4.15.1","level":"1.4.15","align":"right","list_caption":"Figure: Efficient Frontier with risk-free asset","alt":"Efficient Frontier with risk-free asset","nro":4,"url":"./pic/Eff_Front_1.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Efficient Frontier with risk-free asset","attributes":{},"skip":false,"key":"1.4.15.1"},{"backlink":"./notes/Fin_Fan_Book.html#fig1.4.15.2","level":"1.4.15","align":"right","list_caption":"Figure: Efficient Frontier without risk-free asset","alt":"Efficient Frontier without risk-free asset","nro":5,"url":"./pic/Eff_Front_2.png","index":2,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Efficient Frontier without risk-free asset","attributes":{},"skip":false,"key":"1.4.15.2"}]},"title":"Reading List & Notes","gitbook":"*"},"file":{"path":"notes/temp.md","mtime":"2025-08-05T02:55:04.410Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2025-08-05T02:55:23.700Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Reading Todo List","level":"1.2.14","depth":2,"next":{"title":"Reading List","level":"1.3","depth":1,"path":"contents/reading.md","ref":"./contents/reading.md","articles":[{"title":"Bayesian Machine Learning","level":"1.3.1","depth":2,"path":"contents/bayesing.md","ref":"./contents/bayesing.md","articles":[]},{"title":"Deep Learning","level":"1.3.2","depth":2,"path":"contents/DLing.md","ref":"./contents/DLing.md","articles":[]},{"title":"Machine Learning","level":"1.3.3","depth":2,"path":"contents/MLing.md","ref":"./contents/MLing.md","articles":[]},{"title":"Numerical and Optimization","level":"1.3.4","depth":2,"path":"contents/opting.md","ref":"./contents/opting.md","articles":[]},{"title":"Traditional Statistics","level":"1.3.5","depth":2,"path":"contents/stating.md","ref":"./contents/stating.md","articles":[]},{"title":"Books","level":"1.3.6","depth":2,"path":"contents/booking.md","ref":"./contents/booking.md","articles":[]}]},"previous":{"title":"Factor Calendar","level":"1.2.13","depth":2,"path":"contents/factor_cal.md","ref":"./contents/factor_cal.md","articles":[]},"dir":"ltr"},"config":{"plugins":["mathjax","image-captions","github","anchors","anchor-navigation-ex","-sharing","sharing-plus@^0.0.2","github-buttons","embed-pdf","livereload"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"github":{"url":"https://github.com/ZizouHe/"},"livereload":{},"search":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":false},"mode":"float","multipleH1":false,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":true},"github-buttons":{"buttons":[{"user":"ZizouHe","repo":"reading-notes","type":"star","size":"small"}]},"mathjax":{"forceSVG":false,"version":"2.6-latest"},"sharing":{"qq":true,"all":["facebook","google","twitter","weibo","qq","linkedin"],"douban":false,"facebook":true,"weibo":true,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":false,"messenger":false,"line":false,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"embed-pdf":{},"image-captions":{"caption":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","align":"right","variable_name":"_pictures"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{"_pictures":[{"backlink":"./notes/RDN.html#fig1.4.2.1","level":"1.4.2","align":"right","list_caption":"Figure: Example (a) data graph and (b) model graph.","alt":"Example (a) data graph and (b) model graph.","nro":1,"url":"./pic/RDN-1.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Example (a) data graph and (b) model graph.","attributes":{},"skip":false,"key":"1.4.2.1"},{"backlink":"./notes/RDN.html#fig1.4.2.2","level":"1.4.2","align":"right","list_caption":"Figure: RDN inference algorithm.","alt":"RDN inference algorithm.","nro":2,"url":"./pic/RDN-2.png","index":2,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"RDN inference algorithm.","attributes":{},"skip":false,"key":"1.4.2.2"},{"backlink":"./notes/Faster_Frank_Wolfe.html#fig1.4.14.1","level":"1.4.14","align":"right","list_caption":"Figure: Frank-Wolfe Algorithm","alt":"Frank-Wolfe Algorithm","nro":3,"url":"./pic/Frank-Wolfe.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Frank-Wolfe Algorithm","attributes":{},"skip":false,"key":"1.4.14.1"},{"backlink":"./notes/Fin_Fan_Book.html#fig1.4.15.1","level":"1.4.15","align":"right","list_caption":"Figure: Efficient Frontier with risk-free asset","alt":"Efficient Frontier with risk-free asset","nro":4,"url":"./pic/Eff_Front_1.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Efficient Frontier with risk-free asset","attributes":{},"skip":false,"key":"1.4.15.1"},{"backlink":"./notes/Fin_Fan_Book.html#fig1.4.15.2","level":"1.4.15","align":"right","list_caption":"Figure: Efficient Frontier without risk-free asset","alt":"Efficient Frontier without risk-free asset","nro":5,"url":"./pic/Eff_Front_2.png","index":2,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Efficient Frontier without risk-free asset","attributes":{},"skip":false,"key":"1.4.15.2"}]},"title":"Reading List & Notes","gitbook":"*"},"file":{"path":"notes/temp.md","mtime":"2025-08-07T02:42:48.833Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2025-08-07T02:42:56.371Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

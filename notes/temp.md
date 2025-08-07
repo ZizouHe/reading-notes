@@ -328,17 +328,195 @@ By decomposing returns into **day** and **night** components, this study demonst
 
 This distinction not only clarifies the drivers of these classic anomalies but also suggests that trading strategies should consider the **timing** of information arrival when harvesting momentum or avoiding reversal risk.
 
+## Selling Fast and Buying Slow: Heuristics and Trading Performance of Institutional Investors
+
+**1. Background & Research Question**
+
+Are experienced institutional investors subject to heuristics, and do these biases differ when they buy versus when they sell? The authors examine whether market experts—who manage large, concentrated portfolios—display skill symmetrically across buying and selling, or whether one decision systematically underperforms .
+
+**2. Data**
+
+- **Source**: Inalytics Ltd database of 783 long-only equity portfolios (average AUM $573 million) from 2000–2016, covering 4.4 million high-stakes trades .
+- **Characteristics**: Portfolios are highly active, hold on average 78 stocks, and deviate substantially from benchmarks, with limited cash and no leverage.
+
+**3. Methodology**
+
+- **Counterfactuals**: For each buy (sell), compare realized factor-neutral returns to a “no-skill” strategy that randomly buys (sells) another held position for the same dollar amount.
+
+- **Value-added measure**:
+
+  \Delta R_{\text{buy}} = R_{\text{buy}} - R_{\text{hold}}, \quad \Delta R_{\text{sell}} = R_{\text{hold}} - R_{\text{sell}}
+
+  computed over horizons from 1 week to 1 year .
+
+- **Inference**: Double-clustered standard errors allow serial and cross-sectional correlation.
+
+**4. Main Findings**
+
+- **Buying skill**: Stocks purchased outperform the random-buy benchmark by about **120 bp per annum** over a 1-year horizon .
+- **Selling underperformance**: Stocks sold underperform the random-sell benchmark by about **80 bp per annum** at 1 year .
+- **Robustness**: Results hold across alternative weighting schemes, matching on characteristics (size, momentum, volatility), excluding microcaps or illiquid names, and unadjusted returns.
+
+**5. Mechanism: Asymmetric Attention & Heuristics**
+
+- **Cognitive allocation**: Managers devote more effort to finding buys; sales receive less systematic attention .
+- **Two-stage selling heuristic**:
+  1. **Selection**: Attention focuses on positions with **extreme prior returns**.
+  2. **Disposition**: Within that set, they sell the **least-conviction** ideas—those with lower intended portfolio weight—leading to costly premature exits.
+
+**6. Earnings-Announcement Evidence**
+
+On days when firms in the portfolio release earnings, selling performance jumps by over **150 bp per annum**, matching buying skill—suggesting PMs *can* sell well when attention is directed .
+
+**7. Conclusions & Implications**
+
+Even top-tier institutional investors succumb to costly selling heuristics, sacrificing significant alpha. The authors recommend:
+
+- **Enhanced feedback** on selling performance (e.g., counterfactual reports)
+- **Decision aids** or alternative selling rules to mitigate attention-driven biases .
+
+This study highlights that selling, not just buying, is a critical locus of behavioral bias—even among market experts.
+
+## Ambiguity about volatility and investor behavior
+
+**1. Research Question & Contribution**
+
+The paper asks how **time-varying aggregate ambiguity about volatility**—measured by the V-VSTOXX (the 30-day implied volatility of the Euro Stoxx’s implied volatility)—affects individual investors’ trading and risk-taking . Unlike prior work that focuses on cross-sectional ambiguity aversion, this study exploits **daily innovations in market-based and survey‐based ambiguity** to trace *within-person* responses over time.
+
+**2. Data**
+
+- **Sample**: Over **100,000** retail clients of a major German online broker, covering **23.4 million** trades from **March 2010 to December 2015**.
+- **Ambiguity Measures**:
+  1. **Short-term**: V-VSTOXX innovations (daily).
+  2. **Long-term**: Interquartile range of professional GDP‐forecast standard deviations (quarterly).
+- **Investor Survey**: A random subset (n = 644) completed an Ellsberg-urn task, classifying them as ambiguity-averse, neutral, or seeking .
+
+**3. Methodology**
+
+Panel regressions with **investor fixed effects**, relating daily dV-VSTOXX to:
+
+1. **Activity**: Probability of logging in or trading on a given day.
+
+2. **Risk-taking**: Excess buy–sell imbalances (demeaned by each investor’s one-year average) .
+
+   Models control for innovations in expected volatility (dVSTOXX), sentiment (FEARS), market returns, calendar effects, and investor wealth.
+
+**4. Key Findings**
+
+1. **Higher Ambiguity → More Activity**
+   - A one-unit rise in dV-VSTOXX raises the daily login likelihood by 0.12 pp and trading likelihood by 0.02 pp (both p < 0.01), economically comparable to well-known attention and wealth effects .
+2. **Higher Ambiguity → Less Risk-Taking**
+   - Ambiguity shocks **reduce** investors’ excess buy–sell imbalances, indicating a **pull-back from risky assets** that persists for at least ten days .
+3. **Heterogeneity by Ambiguity Aversion**
+   - Surveyed **ambiguity-averse** investors react **four times more strongly** to V-VSTOXX shocks than the average client, whereas neutral or seeking investors show no significant response .
+4. **Robustness**
+   - Results hold using the dispersion of forecasters, alternative market-based (Brenner & Izhakian) and newspaper‐based (EPU) measures of ambiguity, and after controlling for expected volatility .
+
+**5. Implications**
+
+Individual investors not only buy less but also **sell more cautiously** when volatility ambiguity spikes—especially if they are ambiguity-averse—suggesting that **trading decisions**, not just initial portfolio choice, amplify the classic “buy high, sell low” patterns under uncertainty. This has important implications for understanding retail flow dynamics and designing tools to mitigate ambiguity‐driven behavior.
+
+## Pairs Trading Using a Novel Graphical Matching Approach
+
+**1. Background & Motivation**
+
+Traditional pairs-trading portfolios select highly cointegrated asset pairs, but often include multiple pairs sharing the same stock. This overlap raises portfolio variance through positive covariance among spreads and drives up transaction costs via higher turnover. The authors propose a graph-theoretic solution to build lower-risk, more diversified pairs portfolios .
+
+**2. Graphical Matching Method**
+
+- **Graph construction**: Represent each stock as a node and each candidate pair as an edge weighted by the strength of cointegration (e.g., negative ADF t-statistic).
+- **Maximum weight matching**: Compute a matching (set of edges sharing no nodes) that maximizes total edge weight. This ensures each stock appears in at most one pair, eliminating shared-asset covariance and capping portfolio size at ⌊N/2⌋ for N stocks .
+
+**3. Theoretical Analysis**
+
+- **Return moments**: Derive closed-form expressions for the mean, variance, and covariance of returns for both cointegrated and non-cointegrated pairs (Theorems 1–4).
+- **Portfolio Sharpe**: Show analytically that excluding shared-stock covariance (m = 0) raises the portfolio’s Sharpe ratio from ~0.50 under the baseline to ~1.18 under matching, principally by cutting variance in half .
+
+**4. Empirical Implementation & Results**
+
+- **Simulation setup**: Use S&P 500 data (2017–2023), monthly rebalancing, two-year rolling windows for cointegration tests and spread regression. Compare:
+  - **Baseline**: Top 250 pairs by lowest p-value.
+  - **Matching**: Maximum-weight matching of all candidate edges, selecting ≤ 250 disjoint pairs.
+- **Trading signals**: Both z-score (standardized spread) and robust q-score (quantile-based) triggers.
+- **Performance**:
+  - **Gross Sharpe**: Matching ≈ 1.23 vs Baseline ≈ 0.48 (S&P 500 ≈ 0.59).
+  - **Net returns** (after realistic 1% annual turnover cost): Matching ≈ 7–8% p.a. vs Baseline negative.
+  - **Turnover & Concentration**: Matching reduces turnover by ~66% and enforces single-stock concentration = 1, whereas baseline’s concentration averages > 10 
+
+**5. Conclusions & Extensions**
+
+Graphical matching transforms pairs trading by systematically avoiding shared-stock overlap, yielding superior risk-adjusted returns, lower trading costs, and muted drawdowns. The framework naturally extends to hypergraph “multi-asset” strategies and alternative edge-weight definitions, opening rich avenues for future portfolio-construction research .
+
+## Using GPT models to measure the complexity of business transactions
+
+**1. Motivation & Definition**
+
+The authors introduce **business complexity** as a decision-maker’s difficulty in understanding the economic substance of a firm’s transactions and financial position. Traditional proxies (e.g., report length, Fog index) miss aspects like transaction uniqueness. They propose an algorithmic, fact-level measure to capture this construct .
+
+**2. Data & Methodology**
+
+1. **Data**: 58,148 iXBRL-tagged 10-K and 10-Q filings (July 2016–May 2024), comprising over eight million numeric “facts” in footnotes.
+2. **Model**: Fine-tune Meta’s open-source Llama 3 (8B) on 200,000 sentences with embedded iXBRL tags, teaching it to predict each tag based on surrounding text .
+3. **Complexity Measure**: For each fact, complexity = 1 – (model’s confidence), where confidence is derived from token probabilities on the predicted tag .
+
+**3. Validation**
+
+- **Fact-level**: Confidence correlates 0.75 with tag-prediction accuracy; standard tags yield 90% vs. 78% confidence on custom tags .
+- **Firm-level**: Average filing complexity negatively predicts the speed of price discovery (intra-period timeliness), even after controlling for length, Fog, segment count, and unique-tag proxies .
+
+**4. Disaggregation & Category-Level Insights**
+
+- **Within-filing heterogeneity**: Firms’ filings show substantial variation across individual facts.
+- **By transaction type**: Collaborative arrangements, government assistance, and contingencies rank among the most complex; earnings per share and goodwill among the least .
+
+**5. Debt Complexity Application**
+
+Focusing on debt contracts, the paper finds:
+
+- **Determinants**: Higher debt complexity in smaller, riskier, less profitable, and less‐covered firms—consistent with financial constraints .
+- **Outcomes**:
+  1. **Interest persistence**: Complex-debt firms exhibit more stable interest expenses quarter to quarter.
+  2. **Performance in stress**: During the July 2021–June 2022 tightening cycle, firms with more complex debt outperformed peers, suggesting complexity can mitigate financing risk .
+
+**6. Conclusion**
+
+The GPT-based, iXBRL-driven measure delivers a flexible, disaggregated proxy for business complexity. It:
+
+- Captures transaction uniqueness beyond standard text measures
+- Impedes price formation, reflecting real processing costs
+- Reveals why vulnerable firms adopt complex debt to manage risk
+
+This fact-level approach opens avenues for future research on complexity in other disclosure contexts and across different user sophistication levels .
+
+## Identifying Risk Factor Regimes with Machine Learning: Implications for Tactical Asset Allocation
+
+1. **Motivation & Regime Tagging**
+
+   Financial risk factors (e.g. equity returns) exhibit distinct “crash” vs. “normal” regimes that—if detected ex-ante—can guide tactical tilts. This paper defines an **Equity Factor** as a 7-index global basket and **tags crash periods** whenever its cumulative drawdown breaches –10%, including both peak-to-trough and trough-to-recovery phases .
+
+2. **Feature Construction & Selection**
+
+   Over **500 features** are engineered from real-time market and macro data: index returns, FX forwards, commodity and volatility surfaces, CDS spreads, economic-surprise indices, Mahalanobis turbulence, absorption ratio, risk-adjusted momentum, skewness/kurtosis, option-flow signals, term-structure slopes, and more . A univariate filter—combining point-biserial correlations and mutual-information rankings—reduces this to the most predictive subset before modeling.
+
+3. **Machine-Learning Framework**
+
+   Six classifiers (Logit, SVM, Random Forest, XGBoost, Neural Net, plus a Probit + PCA benchmark) are trained in a **rolling, temporal 4-fold cross-validation** with hyperparameter tuning. **Shapley values** from cooperative game theory provide feature-level interpretability, mitigating the “black-box” concern .
+
+4. **Out-of-Sample Performance**
+
+   The **ensemble average** of all ML models achieves the highest ROC AUC, Brier Skill, F1 and Matthews’ MCC scores. When used to time one-month ahead crash probabilities in a simple long-only equity strategy, the ML ensemble delivers a **Sharpe ≈ 0.80**—well above trend-following, VIX-timing, volatility-targeting, and hidden-Markov benchmarks (each 0.52–0.76) . Spanning regressions confirm the ML signals generate statistically significant alpha versus those benchmarks.
+
+5. **Tactical Applications**
+
+   - **Probability-Weighted Rotation**: Allocating dynamically between ‘risk-on’ (equities, high yield) and ‘risk-off’ (IG bonds, inflation-linked, gold, CTA) buckets based on predicted crash probability improves portfolio Sharpe by ~0.1 versus a static 80/20 split.
+   - **Regime-Aware Risk Views**: Incorporating the same probabilities into covariance forecasts and risk-parity allocations yields further gains, demonstrating broad applicability beyond pure timing .
+
+   By systematically tagging regimes, leveraging rich feature sets, and applying interpretable ML, this approach meaningfully enhances tactical asset-allocation decisions.
+
 ## Todo
 
 - Factor Timing
-- Estimating General Equilibrium Spillovers of Large-Scale Shocks
-- Ambiguity about volatility and investor behavior
 - When Smart Beta Meets Machine Learning and Portfolio Optimization
-- Selling Fast and Buying Slow: Heuristics and Trading Performance of Institutional Investors
 - The Virtue of Complexity in Return Prediction
 - The Prediction Framework and High-Dimensional Approximation
-- Ambiguity about Volatility and Investor Behavior
-- Identifying Risk Factor Regimes with Machine Learning: Implications for Tactical Asset Allocation
-- Pairs Trading Using a Novel Graphical Matching Approach
-- A Modular Measure of Business Complexity
 - Influence of Market States on Security Returns

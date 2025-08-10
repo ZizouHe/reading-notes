@@ -256,7 +256,13 @@
 - [Wang, Feifei, Xuemin Sterling Yan, and Lingling Zheng. "Institutional trading, news, and accounting anomalies." *Journal of Accounting and Economics* 78.1 (2024): 101686.](https://www.sciencedirect.com/science/article/pii/S0165410124000168)
   - Institutional investors' trading behavior is influenced more by news sentiment than by the anomalies themselves. Institutions tend to trade “in the wrong direction.” In the sample of overreaction anomalies, they are net sellers of the long leg relative to the short leg
 
+- [Pouget, Sebastien, Julien Sauvagnat, and Stephane Villeneuve. "A mind is a terrible thing to change: confirmatory bias in financial markets." *The Review of Financial Studies* 30.6 (2017): 2066-2109.](https://academic.oup.com/rfs/article-abstract/30/6/2066/2740622)
+  - Confirmatory bias—the tendency to overweight evidence that supports one’s prior views and disregard contradicting information
+  - It is proved by excess volume, excess volatility, momentum and bubbles/crashes.
+  - Forecast revisions: Analysts are ~2 pp less likely to revise in the direction of a current surprise when its sign *differs* from the surprise one or two quarters earlier.
+  - Analyst heterogeneity: When an analyst’s *own* prior revision sign conflicts with a new earnings surprise, she is ~20 pp less likely to update in that direction.
 
+  - Forecast dispersion: Cross-analyst dispersion in annual forecasts is *higher* following sign-changes in the last two SUEs.
 
 ## Crypto
 
@@ -878,6 +884,11 @@ $$
 
     - The linear form IPCA has been extended to DNN in [Gu, Shihao, Bryan Kelly, and Dacheng Xiu. "Autoencoder asset pricing models." *Journal of Econometrics* 222.1 (2021): 429-450.](https://www.sciencedirect.com/science/article/pii/S0304407620301998)
 
+- [Barardehi, Yashar H., Vincent Bogousslavsky, and Dmitriy Muravyev. "What drives momentum and reversal? evidence from day and night signals." *Evidence from Day and Night Signals (February 6, 2023)* (2023).](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4069509)
+
+  - Public news chiefly moves prices overnight, whereas private information (revealed through trading) drives intraday returns.
+  - Intraday-based portfolios exhibit strong momentum over both short and long horizons, without subsequent long-run reversal; overnight-based portfolios show long-run reversal but no short-run momentum.
+
 - [Della Vedova, Joshua, Andrew Grant, and P. Joakim Westerholm. "Investor behavior at the 52-Week high." *Journal of Financial and Quantitative Analysis* 58.7 (2023): 2852-2889.](https://www.cambridge.org/core/journals/journal-of-financial-and-quantitative-analysis/article/investor-behavior-at-the-52week-high/5D1C7CA21396521F3B41D91B06A25BE1)
   - Individual investors are more likely to sell stocks near the 52WH due to the **disposition effect** (a tendency to sell assets that have increased in value) and **anchoring bias** (relying too heavily on the 52WH as a reference point).
   - Stocks that experience high levels of limit order selling by individual investors at and around the 52WH tend to have abnormally high returns in the period following the 52WH.
@@ -886,6 +897,18 @@ $$
 
   - The ML models inputs: 12 monthly cumulative return, LHS: the upcoming month excess return.
   - ML model prediction is signigicantly positive even after controlling for popular risk factors.
+
+- [Goulding, Christian L., Campbell R. Harvey, and Michele G. Mazzoleni. "Momentum turning points." *Journal of Financial Economics* 149.3 (2023): 378-406.](https://www.sciencedirect.com/science/article/pii/S0304405X23001034)
+
+  - Trade long-term momentum when they agree with short term momentum (1/3 months return).
+  - Turning points occur when slow and fast signals disagree, marking potential trend reversals that tend to inflict “whipsaw” losses on static strategies .
+  - Corrections (slow ≥ 0, fast < 0) tend to revert: ~61% are followed by Bull/up months. Thus, fast short-bets in Corrections often lose, favoring slower positions.
+  - Rebounds (slow < 0, fast ≥ 0) tend to continue: ~56% are followed by up months, so fast long-bets in Rebounds are rewarded .
+
+- [Wang, Huaixin. "Style Switching and Asset Pricing." *Available at SSRN 4686997* (2024).](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4686997)
+
+  - When investors extrapolate past returns, they switch between “twin” styles (assets with similar characteristics) and “dual” styles (assets with opposite characteristics), inducing c**ross‐asset momentum among twins and cross‐asset reversals among duals** .
+
 
 
 ## NLP
@@ -909,7 +932,11 @@ $$
 
   - These platforms alleviate common investor challenges, stimulate trading, improve market liquidity, and enhance the informativeness of stock prices.
 
-    
+
+- [Cohen, Lauren, and Quoc Nguyen. "Moving Targets." *Available at SSRN 4736129* (2024).](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4736129)
+  - Managers publicize performance targets (e.g., revenue, same-store sales, product metrics) in earnings-call presentations. When they fail to hit a given target, they often shift the discussion to a different metric—“moving the target” to ensure they still clear a self-set hurdle.
+  - There is no immediate announcement reaction but there will be underperformance after moved targets. Shifts in non-financial targets (e.g., subscriber counts, product units) predict larger underperformance than purely financial ones.
+  - **Analyst attention**: when analysts explicitly question a dropped target and management is forced to address it, the underperformance effect is attenuated, indicating that inattention drives the gradual price drift.
 
 ## Portfolio Construction
 

@@ -1463,60 +1463,7 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><ul><li><span class="title-icon "></span><a href="#breaking-bad-trends"><b>1. </b>Breaking Bad Trends</a></li><li><span class="title-icon "></span><a href="#momentum-turning-points"><b>2. </b>Momentum Turning Points</a></li><li><span class="title-icon "></span><a href="#style-switching-and-asset-pricing"><b>3. </b>Style Switching and Asset Pricing</a></li><li><span class="title-icon "></span><a href="#price-discovery-and-trading-after-hours"><b>4. </b>Price Discovery and Trading After Hours</a></li><li><span class="title-icon "></span><a href="#moving-targets"><b>5. </b>Moving Targets</a></li><li><span class="title-icon "></span><a href="#confirmatory-bias-in-financial-markets"><b>6. </b>Confirmatory Bias in Financial Markets</a></li><li><span class="title-icon "></span><a href="#what-drives-momentum-and-reversal"><b>7. </b>What Drives Momentum and Reversal?</a></li><li><span class="title-icon "></span><a href="#selling-fast-and-buying-slow-heuristics-and-trading-performance-of-institutional-investors"><b>8. </b>Selling Fast and Buying Slow: Heuristics and Trading Performance of Institutional Investors</a></li><li><span class="title-icon "></span><a href="#ambiguity-about-volatility-and-investor-behavior"><b>9. </b>Ambiguity about volatility and investor behavior</a></li><li><span class="title-icon "></span><a href="#pairs-trading-using-a-novel-graphical-matching-approach"><b>10. </b>Pairs Trading Using a Novel Graphical Matching Approach</a></li><li><span class="title-icon "></span><a href="#using-gpt-models-to-measure-the-complexity-of-business-transactions"><b>11. </b>Using GPT models to measure the complexity of business transactions</a></li><li><span class="title-icon "></span><a href="#identifying-risk-factor-regimes-with-machine-learning-implications-for-tactical-asset-allocation"><b>12. </b>Identifying Risk Factor Regimes with Machine Learning: Implications for Tactical Asset Allocation</a></li><li><span class="title-icon "></span><a href="#todo"><b>13. </b>Todo</a></li></ul></ul></div><a href="#" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h2 id="breaking-bad-trends"><a name="breaking-bad-trends" class="anchor-navigation-ex-anchor" href="#breaking-bad-trends"><i class="fa fa-link" aria-hidden="true"></i></a>1. Breaking Bad Trends</h2>
-<p><strong>1. Motivation and Definitions</strong></p>
-<ul>
-<li><strong>Trend-following</strong> (time-series momentum) strategies go long (buy) when recent past returns are positive and short (sell) when negative.</li>
-<li>A <strong>turning point</strong> occurs when a &#x201C;slow&#x201D; momentum signal (e.g. 12-month average) and a &#x201C;fast&#x201D; signal (e.g. 1- or 2-month average) disagree in sign&#x2014;indicating a potential break from an established trend.</li>
-</ul>
-<p><strong>2. Key Empirical Findings</strong></p>
-<ol>
-<li><strong>Trend Breaks Hurt Performance</strong><ul>
-<li>Across 43 futures markets (equities, bonds, commodities) from 1990&#x2013;2022, years with more turning-point months had materially lower risk-adjusted returns to a static 12-month trend strategy (e.g. each +1 SD in turns &#x2192; &#x2013;8.9 pp annual return) .</li>
-</ul>
-</li>
-<li><strong>Post-GFC Deterioration Explained</strong><ul>
-<li>In the 2009&#x2013;2019 expansion post-2008, turning points became more frequent (median rose from 4.54 to 4.80 per year), helping explain why classic trend following struggled over that decade .</li>
-</ul>
-</li>
-<li><strong>Dynamic Blending Recovers Returns</strong><ul>
-<li>By classifying each month into four states&#x2014;<strong>Bull</strong>, <strong>Correction</strong> (slow &gt; 0, fast &lt; 0), <strong>Bear</strong>, and <strong>Rebound</strong> (slow &lt; 0, fast &gt; 0)&#x2014;and dynamically mixing slow &amp; fast signals with state-dependent weights, one can harvest returns after turning points rather than suffer whipsaw losses .</li>
-</ul>
-</li>
-</ol>
-<p><strong>3. Methodological Highlights</strong></p>
-<ul>
-<li><p><strong>Static strategy</strong>: Go &#xB1;1 unit based solely on the sign of the trailing 12-month return.</p>
-</li>
-<li><p><strong>Turning points</strong>: Months where</p>
-<p>sign(12-mo avg) &#x2260; sign(1- or 2-mo avg).</p>
-</li>
-<li><p><strong>Dynamic strategy</strong>:</p>
-<ul>
-<li>In <strong>Bull/Bear</strong>, follow the slow signal (same as static).</li>
-<li>In <strong>Correction/Rebound</strong>, blend slow and fast returns using ex-ante mixing parameters a<em>{Co},a</em>{Re} estimated to maximize Sharpe ratios (shrink-wrapped to [0,1]) .</li>
-</ul>
-</li>
-<li><p>Portfolios equally weight assets within each asset class and then equally across equities, bonds, and commodities.</p>
-</li>
-</ul>
-<p><strong>4. Performance Comparison</strong></p>
-<ul>
-<li>Over 1990&#x2013;2022 at 10% volatility:<ul>
-<li><strong>Static 12-mo</strong>: ~6.4% annualized return (0.64 Sharpe), virtually 0% in 2009&#x2013;2019.</li>
-<li><strong>Dynamic (2- and 12-mo blend)</strong>: ~9% annualized return (0.80 Sharpe), ~3.4% in 2009&#x2013;2019&#x2014;with almost half of gains coming in months following turning points .</li>
-</ul>
-</li>
-</ul>
-<p><strong>5. Conclusions and Implications</strong></p>
-<ul>
-<li>Trend-following&#x2019;s &#x201C;Achilles&#x2019; heel&#x201D; is whipsaws at trend breaks.</li>
-<li>The post-GFC rise in turning-point frequency helps explain why many CTAs underperformed in 2009&#x2013;2019.</li>
-<li>A simple dynamic blending rule can substantially recover returns by adaptively emphasizing faster signals after corrections and rebounds.</li>
-<li>Further applications could tailor both lookback horizons and asset-class allocations to exploit heterogeneous turning-point dynamics.</li>
-</ul>
-<p>This approach sheds light on when and why classic trend strategies falter&#x2014;and offers a practical way to &#x201C;repair&#x201D; them using only lagged return signals.</p>
-<h2 id="momentum-turning-points"><a name="momentum-turning-points" class="anchor-navigation-ex-anchor" href="#momentum-turning-points"><i class="fa fa-link" aria-hidden="true"></i></a>2. Momentum Turning Points</h2>
+                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><ul><li><span class="title-icon "></span><a href="#momentum-turning-points"><b>1. </b>Momentum Turning Points</a></li><li><span class="title-icon "></span><a href="#price-discovery-and-trading-after-hours"><b>2. </b>Price Discovery and Trading After Hours</a></li><li><span class="title-icon "></span><a href="#selling-fast-and-buying-slow-heuristics-and-trading-performance-of-institutional-investors"><b>3. </b>Selling Fast and Buying Slow: Heuristics and Trading Performance of Institutional Investors</a></li><li><span class="title-icon "></span><a href="#ambiguity-about-volatility-and-investor-behavior"><b>4. </b>Ambiguity about volatility and investor behavior</a></li><li><span class="title-icon "></span><a href="#pairs-trading-using-a-novel-graphical-matching-approach"><b>5. </b>Pairs Trading Using a Novel Graphical Matching Approach</a></li><li><span class="title-icon "></span><a href="#using-gpt-models-to-measure-the-complexity-of-business-transactions"><b>6. </b>Using GPT models to measure the complexity of business transactions</a></li><li><span class="title-icon "></span><a href="#identifying-risk-factor-regimes-with-machine-learning-implications-for-tactical-asset-allocation"><b>7. </b>Identifying Risk Factor Regimes with Machine Learning: Implications for Tactical Asset Allocation</a></li><li><span class="title-icon "></span><a href="#using-accounting-earnings-and-macro-indicators-to-estimate-firm-level-systematic-risk"><b>8. </b>Using accounting earnings and macro indicators to estimate firm-level systematic risk</a></li><li><span class="title-icon "></span><a href="#when-smart-beta-meets-machine-learning-and-portfolio-optimization"><b>9. </b>When Smart Beta Meets Machine Learning and Portfolio Optimization</a></li><li><span class="title-icon "></span><a href="#business-news-and-business-cycles"><b>10. </b>Business News and Business Cycles</a></li><li><span class="title-icon "></span><a href="#investor-attention-and-stock-returns-under-negative-shocks"><b>11. </b>Investor attention and stock returns under negative shocks</a></li><li><span class="title-icon "></span><a href="#emotional-state-and-market-behavior"><b>12. </b>Emotional State and Market Behavior</a></li><li><span class="title-icon "></span><a href="#todo"><b>13. </b>Todo</a></li></ul></ul></div><a href="#" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h2 id="momentum-turning-points"><a name="momentum-turning-points" class="anchor-navigation-ex-anchor" href="#momentum-turning-points"><i class="fa fa-link" aria-hidden="true"></i></a>1. Momentum Turning Points</h2>
 <p>Here&#x2019;s a concise overview of <strong>&#x201C;Momentum Turning Points&#x201D;</strong> by Goulding, Harvey &amp; Mazzoleni (2023) :</p>
 <p><strong>1. Motivation and Conceptual Framework</strong></p>
 <ul>
@@ -1570,57 +1517,7 @@
 <li>Simple blending of slow and fast momentum, especially when tailored to market-cycle states, can substantially recover returns by mitigating whipsaws and exploiting post-break momentum.</li>
 <li>These insights offer a practical recipe for more resilient, adaptive momentum strategies across asset classes and geographies .</li>
 </ul>
-<h2 id="style-switching-and-asset-pricing"><a name="style-switching-and-asset-pricing" class="anchor-navigation-ex-anchor" href="#style-switching-and-asset-pricing"><i class="fa fa-link" aria-hidden="true"></i></a>3. Style Switching and Asset Pricing</h2>
-<p>Here&#x2019;s a structured summary of <strong>Wang (2024), &#x201C;Style Switching and Asset Pricing&#x201D;</strong> :</p>
-<p><strong>1. Motivation &amp; Key Insight</strong></p>
-<ul>
-<li><strong>Style investing</strong>&#x2014;allocating capital based on firm &#x201C;characteristics&#x201D; (value, momentum, profitability, etc.)&#x2014;is pervasive but may distort prices via flow&#x2010;driven comovements.</li>
-<li>Wang shows that when investors extrapolate past returns, they <strong>switch</strong> between &#x201C;twin&#x201D; styles (assets with similar characteristics) and &#x201C;dual&#x201D; styles (assets with opposite characteristics), inducing <strong>cross&#x2010;asset momentum</strong> among twins and <strong>cross&#x2010;asset reversals</strong> among duals .</li>
-</ul>
-<p><strong>2. Conceptual Framework</strong></p>
-<ul>
-<li><p><strong>Characteristics&#x2010;based demand</strong>: Investors&#x2019; portfolio weights are linear in firm characteristics, <script type="math/tex; ">L_{i,t} = \Omega_t^\prime C_i</script>.</p>
-</li>
-<li><p><strong>Extrapolative beliefs</strong>: Expected returns are weighted averages of past returns, so flow into one style comes at the expense of others.</p>
-</li>
-<li><p><strong>Style&#x2010;switching</strong> emerges endogenously:</p>
-<p><script type="math/tex; ">\frac{\partial L_{i,t}}{\partial \text{Return}_{j,t-1}} \propto C_i^\prime (\Theta’\Theta)^{-1} C_j</script>,</p>
-<p>negative for duals (reversal) and positive for twins (momentum) .</p>
-</li>
-</ul>
-<p><strong>3. Data &amp; Construction of Style Signals</strong></p>
-<ul>
-<li><strong>Universe</strong>: U.S. common stocks, June 1963&#x2013;Dec 2021, excluding financials and sub&#x2010;$1 shares; prices from CRSP, fundamentals from Compustat; factors from Kenneth French and Global-q.</li>
-<li><strong>Characteristics</strong>: Value (book-to-market), profitability, investment, volatility, momentum&#x2014;each standardized cross&#x2010;sectionally.</li>
-<li><strong>Dual/Twin sets</strong>: At each June, compute cosine similarity between firms&#x2019; 5-dim vectors; firms with similarity &lt; &#x2013;0.25 form the <strong>DUAL</strong> style, &gt; +0.25 form the <strong>TWIN</strong> style (excluding same&#x2010;industry peers).</li>
-<li><strong>Style returns</strong>: From July to next June, DUAL (TWIN) signals are the value&#x2010;weighted average monthly return of a firm&#x2019;s dual (twin) peers .</li>
-</ul>
-<p><strong>4. Main Empirical Findings</strong></p>
-<ol>
-<li><strong>Cross&#x2010;stock reversals (DUAL)</strong>: Top vs. bottom DUAL quintile spreads &#x2248; &#x2013;1.00% /mo (t&#x2248;&#x2013;4.6); five-factor alpha &#x2248; &#x2013;1.02% /mo; controlling for momentum and reversal factors deepens the effect to &#x2013;1.51% /mo .</li>
-<li><strong>Cross&#x2010;stock momentum (TWIN)</strong>: Top vs. bottom TWIN spread &#x2248; +1.02% /mo (t&#x2248;4.9); robust across factor models with alphas up to +1.57% /mo.</li>
-<li><strong>Independence</strong>: DUAL&#x2019;s reversal persists after purging correlation with TWIN (and vice-versa) .</li>
-<li><strong>Fama&#x2013;MacBeth</strong>: In month-t regressions controlling for industry returns, size&#x2013;value peers, shared&#x2010;analyst coverage, etc., a 1 SD increase in DUAL predicts &#x2013;0.244% t+1 return; TWIN predicts +0.191% .</li>
-</ol>
-<p><strong>5. Time&#x2010;Variation &amp; Horizon Tests</strong></p>
-<ul>
-<li><strong>Macroeconomic predictors</strong> (BM, DP, EP, TMS, CAY, etc.) fail to forecast style profits, suggesting these are not mere risk&#x2010;premia proxies.</li>
-<li><strong>Long&#x2010;horizon</strong> (Jegadeesh&#x2013;Titman style): Both DUAL and TWIN pay off over the first 12 months, then drift toward zero&#x2014;and slightly reverse by 30 months&#x2014;consistent with eventual correction to fundamentals .</li>
-</ul>
-<p><strong>6. Evidence on Trading Behavior</strong></p>
-<ul>
-<li><strong>Institutional flows</strong> (13F): A 1 SD rise in lagged DUAL &#x2192; &#x2013;0.072 pp change in institutional ownership; TWIN &#x2192; +0.070 pp .</li>
-<li><strong>Investor types</strong>: Active advisors (IIAs/hedge funds) drive style&#x2010;switching; pensions, insurance, passive funds show negligible switching .</li>
-<li><strong>Short sellers</strong>: Higher short&#x2010;interest builds on high&#x2010;DUAL stocks (sell) and unwinds on high-TWIN (buy)&#x2014;over 1&#x2013;12 mo horizons, aligning with style effects.</li>
-<li><strong>Retail</strong>: Net retail buying in response to TWIN/DUAL is significant only over long horizons, indicating more persistent trend&#x2010;following.</li>
-</ul>
-<p><strong>7. Conclusions &amp; Implications</strong></p>
-<ul>
-<li><strong>Style&#x2010;switching demand</strong> creates predictable <strong>cross&#x2010;reversals</strong> and <strong>cross&#x2010;momentum</strong> beyond traditional factor models.</li>
-<li><strong>Active managers</strong> (hedge funds, advisors) are the marginal liquidity providers fueling these effects.</li>
-<li><strong>Practical takeaway</strong>: Monitoring shifts in performance across empirically derived dual/twin style groups can yield economically large trading signals (&#x2248;12% ann. from simple style&#x2010;spread strategies).</li>
-</ul>
-<h2 id="price-discovery-and-trading-after-hours"><a name="price-discovery-and-trading-after-hours" class="anchor-navigation-ex-anchor" href="#price-discovery-and-trading-after-hours"><i class="fa fa-link" aria-hidden="true"></i></a>4. Price Discovery and Trading After Hours</h2>
+<h2 id="price-discovery-and-trading-after-hours"><a name="price-discovery-and-trading-after-hours" class="anchor-navigation-ex-anchor" href="#price-discovery-and-trading-after-hours"><i class="fa fa-link" aria-hidden="true"></i></a>2. Price Discovery and Trading After Hours</h2>
 <p>Here&#x2019;s a concise, structured summary of <strong>Barclay &amp; Hendershott (2003), Price Discovery and Trading After Hours</strong> :</p>
 <p><strong>1. Motivation &amp; Setting</strong></p>
 <ul>
@@ -1668,139 +1565,7 @@
 </blockquote>
 <p><em>(Note: The above conclusion snippet illustrates how breaking (&#x201C;turning&#x201D;) points in momentum can be harnessed dynamically; it parallels the paper&#x2019;s broader message on the value of high-information, off&#x2013;core&#x2010;hours trading.)</em></p>
 <p><strong>Implications</strong>: Even with thin liquidity, after-hours sessions&#x2014;especially just before the open&#x2014;play a critical role in incorporating both public and private information into prices. Market participants and regulators should recognize that price discovery is not confined to regular trading hours and that post-close/pre-open activity carries outsized informational value.</p>
-<h2 id="moving-targets"><a name="moving-targets" class="anchor-navigation-ex-anchor" href="#moving-targets"><i class="fa fa-link" aria-hidden="true"></i></a>5. Moving Targets</h2>
-<p>Here&#x2019;s a concise overview of <strong>&#x201C;Moving Targets&#x201D;</strong> by Cohen &amp; Nguyen (Draft: February 1, 2024) :</p>
-<p><strong>1. Motivation &amp; Research Question</strong></p>
-<p>Managers publicize performance <strong>targets</strong> (e.g., revenue, same-store sales, product metrics) in earnings-call presentations. When they fail to hit a given target, they often <strong>shift the discussion</strong> to a different metric&#x2014;&#x201C;moving the target&#x201D; to ensure they still clear a self-set hurdle. This paper asks:</p>
-<blockquote>
-<p><em>Do such shifts convey information about true future performance, and how do markets react?</em></p>
-</blockquote>
-<p><strong>2. Data &amp; Target-Extraction Methodology</strong></p>
-<ul>
-<li><strong>Sample</strong>: All U.S. firms&#x2019; quarterly earnings-call transcripts, 2006&#x2013;2020 (&#x2248;143 000 calls).</li>
-<li><strong>NLP approach</strong>: Use spaCy to identify &#x201C;targets&#x201D; via named-entity recognition (Products, Money, Percent) plus syntactic parsing to link metrics to their referents (e.g., &#x201C;12% increase in Mac sales&#x201D; &#x2192; target = Mac sales).</li>
-<li><strong>Moving-Targets metric</strong>: Fraction of prior-year targets dropped in the current call (ranges 0&#x2013;1; mean &#x2248;0.56).</li>
-</ul>
-<p><strong>3. Key Empirical Findings</strong></p>
-<ol>
-<li><strong>Underperformance after moved targets</strong><ul>
-<li>Firms in the top quintile of movers (biggest drop in targets) underperform by <strong>0.78 pp per month</strong> (&#x2248;9.4% p.a.) over the next quarter; effects persist up to 18 months and do not reverse.</li>
-</ul>
-</li>
-<li><strong>No immediate announcement reaction</strong><ul>
-<li>On the call day, stock returns are statistically zero&#x2014;information is only gradually impounded, consistent with investor inattention.</li>
-</ul>
-</li>
-<li><strong>Robust to controls</strong><ul>
-<li>Results hold controlling for Fama-French factors, earnings surprises, liquidity, firm size, industry, and across equal- and value-weighted portfolios.</li>
-</ul>
-</li>
-</ol>
-<p><strong>4. Mechanism &amp; Heterogeneity</strong></p>
-<ul>
-<li><strong>Complexity &amp; Persistence</strong><ul>
-<li>Effects are <strong>stronger</strong> when target sets are more complex (many different metrics) or when dropped targets were highly persistent (discussed for &#x2265;3 prior years).</li>
-</ul>
-</li>
-<li><strong>Financial vs. Non-financial</strong><ul>
-<li>Shifts in <strong>non-financial</strong> targets (e.g., subscriber counts, product units) predict larger underperformance than purely financial ones.</li>
-</ul>
-</li>
-<li><strong>Analyst attention</strong><ul>
-<li>When analysts explicitly question a dropped target and management is forced to address it, the underperformance effect is <strong>attenuated</strong>, indicating that <strong>inattention</strong> drives the gradual price drift.</li>
-</ul>
-</li>
-</ul>
-<p><strong>5. Conclusions &amp; Implications</strong></p>
-<ul>
-<li><strong>Investor take-away</strong>: Subtle shifts in reported targets carry <strong>real, predictive</strong> information about future fundamentals and stock performance&#x2014;market participants often overlook these cues until much later.</li>
-<li><strong>Broader relevance</strong>: The &#x201C;moving-targets&#x201D; phenomenon likely extends beyond earnings calls to other corporate disclosures (bond covenants, M&amp;A prospectuses, etc.) where repeated benchmarks are set and shifted.</li>
-</ul>
-<p>This study highlights a simple yet powerful insight: tracking <strong>year-over-year changes</strong> in the metrics firms emphasize can reveal hidden signals about underlying performance that markets tend to underreact to in the short term.</p>
-<h2 id="confirmatory-bias-in-financial-markets"><a name="confirmatory-bias-in-financial-markets" class="anchor-navigation-ex-anchor" href="#confirmatory-bias-in-financial-markets"><i class="fa fa-link" aria-hidden="true"></i></a>6. Confirmatory Bias in Financial Markets</h2>
-<p>Here&#x2019;s a structured summary of <strong>&#x201C;A Mind Is a Terrible Thing to Change: Confirmatory Bias in Financial Markets&#x201D;</strong> by Pouget, Sauvagnat &amp; Villeneuve (2016) :</p>
-<p><strong>1. Motivation</strong></p>
-<ul>
-<li><strong>Confirmatory bias</strong>&#x2014;the tendency to overweight evidence that supports one&#x2019;s prior views and disregard contradicting information&#x2014;is well documented in psychology but under-studied in market settings.</li>
-<li>The paper asks: <em>How does this bias affect traders&#x2019; belief updating, create differences of opinion, and thereby drive trading volume, volatility, momentum, and under-/over-reaction in asset prices?</em> .</li>
-</ul>
-<p><strong>2. Theoretical Model</strong></p>
-<ul>
-<li><strong>Economy</strong>: One risky asset, public signals arrive over T=4 trading dates, followed by a terminal payoff v\in{0,1} determined by an unobserved state H or L.</li>
-<li><strong>Agents</strong>:<ul>
-<li><strong>Speculators</strong> (1-\lambda mass) are fully Bayesian.</li>
-<li><strong>Biased traders</strong> (\lambda mass) suffer confirmatory bias: with probability q they ignore any new signal that contradicts their current belief .</li>
-</ul>
-</li>
-<li><strong>Trading costs</strong> (quadratic) prevent infinite arbitrage, so divergent beliefs translate into trade and price effects.</li>
-<li><strong>Equilibrium price</strong> at each date is a weighted average of speculators&#x2019; and biased traders&#x2019; posterior beliefs.</li>
-</ul>
-<p><strong>3. Model Implications (Stylized Facts)</strong></p>
-<p>When \lambda q&gt;0, the confirmatory bias generates:</p>
-<ol>
-<li><strong>Excess volume</strong>&#x2014;trading arises whenever biased and rational traders disagree.</li>
-<li><strong>Excess volatility</strong>&#x2014;along &#x201C;mixed&#x201D; histories (e.g. good signal then bad), some traders ignore the bad update and keep pushing prices too high (and vice-versa).</li>
-<li><strong>Momentum</strong>&#x2014;because biased traders who have been optimistic are more likely to under-react to subsequent bad news (and vice versa), past price moves predict future moves.</li>
-<li><strong>Bubbles &amp; crashes</strong>&#x2014;after an initial positive signal, biased traders&#x2019; optimism fuels further price increases; similarly for crashes after initial bad news .</li>
-</ol>
-<p><strong>4. Novel Theoretical Predictions</strong></p>
-<ul>
-<li><p><strong>Belief dispersion</strong> is higher when past signals have <em>different</em> signs vs. when they all agree.</p>
-</li>
-<li><p><strong>Belief updating</strong> is <em>less</em> likely in the direction of the latest signal if that signal&#x2019;s sign conflicts with (a) any <em>prior</em> signals, or (b) the trader&#x2019;s own <em>last</em> belief revision.</p>
-<p>These emerge because contradictory news offers more opportunities for biased traders to ignore updates .</p>
-</li>
-</ul>
-<p><strong>5. Empirical Tests</strong></p>
-<p>Using U.S. quarterly earnings surprises (SUE) and I/B/E/S analysts&#x2019; annual-forecast revisions (1982&#x2013;2014):</p>
-<ol>
-<li><p><strong>Forecast revisions</strong>: Analysts are ~2 pp less likely to revise in the direction of a current surprise when its sign <em>differs</em> from the surprise one or two quarters earlier.</p>
-</li>
-<li><p><strong>Analyst heterogeneity</strong>: When an analyst&#x2019;s <em>own</em> prior revision sign conflicts with a new earnings surprise, she is ~20 pp less likely to update in that direction.</p>
-</li>
-<li><p><strong>Forecast dispersion</strong>: Cross-analyst dispersion in annual forecasts is <em>higher</em> following sign-changes in the last two SUEs.</p>
-<p>All effects remain after controlling for firm size, book-to-market, analyst coverage, realized and implied volatility, and fixed effects .</p>
-</li>
-</ol>
-<p><strong>6. Conclusions</strong></p>
-<ul>
-<li>Confirmatory bias alone&#x2014;parameterized by a single &#x201C;ignore&#x201D; probability q&#x2014;can unify explanations for volume, volatility, momentum, and gradual under-reaction in markets.</li>
-<li>It delivers empirically validated, novel predictions about when and for whom updates will <em>not</em> occur, highlighting how subtle belief frictions shape observable price dynamics.</li>
-</ul>
-<h2 id="what-drives-momentum-and-reversal"><a name="what-drives-momentum-and-reversal" class="anchor-navigation-ex-anchor" href="#what-drives-momentum-and-reversal"><i class="fa fa-link" aria-hidden="true"></i></a>7. What Drives Momentum and Reversal?</h2>
-<p>Here&#x2019;s a concise, structured summary of <strong>&#x201C;What Drives Momentum and Reversal? Evidence from Day and Night Signals&#x201D;</strong> by Li (2024) :</p>
-<p><strong>1. Motivation</strong></p>
-<p>Despite being one of the most robust anomalies, the <strong>sources</strong> of equity momentum and long-run reversal remain debated. This paper leverages the empirical fact that <strong>public news</strong> chiefly moves prices <strong>overnight</strong>, whereas <strong>private information</strong> (revealed through trading) drives <strong>intraday</strong> returns, to disentangle these two channels .</p>
-<p><strong>2. Data &amp; Portfolio Construction</strong></p>
-<ul>
-<li><strong>Sample:</strong> U.S. common stocks, January 1926&#x2013;December 2019.</li>
-<li><strong>Return Decomposition:</strong><ul>
-<li><strong>Overnight return:</strong> Close <em>t&#x2013;1</em> to Open <em>t</em>.</li>
-<li><strong>Intraday return:</strong> Open <em>t</em> to Close <em>t</em>.</li>
-</ul>
-</li>
-<li><strong>Portfolios:</strong> At each month <em>t</em>, sort stocks into deciles by their past J-month <strong>intraday</strong> returns or past J-month <strong>overnight</strong> returns, then hold for K months .</li>
-</ul>
-<p><strong>3. Main Findings</strong></p>
-<ol>
-<li><strong>Intraday-based portfolios</strong> (capturing trading&#x2010;driven, private&#x2010;info shocks) exhibit <strong>strong momentum</strong> over both short and long horizons, <strong>without</strong> subsequent long-run reversal.</li>
-<li><strong>Overnight-based portfolios</strong> (capturing public-news shocks) show <strong>long-run reversal</strong> but <strong>no short-run momentum</strong>.</li>
-</ol>
-<p>Together, this cleanly separates the two effects&#x2014;<strong>momentum</strong> arises from underreaction to private information, whereas <strong>reversal</strong> reflects overreaction (or correction) to public news .</p>
-<p><strong>4. Evidence for the Private-Information Channel</strong></p>
-<ul>
-<li><strong>Volume Dependence:</strong> Momentum on past intraday returns is <strong>stronger on low-volume days</strong>, consistent with slower incorporation of private signals when trading is thin.</li>
-<li><strong>Analyst Forecast Errors:</strong> Stocks with high past intraday returns also exhibit larger subsequent forecast errors, linking intraday gains to information that analysts initially miss.</li>
-<li><strong>Robustness:</strong> Results persist after controlling for liquidity at the open, stale&#x2010;price effects, bid&#x2013;ask bounces, the &#x201C;frog-in-pan&#x201D; inattentiveness hypothesis, and across both pre&#x2013; and post-1963 samples .</li>
-</ul>
-<p><strong>5. Conclusions</strong></p>
-<p>By decomposing returns into <strong>day</strong> and <strong>night</strong> components, this study demonstrates that:</p>
-<ul>
-<li><strong>Momentum</strong> predominantly reflects <strong>private&#x2010;information diffusion</strong> via trading, and</li>
-<li><strong>Reversal</strong> predominantly reflects <strong>public&#x2010;news corrections</strong>.</li>
-</ul>
-<p>This distinction not only clarifies the drivers of these classic anomalies but also suggests that trading strategies should consider the <strong>timing</strong> of information arrival when harvesting momentum or avoiding reversal risk.</p>
-<h2 id="selling-fast-and-buying-slow-heuristics-and-trading-performance-of-institutional-investors"><a name="selling-fast-and-buying-slow-heuristics-and-trading-performance-of-institutional-investors" class="anchor-navigation-ex-anchor" href="#selling-fast-and-buying-slow-heuristics-and-trading-performance-of-institutional-investors"><i class="fa fa-link" aria-hidden="true"></i></a>8. Selling Fast and Buying Slow: Heuristics and Trading Performance of Institutional Investors</h2>
+<h2 id="selling-fast-and-buying-slow-heuristics-and-trading-performance-of-institutional-investors"><a name="selling-fast-and-buying-slow-heuristics-and-trading-performance-of-institutional-investors" class="anchor-navigation-ex-anchor" href="#selling-fast-and-buying-slow-heuristics-and-trading-performance-of-institutional-investors"><i class="fa fa-link" aria-hidden="true"></i></a>3. Selling Fast and Buying Slow: Heuristics and Trading Performance of Institutional Investors</h2>
 <p><strong>1. Background &amp; Research Question</strong></p>
 <p>Are experienced institutional investors subject to heuristics, and do these biases differ when they buy versus when they sell? The authors examine whether market experts&#x2014;who manage large, concentrated portfolios&#x2014;display skill symmetrically across buying and selling, or whether one decision systematically underperforms .</p>
 <p><strong>2. Data</strong></p>
@@ -1843,7 +1608,7 @@
 <li><strong>Decision aids</strong> or alternative selling rules to mitigate attention-driven biases .</li>
 </ul>
 <p>This study highlights that selling, not just buying, is a critical locus of behavioral bias&#x2014;even among market experts.</p>
-<h2 id="ambiguity-about-volatility-and-investor-behavior"><a name="ambiguity-about-volatility-and-investor-behavior" class="anchor-navigation-ex-anchor" href="#ambiguity-about-volatility-and-investor-behavior"><i class="fa fa-link" aria-hidden="true"></i></a>9. Ambiguity about volatility and investor behavior</h2>
+<h2 id="ambiguity-about-volatility-and-investor-behavior"><a name="ambiguity-about-volatility-and-investor-behavior" class="anchor-navigation-ex-anchor" href="#ambiguity-about-volatility-and-investor-behavior"><i class="fa fa-link" aria-hidden="true"></i></a>4. Ambiguity about volatility and investor behavior</h2>
 <p><strong>1. Research Question &amp; Contribution</strong></p>
 <p>The paper asks how <strong>time-varying aggregate ambiguity about volatility</strong>&#x2014;measured by the V-VSTOXX (the 30-day implied volatility of the Euro Stoxx&#x2019;s implied volatility)&#x2014;affects individual investors&#x2019; trading and risk-taking . Unlike prior work that focuses on cross-sectional ambiguity aversion, this study exploits <strong>daily innovations in market-based and survey&#x2010;based ambiguity</strong> to trace <em>within-person</em> responses over time.</p>
 <p><strong>2. Data</strong></p>
@@ -1886,7 +1651,7 @@
 </ol>
 <p><strong>5. Implications</strong></p>
 <p>Individual investors not only buy less but also <strong>sell more cautiously</strong> when volatility ambiguity spikes&#x2014;especially if they are ambiguity-averse&#x2014;suggesting that <strong>trading decisions</strong>, not just initial portfolio choice, amplify the classic &#x201C;buy high, sell low&#x201D; patterns under uncertainty. This has important implications for understanding retail flow dynamics and designing tools to mitigate ambiguity&#x2010;driven behavior.</p>
-<h2 id="pairs-trading-using-a-novel-graphical-matching-approach"><a name="pairs-trading-using-a-novel-graphical-matching-approach" class="anchor-navigation-ex-anchor" href="#pairs-trading-using-a-novel-graphical-matching-approach"><i class="fa fa-link" aria-hidden="true"></i></a>10. Pairs Trading Using a Novel Graphical Matching Approach</h2>
+<h2 id="pairs-trading-using-a-novel-graphical-matching-approach"><a name="pairs-trading-using-a-novel-graphical-matching-approach" class="anchor-navigation-ex-anchor" href="#pairs-trading-using-a-novel-graphical-matching-approach"><i class="fa fa-link" aria-hidden="true"></i></a>5. Pairs Trading Using a Novel Graphical Matching Approach</h2>
 <p><strong>1. Background &amp; Motivation</strong></p>
 <p>Traditional pairs-trading portfolios select highly cointegrated asset pairs, but often include multiple pairs sharing the same stock. This overlap raises portfolio variance through positive covariance among spreads and drives up transaction costs via higher turnover. The authors propose a graph-theoretic solution to build lower-risk, more diversified pairs portfolios .</p>
 <p><strong>2. Graphical Matching Method</strong></p>
@@ -1916,7 +1681,7 @@
 </ul>
 <p><strong>5. Conclusions &amp; Extensions</strong></p>
 <p>Graphical matching transforms pairs trading by systematically avoiding shared-stock overlap, yielding superior risk-adjusted returns, lower trading costs, and muted drawdowns. The framework naturally extends to hypergraph &#x201C;multi-asset&#x201D; strategies and alternative edge-weight definitions, opening rich avenues for future portfolio-construction research .</p>
-<h2 id="using-gpt-models-to-measure-the-complexity-of-business-transactions"><a name="using-gpt-models-to-measure-the-complexity-of-business-transactions" class="anchor-navigation-ex-anchor" href="#using-gpt-models-to-measure-the-complexity-of-business-transactions"><i class="fa fa-link" aria-hidden="true"></i></a>11. Using GPT models to measure the complexity of business transactions</h2>
+<h2 id="using-gpt-models-to-measure-the-complexity-of-business-transactions"><a name="using-gpt-models-to-measure-the-complexity-of-business-transactions" class="anchor-navigation-ex-anchor" href="#using-gpt-models-to-measure-the-complexity-of-business-transactions"><i class="fa fa-link" aria-hidden="true"></i></a>6. Using GPT models to measure the complexity of business transactions</h2>
 <p><strong>1. Motivation &amp; Definition</strong></p>
 <p>The authors introduce <strong>business complexity</strong> as a decision-maker&#x2019;s difficulty in understanding the economic substance of a firm&#x2019;s transactions and financial position. Traditional proxies (e.g., report length, Fog index) miss aspects like transaction uniqueness. They propose an algorithmic, fact-level measure to capture this construct .</p>
 <p><strong>2. Data &amp; Methodology</strong></p>
@@ -1953,7 +1718,7 @@
 <li>Reveals why vulnerable firms adopt complex debt to manage risk</li>
 </ul>
 <p>This fact-level approach opens avenues for future research on complexity in other disclosure contexts and across different user sophistication levels .</p>
-<h2 id="identifying-risk-factor-regimes-with-machine-learning-implications-for-tactical-asset-allocation"><a name="identifying-risk-factor-regimes-with-machine-learning-implications-for-tactical-asset-allocation" class="anchor-navigation-ex-anchor" href="#identifying-risk-factor-regimes-with-machine-learning-implications-for-tactical-asset-allocation"><i class="fa fa-link" aria-hidden="true"></i></a>12. Identifying Risk Factor Regimes with Machine Learning: Implications for Tactical Asset Allocation</h2>
+<h2 id="identifying-risk-factor-regimes-with-machine-learning-implications-for-tactical-asset-allocation"><a name="identifying-risk-factor-regimes-with-machine-learning-implications-for-tactical-asset-allocation" class="anchor-navigation-ex-anchor" href="#identifying-risk-factor-regimes-with-machine-learning-implications-for-tactical-asset-allocation"><i class="fa fa-link" aria-hidden="true"></i></a>7. Identifying Risk Factor Regimes with Machine Learning: Implications for Tactical Asset Allocation</h2>
 <ol>
 <li><p><strong>Motivation &amp; Regime Tagging</strong></p>
 <p>Financial risk factors (e.g. equity returns) exhibit distinct &#x201C;crash&#x201D; vs. &#x201C;normal&#x201D; regimes that&#x2014;if detected ex-ante&#x2014;can guide tactical tilts. This paper defines an <strong>Equity Factor</strong> as a 7-index global basket and <strong>tags crash periods</strong> whenever its cumulative drawdown breaches &#x2013;10%, including both peak-to-trough and trough-to-recovery phases .</p>
@@ -1975,10 +1740,152 @@
 <p>By systematically tagging regimes, leveraging rich feature sets, and applying interpretable ML, this approach meaningfully enhances tactical asset-allocation decisions.</p>
 </li>
 </ol>
+<h2 id="using-accounting-earnings-and-macro-indicators-to-estimate-firm-level-systematic-risk"><a name="using-accounting-earnings-and-macro-indicators-to-estimate-firm-level-systematic-risk" class="anchor-navigation-ex-anchor" href="#using-accounting-earnings-and-macro-indicators-to-estimate-firm-level-systematic-risk"><i class="fa fa-link" aria-hidden="true"></i></a>8. Using accounting earnings and macro indicators to estimate firm-level systematic risk</h2>
+<p><strong>Core idea</strong></p>
+<p>Instead of proxying &#x201C;the market&#x201D; with listed-firm indexes, the authors use two macro indicators&#x2014;changes in Total Factor Productivity (TFP) and changes in household wealth (excluding equities)&#x2014;and regress firms&#x2019; (portfolio-level) earnings on these to estimate two <em>earnings betas</em>: a supply beta (to TFP) and a demand beta (to wealth). They argue these capture aggregate risk more broadly than public-equity indexes and, crucially, align in timing with annual earnings.</p>
+<p><strong>Why this approach</strong></p>
+<ul>
+<li>Public-equity indexes omit large swaths of aggregate assets (private firms, debt, human capital, durables, non-profits, public assets), so index-based &#x201C;market&#x201D; risk is measured with error (Roll, 1977).</li>
+<li>Annual earnings and macro indicators are realized outcomes in the same period; returns are forward-looking and thus misaligned for capturing contemporaneous co-movements.  </li>
+</ul>
+<p><strong>Measures &amp; data (1964&#x2013;2018)</strong></p>
+<ul>
+<li><strong>Supply shocks</strong>: &#x394;TFP (Fernald method).</li>
+<li><strong>Demand shocks</strong>: &#x394;household wealth <strong>excluding equities</strong> (Fed Z.1); first-differenced to reduce serial correlation.</li>
+<li><strong>Earnings</strong>: operating income (OIADP) minus preferred dividends (fallback to IB), winsorized; portfolio-level changes scaled by market cap at t&#x2013;2. </li>
+<li>The macro series coverage is 55 annual observations; &#x394;TFP and &#x394;Wealth are correlated but not identical sources of risk.</li>
+</ul>
+<p><strong>Method (estimation &amp; pricing)</strong></p>
+<ol>
+<li>Sort firms annually by characteristics; estimate portfolio-level regressions of earnings changes on &#x394;TFP and/or &#x394;Wealth to get supply/demand betas; assign those betas back to firms. 2) Run Fama&#x2013;MacBeth cross-sectional tests of average returns on these betas.</li>
+</ol>
+<p><strong>Main findings</strong></p>
+<ul>
+<li><strong>Two distinct sources of systematic earnings risk</strong>: firm supply and demand betas are <strong>negatively correlated</strong>, reflecting heterogeneous exposure to productivity vs. wealth shocks across firms/industries. </li>
+<li><strong>Pricing</strong>: Both supply (TFP) and demand (wealth) earnings betas earn <strong>positive, significant risk premia</strong> in Fama&#x2013;MacBeth tests; a two-beta model outperforms an index-earnings-beta model (higher adjusted R&#xB2;).</li>
+<li><strong>Links to classic characteristics</strong>: Higher B/M and smaller size portfolios have <strong>higher</strong> supply and demand earnings betas; higher asset growth has <strong>lower</strong> betas; momentum patterns are generally increasing but somewhat sensitive to scaling. </li>
+<li><strong>Mechanism vs. &#x201C;factors&#x201D;</strong>: After controlling for the two earnings betas, the combined explanatory power of B/M, momentum, size, and asset growth <strong>drops by ~25%</strong>, suggesting part of their &#x201C;pricing&#x201D; reflects underlying systematic risk exposures captured by supply/demand betas.</li>
+</ul>
+<p><strong>Validation &amp; alignment checks</strong></p>
+<p>Aggregate earnings changes co-move contemporaneously with both &#x394;TFP and &#x394;Wealth; by contrast, stock returns predict <em>future</em> earnings and macro outcomes rather than contemporaneous ones&#x2014;supporting the earnings&#x2013;macro alignment premise.</p>
+<p><strong>Limitations (as the authors note)</strong></p>
+<p>The macro instruments are imperfect; firm-level monthly return noise keeps cross-sectional R&#xB2;&#x2019;s small; momentum results can depend on the earnings deflator; several other signals (e.g., E/P, PEAD, profit margin) don&#x2019;t show similar associations.</p>
+<h2 id="when-smart-beta-meets-machine-learning-and-portfolio-optimization"><a name="when-smart-beta-meets-machine-learning-and-portfolio-optimization" class="anchor-navigation-ex-anchor" href="#when-smart-beta-meets-machine-learning-and-portfolio-optimization"><i class="fa fa-link" aria-hidden="true"></i></a>9. When Smart Beta Meets Machine Learning and Portfolio Optimization</h2>
+<p><strong>What the authors ask</strong></p>
+<p>Why have popular smart-beta factors underwhelmed since 2005, and can we do better by (i) diversifying across many academic factors, (ii) using ML to map factor exposures to expected <strong>alpha</strong>, and (iii) building long-only portfolios with a <strong>mean tracking-error</strong> optimizer (MTO) instead of simple tilts?  </p>
+<p><strong>Data &amp; set-up</strong></p>
+<ul>
+<li><strong>Universe/period.</strong> Stocks from <strong>38</strong> MSCI ACWI countries; country start is the later of <strong>Jan 2005</strong> or when &#x2265;50 stocks are eligible. Data sources: Datastream (prices), Worldscope (financials), IBES (analyst forecasts). Benchmarks are float-adjusted cap-weighted.  </li>
+<li><strong>Signals.</strong> They compute <strong>86</strong> of the <strong>97</strong> McLean &amp; Pontiff (2016) cross-sectional signals globally (some are infeasible with available data). </li>
+<li><strong>Portfolio overlay (baseline).</strong> Start from each country&#x2019;s cap-weighted index, overlay a long&#x2013;short gradient portfolio on a given signal, remove shorts to keep it long-only. </li>
+</ul>
+<p><strong>Methods</strong></p>
+<ol>
+<li><strong>Many-factor composites.</strong> Besides textbook factors, they form a broad composite from McLean&#x2013;Pontiff signals; across 2005&#x2013;2022, the composite averages <strong>1.83%</strong> excess in the US and <strong>2.38%</strong> globally (long-only overlays). </li>
+<li><strong>ML for expected alpha.</strong> Predict one-month <strong>alpha</strong> with (a) OLS, (b) <strong>ridge (L2)</strong> to reduce overfitting, and (c) <strong>gradient boosting (XGBoost)</strong> for nonlinearities/interactions; estimation is cross-sectional and rolled forward. </li>
+<li><strong>Optimization (MTO).</strong> Maximize expected return minus a penalty on <strong>tracking error</strong> using a stock covariance matrix; impose tight stock/industry constraints (e.g., ~&#xB1;2% at stock/industry levels) to avoid concentration.  </li>
+</ol>
+<p><strong>Key results</strong></p>
+<ul>
+<li><strong>Popular factors disappointed; broad diversification helped.</strong> From 2005&#x2013;2022, popular long-only factors delivered modest excess returns (e.g., US average ~<strong>1.11%</strong>), whereas equally-weighted many-factor composites performed more consistently across countries.  </li>
+<li><strong>ML beats simple averaging/OLS.</strong> In the <strong>United States</strong>, long-only overlays based on predicted alphas earned <strong>1.56%</strong> (OLS), <strong>1.77%</strong> (ridge), and <strong>2.11%</strong> (gradient boosting) excess per year; corresponding alphas were <strong>2.18%</strong>, <strong>2.30%</strong>, and <strong>2.55%</strong>&#x2014;all beating the simple composite. </li>
+<li><strong>Optimization adds another step-change.</strong> Adding MTO lifts the <strong>US</strong> excess return to <strong>4.08%</strong> with <strong>4.16%</strong> alpha (using ML ERs), illustrating the benefit of sizing by signal strength and risk. </li>
+<li><strong>Global summary (cap-weighted across countries).</strong> Versus long-only overlays, MTO raises excess returns from <strong>2.40 &#x2192; 3.02%</strong> (OLS), <strong>2.72 &#x2192; 3.43%</strong> (ridge), and <strong>3.02 &#x2192; 4.83%</strong> (gradient boosting); information ratios likewise improve.  </li>
+<li><strong>Information ratios up to ~1.95.</strong> For cap-weighted countries, IRs climb from <strong>0.91</strong> (87-factor composite) to <strong>1.15/1.26/1.62</strong> (OLS/ridge/GB overlays) and to <strong>1.37/1.50/1.95</strong> with MTO. </li>
+</ul>
+<p><strong>Why it matters</strong></p>
+<p>The evidence suggests the <strong>factor zoo is useful when diversified</strong>, and that <strong>regularized/nonlinear ML</strong> plus <strong>tracking-error-aware optimization</strong> can turn weak smart-beta tilts into stronger, more benchmark-relevant long-only portfolios (higher excess returns <strong>and</strong> higher IRs).  </p>
+<p><strong>Notable caveats the authors flag</strong></p>
+<ul>
+<li>Many markets in the 38-country set are small/hard to access; results show robustness, not necessarily implementable investability in all markets. </li>
+<li>Reported turnovers can be high; exhibits include turnover panels alongside returns/IRs (practical trading costs matter). </li>
+</ul>
+<h2 id="business-news-and-business-cycles"><a name="business-news-and-business-cycles" class="anchor-navigation-ex-anchor" href="#business-news-and-business-cycles"><i class="fa fa-link" aria-hidden="true"></i></a>10. Business News and Business Cycles</h2>
+<p>The authors use a topic model on ~800k full-text WSJ articles (1984&#x2013;2017) to measure &#x201C;news attention&#x201D; across 180 interpretable topics. These attention series closely track economic activity, explain <strong>~25%</strong> of aggregate U.S. stock&#x2010;market return variation, and add incremental predictive power for output and employment in a text-augmented VAR&#x2014;especially the <strong>&#x201C;recession&#x201D;</strong> topic. </p>
+<p><strong>Data &amp; method</strong></p>
+<ul>
+<li><strong>Corpus:</strong> Full text of ~800,000 <em>Wall Street Journal</em> articles, 1984&#x2013;2017. </li>
+<li><strong>Model:</strong> Latent Dirichlet Allocation (LDA) extracts <strong>topics</strong> (probability distributions over terms) and <strong>article-level mixtures</strong>; aggregating mixtures over time yields monthly <strong>news attention</strong> per topic.  </li>
+<li><strong>Specification:</strong> Model selection favors ~170&#x2013;180 topics; authors use <strong>K=180</strong>.  </li>
+</ul>
+<p><strong>What they find</strong></p>
+<ul>
+<li><strong>News structure:</strong> Attention exhibits persistent, seasonal, and emergent patterns&#x2014;e.g., <em>recession</em> &amp; <em>health insurance</em> (persistent), <em>elections</em> &amp; <em>earnings forecasts</em> (seasonal), <em>terrorism</em> &amp; <em>natural disasters</em> (emergent).  </li>
+<li><strong>Macro correlations (lasso, five topics per series):</strong><ul>
+<li>Industrial production: &#x201C;<strong>recession</strong>&#x201D; and &#x201C;<strong>oil market</strong>&#x201D; attention negatively associated; a 1&#x3C3; rise in &#x201C;recession&#x201D; attention &#x2198; output growth by <strong>0.38&#x3C3;</strong>. Employment &#x2198; <strong>0.61&#x3C3;</strong>.  </li>
+<li><strong>Stock returns:</strong> Five topic attentions explain <strong>R&#xB2; &#x2248; 0.25</strong> contemporaneously; &#x201C;recession&#x201D; is the largest (&#x2248; &#x2212;0.35). Benchmarks underperform (CFNAI R&#xB2;&#x2248;0.02; FRED-MD R&#xB2;&#x2248;0.09). Out-of-sample: R&#xB2;&#x2248;<strong>17.8%</strong> (returns), <strong>43.6%</strong> (volatility).   </li>
+</ul>
+</li>
+<li><strong>Finance/activity examples:</strong> Attention to &#x201C;<strong>IPOs</strong>&#x201D; and &#x201C;<strong>venture capital</strong>&#x201D; tracks IPO volume; &#x201C;<strong>takeovers</strong>&#x201D; &amp; &#x201C;<strong>control stakes</strong>&#x201D; track LBOs (explaining <strong>~58%</strong> of variation).  </li>
+<li><strong>Text-augmented VAR (macro + news):</strong><ul>
+<li>&#x201C;<strong>Recession</strong>&#x201D; attention <strong>predicts future output and employment</strong> beyond stock prices, rates, and uncertainty measures.  </li>
+<li>Impulse responses: a positive recession-attention shock lowers stock prices on impact (~&#x2212;5%), cumulating to ~&#x2212;7% over a year when news is ordered first; effects remain sizeable under alternative ordering and exceed those from EPU shocks.  </li>
+</ul>
+</li>
+<li><strong>Narrative retrieval:</strong> Combining VAR dynamics with topic weights surfaces the specific WSJ articles that best &#x201C;explain&#x201D; forecast movements (e.g., headlines about confidence and growth concerns).  </li>
+</ul>
+<p><strong>Why it matters</strong></p>
+<ul>
+<li>Shows that <strong>unstructured news text</strong> provides a compact, interpretable state variable for the economy, resolving part of the classic &#x201C;low R&#xB2;&#x201D; puzzle for returns and adding <strong>incremental</strong> macro forecasting power.  </li>
+</ul>
+<p><strong>Caveats &amp; scope</strong></p>
+<ul>
+<li>The approach is <strong>descriptive</strong> for many results (correlations), not causal; narratives are meant to interpret fluctuations rather than identify structural shocks. </li>
+<li>Coverage is WSJ-specific (though very broad); topic modeling choices (e.g., K) are data-driven but still modeling assumptions. </li>
+</ul>
+<h2 id="investor-attention-and-stock-returns-under-negative-shocks"><a name="investor-attention-and-stock-returns-under-negative-shocks" class="anchor-navigation-ex-anchor" href="#investor-attention-and-stock-returns-under-negative-shocks"><i class="fa fa-link" aria-hidden="true"></i></a>11. Investor attention and stock returns under negative shocks</h2>
+<p>The paper builds a &#x201C;clean&#x201D; investor&#x2010;attention measure from China&#x2019;s <strong>Dragon &amp; Tiger (DT) list</strong> and shows that when attention spikes <strong>during negative shocks</strong>, subsequent stock returns tend to be <strong>lower</strong>. The effect is most evident in the following month and is stronger for certain firm types and market states. </p>
+<p><strong>What counts as a &#x201C;negative shock&#x201D;</strong></p>
+<p>They test four situations when a stock appears on the DT list and conditions are bad:</p>
+<ol>
+<li>negative <strong>same-day cumulative return</strong>; 2) negative <strong>current monthly cumulative return</strong>; 3) negative <strong>monthly cumulative net purchases by top 10 institutions</strong>; 4) <strong>bottom-30%</strong> monthly <strong>total trading</strong> by top 10 institutions. </li>
+</ol>
+<p><strong>Measuring attention</strong></p>
+<p>Attention is proxied three ways from the DT list: <strong>Times</strong> (monthly appearances), <strong>Purchase</strong> (net purchase ratio), and <strong>Atrade</strong> (top-10 total trading ratio). These appear in the regression as current and lagged variables (Times, Purchase, Atrade, and their t&#x2212;1 versions). </p>
+<p><strong>Data &amp; setup</strong></p>
+<p>A monthly panel of Shanghai/Shenzhen <strong>A-shares (2014&#x2013;2018)</strong>; regressions include firm controls (Size, Tvol, Turnover, PB) and <strong>time fixed effects</strong>. </p>
+<p><strong>Core findings</strong></p>
+<ul>
+<li><p>Across all four negative-shock definitions, <strong>more attention &#x2192; lower returns</strong>, especially at <strong>t&#x2212;1</strong> for Purchase/Atrade; <strong>R&#xB2; &#x2248; 0.55.</strong> </p>
+</li>
+<li><p><strong>Bear vs. bull markets.</strong></p>
+<p>&#x2022; <strong>Bear:</strong> Times, Purchase, and Atrade are <strong>significantly negative contemporaneously</strong>&#x2014;attention reacts quickly to bad news and associates with lower returns. </p>
+<p>&#x2022; <strong>Bull:</strong> Times stays negative; <strong>Purchase and Atrade flip sign</strong>&#x2014;<strong>positive now but negative at t&#x2212;1</strong>, consistent with sell-pressure showing up before a short-run adjustment. </p>
+</li>
+</ul>
+<p><strong>Cross-sectional patterns</strong></p>
+<ul>
+<li><strong>Institutional ownership:</strong> The negative attention&#x2013;return link in the <strong>next month</strong> is <strong>stronger when institutional ownership is low</strong>. </li>
+<li><strong>Firm age:</strong> The next-month negative effect is present for both, but <strong>stronger for young firms</strong> (larger absolute coefficients than mature firms). </li>
+<li><strong>State ownership:</strong> Effect exists for both, but <strong>stronger for non-SOEs</strong>. </li>
+</ul>
+<p><strong>Takeaways</strong></p>
+<ul>
+<li><strong>Negative attention effect:</strong> When bad news hits, <strong>heightened attention reliably predicts lower subsequent returns</strong>&#x2014;robust across market states and firm characteristics. </li>
+<li><strong>Why it matters:</strong> Results speak to <strong>limited attention and investor behavior</strong> in emerging markets and can inform <strong>regulators</strong> aiming to curb bubbles and herding. </li>
+</ul>
+<p><strong>Caveats &amp; scope</strong></p>
+<p>Authors note the approach is likely <strong>more relevant in emerging markets</strong>; in mature markets, investors rely more on fundamentals and diversified information sources, making DT-style lists less informative. </p>
+<h2 id="emotional-state-and-market-behavior"><a name="emotional-state-and-market-behavior" class="anchor-navigation-ex-anchor" href="#emotional-state-and-market-behavior"><i class="fa fa-link" aria-hidden="true"></i></a>12. Emotional State and Market Behavior</h2>
+<p>Here&#x2019;s a tight summary of <strong>Breaban &amp; Noussair (2018), &#x201C;Emotional State and Market Behavior&#x201D; (Review of Finance)</strong>:</p>
+<ul>
+<li><strong>Question.</strong> Do traders&#x2019; real-time emotions help explain bubbles and crashes? The authors pair classic laboratory asset markets with automated facial-expression (FaceReader) measures of emotions/valence. </li>
+<li><strong>Design (lab markets).</strong> 13 sessions at Tilburg University; 6&#x2013;11 traders each; continuous double-auction; 15 periods per market (2 minutes each). Asset pays dividends drawn from {0, 8, 28, 60}; expected dividend per period = 24, so fundamental value is f_t=384-24t.   </li>
+<li><strong>Big picture pattern.</strong> Markets typically show a bubble then a sharp crash toward fundamentals. </li>
+<li><strong>Core findings.</strong><ul>
+<li><strong>Initial mood &#x2192; price level.</strong> More positive <strong>valence before trading</strong> is associated with <strong>higher subsequent average prices</strong> (Spearman &#x3C1; &#x2248; 0.62, p&lt;.01). Conversely, <strong>more fear</strong> before trading is associated with <strong>lower average prices</strong> (&#x3C1; &#x2248; &#x2212;0.83, p=.01).  </li>
+<li><strong>Within-session dynamics.</strong> Higher <strong>average fear in period t&#x2212;1</strong> predicts a <strong>price drop in period t</strong> (fixed-effects logit). Neutrality, happiness, and anger are associated with a lower chance of a price decrease. </li>
+<li><strong>Individual behavior.</strong> Positive emotion is linked to <strong>buying</strong> and overpricing; <strong>fear</strong> is linked to <strong>selling</strong> and price declines (captured already in the abstract/overview). </li>
+<li><strong>During crashes.</strong> Traders who display <strong>more neutral</strong> expressions in the crash tend to end with <strong>higher earnings</strong> (correlation &#x2248; 0.21; also fewer units held&#x2014;i.e., less &#x201C;bag-holding&#x201D;&#x2014;by more neutral traders). </li>
+<li><strong>Loss aversion link.</strong> Ex-ante <strong>loss aversion</strong> correlates <strong>positively with fear</strong> and <strong>negatively with valence</strong> measured before trading. </li>
+</ul>
+</li>
+<li><strong>Interpretation.</strong> Emotions&#x2014;especially <strong>valence</strong> and <strong>fear</strong>&#x2014;are tightly intertwined with market outcomes: upbeat cohorts sustain higher prices/bigger bubbles; rising fear presages selloffs. The results line up with psychological theories where positive affect lowers perceived risk while fear heightens it.</li>
+<li><strong>Caveats.</strong> Lab setting with small cohorts and automated emotion detection; FaceReader captures facial proxies for emotion, not self-reports or physiology.</li>
+</ul>
 <h2 id="todo"><a name="todo" class="anchor-navigation-ex-anchor" href="#todo"><i class="fa fa-link" aria-hidden="true"></i></a>13. Todo</h2>
 <ul>
 <li>Factor Timing</li>
-<li>When Smart Beta Meets Machine Learning and Portfolio Optimization</li>
 <li>The Virtue of Complexity in Return Prediction</li>
 <li>The Prediction Framework and High-Dimensional Approximation</li>
 <li>Influence of Market States on Security Returns</li>
@@ -2026,7 +1933,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Reading Todo List","level":"1.2.14","depth":2,"next":{"title":"Reading List","level":"1.3","depth":1,"path":"contents/reading.md","ref":"./contents/reading.md","articles":[{"title":"Bayesian Machine Learning","level":"1.3.1","depth":2,"path":"contents/bayesing.md","ref":"./contents/bayesing.md","articles":[]},{"title":"Deep Learning","level":"1.3.2","depth":2,"path":"contents/DLing.md","ref":"./contents/DLing.md","articles":[]},{"title":"Machine Learning","level":"1.3.3","depth":2,"path":"contents/MLing.md","ref":"./contents/MLing.md","articles":[]},{"title":"Numerical and Optimization","level":"1.3.4","depth":2,"path":"contents/opting.md","ref":"./contents/opting.md","articles":[]},{"title":"Traditional Statistics","level":"1.3.5","depth":2,"path":"contents/stating.md","ref":"./contents/stating.md","articles":[]},{"title":"Books","level":"1.3.6","depth":2,"path":"contents/booking.md","ref":"./contents/booking.md","articles":[]}]},"previous":{"title":"Factor Calendar","level":"1.2.13","depth":2,"path":"contents/factor_cal.md","ref":"./contents/factor_cal.md","articles":[]},"dir":"ltr"},"config":{"plugins":["mathjax","image-captions","github","anchors","anchor-navigation-ex","-sharing","sharing-plus@^0.0.2","github-buttons","embed-pdf","livereload"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"github":{"url":"https://github.com/ZizouHe/"},"livereload":{},"search":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":false},"mode":"float","multipleH1":false,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":true},"github-buttons":{"buttons":[{"user":"ZizouHe","repo":"reading-notes","type":"star","size":"small"}]},"mathjax":{"forceSVG":false,"version":"2.6-latest"},"sharing":{"qq":true,"all":["facebook","google","twitter","weibo","qq","linkedin"],"douban":false,"facebook":true,"weibo":true,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":false,"messenger":false,"line":false,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"embed-pdf":{},"image-captions":{"caption":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","align":"right","variable_name":"_pictures"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{"_pictures":[{"backlink":"./notes/RDN.html#fig1.4.2.1","level":"1.4.2","align":"right","list_caption":"Figure: Example (a) data graph and (b) model graph.","alt":"Example (a) data graph and (b) model graph.","nro":1,"url":"./pic/RDN-1.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Example (a) data graph and (b) model graph.","attributes":{},"skip":false,"key":"1.4.2.1"},{"backlink":"./notes/RDN.html#fig1.4.2.2","level":"1.4.2","align":"right","list_caption":"Figure: RDN inference algorithm.","alt":"RDN inference algorithm.","nro":2,"url":"./pic/RDN-2.png","index":2,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"RDN inference algorithm.","attributes":{},"skip":false,"key":"1.4.2.2"},{"backlink":"./notes/Faster_Frank_Wolfe.html#fig1.4.14.1","level":"1.4.14","align":"right","list_caption":"Figure: Frank-Wolfe Algorithm","alt":"Frank-Wolfe Algorithm","nro":3,"url":"./pic/Frank-Wolfe.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Frank-Wolfe Algorithm","attributes":{},"skip":false,"key":"1.4.14.1"},{"backlink":"./notes/Fin_Fan_Book.html#fig1.4.15.1","level":"1.4.15","align":"right","list_caption":"Figure: Efficient Frontier with risk-free asset","alt":"Efficient Frontier with risk-free asset","nro":4,"url":"./pic/Eff_Front_1.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Efficient Frontier with risk-free asset","attributes":{},"skip":false,"key":"1.4.15.1"},{"backlink":"./notes/Fin_Fan_Book.html#fig1.4.15.2","level":"1.4.15","align":"right","list_caption":"Figure: Efficient Frontier without risk-free asset","alt":"Efficient Frontier without risk-free asset","nro":5,"url":"./pic/Eff_Front_2.png","index":2,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Efficient Frontier without risk-free asset","attributes":{},"skip":false,"key":"1.4.15.2"}]},"title":"Reading List & Notes","gitbook":"*"},"file":{"path":"notes/temp.md","mtime":"2025-08-07T02:42:48.833Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2025-08-07T02:42:56.371Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Reading Todo List","level":"1.2.14","depth":2,"next":{"title":"Reading List","level":"1.3","depth":1,"path":"contents/reading.md","ref":"./contents/reading.md","articles":[{"title":"Bayesian Machine Learning","level":"1.3.1","depth":2,"path":"contents/bayesing.md","ref":"./contents/bayesing.md","articles":[]},{"title":"Deep Learning","level":"1.3.2","depth":2,"path":"contents/DLing.md","ref":"./contents/DLing.md","articles":[]},{"title":"Machine Learning","level":"1.3.3","depth":2,"path":"contents/MLing.md","ref":"./contents/MLing.md","articles":[]},{"title":"Numerical and Optimization","level":"1.3.4","depth":2,"path":"contents/opting.md","ref":"./contents/opting.md","articles":[]},{"title":"Traditional Statistics","level":"1.3.5","depth":2,"path":"contents/stating.md","ref":"./contents/stating.md","articles":[]},{"title":"Books","level":"1.3.6","depth":2,"path":"contents/booking.md","ref":"./contents/booking.md","articles":[]}]},"previous":{"title":"Factor Calendar","level":"1.2.13","depth":2,"path":"contents/factor_cal.md","ref":"./contents/factor_cal.md","articles":[]},"dir":"ltr"},"config":{"plugins":["mathjax","image-captions","github","anchors","anchor-navigation-ex","-sharing","sharing-plus@^0.0.2","github-buttons","embed-pdf","livereload"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"github":{"url":"https://github.com/ZizouHe/"},"livereload":{},"search":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":false},"mode":"float","multipleH1":false,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":true},"github-buttons":{"buttons":[{"user":"ZizouHe","repo":"reading-notes","type":"star","size":"small"}]},"mathjax":{"forceSVG":false,"version":"2.6-latest"},"sharing":{"qq":true,"all":["facebook","google","twitter","weibo","qq","linkedin"],"douban":false,"facebook":true,"weibo":true,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":false,"messenger":false,"line":false,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"embed-pdf":{},"image-captions":{"caption":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","align":"right","variable_name":"_pictures"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{"_pictures":[{"backlink":"./notes/RDN.html#fig1.4.2.1","level":"1.4.2","align":"right","list_caption":"Figure: Example (a) data graph and (b) model graph.","alt":"Example (a) data graph and (b) model graph.","nro":1,"url":"./pic/RDN-1.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Example (a) data graph and (b) model graph.","attributes":{},"skip":false,"key":"1.4.2.1"},{"backlink":"./notes/RDN.html#fig1.4.2.2","level":"1.4.2","align":"right","list_caption":"Figure: RDN inference algorithm.","alt":"RDN inference algorithm.","nro":2,"url":"./pic/RDN-2.png","index":2,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"RDN inference algorithm.","attributes":{},"skip":false,"key":"1.4.2.2"},{"backlink":"./notes/Faster_Frank_Wolfe.html#fig1.4.14.1","level":"1.4.14","align":"right","list_caption":"Figure: Frank-Wolfe Algorithm","alt":"Frank-Wolfe Algorithm","nro":3,"url":"./pic/Frank-Wolfe.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Frank-Wolfe Algorithm","attributes":{},"skip":false,"key":"1.4.14.1"},{"backlink":"./notes/Fin_Fan_Book.html#fig1.4.15.1","level":"1.4.15","align":"right","list_caption":"Figure: Efficient Frontier with risk-free asset","alt":"Efficient Frontier with risk-free asset","nro":4,"url":"./pic/Eff_Front_1.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Efficient Frontier with risk-free asset","attributes":{},"skip":false,"key":"1.4.15.1"},{"backlink":"./notes/Fin_Fan_Book.html#fig1.4.15.2","level":"1.4.15","align":"right","list_caption":"Figure: Efficient Frontier without risk-free asset","alt":"Efficient Frontier without risk-free asset","nro":5,"url":"./pic/Eff_Front_2.png","index":2,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Efficient Frontier without risk-free asset","attributes":{},"skip":false,"key":"1.4.15.2"}]},"title":"Reading List & Notes","gitbook":"*"},"file":{"path":"notes/temp.md","mtime":"2025-08-10T20:43:28.210Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2025-08-10T20:43:38.604Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

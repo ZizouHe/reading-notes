@@ -1463,7 +1463,8 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon "></span><a href="#momentum"><b> </b>Momentum</a></li><li><span class="title-icon "></span><a href="#technical-indicator"><b> </b>Technical Indicator</a></li></ul></div><a href="#momentum" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h1 id="momentum"><a name="momentum" class="anchor-navigation-ex-anchor" href="#momentum"><i class="fa fa-link" aria-hidden="true"></i></a> Momentum</h1>
+                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon "></span><a href="#momentum"><b> </b>Momentum</a></li><li><span class="title-icon "></span><a href="#technical-indicator"><b> </b>Technical Indicator</a></li><li><span class="title-icon "></span><a href="#high-frequency"><b> </b>High Frequency</a></li><li><span class="title-icon "></span><a href="#risk-factor"><b> </b>Risk Factor</a></li></ul></div><a href="#momentum" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><p><a href="../assets/gpt_gen.py">Code example</a></p>
+<h1 id="momentum"><a name="momentum" class="anchor-navigation-ex-anchor" href="#momentum"><i class="fa fa-link" aria-hidden="true"></i></a> Momentum</h1>
 <ul>
 <li><p>Information Discreteness (ID)</p>
 <ul>
@@ -1752,6 +1753,655 @@ where N = 12.</p>
 </ul>
 </li>
 </ul>
+<h1 id="high-frequency"><a name="high-frequency" class="anchor-navigation-ex-anchor" href="#high-frequency"><i class="fa fa-link" aria-hidden="true"></i></a> High Frequency</h1>
+<ul>
+<li><p>&#x6BCF;&#x7B14;&#x6210;&#x4EA4;&#x91CF;&#x5DEE;&#x5206;&#x6807;&#x51C6;&#x5DEE;
+<script type="math/tex; mode=display">
+  \begin{aligned}
+  &\operatorname{diff}_i=\operatorname{volb}_i-\operatorname{volb}_{i-1}\\
+  &\operatorname{diff-mean}_{\text {day }}=\operatorname{mean}\left(a b s\left(\frac{\operatorname{diff}_i}{\operatorname{mean}\left(\left\{\operatorname{volb}_i\right\}\right)}\right)\right.\\
+  &\text { diff-std }_{\text {volb }}=\text { mean }\left(\left\{\text { diff-std }_{\text {day }}\right\}\right)
+  \end{aligned}
+  </script>
+&#x5176;&#x4E2D;<script type="math/tex; ">v o l b_i</script> &#x4E3A;&#x4E2A;&#x80A1;&#x65E5;&#x5185; 240 &#x6839; 1 &#x5206;&#x949F; K &#x7EBF;&#x7684;&#x6BCF;&#x7B14;&#x6210;&#x4EA4;&#x91CF;&#xFF08;&#x6210;&#x4EA4;&#x91CF;&#xFF0F;&#x6210;&#x4EA4;&#x7B14;&#x6570;&#xFF09;&#xFF0C;diff_stdday&#x53D6;&#x8FC7;&#x53BB; 20 &#x4E2A;&#x4EA4;&#x6613;&#x65E5;&#x6570;&#x636E;&#x3002;</p>
+<pre><code class="lang-python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">compute_diff_std_volb</span><span class="hljs-params">(
+    da: xr.DataArray,
+    half_life: int=<span class="hljs-number">20</span>,
+)</span>:</span>
+    <span class="hljs-keyword">for</span> v <span class="hljs-keyword">in</span> (<span class="hljs-string">&quot;locVol&quot;</span>,<span class="hljs-string">&quot;numTrade&quot;</span>):
+        <span class="hljs-keyword">if</span> v <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> da.coords[<span class="hljs-string">&quot;V1&quot;</span>].values:
+            <span class="hljs-keyword">raise</span> ValueError(f<span class="hljs-string">&quot;Missing required variable &apos;{v}&apos; in V1&quot;</span>)
+
+    v_locVol = da.sel(V1=<span class="hljs-string">&quot;locVol&quot;</span>)
+    v_numTr  = da.sel(V1=<span class="hljs-string">&quot;numTrade&quot;</span>)
+
+    volb = divide_safe(v_locVol, v_numTr)
+
+    diff_raw = volb.diff(dim=<span class="hljs-string">&quot;E&quot;</span>, label=<span class="hljs-string">&quot;upper&quot;</span>)
+    diff_full = diff_raw.reindex(E=volb[<span class="hljs-string">&quot;E&quot;</span>])
+    day_mean_volb = volb.mean(<span class="hljs-string">&quot;E&quot;</span>, skipna=<span class="hljs-keyword">True</span>)
+    day_mean_volb_b = day_mean_volb.broadcast_like(volb)
+    norm_abs_diff = (diff_full.abs() / day_mean_volb_b).astype(<span class="hljs-string">&quot;float64&quot;</span>)
+    diff_std_day = norm_abs_diff.std(<span class="hljs-string">&quot;E&quot;</span>, skipna=<span class="hljs-keyword">True</span>)
+    <span class="hljs-comment">#diff_std_day = norm_abs_diff.mean(&quot;E&quot;, skipna=True)</span>
+    <span class="hljs-comment">#fac_trailing = diff_std_day.rolling(D=half_life, min_periods=1).mean().isel(D=[-1])</span>
+    fac_trailing = _ewm_ma_halflife(diff_std_day, dim=<span class="hljs-string">&quot;D&quot;</span>, half_life=half_life).isel(D=[<span class="hljs-number">-1</span>])
+    f_b = fac_trailing.broadcast_like(volb.D=[<span class="hljs-number">-1</span>])
+    out = xr.concat([f_b], dim=<span class="hljs-string">&quot;V1&quot;</span>).assign_coords(V1=[<span class="hljs-string">&quot;factor_diff_std_volb&quot;</span>])
+    out = out.transpose(<span class="hljs-string">&quot;S&quot;</span>,<span class="hljs-string">&quot;D&quot;</span>,<span class="hljs-string">&quot;E&quot;</span>,<span class="hljs-string">&quot;V1&quot;</span>)
+    <span class="hljs-keyword">return</span> out
+</code></pre>
+</li>
+</ul>
+<ul>
+<li><p>&#x9AD8;&#x9891;&#x4E0A;&#x884C;&#x6CE2;&#x52A8;&#x5360;&#x6BD4;
+<script type="math/tex; mode=display">
+  \frac{\sum_t\left(r_i^t I_{\left\{r_i^t>0\right\}}\right)^2}{\sum_t\left(r_i^t\right)^2}
+  </script></p>
+<p>&#x5176;&#x4E2D;
+&#xFF08;1&#xFF09;<script type="math/tex; ">r_i^l</script> &#x4E3A;&#x5206;&#x949F;&#x9891;&#x7387;&#x4E0B;&#x7684;&#x80A1;&#x7968;&#x6536;&#x76CA;&#x5E8F;&#x5217;&#xFF0C;&#x5982; 1 &#x5206;&#x949F;&#x3001; 5 &#x5206;&#x949F;&#x3001; 10 &#x5206;&#x949F;&#x7B49;&#xFF1B;
+&#xFF08;2&#xFF09;&#x5728;&#x4EFB;&#x610F;&#x9009;&#x80A1;&#x65F6;&#x523B;&#xFF0C;&#x56E0;&#x5B50;&#x503C;&#x4E3A;&#x524D; N &#x65E5;&#x6307;&#x6807;&#x7684;&#x5747;&#x503C;&#xFF0C;&#x5982;&#x6708;&#x5EA6;&#x9009;&#x80A1;&#xFF0C;&#x8BA1;&#x7B97;&#x56E0;&#x5B50;&#x503C;&#x65F6;&#x4F7F;&#x7528;&#x7684;&#x662F;&#x80A1;&#x7968;&#x8FC7;&#x53BB; 20 &#x4E2A;&#x4EA4;&#x6613;&#x65E5;&#x7684;&#x5747;&#x503C;&#x3002;</p>
+<p>&#x80A1;&#x7968;&#x9AD8;&#x9891;&#x6536;&#x76CA;&#x7684;&#x4E0A;&#x884C;&#x6CE2;&#x52A8;&#x8861;&#x91CF;&#x4E86;&#x80A1;&#x7968;&#x4EF7;&#x683C;&#x62C9;&#x5347;&#x7684;&#x7279;&#x5F81;&#x3002;&#x5047;&#x8BBE;&#x6709;&#x4E24;&#x53EA;&#x80A1;&#x7968;&#x5728;&#x8FC7;&#x53BB;&#x4E00;&#x6BB5;&#x65F6;&#x95F4;&#x6709;&#x7740;&#x76F8;&#x540C;&#x7684;&#x6DA8;&#x5E45;&#xFF0C;&#x5176;&#x4E2D;&#x4E00;&#x53EA;&#x80A1;&#x7968;&#x7684;&#x6DA8;&#x5E45;&#x7531;&#x6301;&#x7EED;&#x7A33;&#x5B9A;&#x7684;&#x5C0F;&#x5E45;&#x4E0A;&#x6DA8;&#x4357;&#x8BA1;&#x5E26;&#x52A8;&#xFF0C;&#x800C;&#x53E6;&#x4E00;&#x53EA;&#x80A1;&#x7968;&#x7684;&#x4E0A;&#x6DA8;&#x6E90;&#x81EA;&#x4E8E;&#x80A1;&#x7968;&#x77ED;&#x671F;&#x7684;&#x5927;&#x5E45;&#x62C9;&#x5347;&#xFF0C;&#x90A3;&#x4E48;&#x540E;&#x8005;&#x66F4;&#x6709;&#x53EF;&#x80FD;&#x5728;&#x6536;&#x76CA;&#x4E0A;&#x51FA;&#x73B0;&#x53CD;&#x8F6C;&#xFF0C;&#x800C;&#x540E;&#x8005;&#x5728;&#x56E0;&#x5B50;&#x503C;&#x4E0A;&#x4E5F;&#x4F1A;&#x4F53;&#x73B0;&#x51FA;&#x8F83;&#x9AD8;&#x7684;&#x4E0A;&#x884C;&#x6CE2;&#x52A8;&#x7387;&#x3002;</p>
+<pre><code class="lang-python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">compute_hf_upvol_share</span><span class="hljs-params">(
+    da: xr.DataArray,
+    ret_var: str = <span class="hljs-string">&quot;ret&quot;</span>,
+    half_life: int = <span class="hljs-number">20</span>,
+)</span> -&gt; xr.DataArray:</span>
+    <span class="hljs-keyword">if</span> ret_var <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> da.coords[<span class="hljs-string">&quot;V1&quot;</span>].values:
+        <span class="hljs-keyword">raise</span> ValueError(f<span class="hljs-string">&quot;Variable &apos;{ret_var}&apos; not found in V1&quot;</span>)
+
+    ret = da.sel(V1=ret_var)
+    num_day = (ret.clip(min=<span class="hljs-number">0</span>) ** <span class="hljs-number">2</span>).sum(<span class="hljs-string">&quot;E&quot;</span>, skipna=<span class="hljs-keyword">True</span>)
+    den_day = (ret ** <span class="hljs-number">2</span>).sum(<span class="hljs-string">&quot;E&quot;</span>, skipna=<span class="hljs-keyword">True</span>)
+    ratio_day = divide_safe(num_day, den_day)
+    ratio_ema = _ewm_ma_halflife(ratio_day, dim=<span class="hljs-string">&quot;D&quot;</span>, half_life=half_life)
+
+    ratio_last = ratio_ema.isel(D=[<span class="hljs-number">-1</span>])
+    factor_last = ratio_last.broadcast_like(ret.isel(D=[<span class="hljs-number">-1</span>]))
+
+    out_list = [factor_last]
+
+    out = xr.concat(out_list, dim=<span class="hljs-string">&quot;V1&quot;</span>).assign_coords(V1=[<span class="hljs-string">&quot;hf_upvol_share&quot;</span>])
+    out = out.transpose(<span class="hljs-string">&quot;S&quot;</span>,<span class="hljs-string">&quot;D&quot;</span>,<span class="hljs-string">&quot;E&quot;</span>,<span class="hljs-string">&quot;V1&quot;</span>)
+    <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>*out
+</code></pre>
+</li>
+</ul>
+<ul>
+<li>&#x975E;&#x6D41;&#x52A8;&#x6027;&#x7684;&#x53D8;&#x5F02;&#x7CFB;&#x6570;: &#x80A1;&#x7968;&#x7684;&#x975E;&#x6D41;&#x52A8;&#x6027;&#x7684;&#x53D8;&#x5F02;&#x7CFB;&#x6570;&#x8F83;&#x9AD8;&#xFF0C;&#x8BF4;&#x660E;&#x975E;&#x6D41;&#x52A8;&#x6027;&#x7684;&#x6CE2;&#x52A8;&#x8F83;&#x5927;&#xFF0C;&#x5BF9;&#x4E8E;&#x6301;&#x6709;&#x8BE5;&#x7C7B;&#x80A1;&#x7968;&#x7684;&#x6295;&#x8D44;&#x8005;&#x6765;&#x8BF4;&#xFF0C;&#x672A;&#x6765;&#x5356;&#x51FA;&#x8BE5;&#x7C7B;&#x80A1;&#x7968;&#x6709;&#x7740;&#x66F4;&#x9AD8;&#x7684;&#x4EA4;&#x6613;&#x6210;&#x672C;&#x4E0D;&#x786E;&#x5B9A;&#x6027;&#xFF0C;&#x6240;&#x4EE5;&#x7531;&#x6B64;&#x80FD;&#x591F;&#x83B7;&#x5F97;&#x66F4;&#x9AD8;&#x7684;&#x98CE;&#x9669;&#x6EA2;&#x4EF7;&#x3002;</li>
+</ul>
+<p><script type="math/tex; mode=display">
+\begin{aligned}
+I L L I Q_{i, t} & =\frac{\left|r_{i, t}\right|}{\text { Amount }_{i, t}} \\
+C V I L L I Q_i & =\frac{\sigma\left(I L L I Q_i\right)}{\overline{I L L I Q_i}}
+\end{aligned}
+</script></p>
+<p>&#x5176;&#x4E2D;
+&#xFF08;1&#xFF09; Amount <script type="math/tex; ">_{i, t}</script> &#x4E3A;&#x80A1;&#x7968; i &#x5728; t &#x65F6;&#x523B;&#x7684;&#x4EA4;&#x6613;&#x91D1;&#x989D;&#xFF1B;
+&#xFF08;2&#xFF09;<script type="math/tex; ">r_{i, t}</script> &#x662F;&#x80A1;&#x7968; i &#x5728; t &#x65F6;&#x523B;&#x6536;&#x76CA;&#x7387;&#xFF1B;
+&#xFF08;3&#xFF09;&#x65F6;&#x95F4;&#x7A97;&#x53E3;&#x671F;&#x4E3A;&#x8FC7;&#x53BB; 20 &#x4E2A;&#x4EA4;&#x6613;&#x65E5;&#x3002;</p>
+<pre><code class="lang-python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">compute_cv_illiq</span><span class="hljs-params">(
+    da: xr.DataArray,
+    ret_var: str = <span class="hljs-string">&quot;ret&quot;</span>,
+    vol_var: str = <span class="hljs-string">&quot;locVol&quot;</span>,
+    half_life: float = <span class="hljs-number">20</span>,
+)</span> -&gt; xr.DataArray:</span>
+    <span class="hljs-keyword">for</span> v <span class="hljs-keyword">in</span> (ret_var, vol_var):
+        <span class="hljs-keyword">if</span> v <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> da.coords[<span class="hljs-string">&quot;V1&quot;</span>].values:
+            <span class="hljs-keyword">raise</span> ValueError(f<span class="hljs-string">&quot;Variable &apos;{v}&apos; not found in V1&quot;</span>)
+
+    ret  = da.sel(V1=ret_var)
+    amount   = da.sel(V1=vol_var)
+    amount = close * vol
+    illiq_min = divide_safe(ret.abs(), amount)
+    illiq_day = illiq_min.mean(<span class="hljs-string">&quot;E&quot;</span>, skipna=<span class="hljs-keyword">True</span>)
+    mu_ewm  = _ewm_ma_halflife(illiq_day, dim=<span class="hljs-string">&quot;D&quot;</span>, half_life=half_life, mode=<span class="hljs-string">&apos;mean&apos;</span>)
+    std_ewm = _ewm_ma_halflife(illiq_day, dim=<span class="hljs-string">&quot;D&quot;</span>, half_life=half_life, mode=<span class="hljs-string">&apos;std&apos;</span>)
+    cv_series = divide_safe(std_ewm, mu_ewm)
+
+    factor_last = cv_series.isel(D=[<span class="hljs-number">-1</span>]).broadcast_like(ret.isel(D=[<span class="hljs-number">-1</span>]))
+    out = xr.concat([factor_last], dim=<span class="hljs-string">&quot;V1&quot;</span>).assign_coords(V1=[<span class="hljs-string">&apos;cv_illiq&apos;</span>])
+    out = out.transpose(<span class="hljs-string">&quot;S&quot;</span>,<span class="hljs-string">&quot;D&quot;</span>,<span class="hljs-string">&quot;E&quot;</span>,<span class="hljs-string">&quot;V1&quot;</span>)
+    <span class="hljs-keyword">return</span> out
+</code></pre>
+<ul>
+<li><p>&#x6210;&#x4EA4;&#x91CF;&#x6CE2;&#x5CF0;&#x8BA1;&#x6570;&#x56E0;&#x5B50;</p>
+<ol>
+<li><p>&#x8BA1;&#x7B97;&#x5168;&#x90E8; 240 &#x6839; $K$ &#x7EBF;&#x6570;&#x636E;&#x7684;&#x5747;&#x503C;&#x4E0E;&#x6807;&#x51C6;&#x5DEE;&#xFF0C;&#x7B5B;&#x9009;&#x51FA;&#x5927;&#x4E8E;&#xFF08;&#x5747;&#x503C; +1 &#x500D;&#x6807;&#x51C6;&#x5DEE;&#xFF09;&#x7684;&#x5206;&#x949F;&#x6570;&#x636E;&#xFF1B;</p>
+</li>
+<li><p>&#x8BA1;&#x7B97;&#x4E0A;&#x4E00;&#x6B65;&#x7B5B;&#x9009;&#x51FA;&#x7684;&#x6BCF;&#x4E00;&#x5206;&#x949F;&#x4E0E;&#x524D;&#x4E00;&#x5206;&#x949F;&#x4E4B;&#x95F4;&#x7684;&#x65F6;&#x95F4;&#x5DEE;&#xFF0C;&#x53EA;&#x6709;&#x65F6;&#x95F4;&#x5DEE;&#x8D85;&#x8FC7; 1 &#x5206;&#x949F;&#xFF08;&#x5373;&#x76F8;&#x9694;&#x8D85;&#x8FC7; 1 &#x6839; $K$ &#x7EBF;&#xFF09;&#x65F6;&#xFF0C;&#x8BE5;&#x5206;&#x949F;&#x6570;&#x636E;&#x624D;&#x4F1A;&#x88AB;&#x4FDD;&#x7559;&#xFF1B;</p>
+</li>
+<li><p>&#x7ECF;&#x8FC7;&#x4E0A;&#x8FF0;&#x4E24;&#x6B65;&#x7B5B;&#x9009;&#x540E;&#xFF0C;&#x5269;&#x4F59;&#x7684;&#x6570;&#x636E;&#x5168;&#x90E8;&#x88AB;&#x89C6;&#x4F5C;&#x5C40;&#x90E8;&#x5CF0;&#x503C;&#xFF0C;&#x5CF0;&#x503C;&#x4E2A;&#x6570;&#x5373;&#x4E3A;&#x5F53;&#x65E5;&#x6210;&#x4EA4;&#x91CF;&#x6CE2;&#x5CF0;&#x8BA1;&#x6570;&#x56E0;&#x5B50;&#x7684;&#x53D6;&#x503C;&#xFF0C;&#x800C;&#x6700;&#x7EC8;&#x8C03;&#x4ED3;&#x65E5;&#x7684;&#x56E0;&#x5B50;&#x503C;&#x4ECD;&#x4E3A;&#x8FC7;&#x53BB; 20 &#x4E2A;&#x4EA4;&#x6613;&#x65E5;&#x56E0;&#x5B50;&#x503C;&#x7684;&#x5747;&#x503C;&#x3002;</p>
+</li>
+<li><p>&#x51FA;&#x73B0;&#x65E5;&#x5185;&#xFF02;&#x653E;&#x91CF;&#xFF02;&#x73B0;&#x8C61;&#x6B21;&#x6570;&#x66F4;&#x591A;&#x7684;&#x80A1;&#x7968;&#x53EF;&#x80FD;&#x6709;&#x66F4;&#x591A;&#x7684;&#x8D8B;&#x52BF;&#x6216;&#x77E5;&#x60C5;&#x4EA4;&#x6613;&#x8005;&#x53C2;&#x4E0E;&#x4EA4;&#x6613;&#xFF0C;&#x8FDB;&#x800C;&#x5728;&#x672A;&#x6765;&#x4E00;&#x6BB5;&#x65F6;&#x95F4;&#x5185;&#x6709;&#x66F4;&#x9AD8;&#x7684;&#x6536;&#x76CA;&#x7387;&#xFF0C;&#x56E0;&#x5B50;&#x4E0E;&#x672A;&#x6765;&#x6536;&#x76CA;&#x6B63;&#x76F8;&#x5173;&#x3002;</p>
+</li>
+</ol>
+</li>
+</ul>
+<pre><code class="lang-python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">compute_vol_spike_count</span><span class="hljs-params">(
+    da: xr.DataArray,
+    vol_var: str = <span class="hljs-string">&quot;volume&quot;</span>,
+    k_std: float = <span class="hljs-number">1.0</span>,
+    half_life: float = <span class="hljs-number">10.0</span>,
+)</span> -&gt; xr.DataArray:</span>
+    <span class="hljs-keyword">if</span> vol_var <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> da.coords[<span class="hljs-string">&quot;V1&quot;</span>].values:
+        <span class="hljs-keyword">raise</span> ValueError(f<span class="hljs-string">&quot;Variable &apos;{vol_var}&apos; not found in V1&quot;</span>)
+
+    vol = da.sel(V1=vol_var)
+
+    day_mean = vol.mean(<span class="hljs-string">&quot;E&quot;</span>, skipna=<span class="hljs-keyword">True</span>)                  <span class="hljs-comment"># S x D</span>
+    day_std  = vol.std(<span class="hljs-string">&quot;E&quot;</span>, skipna=<span class="hljs-keyword">True</span>)                   <span class="hljs-comment"># S x D</span>
+    thr = (day_mean + k_std * day_std).broadcast_like(vol) <span class="hljs-comment"># S x D x E</span>
+
+    flagged = (vol &gt; thr).fillna(<span class="hljs-keyword">False</span>)                    <span class="hljs-comment"># bool S x D x E</span>
+
+    prev_flagged = flagged.shift(E=<span class="hljs-number">1</span>, fill_value=<span class="hljs-keyword">False</span>)
+    keep = flagged &amp; (~prev_flagged)                       <span class="hljs-comment"># bool S x D x E</span>
+
+    count_day = keep.sum(<span class="hljs-string">&quot;E&quot;</span>).astype(<span class="hljs-string">&quot;float64&quot;</span>)            <span class="hljs-comment"># S x D</span>
+    count_ema = _ewm_ma_halflife(count_day, dim=<span class="hljs-string">&quot;D&quot;</span>, half_life=half_life, mode=<span class="hljs-string">&quot;mean&quot;</span>)  <span class="hljs-comment"># S x D</span>
+
+    factor_last = count_ema.isel(D=[<span class="hljs-number">-1</span>]).broadcast_like(vol.isel(D=[<span class="hljs-number">-1</span>]))       <span class="hljs-comment"># S x 1 x E</span>
+
+    out = xr.concat([factor_last], dim=<span class="hljs-string">&quot;V1&quot;</span>).assign_coords(V1=[vol_spike_count])
+    out = out.transpose(<span class="hljs-string">&quot;S&quot;</span>,<span class="hljs-string">&quot;D&quot;</span>,<span class="hljs-string">&quot;E&quot;</span>,<span class="hljs-string">&quot;V1&quot;</span>)
+    <span class="hljs-keyword">return</span> out
+</code></pre>
+<ul>
+<li><p>&#x4EF7;&#x683C;&#x51B2;&#x51FB;&#x504F;&#x5DEE;:</p>
+<ul>
+<li><p>MoneyFlow
+<script type="math/tex; mode=display">
+    MF_t = \frac{(locVolBuy_t - locVolSell_t)}{locVol_t}
+    </script></p>
+</li>
+<li><p>&#x4E0A;&#x6DA8;/&#x4E0B;&#x8DCC;&#x7528;&#x5206;&#x949F;&#x6536;&#x76CA; ret &#x7684;&#x7B26;&#x53F7;&#x5224;&#x5B9A;&#xFF1A;<script type="math/tex; ">I_t=\mathbf{1}_{\{ret_t\ge0\}}</script>&#x3002;</p>
+</li>
+<li><p>&#x5728;&#x65E5;&#x5185;&#x7528;&#x96F6;&#x622A;&#x8DDD;&#x56DE;&#x5F52;&#x7684;&#x89E3;&#x6790;&#x5F0F;&#x4F30;&#x8BA1;&#x4E24;&#x6761;&#x659C;&#x7387;&#xFF1A;
+<script type="math/tex; mode=display">
+    \gamma^{up}=\frac{\sum_{I_t=1} MF_t\cdot ret_t}{\sum_{I_t=1} MF_t^2},\quad \gamma^{down}=\frac{\sum_{I_t=0} MF_t\cdot ret_t}{\sum_{I_t=0} MF_t^2}
+    </script></p>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code>&#x56E0;&#x4E3A;&#x4E24;&#x7EC4;&#x4E92;&#x65A5;&#xFF0C;&#x7B49;&#x4EF7;&#x4E8E;&#x56DE;&#x5F52; ret_t=\gamma^{up}(I_t MF_t)+\gamma^{down}((1-I_t)MF_t) &#x65E0;&#x622A;&#x8DDD;&#x3002;
+</code></pre><ul>
+<li><p>&#x65E5;&#x5EA6;&#x504F;&#x5DEE;&#xFF1A;
+<script type="math/tex; mode=display">
+    \text{bias}_{day}=\frac{\gamma^{up}-\gamma^{down}}{\gamma^{up}+\gamma^{down}}
+    </script></p>
+</li>
+<li><p>&#x518D;&#x53D6;&#x5747;&#x503C;&#x6216;&#x8005;EMA</p>
+</li>
+<li><p>&#x4EF7;&#x683C;&#x51B2;&#x51FB;&#x504F;&#x5DEE;&#x4E3B;&#x8981;&#x8868;&#x5F81;&#x4E86;&#x80A1;&#x7968;&#x5728;&#x67D0;&#x4E00;&#x65F6;&#x95F4;&#x533A;&#x95F4;&#x4E0A;&#x6DA8;&#x6216;&#x8005;&#x4E0B;&#x8DCC;&#x7684;&#x96BE;&#x6613;&#x7A0B;&#x5EA6;&#xFF0C;&#x4EF7;&#x683C;&#x51B2;&#x51FB;&#x504F;&#x5DEE;&#x8F83;&#x5927;&#xFF08;&#x6B63;&#x503C;&#xFF09;&#x7684;&#x80A1;&#x7968;&#xFF0C;&#x76F8;&#x540C;&#x6BD4;&#x4F8B;&#x7684;&#x4E3B;&#x52A8;&#x8BA2;&#x5355;&#x5BF9;&#x5176;&#x80A1;&#x4EF7;&#x5411;&#x4E0B;&#x7684;&#x51B2;&#x51FB;&#x5C0F;&#x4E8E;&#x5411;&#x4E0A;&#x7684;&#x51B2;&#x51FB;&#xFF0C;&#x80A1;&#x7968;&#x5BB9;&#x6613;&#x4E0A;&#x6DA8;&#xFF0C;&#x53CD;&#x4E4B;&#xFF0C;&#x80A1;&#x7968;&#x5BB9;&#x6613;&#x4E0B;&#x8DCC;&#x3002;</p>
+<pre><code class="lang-python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">compute_price_impact_bias</span><span class="hljs-params">(
+  da: xr.DataArray,
+  ret_var: str = <span class="hljs-string">&quot;ret&quot;</span>,
+  buy_var: str = <span class="hljs-string">&quot;locVolBuy&quot;</span>,
+  sell_var: str = <span class="hljs-string">&quot;locVolSell&quot;</span>,
+  amount_var: str = <span class="hljs-string">&quot;locVol&quot;</span>,
+  half_life: float = <span class="hljs-number">10.0</span>,
+)</span> -&gt; xr.DataArray:</span>
+  <span class="hljs-keyword">for</span> v <span class="hljs-keyword">in</span> (ret_var, <span class="hljs-string">&quot;locVolBuy&quot;</span>, <span class="hljs-string">&quot;locVolSell&quot;</span>, <span class="hljs-string">&quot;locVol&quot;</span>):
+      <span class="hljs-keyword">if</span> v <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> da.coords[<span class="hljs-string">&quot;V1&quot;</span>].values:
+          <span class="hljs-keyword">raise</span> ValueError(f<span class="hljs-string">&quot;Variable &apos;{v}&apos; not found in V1&quot;</span>)
+
+  ret   = da.sel(V1=ret_var)
+  buy   = da.sel(V1=<span class="hljs-string">&quot;locVolBuy&quot;</span>)
+  sell  = da.sel(V1=<span class="hljs-string">&quot;locVolSell&quot;</span>)
+  amount = da.sel(V1=<span class="hljs-string">&quot;locVol&quot;</span>)
+
+  moneyflow = buy - sell
+  mf = divide_safe(moneyflow, amount)
+
+  valid = xr.ufuncs.isfinite(mf) &amp; xr.ufuncs.isfinite(ret)
+  mf = xr.where(valid, mf, np.nan)
+  ret = xr.where(valid, ret, np.nan)
+
+  up_mask   = ret &gt;= <span class="hljs-number">0</span>
+  down_mask = ~up_mask
+
+  mf_up   = xr.where(up_mask, mf, np.nan)
+  mf_down = xr.where(down_mask, mf, np.nan)
+
+  num_up  = (mf_up * ret).sum(<span class="hljs-string">&quot;E&quot;</span>, skipna=<span class="hljs-keyword">True</span>)          <span class="hljs-comment"># S x D</span>
+  den_up  = (mf_up ** <span class="hljs-number">2</span>).sum(<span class="hljs-string">&quot;E&quot;</span>, skipna=<span class="hljs-keyword">True</span>)           <span class="hljs-comment"># S x D</span>
+  gamma_up = divide_safe(num_up, den_up)                 <span class="hljs-comment"># S x D</span>
+
+  num_dn  = (mf_down * ret).sum(<span class="hljs-string">&quot;E&quot;</span>, skipna=<span class="hljs-keyword">True</span>)
+  den_dn  = (mf_down ** <span class="hljs-number">2</span>).sum(<span class="hljs-string">&quot;E&quot;</span>, skipna=<span class="hljs-keyword">True</span>)
+  gamma_down = divide_safe(num_dn, den_dn)               <span class="hljs-comment"># S x D</span>
+
+  bias_day = divide_safe(gamma_up - gamma_down, gamma_up + gamma_down)  <span class="hljs-comment"># S x D</span>
+  bias_ema = _ewm_ma_halflife(bias_day, dim=<span class="hljs-string">&quot;D&quot;</span>, half_life=half_life, mode=<span class="hljs-string">&quot;mean&quot;</span>)  <span class="hljs-comment"># S x D</span>
+
+  factor_last = bias_ema.isel(D=[<span class="hljs-number">-1</span>]).broadcast_like(ret.isel(D=[<span class="hljs-number">-1</span>]))  <span class="hljs-comment"># S x 1 x E</span>
+
+  out = xr.concat([factor_last], dim=<span class="hljs-string">&quot;V1&quot;</span>).assign_coords(V1=np.array([<span class="hljs-string">&quot;price_impact_bias&quot;</span>]))
+  out = out.transpose(<span class="hljs-string">&quot;S&quot;</span>,<span class="hljs-string">&quot;D&quot;</span>,<span class="hljs-string">&quot;E&quot;</span>,<span class="hljs-string">&quot;V1&quot;</span>)
+  <span class="hljs-keyword">return</span> out
+</code></pre>
+</li>
+</ul>
+<ul>
+<li><p>&#x91CF;&#x4EF7;&#x76F8;&#x5173;&#x6027;</p>
+<ul>
+<li>PV&#xFF3F;corr&#xFF3F;std &#x4ECE;&#x4EF7;&#x91CF;&#x5F62;&#x6001;&#x7A33;&#x5B9A;&#x6027;&#x7684;&#x89D2;&#x5EA6;&#xFF0C;&#x5BF9;&#x53CD;&#x8F6C;&#x56E0;&#x5B50;&#x8FDB;&#x884C;&#x4E86;&#x6539;&#x8FDB;&#xFF0C;&#x5373;&#x65E0;&#x8BBA;&#x80A1;&#x7968;&#x4EF7;&#x683C;&#x8FC7;&#x53BB;&#x7684;&#x6DA8;&#x8DCC;&#xFF0C;&#x53EA;&#x8981;&#x6BCF;&#x65E5;&#x4EF7;&#x91CF;&#x5173;&#x7CFB;&#x7EF4;&#x6301;&#x67D0;&#x79CD;&#x7A33;&#x5B9A;&#x5F62;&#x6001;&#xFF0C;&#x4E0B;&#x4E2A;&#x6708;&#x5C31;&#x66F4;&#x6709;&#x53EF;&#x80FD;&#x4E0A;&#x6DA8;&#xFF1B;&#x800C;&#x4EF7;&#x91CF;&#x5173;&#x7CFB;&#x5728;&#x591A;&#x79CD;&#x5F62;&#x6001;&#x95F4; &#x9891;&#x7E41;&#x5207;&#x6362;&#x7684;&#x80A1;&#x7968;&#xFF0C;&#x4E0B;&#x4E2A;&#x6708;&#x66F4;&#x6709;&#x53EF;&#x80FD;&#x4E0B;&#x8DCC;&#x3002;</li>
+<li>PV&#xFF3F;corr&#xFF3F;avg &#x5229;&#x7528;&#x6210;&#x4EA4;&#x91CF;&#x7684;&#x4FE1;&#x606F;&#xFF0C;&#x4FEE;&#x6B63;&#x4E86;&#x4F20;&#x7EDF;&#x53CD;&#x8F6C;&#x56E0;&#x5B50;&#x5BF9;&#x80A1;&#x7968;&#x4EF7;&#x683C;&#x6DA8;&#x8DCC;&#x7684;&#x5224;&#x65AD;&#xFF0C;&#x5373;&#x4EF7;&#x683C;&#x6DA8;&#x8DCC;&#x7684;&#x53CD;&#x8F6C;&#x4E0D;&#x5B8C;&#x5168;&#x7531;&#x4EF7;&#x683C;&#x81EA;&#x5DF1;&#x51B3;&#x5B9A;&#xFF0C;&#x8FD8;&#x9700;&#x770B;&#x6210;&#x4EA4;&#x91CF;&#x7684;&#x4FE1;&#x606F;&#xFF0C;&#x82E5;&#x6709;&#x91CF;&#x7684;&#x786E;&#x8BA4;&#xFF0C;&#x5219;&#x6708;&#x5EA6;&#x884C;&#x60C5;&#x7684;&#x53CD;&#x8F6C;&#x6548;&#x5E94;&#x66F4;&#x5F3A;&#xFF1B;&#x82E5;&#x6CA1;&#x6709;&#x91CF;&#x7684;&#x786E;&#x8BA4;&#xFF0C;&#x5219;&#x6708;&#x5EA6;&#x884C;&#x60C5;&#x66F4;&#x5BB9;&#x6613;&#x5448;&#x73B0;&#x52A8;&#x91CF;&#x6548;&#x5E94;&#x3002;</li>
+<li>&#x4EF7;&#x91CF;&#x76F8;&#x5173;&#x6027;&#x8D8B;&#x52BF;&#x56E0;&#x5B50;: &#x5728;&#x8DE8;&#x65E5;&#x7EF4;&#x5EA6;&#x4E0A;&#xFF0C;&#x7528;&#x6307;&#x6570;&#x52A0;&#x6743;&#x7684;&#x7EBF;&#x6027;&#x56DE;&#x5F52;&#x53D6;&#x659C;&#x7387;</li>
+</ul>
+<pre><code class="lang-python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">compute_pv_corr_family</span><span class="hljs-params">(
+    da: xr.DataArray,
+    price_var: str = <span class="hljs-string">&quot;robust&quot;</span>,
+    vol_var: str = <span class="hljs-string">&quot;locVol&quot;</span>,
+    half_life: float = <span class="hljs-number">10.0</span>,
+    mode: str = <span class="hljs-string">&quot;avg&quot;</span>,   # <span class="hljs-string">&apos;avg&apos;</span> | <span class="hljs-string">&apos;std&apos;</span> | <span class="hljs-string">&apos;trend&apos;</span>
+)</span> -&gt; xr.DataArray:</span>
+    <span class="hljs-comment">## todo: mean condi ret</span>
+    <span class="hljs-keyword">if</span> mode <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> {<span class="hljs-string">&quot;avg&quot;</span>, <span class="hljs-string">&quot;std&quot;</span>, <span class="hljs-string">&quot;trend&quot;</span>}:
+        <span class="hljs-keyword">raise</span> ValueError(<span class="hljs-string">&quot;mode must be one of {&apos;avg&apos;,&apos;std&apos;,&apos;trend&apos;}&quot;</span>)
+    <span class="hljs-keyword">for</span> v <span class="hljs-keyword">in</span> (price_var, vol_var):
+        <span class="hljs-keyword">if</span> v <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> da.coords[<span class="hljs-string">&quot;V1&quot;</span>].values:
+            <span class="hljs-keyword">raise</span> ValueError(f<span class="hljs-string">&quot;Variable &apos;{v}&apos; not found in V1&quot;</span>)
+
+    price = da.sel(V1=price_var)  <span class="hljs-comment"># S x D x E</span>
+    vol   = da.sel(V1=vol_var)    <span class="hljs-comment"># S x D x E</span>
+
+    p_mean = price.mean(<span class="hljs-string">&quot;E&quot;</span>, skipna=<span class="hljs-keyword">True</span>)
+    v_mean = vol.mean(<span class="hljs-string">&quot;E&quot;</span>,   skipna=<span class="hljs-keyword">True</span>)
+    p_dm   = price - p_mean
+    v_dm   = vol   - v_mean
+    p_std  = price.std(<span class="hljs-string">&quot;E&quot;</span>, skipna=<span class="hljs-keyword">True</span>)
+    v_std  = vol.std(<span class="hljs-string">&quot;E&quot;</span>,   skipna=<span class="hljs-keyword">True</span>)
+
+    z_p = divide_safe(p_dm, p_std)
+    z_v = divide_safe(v_dm, v_std)
+    corr_day = (z_p * z_v).mean(<span class="hljs-string">&quot;E&quot;</span>, skipna=<span class="hljs-keyword">True</span>)  <span class="hljs-comment"># S x D</span>
+
+    <span class="hljs-keyword">if</span> mode == <span class="hljs-string">&quot;avg&quot;</span>:
+        fac_series = _ewm_ma_halflife(corr_day, dim=<span class="hljs-string">&quot;D&quot;</span>, half_life=half_life, mode=<span class="hljs-string">&quot;mean&quot;</span>)  <span class="hljs-comment"># S x D</span>
+        out_name = <span class="hljs-string">&quot;pv_corr_avg&quot;</span>
+
+    <span class="hljs-keyword">elif</span> mode == <span class="hljs-string">&quot;std&quot;</span>:
+        fac_series = <span class="hljs-number">-1</span>*_ewm_ma_halflife(corr_day, dim=<span class="hljs-string">&quot;D&quot;</span>, half_life=half_life, mode=<span class="hljs-string">&quot;std&quot;</span>)   <span class="hljs-comment"># S x D</span>
+        out_name = <span class="hljs-string">&quot;pv_corr_std&quot;</span>
+
+    <span class="hljs-keyword">else</span>:  <span class="hljs-comment"># mode == &apos;trend&apos;</span>
+        nD = corr_day.sizes[<span class="hljs-string">&quot;D&quot;</span>]
+        ages = xr.DataArray(np.arange(nD)[::<span class="hljs-number">-1</span>], dims=[<span class="hljs-string">&quot;D&quot;</span>], coords={<span class="hljs-string">&quot;D&quot;</span>: corr_day[<span class="hljs-string">&quot;D&quot;</span>]}).astype(<span class="hljs-string">&quot;float64&quot;</span>)
+        w = (<span class="hljs-number">0.5</span> ** (ages / float(half_life))).astype(<span class="hljs-string">&quot;float64&quot;</span>)   <span class="hljs-comment"># D</span>
+        wB = w.broadcast_like(corr_day)                            <span class="hljs-comment"># S x D</span>
+
+        x = xr.DataArray(np.arange(nD), dims=[<span class="hljs-string">&quot;D&quot;</span>], coords={<span class="hljs-string">&quot;D&quot;</span>: corr_day[<span class="hljs-string">&quot;D&quot;</span>]}).astype(<span class="hljs-string">&quot;float64&quot;</span>)
+        xB = x.broadcast_like(corr_day)                            <span class="hljs-comment"># S x D</span>
+
+        wsum = w.sum(<span class="hljs-string">&quot;D&quot;</span>, skipna=<span class="hljs-keyword">True</span>)                             <span class="hljs-comment"># scalar</span>
+        xbar = (w * x).sum(<span class="hljs-string">&quot;D&quot;</span>, skipna=<span class="hljs-keyword">True</span>) / wsum                <span class="hljs-comment"># scalar</span>
+        x_center = xB - xbar                                       <span class="hljs-comment"># S x D (broadcasted)</span>
+
+        y = corr_day                                               <span class="hljs-comment"># S x D</span>
+        ybar = (wB * y).sum(<span class="hljs-string">&quot;D&quot;</span>, skipna=<span class="hljs-keyword">True</span>) / wsum               <span class="hljs-comment"># S</span>
+        y_center = y - ybar.broadcast_like(y)                      <span class="hljs-comment"># S x D</span>
+
+        num = (wB * x_center * y_center).sum(<span class="hljs-string">&quot;D&quot;</span>, skipna=<span class="hljs-keyword">True</span>)     <span class="hljs-comment"># S</span>
+        den = (wB * x_center * x_center).sum(<span class="hljs-string">&quot;D&quot;</span>, skipna=<span class="hljs-keyword">True</span>)     <span class="hljs-comment"># S</span>
+        fac_series = <span class="hljs-number">-1</span>*divide_safe(num, den).expand_dims(D=[da[<span class="hljs-string">&quot;D&quot;</span>].values[<span class="hljs-number">-1</span>]])  <span class="hljs-comment"># S x 1 (treat as a day)</span>
+        out_name = <span class="hljs-string">&quot;pv_corr_trend&quot;</span>
+
+    factor_last = fac_series.isel(D=[<span class="hljs-number">-1</span>]).broadcast_like(vol.isel(D=[<span class="hljs-number">-1</span>]))  <span class="hljs-comment"># S x 1 x E</span>
+    out = xr.concat([factor_last], dim=<span class="hljs-string">&quot;V1&quot;</span>).assign_coords(V1=np.array([out_name]))
+    <span class="hljs-keyword">return</span> out.transpose(<span class="hljs-string">&quot;S&quot;</span>,<span class="hljs-string">&quot;D&quot;</span>,<span class="hljs-string">&quot;E&quot;</span>,<span class="hljs-string">&quot;V1&quot;</span>)
+</code></pre>
+</li>
+</ul>
+<ul>
+<li>&#x4E0A;&#x4E0B;&#x884C;&#x6CE2;&#x52A8;&#x7387;&#x4E0D;&#x5BF9;&#x79F0;&#x6027;: &#x5BF9;&#x6BCF;&#x4E2A;&#x4EA4;&#x6613;&#x65E5;&#xFF0C;&#x628A;&#x5206;&#x949F;&#x6536;&#x76CA;&#x5E73;&#x65B9;&#x5E76;&#x5206;&#x65B9;&#x5411;&#x7D2F;&#x52A0;&#x3002;&#x6700;&#x540E;&#x518D;&#x53D6;d&#x65E5;&#x5E73;&#x5747;&#x3002;<ul>
+<li>RSJ &#x8861;&#x91CF;&#x4E86;&#x4E0A;&#x4E0B;&#x884C;&#x6CE2;&#x52A8;&#x7684;&#x4E0D;&#x5BF9;&#x79F0;&#x6027;&#xFF1B;RSJ &#x901A;&#x5E38;&#x6709;&#x8D1F;&#x98CE;&#x9669;&#x6EA2;&#x4EF7;&#xFF0C;&#x77ED;&#x671F;&#x65E5;&#x5185;&#x7684;&#x60C5;&#x7EEA;&#x4E0D;&#x7A33;&#x5B9A;&#x7684;&#x5927;&#x5E45;&#x4E0A;&#x6DA8;&#x5F80;&#x5F80;&#x8DDF;&#x7740;&#x672A;&#x6765;&#x7684;&#x8865;&#x8DCC;&#xFF08;RSJ &#x8D8A;&#x5927;&#xFF09;&#xFF0C;&#x77ED;&#x671F;&#x65E5;&#x5185;&#x60C5;&#x7EEA;&#x4E0D;&#x7A33;&#x5B9A;&#x7684;&#x5927;&#x5E45;&#x4E0B;&#x8DCC;&#x4E5F;&#x5F80;&#x5F80;&#x8DDF;&#x7740;&#x672A;&#x6765;&#x7684;&#x8865;&#x6DA8;&#x3002;</li>
+</ul>
+</li>
+</ul>
+<p><script type="math/tex; mode=display">
+RV_d=\sum r_{d,i}^2,\quad RV^{up}d=\sum r{d,i}^2\mathbf{1}{\{r{d,i}>0\}},\quad RV^{down}d=\sum r{d,i}^2\mathbf{1}{\{r{d,i}<0\}} \\
+RSJ_d = \frac{RV^{up}_d - RV^{down}_d}{RV_d}
+</script></p>
+<pre><code class="lang-python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">compute_rsj_asymmetry</span><span class="hljs-params">(
+    da: xr.DataArray,
+    ret_var: str = <span class="hljs-string">&quot;ret&quot;</span>,
+    half_life: float = <span class="hljs-number">10.0</span>,
+)</span> -&gt; xr.DataArray:</span>
+    <span class="hljs-keyword">if</span> ret_var <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> da.coords[<span class="hljs-string">&quot;V1&quot;</span>].values:
+        <span class="hljs-keyword">raise</span> ValueError(f<span class="hljs-string">&quot;Variable &apos;{ret_var}&apos; not found in V1&quot;</span>)
+
+    r = da.sel(V1=ret_var)                          <span class="hljs-comment"># S x D x E</span>
+    r2 = r * r
+    rv_all  = r2.sum(<span class="hljs-string">&quot;E&quot;</span>, skipna=<span class="hljs-keyword">True</span>)              <span class="hljs-comment"># S x D</span>
+    rv_up   = xr.where(r &gt; <span class="hljs-number">0</span>, r2, <span class="hljs-number">0.0</span>).sum(<span class="hljs-string">&quot;E&quot;</span>, skipna=<span class="hljs-keyword">True</span>)   <span class="hljs-comment"># S x D</span>
+    rv_down = xr.where(r &lt; <span class="hljs-number">0</span>, r2, <span class="hljs-number">0.0</span>).sum(<span class="hljs-string">&quot;E&quot;</span>, skipna=<span class="hljs-keyword">True</span>)   <span class="hljs-comment"># S x D</span>
+
+    rsj_day = divide_safe(rv_up - rv_down, rv_all)  <span class="hljs-comment"># S x D</span>
+    rsj_ema = _ewm_ma_halflife(rsj_day, dim=<span class="hljs-string">&quot;D&quot;</span>, half_life=half_life, mode=<span class="hljs-string">&quot;mean&quot;</span>)  <span class="hljs-comment"># S x D</span>
+
+    factor_last = rsj_ema.isel(D=[<span class="hljs-number">-1</span>]).broadcast_like(r.isel(D=[<span class="hljs-number">-1</span>]))  <span class="hljs-comment"># S x 1 x E</span>
+    out = xr.concat([factor_last], dim=<span class="hljs-string">&quot;V1&quot;</span>).assign_coords(V1=np.array([<span class="hljs-string">&quot;rsj_asym&quot;</span>]))
+    <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>*out.transpose(<span class="hljs-string">&quot;S&quot;</span>,<span class="hljs-string">&quot;D&quot;</span>,<span class="hljs-string">&quot;E&quot;</span>,<span class="hljs-string">&quot;V1&quot;</span>)
+</code></pre>
+<ul>
+<li>&#x6A21;&#x7CCA;&#x91D1;&#x989D;&#x6BD4;<ul>
+<li>&#x6A21;&#x7CCA;&#x5B9A;&#x4E49;&#xFF1A;5 &#x5206;&#x949F;&#x6EDA;&#x52A8;&#x6CE2;&#x52A8;&#x7387;&#x7684;5 &#x5206;&#x949F;&#x6EDA;&#x52A8;&#x6807;&#x51C6;&#x5DEE;&#x3002;</li>
+<li>&#x6A21;&#x7CCA;&#x91D1;&#x989D;&#x6BD4;&#xFF1A;&#x6A21;&#x7CCA;&#x503C;&#x5927;&#x4E8E;&#x65E5;&#x5747;&#x6A21;&#x7CCA;&#x503C;&#x671F;&#x95F4;&#x7684;&#x6210;&#x4EA4;&#x91CF;&#x5360;&#x5F53;&#x65E5;&#x6210;&#x4EA4;&#x91CF;&#x6BD4;&#x503C;&#xFF0C;&#x518D;&#x53D6;d&#x65E5;&#x5E73;&#x5747;&#x3002;</li>
+<li>&#x56E0;&#x5B50;&#x4ECE;&#x91D1;&#x989D;&#x7EF4;&#x5EA6;&#x7EDF;&#x8BA1;&#x4E86;&#x6295;&#x8D44;&#x8005;&#x5728;&#x6A21;&#x7CCA;&#x6027;&#x8F83;&#x5927;&#x65F6;&#x7684;&#x6210;&#x4EA4;&#x7A0B;&#x5EA6;&#xFF0C;&#x540C;&#x6837;&#x8861;&#x91CF;&#x4E86;&#x6295;&#x8D44;&#x8005;&#x5BF9;&#x6A21;&#x7CCA;&#x6027;&#x7684;&#x538C;&#x6076;&#x7A0B;&#x5EA6;&#xFF0C;&#x4E0E;&#x672A;&#x6765;&#x6536;&#x76CA;&#x8D1F;&#x76F8;&#x5173;&#xFF1B;&#x6295;&#x8D44;&#x8005;&#x5BF9;&#x6CE2;&#x52A8;&#x7387;&#x6A21;&#x7CCA;&#x6027;&#x7684;&#x538C;&#x6076;&#x5FC3;&#x7406;&#x4F1A;&#x4F7F;&#x5F97;&#x6295;&#x8D44;&#x8005;&#x6025;&#x4E8E;&#x5356;&#x51FA;&#x800C;&#x4EA7;&#x751F;&#x8FC7;&#x5EA6;&#x53CD;&#x5E94;&#xFF0C;&#x672A;&#x6765;&#x5F88;&#x53EF;&#x80FD;&#x4F1A;&#x8865;&#x6DA8;&#x3002;</li>
+<li>&#x53EF;&#x4EE5;&#x7528;&#x6210;&#x4EA4;&#x91D1;&#x989D;&#x4E5F;&#x53EF;&#x4EE5;&#x7528;&#x6210;&#x4EA4;&#x91CF;</li>
+</ul>
+</li>
+</ul>
+<pre><code class="lang-python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">compute_ambiguity_amount_ratio</span><span class="hljs-params">(
+    da: xr.DataArray,
+    ret_var: str = <span class="hljs-string">&quot;ret&quot;</span>,
+    half_life: float = <span class="hljs-number">10.0</span>,
+    mode: str = <span class="hljs-string">&quot;amount&quot;</span>,         # <span class="hljs-string">&apos;amount&apos;</span> | <span class="hljs-string">&apos;volume&apos;</span> | <span class="hljs-string">&apos;spread&apos;</span>
+)</span> -&gt; xr.DataArray:</span>
+    <span class="hljs-keyword">if</span> mode <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> {<span class="hljs-string">&quot;amount&quot;</span>, <span class="hljs-string">&quot;volume&quot;</span>, <span class="hljs-string">&quot;spread&quot;</span>}:
+        <span class="hljs-keyword">raise</span> ValueError(<span class="hljs-string">&quot;mode must be one of {&apos;amount&apos;,&apos;volume&apos;,&apos;spread&apos;}&quot;</span>)
+    <span class="hljs-keyword">for</span> v <span class="hljs-keyword">in</span> (ret_var, <span class="hljs-string">&quot;locVol&quot;</span>, <span class="hljs-string">&quot;volume&quot;</span>):
+        <span class="hljs-keyword">if</span> v <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> da.coords[<span class="hljs-string">&quot;V1&quot;</span>].values:
+            <span class="hljs-keyword">raise</span> ValueError(f<span class="hljs-string">&quot;Variable &apos;{v}&apos; not found in V1&quot;</span>)
+
+    r   = da.sel(V1=ret_var)        <span class="hljs-comment"># S x D x E</span>
+    amt = da.sel(V1=<span class="hljs-string">&quot;locVol&quot;</span>)     <span class="hljs-comment"># S x D x E  (Amount &#x2261; locVol)</span>
+    vol = da.sel(V1=<span class="hljs-string">&quot;volume&quot;</span>)    <span class="hljs-comment"># S x D x E  (Quantity)</span>
+
+    sigma = r.rolling(E=<span class="hljs-number">5</span>, min_periods=<span class="hljs-number">5</span>).std()
+    amb   = sigma.rolling(E=<span class="hljs-number">5</span>, min_periods=<span class="hljs-number">5</span>).std()
+
+    amb_day_mean = amb.mean(<span class="hljs-string">&quot;E&quot;</span>, skipna=<span class="hljs-keyword">True</span>).broadcast_like(amb)
+    fog = amb &gt; amb_day_mean
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">_daily_ratio</span><span class="hljs-params">(x: xr.DataArray)</span> -&gt; xr.DataArray:</span>
+        fog_mean = x.where(fog).mean(<span class="hljs-string">&quot;E&quot;</span>, skipna=<span class="hljs-keyword">True</span>)  <span class="hljs-comment"># S x D</span>
+        all_mean = x.mean(<span class="hljs-string">&quot;E&quot;</span>, skipna=<span class="hljs-keyword">True</span>)             <span class="hljs-comment"># S x D</span>
+        <span class="hljs-keyword">return</span> divide_safe(fog_mean, all_mean)          <span class="hljs-comment"># S x D</span>
+
+    <span class="hljs-keyword">if</span> mode <span class="hljs-keyword">in</span> {<span class="hljs-string">&quot;amount&quot;</span>, <span class="hljs-string">&quot;spread&quot;</span>}:
+        ratio_amt_day = _daily_ratio(amt)               <span class="hljs-comment"># S x D</span>
+    <span class="hljs-keyword">if</span> mode <span class="hljs-keyword">in</span> {<span class="hljs-string">&quot;volume&quot;</span>, <span class="hljs-string">&quot;spread&quot;</span>}:
+        ratio_vol_day = _daily_ratio(vol)              <span class="hljs-comment"># S x D</span>
+
+    <span class="hljs-keyword">if</span> mode == <span class="hljs-string">&quot;amount&quot;</span>:
+        series_day = ratio_amt_day
+        fac_name = <span class="hljs-string">&quot;amb_amount_ratio&quot;</span>
+    <span class="hljs-keyword">elif</span> mode == <span class="hljs-string">&quot;volume&quot;</span>:
+        series_day = ratio_vol_day
+        fac_name = <span class="hljs-string">&quot;amb_volume_ratio&quot;</span>
+    <span class="hljs-keyword">else</span>:
+        spread_day = ratio_amt_day - ratio_vol_day      <span class="hljs-comment"># S x D</span>
+        std10 = spread_day.rolling(D=half_life, min_periods=<span class="hljs-number">1</span>).std()  <span class="hljs-comment"># S x D</span>
+        neg_mask = spread_day &lt; <span class="hljs-number">0</span>
+        adjusted = xr.where(neg_mask, divide_safe(spread_day, std10), spread_day)  <span class="hljs-comment"># S x D</span>
+
+        s1 = spread_day.where(spread_day &lt; <span class="hljs-number">0</span>).fillna(<span class="hljs-number">0.0</span>).sum(<span class="hljs-string">&quot;S&quot;</span>, skipna=<span class="hljs-keyword">True</span>)   <span class="hljs-comment"># D</span>
+        s2 = adjusted.where(adjusted &lt; <span class="hljs-number">0</span>).fillna(<span class="hljs-number">0.0</span>).sum(<span class="hljs-string">&quot;S&quot;</span>, skipna=<span class="hljs-keyword">True</span>)       <span class="hljs-comment"># D</span>
+        scale = divide_safe(s1, s2)                                               <span class="hljs-comment"># D</span>
+        scaleB = scale.broadcast_like(adjusted)                                   <span class="hljs-comment"># S x D</span>
+        adjusted = xr.where(adjusted &lt; <span class="hljs-number">0</span>, adjusted * scaleB, adjusted)            <span class="hljs-comment"># S x D</span>
+        series_day = adjusted
+        fac_name = <span class="hljs-string">&quot;amb_price_spread_adj&quot;</span>
+
+    ema_mean = _ewm_ma_halflife(series_day, dim=<span class="hljs-string">&quot;D&quot;</span>, half_life=half_life, mode=<span class="hljs-string">&quot;mean&quot;</span>)  <span class="hljs-comment"># S x D</span>
+    factor_last = ema_mean.isel(D=[<span class="hljs-number">-1</span>]).broadcast_like(vol.isel(D=[<span class="hljs-number">-1</span>]))  <span class="hljs-comment"># S x 1 x E</span>
+    out = xr.concat([factor_last], dim=<span class="hljs-string">&quot;V1&quot;</span>).assign_coords(V1=np.array([fac_name]))
+    <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>*out.transpose(<span class="hljs-string">&quot;S&quot;</span>,<span class="hljs-string">&quot;D&quot;</span>,<span class="hljs-string">&quot;E&quot;</span>,<span class="hljs-string">&quot;V1&quot;</span>)
+</code></pre>
+<ul>
+<li><p>&#x65F6;&#x95F4;&#x52A0;&#x6743;&#x5E73;&#x5747;&#x7684;&#x80A1;&#x7968;&#x76F8;&#x5BF9;&#x4EF7;&#x683C;&#x4F4D;&#x7F6E;: &#x8861;&#x91CF;&#x80A1;&#x7968;&#x5728;&#x4EF7;&#x683C;&#x76F8;&#x5BF9;&#x9AD8;&#x4F4D;&#x505C;&#x7559;&#x7684;&#x65F6;&#x95F4;&#x957F;&#x77ED;&#xFF0C;&#x80A1;&#x7968;&#x5728;&#x4EF7;&#x683C;&#x76F8;&#x5BF9;&#x9AD8;&#x4F4D;&#x505C;&#x7559;&#x7684;&#x65F6;&#x95F4;&#x8D8A;&#x957F;&#xFF0C;&#x56E0;&#x5B50;&#x53D6;&#x503C;&#x8D8A;&#x5927;&#x3002;
+<script type="math/tex; mode=display">
+  \mathrm{ARPP}=\frac{1}{T}\int_0^T \mathrm{RPP}_t\,dt =\frac{\left(\frac{1}{T}\int_0^T P_t\,dt\right)-L}{H-L} =\frac{\mathrm{TWAP}-L}{H-L}
+  </script></p>
+<pre><code class="lang-python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">compute_arpp</span><span class="hljs-params">(
+    da: xr.DataArray,
+    half_life: float = <span class="hljs-number">10.0</span>,
+)</span> -&gt; xr.DataArray:</span>
+    <span class="hljs-keyword">for</span> v <span class="hljs-keyword">in</span> (<span class="hljs-string">&quot;robust&quot;</span>, <span class="hljs-string">&quot;high&quot;</span>, <span class="hljs-string">&quot;low&quot;</span>):
+        <span class="hljs-keyword">if</span> v <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> da.coords[<span class="hljs-string">&quot;V1&quot;</span>].values:
+            <span class="hljs-keyword">raise</span> ValueError(f<span class="hljs-string">&quot;Variable &apos;{v}&apos; not found in V1&quot;</span>)
+
+    price = da.sel(V1=<span class="hljs-string">&quot;robust&quot;</span>)
+    high  = da.sel(V1=<span class="hljs-string">&quot;high&quot;</span>)
+    low   = da.sel(V1=<span class="hljs-string">&quot;low&quot;</span>)
+
+    twap_day = price.mean(<span class="hljs-string">&quot;E&quot;</span>, skipna=<span class="hljs-keyword">True</span>)
+    high_day = high.max(<span class="hljs-string">&quot;E&quot;</span>, skipna=<span class="hljs-keyword">True</span>)
+    low_day  = low.min(<span class="hljs-string">&quot;E&quot;</span>, skipna=<span class="hljs-keyword">True</span>)
+
+    denom = high_day - low_day
+    arpp_day = divide_safe(twap_day - low_day, denom)
+    arpp_day = xr.where(np.isfinite(arpp_day), arpp_day.clip(<span class="hljs-number">0.0</span>, <span class="hljs-number">1.0</span>), np.nan)
+    arpp_ema = _ewm_ma_halflife(arpp_day, dim=<span class="hljs-string">&quot;D&quot;</span>, half_life=half_life, mode=<span class="hljs-string">&quot;mean&quot;</span>)
+    factor_last = arpp_ema.isel(D=[<span class="hljs-number">-1</span>]).broadcast_like(price.isel(D=[<span class="hljs-number">-1</span>]))
+    out = xr.concat([factor_last], dim=<span class="hljs-string">&quot;V1&quot;</span>).assign_coords(V1=np.array([<span class="hljs-string">&quot;arpp&quot;</span>]))
+    <span class="hljs-keyword">return</span> out.transpose(<span class="hljs-string">&quot;S&quot;</span>,<span class="hljs-string">&quot;D&quot;</span>,<span class="hljs-string">&quot;E&quot;</span>,<span class="hljs-string">&quot;V1&quot;</span>)
+</code></pre>
+</li>
+</ul>
+<ul>
+<li><p>&#x975E;&#x6D41;&#x52A8;&#x6027;&#xFF1A;</p>
+<ul>
+<li>&#x5206;&#x949F;&#x7EA7;&#x201C;&#x6700;&#x77ED;&#x8DEF;&#x5F84;&#x201D;</li>
+</ul>
+<p><script type="math/tex; mode=display">
+  \mathrm{shortcut}_t=2(\mathrm{high}_t-\mathrm{low}_t)-|\,\mathrm{close}_t-\mathrm{open}_t\,| .
+  </script></p>
+<ul>
+<li>&#x5F53;&#x65E5;&#x975E;&#x6D41;&#x52A8;&#x6027;&#xFF0C;&#x518D;&#x53D6;d&#x65E5;&#x5E73;&#x5747;</li>
+</ul>
+<p><script type="math/tex; mode=display">
+  \mathrm{ILLIQ}{\text{day}}=\sum{t\in\text{day}} \frac{\mathrm{shortcut}_t}{\mathrm{Amount}t}.
+  </script></p>
+<pre><code class="lang-python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">compute_illiq_shortcut</span><span class="hljs-params">(
+    da: xr.DataArray,
+    half_life: float = <span class="hljs-number">10.0</span>,
+)</span> -&gt; xr.DataArray:</span>
+    <span class="hljs-keyword">for</span> v <span class="hljs-keyword">in</span> (<span class="hljs-string">&quot;open&quot;</span>, <span class="hljs-string">&quot;robust&quot;</span>, <span class="hljs-string">&quot;high&quot;</span>, <span class="hljs-string">&quot;low&quot;</span>, <span class="hljs-string">&quot;locVol&quot;</span>):
+        <span class="hljs-keyword">if</span> v <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> da.coords[<span class="hljs-string">&quot;V1&quot;</span>].values:
+            <span class="hljs-keyword">raise</span> ValueError(f<span class="hljs-string">&quot;Variable &apos;{v}&apos; not found in V1&quot;</span>)
+
+    o = da.sel(V1=<span class="hljs-string">&quot;open&quot;</span>)       <span class="hljs-comment"># S x D x E</span>
+    c = da.sel(V1=<span class="hljs-string">&quot;robust&quot;</span>)
+    h = da.sel(V1=<span class="hljs-string">&quot;high&quot;</span>)
+    l = da.sel(V1=<span class="hljs-string">&quot;low&quot;</span>)
+    amt = da.sel(V1=<span class="hljs-string">&quot;locVol&quot;</span>)   <span class="hljs-comment"># S x D x E</span>
+
+    shortcut = <span class="hljs-number">2.0</span> * (h - l) - (c - o).abs()                       <span class="hljs-comment"># S x D x E</span>
+    ratio = divide_safe(shortcut, amt)                              <span class="hljs-comment"># S x D x E</span>
+    illiq_day = ratio.sum(<span class="hljs-string">&quot;E&quot;</span>, skipna=<span class="hljs-keyword">True</span>)                         <span class="hljs-comment"># S x D</span>
+    illiq_ema = _ewm_ma_halflife(illiq_day, dim=<span class="hljs-string">&quot;D&quot;</span>, half_life=half_life, mode=<span class="hljs-string">&quot;mean&quot;</span>)  <span class="hljs-comment"># S x D</span>
+    factor_last = illiq_ema.isel(D=[<span class="hljs-number">-1</span>]).broadcast_like(c.isel(D=[<span class="hljs-number">-1</span>]))  <span class="hljs-comment"># S x 1 x E</span>
+
+    out = xr.concat([factor_last], dim=<span class="hljs-string">&quot;V1&quot;</span>).assign_coords(V1=np.array([<span class="hljs-string">&quot;illiq_shortcut&quot;</span>]))
+    <span class="hljs-keyword">return</span> out.transpose(<span class="hljs-string">&quot;S&quot;</span>,<span class="hljs-string">&quot;D&quot;</span>,<span class="hljs-string">&quot;E&quot;</span>,<span class="hljs-string">&quot;V1&quot;</span>)
+</code></pre>
+</li>
+</ul>
+<ul>
+<li><p>&#x8D1F;&#x504F;&#x5EA6;&#x7CFB;&#x6570;&#xFF1A;&#x8D1F;&#x504F;&#x5EA6;&#x7CFB;&#x6570;&#x9AD8;&#x7684;&#x80A1;&#x7968;&#x6709;&#x7740;&#x66F4;&#x9AD8;&#x7684;&#x66B4;&#x8DCC;&#x53EF;&#x80FD;&#xFF0C;&#x4E5F;&#x5C31;&#x6709;&#x7740;&#x671F;&#x671B;&#x66F4;&#x9AD8;&#x7684;&#x98CE;&#x9669;&#x6EA2;&#x4EF7;&#x3002;</p>
+<p><script type="math/tex; mode=display">
+  N C S K E W_i=\frac{-(n(n-1))^{1.5} \sum\left(r_{i t}-\bar{r}_l\right)^3}{(n-1)(n-2)\left(\sum\left(r_{i t}-\bar{r}_l\right)^2\right)^{1.5}}
+  </script></p>
+<pre><code class="lang-python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">compute_ncskew</span><span class="hljs-params">(
+    da: xr.DataArray,
+    ret_var: str = <span class="hljs-string">&quot;ret&quot;</span>,
+    half_life: float = <span class="hljs-number">10.0</span>,
+)</span> -&gt; xr.DataArray:</span>
+    <span class="hljs-keyword">if</span> ret_var <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> da.coords[<span class="hljs-string">&quot;V1&quot;</span>].values:
+        <span class="hljs-keyword">raise</span> ValueError(f<span class="hljs-string">&quot;Variable &apos;{ret_var}&apos; not found in V1&quot;</span>)
+
+    r_min = da.sel(V1=ret_var)                         <span class="hljs-comment"># S x D x E</span>
+    r_day = (<span class="hljs-number">1.0</span> + r_min).prod(<span class="hljs-string">&quot;E&quot;</span>, skipna=<span class="hljs-keyword">True</span>) - <span class="hljs-number">1.0</span> <span class="hljs-comment"># S x D</span>
+
+    mu = _ewm_ma_halflife(r_day, dim=<span class="hljs-string">&quot;D&quot;</span>, half_life=half_life, mode=<span class="hljs-string">&quot;mean&quot;</span>)  <span class="hljs-comment"># S x D</span>
+    sigma = _ewm_ma_halflife(r_day, dim=<span class="hljs-string">&quot;D&quot;</span>, half_life=half_life, mode=<span class="hljs-string">&quot;std&quot;</span>)<span class="hljs-comment"># S x D</span>
+
+    c = r_day - mu
+    m3_ewm = _ewm_ma_halflife(c**<span class="hljs-number">3</span>, dim=<span class="hljs-string">&quot;D&quot;</span>, half_life=half_life, mode=<span class="hljs-string">&quot;mean&quot;</span>)  <span class="hljs-comment"># S x D</span>
+
+    denom = sigma ** <span class="hljs-number">3</span>
+    ncs = - divide_safe(m3_ewm, denom)                 <span class="hljs-comment"># S x D</span>
+
+    factor_last = ncs.isel(D=[<span class="hljs-number">-1</span>]).broadcast_like(r_min.isel(D=[<span class="hljs-number">-1</span>]))  <span class="hljs-comment"># S x 1 x E</span>
+    out = xr.concat([factor_last], dim=<span class="hljs-string">&quot;V1&quot;</span>).assign_coords(V1=np.array([<span class="hljs-string">&quot;ncskew_ewm&quot;</span>]))
+    <span class="hljs-keyword">return</span> out.transpose(<span class="hljs-string">&quot;S&quot;</span>,<span class="hljs-string">&quot;D&quot;</span>,<span class="hljs-string">&quot;E&quot;</span>,<span class="hljs-string">&quot;V1&quot;</span>)
+</code></pre>
+</li>
+</ul>
+<ul>
+<li><p>&#x4EF7;&#x683C;&#x81EA;&#x76F8;&#x5173;&#x6027;&#x56E0;&#x5B50;:</p>
+<ul>
+<li>&#x4EF7;&#x683C;&#x4E00;&#x9636;&#x5DEE;&#x5206;&#x5E8F;&#x5217; (ret &#x5E8F;&#x5217;)&#xFF0C;&#x53D6;&#x6B63;&#x7684;&#x90E8;&#x5206;&#x505A;&#x4E00;&#x9636;&#x81EA;&#x76F8;&#x5173;&#xFF0C;&#x8D1F;&#x7684;&#x90E8;&#x5206;&#x4E5F;&#x505A;&#x4E00;&#x9636;&#x81EA;&#x76F8;&#x5173;&#xFF0C;&#x7136;&#x540E;&#x5408;&#x5E76;</li>
+</ul>
+<pre><code class="lang-python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">compute_cdpp</span><span class="hljs-params">(
+    da: xr.DataArray,
+    price_var: str = <span class="hljs-string">&quot;robust&quot;</span>,
+    half_life: float = <span class="hljs-number">10.0</span>,
+)</span> -&gt; xr.DataArray:</span>
+    <span class="hljs-keyword">if</span> <span class="hljs-string">&quot;robust&quot;</span> <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> da.coords[<span class="hljs-string">&quot;V1&quot;</span>].values:
+        <span class="hljs-keyword">raise</span> ValueError(f<span class="hljs-string">&quot;Variable &apos;{&quot;</span>robust<span class="hljs-string">&quot;}&apos; not found in V1&quot;</span>)
+
+    p = da.sel(V1=<span class="hljs-string">&quot;robust&quot;</span>)
+    dP = p.diff(<span class="hljs-string">&quot;E&quot;</span>)
+    dP = dP.reindex(E=p[<span class="hljs-string">&quot;E&quot;</span>])
+    dP_lead = dP.shift(E=<span class="hljs-number">-1</span>)
+    pos = dP &gt; <span class="hljs-number">0</span>
+    neg = dP &lt; <span class="hljs-number">0</span>
+
+    dP_pos = xr.where(pos, dP, np.nan)
+    dP_lead_pos = xr.where(pos, dP_lead, np.nan)
+    corr_pos_day = xr.corr(dP_pos, dP_lead_pos, dim=<span class="hljs-string">&quot;E&quot;</span>)   <span class="hljs-comment"># S x D</span>
+
+    dP_neg = xr.where(neg, dP, np.nan)
+    dP_lead_neg = xr.where(neg, dP_lead, np.nan)
+    corr_neg_day = xr.corr(dP_neg, dP_lead_neg, dim=<span class="hljs-string">&quot;E&quot;</span>)   <span class="hljs-comment"># S x D</span>
+
+    ema_pos = _ewm_ma_halflife(corr_pos_day, dim=<span class="hljs-string">&quot;D&quot;</span>, half_life=half_life, mode=<span class="hljs-string">&quot;mean&quot;</span>)
+    ema_neg = _ewm_ma_halflife(corr_neg_day, dim=<span class="hljs-string">&quot;D&quot;</span>, half_life=half_life, mode=<span class="hljs-string">&quot;mean&quot;</span>)
+
+    mu_p = ema_pos.isel(D=<span class="hljs-number">-1</span>).mean(<span class="hljs-string">&quot;S&quot;</span>, skipna=<span class="hljs-keyword">True</span>)
+    sd_p = ema_pos.isel(D=<span class="hljs-number">-1</span>).std(<span class="hljs-string">&quot;S&quot;</span>,  skipna=<span class="hljs-keyword">True</span>)
+    z_p = divide_safe(ema_pos.isel(D=<span class="hljs-number">-1</span>) - mu_p, sd_p)
+
+    mu_n = ema_neg.isel(D=<span class="hljs-number">-1</span>).mean(<span class="hljs-string">&quot;S&quot;</span>, skipna=<span class="hljs-keyword">True</span>)
+    sd_n = ema_neg.isel(D=<span class="hljs-number">-1</span>).std(<span class="hljs-string">&quot;S&quot;</span>,  skipna=<span class="hljs-keyword">True</span>)
+    z_n = divide_safe(ema_neg.isel(D=<span class="hljs-number">-1</span>) - mu_n, sd_n)
+
+    combined = <span class="hljs-number">0.5</span> * (z_p + z_n)                       <span class="hljs-comment"># S</span>
+    series_last = combined.expand_dims(D=[da[<span class="hljs-string">&quot;D&quot;</span>].values[<span class="hljs-number">-1</span>]])  <span class="hljs-comment"># S x 1</span>
+
+    factor_last = series_last.broadcast_like(p.isel(D=[<span class="hljs-number">-1</span>]))    <span class="hljs-comment"># S x 1 x E</span>
+    out = xr.concat([factor_last], dim=<span class="hljs-string">&quot;V1&quot;</span>).assign_coords(V1=np.array([<span class="hljs-string">&quot;cdpp&quot;</span>]))
+    <span class="hljs-keyword">return</span> out.transpose(<span class="hljs-string">&quot;S&quot;</span>,<span class="hljs-string">&quot;D&quot;</span>,<span class="hljs-string">&quot;E&quot;</span>,<span class="hljs-string">&quot;V1&quot;</span>)
+</code></pre>
+</li>
+<li><p>&#x6210;&#x4EA4;&#x91CF;&#x5206;&#x5E03;</p>
+<ul>
+<li>&#x8BA1;&#x7B97;&#x540C;&#x4EF7;&#x6210;&#x4EA4;&#x91CF;&#xFF1A;&#x5C06;&#x65E5;&#x5185;&#x76F8;&#x540C;&#x5206;&#x949F;&#x6536;&#x76D8;&#x4EF7;&#x7684;&#x6210;&#x4EA4;&#x91CF;&#x7D2F;&#x52A0;&#x81F3;&#x4E00;&#x8D77;&#xFF0C;&#x5F97;&#x5230;&#x5728;&#x5F53;&#x524D;&#x4EF7;&#x683C;&#x4E0A;&#x7684;&#x6210;&#x4EA4;&#x91CF;&#x603B;&#x548C;&#xFF1B;</li>
+<li>&#x5C06;&#x6210;&#x4EA4;&#x91CF;&#x7D2F;&#x8BA1;&#x6700;&#x5927;&#x7684;&#x4EF7;&#x683C;&#x5B9A;&#x4E49;&#x4E3A;&#x8BE5;&#x80A1;&#x5F53;&#x65E5;&#x7684;&#x6210;&#x4EA4;&#x91CF;&#x652F;&#x6491;&#x70B9; Volume Support Price&#xFF0C;&#x5305;&#x542B;&#x8BE5;&#x652F;&#x6491;&#x70B9;&#x7684;&#x9644;&#x8FD1;&#x533A;&#x57DF;&#x5B9A;&#x4E49;&#x4E3A;&#x6210;&#x4EA4;&#x91CF;&#x652F;&#x6491;&#x533A;&#x57DF; Volume Support Area&#xFF1B;</li>
+<li>&#x9010;&#x6B65;&#x8BA1;&#x7B97; VSP &#x5468;&#x56F4;&#x7684;&#x6210;&#x4EA4;&#x91CF;&#x7D2F;&#x8BA1;&#x503C;&#xFF08;&#x4EF7;&#x683C;&#x7531;&#x8FD1;&#x53CA;&#x8FDC;&#xFF0C;&#x6210;&#x4EA4;&#x91CF;&#x7531;&#x5927;&#x53CA;&#x5C0F;&#xFF09;&#xFF0C;&#x8BE5;&#x7D2F;&#x8BA1;&#x503C;&#x4E0E;&#x5168;&#x5929;&#x6210;&#x4EA4;&#x91CF;&#x603B;&#x548C;&#x7684;&#x6BD4;&#x503C;&#x8D85; 50 \% &#x7684;&#x6700;&#x5C0F;&#x533A;&#x57DF;&#xFF0C;&#x5373;&#x4E3A;&#x6210;&#x4EA4;&#x91CF;&#x652F;&#x6491;&#x533A;&#x57DF;VSA&#xFF0C;&#x8BE5;&#x533A;&#x57DF;&#x4E0A;&#x9650;&#x4EF7;&#x683C;&#x4E3A;VSA_High&#xFF0C;&#x4E0B;&#x9650;&#x4EF7;&#x683C;&#x4E3A;VSA_Low&#xFF1B;</li>
+<li>VSA_High, VSA_Low &#x53EF;&#x4EE5;&#x5206;&#x522B;&#x4E0E;&#x5F53;&#x65E5;&#x6700;&#x9AD8;&#x4EF7;&#x3001;&#x6700;&#x4F4E;&#x4EF7;&#x3001;&#x6536;&#x76D8;&#x4EF7;&#x8FDB;&#x884C;&#x6BD4;&#x8F83;&#x5F97;&#x5230;&#x4E0D;&#x540C;feature</li>
+</ul>
+<pre><code class="lang-python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">compute_volume_support_pb</span><span class="hljs-params">(
+    da: xr.DataArray,
+    half_life: float = <span class="hljs-number">10.0</span>,
+    mode: str = <span class="hljs-string">&quot;b&quot;</span>
+)</span> -&gt; xr.DataArray:</span>
+    <span class="hljs-keyword">for</span> v <span class="hljs-keyword">in</span> (<span class="hljs-string">&quot;robust&quot;</span>, <span class="hljs-string">&quot;volume&quot;</span>, <span class="hljs-string">&quot;high&quot;</span>, <span class="hljs-string">&quot;low&quot;</span>):
+        <span class="hljs-keyword">if</span> v <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> da.coords[<span class="hljs-string">&quot;V1&quot;</span>].values:
+            <span class="hljs-keyword">raise</span> ValueError(f<span class="hljs-string">&quot;Variable &apos;{v}&apos; not found in V1&quot;</span>)
+
+    price = da.sel(V1=<span class="hljs-string">&quot;robust&quot;</span>)  <span class="hljs-comment"># S x D x E</span>
+    vol   = da.sel(V1=<span class="hljs-string">&quot;volume&quot;</span>) <span class="hljs-comment"># S x D x E</span>
+    high  = da.sel(V1=<span class="hljs-string">&quot;high&quot;</span>)   <span class="hljs-comment"># S x D x E</span>
+    low   = da.sel(V1=<span class="hljs-string">&quot;low&quot;</span>)    <span class="hljs-comment"># S x D x E</span>
+
+    high_day = high.max(<span class="hljs-string">&quot;E&quot;</span>, skipna=<span class="hljs-keyword">True</span>)   <span class="hljs-comment"># S x D</span>
+    low_day  = low.min(<span class="hljs-string">&quot;E&quot;</span>, skipna=<span class="hljs-keyword">True</span>)    <span class="hljs-comment"># S x D</span>
+    close_day  = price.isel(E=<span class="hljs-number">-1</span>)    <span class="hljs-comment"># S x D</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">_vsa_bounds_1d</span><span class="hljs-params">(p_arr: np.ndarray, v_arr: np.ndarray)</span>:</span>
+        mask = np.isfinite(p_arr) &amp; np.isfinite(v_arr) &amp; (v_arr &gt; <span class="hljs-number">0</span>)
+        <span class="hljs-keyword">if</span> mask.sum() == <span class="hljs-number">0</span>:
+            <span class="hljs-keyword">return</span> np.nan, np.nan
+        df = pd.DataFrame({<span class="hljs-string">&quot;p&quot;</span>: p_arr[mask], <span class="hljs-string">&quot;v&quot;</span>: v_arr[mask]})
+        agg = df.groupby(<span class="hljs-string">&quot;p&quot;</span>, sort=<span class="hljs-keyword">True</span>)[<span class="hljs-string">&quot;v&quot;</span>].sum()
+        total = float(agg.sum())
+        <span class="hljs-keyword">if</span> total &lt;= <span class="hljs-number">0</span>:
+            <span class="hljs-keyword">return</span> np.nan, np.nan
+
+        vmax = agg.max()
+        vsp = agg[agg == vmax].index.values.mean()
+
+        uniq_prices = agg.index.values
+        vols = agg.values
+        dist = np.abs(uniq_prices - vsp)
+        order = np.lexsort((-vols, dist))
+
+        cum = <span class="hljs-number">0.0</span>
+        sel = np.zeros_like(order, dtype=bool)
+        <span class="hljs-keyword">for</span> idx <span class="hljs-keyword">in</span> order:
+            sel[idx] = <span class="hljs-keyword">True</span>
+            cum += vols[idx]
+            <span class="hljs-keyword">if</span> cum &gt;= <span class="hljs-number">0.5</span> * total:
+                <span class="hljs-keyword">break</span>
+        chosen_prices = uniq_prices[sel]
+        <span class="hljs-keyword">return</span> float(chosen_prices.min()), float(chosen_prices.max())
+
+    vsa_low, vsa_high = xr.apply_ufunc(
+        _vsa_bounds_1d,
+        price, vol,
+        input_core_dims=[[<span class="hljs-string">&quot;E&quot;</span>], [<span class="hljs-string">&quot;E&quot;</span>]],
+        output_core_dims=[[], []],
+        vectorize=<span class="hljs-keyword">True</span>,
+        dask=<span class="hljs-string">&quot;parallelized&quot;</span>,
+        output_dtypes=[np.float64, np.float64],
+    )
+
+    <span class="hljs-keyword">if</span> mode == <span class="hljs-string">&quot;p&quot;</span>:
+        vsa_low2max_day  = divide_safe(high_day - vsa_low, high_day)
+        vsa_ema = _ewm_ma_halflife(vsa_low2max_day,  dim=<span class="hljs-string">&quot;D&quot;</span>, half_life=half_life, mode=<span class="hljs-string">&quot;mean&quot;</span>)
+        out_name = <span class="hljs-string">&quot;vsa_p_low2max&quot;</span>
+    <span class="hljs-keyword">elif</span> mode == <span class="hljs-string">&quot;b&quot;</span>:
+        vsa_high2min_day = divide_safe(vsa_high - low_day, low_day)
+        vsa_ema = _ewm_ma_halflife(vsa_high2min_day, dim=<span class="hljs-string">&quot;D&quot;</span>, half_life=half_life, mode=<span class="hljs-string">&quot;mean&quot;</span>)
+        out_name = <span class="hljs-string">&quot;vsa_b_high2min&quot;</span>
+    <span class="hljs-keyword">elif</span> mode == <span class="hljs-string">&apos;r&apos;</span>:
+        vsa_high2min_day = divide_safe(vsa_low - close_day, close_day)
+        vsa_ema = _ewm_ma_halflife(vsa_high2min_day, dim=<span class="hljs-string">&quot;D&quot;</span>, half_life=half_life, mode=<span class="hljs-string">&quot;mean&quot;</span>)
+        out_name =
+
+    f_last = vsa_ema.isel(D=[<span class="hljs-number">-1</span>]).broadcast_like(vol.isel(D=[<span class="hljs-number">-1</span>]))  <span class="hljs-comment"># S x 1 x E</span>
+
+    out = xr.concat([f_last], dim=<span class="hljs-string">&quot;V1&quot;</span>).assign_coords(V1=[out_name])
+    <span class="hljs-keyword">return</span> out.transpose(<span class="hljs-string">&quot;S&quot;</span>,<span class="hljs-string">&quot;D&quot;</span>,<span class="hljs-string">&quot;E&quot;</span>,<span class="hljs-string">&quot;V1&quot;</span>)
+</code></pre>
+</li>
+</ul>
+<h1 id="risk-factor"><a name="risk-factor" class="anchor-navigation-ex-anchor" href="#risk-factor"><i class="fa fa-link" aria-hidden="true"></i></a> Risk Factor</h1>
+<ul>
+<li><p>Semi-beta</p>
+<ul>
+<li>&#x57FA;&#x4E8E;&#x4E2A;&#x80A1;&#x6536;&#x76CA;&#x548C;&#x5E02;&#x573A;&#x57FA;&#x51C6;&#x6536;&#x76CA;&#x65B9;&#x5411;&#x7684;&#x4E0D;&#x540C;&#xFF0C;&#x53EF;&#x5C06;&#x4F20;&#x7EDF; Beta &#x56E0;&#x5B50;&#x62C6;&#x89E3;&#x4E3A; 4 &#x4E2A;&#x90E8;&#x5206;&#x3002;&#x4EE5;&#x4E0B;&#x5C55;&#x793A;&#x5176;&#x4E2D;&#x4E00;&#x4E2A;&#x56E0;&#x5B50; (&#x56DB;&#x79CD;&#x90FD;&#x53EF;&#x4EE5;&#x4F5C;&#x4E3A;beta measure)&#xFF1A;&#x5BF9;&#x5E94;&#x5E02;&#x573A;&#x6536;&#x76CA;&#x548C;&#x8D44;&#x4EA7;&#x6536;&#x76CA;&#x540C;&#x4E3A;&#x6B63;&#x7684;&#x60C5;&#x51B5;&#xFF0C;&#x5728; A &#x80A1;&#x5E02;&#x573A;&#x8BE5;&#x56E0;&#x5B50;&#x7684;&#x8D1F;&#x6EA2;&#x4EF7;&#x66F4;&#x660E;&#x663E;&#x3002;
+<script type="math/tex; mode=display">
+    \begin{gathered}
+    \hat{\beta}_{t, i}^P=\frac{\sum_{k=1}^m r_{t, k, i}^{+} f_{t, k}^{+}}{\sum_{k=1}^m f_{t, k}^2} \\
+    r_{t, k, i}^{+}=\max \left(r_{t, k, i}, 0\right) \\
+    f_{l, k}^{+}=\max \left(f_{t, k}, 0\right)
+    \end{gathered}
+    </script>
+&#x5176;&#x4E2D;
+&#xFF08;1&#xFF09;<script type="math/tex; ">r_{t, k, i}</script> &#x4E3A;&#x80A1;&#x7968; i &#x5728;&#x4EA4;&#x6613;&#x65E5; t &#x5185;&#x7B2C; k &#x4E2A;&#x533A;&#x95F4;&#x7684;&#x6536;&#x76CA;&#x7387;&#x6570;&#x636E;&#xFF1B;
+&#xFF08;2&#xFF09;<script type="math/tex; ">f_{t, k}</script> &#x4E3A;&#x5E02;&#x573A;&#x57FA;&#x51C6;&#x5728;&#x4EA4;&#x6613;&#x65E5; t &#x5185;&#x7B2C; k &#x4E2A;&#x533A;&#x95F4;&#x7684;&#x6536;&#x76CA;&#x7387;&#x6570;&#x636E;&#xFF0C;&#x5E02;&#x573A;&#x57FA;&#x51C6;&#x53EF;&#x4EE5;&#x4E3A;&#x6CAA;&#x6DF1; 300&#x3001;&#x4E2D;&#x8BC1; 500 &#x7B49;&#x6307;&#x6570;&#xFF1B;
+&#xFF08;3&#xFF09;<script type="math/tex; ">m</script> &#x4E3A;&#x4EA4;&#x6613;&#x65E5;t&#x5185;&#x7684;&#x65F6;&#x95F4;&#x533A;&#x95F4;&#x6570;&#x91CF;&#x3002;</li>
+</ul>
+</li>
+</ul>
 
                                 
                                 </section>
@@ -1795,7 +2445,7 @@ where N = 12.</p>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Factor Calendar","level":"1.2.13","depth":2,"next":{"title":"Reading Todo List","level":"1.2.14","depth":2,"path":"notes/temp.md","ref":"./notes/temp.md","articles":[]},"previous":{"title":"Machine Learning Notes","level":"1.2.12","depth":2,"path":"contents/mln.md","ref":"./contents/mln.md","articles":[]},"dir":"ltr"},"config":{"plugins":["mathjax","image-captions","github","anchors","anchor-navigation-ex","-sharing","sharing-plus@^0.0.2","github-buttons","embed-pdf","livereload"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"github":{"url":"https://github.com/ZizouHe/"},"livereload":{},"search":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":false},"mode":"float","multipleH1":false,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":true},"github-buttons":{"buttons":[{"user":"ZizouHe","repo":"reading-notes","type":"star","size":"small"}]},"mathjax":{"forceSVG":false,"version":"2.6-latest"},"sharing":{"qq":true,"all":["facebook","google","twitter","weibo","qq","linkedin"],"douban":false,"facebook":true,"weibo":true,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":false,"messenger":false,"line":false,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"embed-pdf":{},"image-captions":{"caption":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","align":"right","variable_name":"_pictures"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{"_pictures":[{"backlink":"./notes/RDN.html#fig1.4.2.1","level":"1.4.2","align":"right","list_caption":"Figure: Example (a) data graph and (b) model graph.","alt":"Example (a) data graph and (b) model graph.","nro":1,"url":"./pic/RDN-1.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Example (a) data graph and (b) model graph.","attributes":{},"skip":false,"key":"1.4.2.1"},{"backlink":"./notes/RDN.html#fig1.4.2.2","level":"1.4.2","align":"right","list_caption":"Figure: RDN inference algorithm.","alt":"RDN inference algorithm.","nro":2,"url":"./pic/RDN-2.png","index":2,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"RDN inference algorithm.","attributes":{},"skip":false,"key":"1.4.2.2"},{"backlink":"./notes/Faster_Frank_Wolfe.html#fig1.4.14.1","level":"1.4.14","align":"right","list_caption":"Figure: Frank-Wolfe Algorithm","alt":"Frank-Wolfe Algorithm","nro":3,"url":"./pic/Frank-Wolfe.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Frank-Wolfe Algorithm","attributes":{},"skip":false,"key":"1.4.14.1"},{"backlink":"./notes/Fin_Fan_Book.html#fig1.4.15.1","level":"1.4.15","align":"right","list_caption":"Figure: Efficient Frontier with risk-free asset","alt":"Efficient Frontier with risk-free asset","nro":4,"url":"./pic/Eff_Front_1.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Efficient Frontier with risk-free asset","attributes":{},"skip":false,"key":"1.4.15.1"},{"backlink":"./notes/Fin_Fan_Book.html#fig1.4.15.2","level":"1.4.15","align":"right","list_caption":"Figure: Efficient Frontier without risk-free asset","alt":"Efficient Frontier without risk-free asset","nro":5,"url":"./pic/Eff_Front_2.png","index":2,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Efficient Frontier without risk-free asset","attributes":{},"skip":false,"key":"1.4.15.2"}]},"title":"Reading List & Notes","gitbook":"*"},"file":{"path":"contents/factor_cal.md","mtime":"2025-05-05T02:41:50.671Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2025-08-10T20:43:38.604Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Factor Calendar","level":"1.2.13","depth":2,"next":{"title":"Reading Todo List","level":"1.2.14","depth":2,"path":"notes/temp.md","ref":"./notes/temp.md","articles":[]},"previous":{"title":"Machine Learning Notes","level":"1.2.12","depth":2,"path":"contents/mln.md","ref":"./contents/mln.md","articles":[]},"dir":"ltr"},"config":{"plugins":["mathjax","image-captions","github","anchors","anchor-navigation-ex","-sharing","sharing-plus@^0.0.2","github-buttons","embed-pdf","livereload"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"github":{"url":"https://github.com/ZizouHe/"},"livereload":{},"search":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":false},"mode":"float","multipleH1":false,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":true},"github-buttons":{"buttons":[{"user":"ZizouHe","repo":"reading-notes","type":"star","size":"small"}]},"mathjax":{"forceSVG":false,"version":"2.6-latest"},"sharing":{"qq":true,"all":["facebook","google","twitter","weibo","qq","linkedin"],"douban":false,"facebook":true,"weibo":true,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":false,"messenger":false,"line":false,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"embed-pdf":{},"image-captions":{"caption":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","align":"right","variable_name":"_pictures"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{"_pictures":[{"backlink":"./notes/RDN.html#fig1.4.2.1","level":"1.4.2","align":"right","list_caption":"Figure: Example (a) data graph and (b) model graph.","alt":"Example (a) data graph and (b) model graph.","nro":1,"url":"./pic/RDN-1.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Example (a) data graph and (b) model graph.","attributes":{},"skip":false,"key":"1.4.2.1"},{"backlink":"./notes/RDN.html#fig1.4.2.2","level":"1.4.2","align":"right","list_caption":"Figure: RDN inference algorithm.","alt":"RDN inference algorithm.","nro":2,"url":"./pic/RDN-2.png","index":2,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"RDN inference algorithm.","attributes":{},"skip":false,"key":"1.4.2.2"},{"backlink":"./notes/Faster_Frank_Wolfe.html#fig1.4.14.1","level":"1.4.14","align":"right","list_caption":"Figure: Frank-Wolfe Algorithm","alt":"Frank-Wolfe Algorithm","nro":3,"url":"./pic/Frank-Wolfe.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Frank-Wolfe Algorithm","attributes":{},"skip":false,"key":"1.4.14.1"},{"backlink":"./notes/Fin_Fan_Book.html#fig1.4.15.1","level":"1.4.15","align":"right","list_caption":"Figure: Efficient Frontier with risk-free asset","alt":"Efficient Frontier with risk-free asset","nro":4,"url":"./pic/Eff_Front_1.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Efficient Frontier with risk-free asset","attributes":{},"skip":false,"key":"1.4.15.1"},{"backlink":"./notes/Fin_Fan_Book.html#fig1.4.15.2","level":"1.4.15","align":"right","list_caption":"Figure: Efficient Frontier without risk-free asset","alt":"Efficient Frontier without risk-free asset","nro":5,"url":"./pic/Eff_Front_2.png","index":2,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Efficient Frontier without risk-free asset","attributes":{},"skip":false,"key":"1.4.15.2"}]},"title":"Reading List & Notes","gitbook":"*"},"file":{"path":"contents/factor_cal.md","mtime":"2025-08-25T01:05:15.196Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2025-08-25T01:05:17.785Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

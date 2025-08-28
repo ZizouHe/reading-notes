@@ -1,5 +1,6 @@
 import numpy as np
 import xarray as xr
+import math
 
 def _ewm_ma_halflife(x: xr.DataArray, dim: str = "D", half_life: float = 10.0, mode='mean') -> xr.DataArray:
     """Apply pandas ewm(mean) along a single dimension via xarray.apply_ufunc."""
@@ -500,4 +501,71 @@ def compute_volume_support_pb(
     f_last = vsa_ema.isel(D=[-1]).broadcast_like(vol.isel(D=[-1]))  # S x 1 x E
 
     out = xr.concat([f_last], dim="V1").assign_coords(V1=[out_name])
+    return out.transpose("S","D","E","V1")
+
+
+def _mu_abs_normal(q: float) -> float:
+    """E|Z|^q for Z~N(0,1) = 2^{q/2} / sqrt(pi) * Gamma((1+q)/2)."""
+    return (2.0 ** (q / 2.0)) / math.sqrt(math.pi) * math.gamma((1.0 + q) / 2.0)
+
+def compute_jump_volatility_family(
+    da: xr.DataArray,
+    ret_var: str = "ret",
+    half_life: float = 10.0,
+    alpha: float = 4.0,
+) -> xr.DataArray:
+    if ret_var not in da.coords["V1"].values:
+        raise ValueError(f"Variable '{ret_var}' not found in V1")
+
+    r = da.sel(V1=ret_var)  # S x D x E
+
+    rs_plus  = xr.where(r > 0, r*r, 0.0).sum("E", skipna=True)   # S x D
+    rs_minus = xr.where(r < 0, r*r, 0.0).sum("E", skipna=True)   # S x D
+
+    mu23 = _mu_abs_normal(2.0/3.0)
+    ar = r.abs() ** (2.0/3.0)
+    tp = (ar * ar.shift(E=1) * ar.shift(E=2)).sum("E", skipna=True)  # S x D
+    iv_hat = tp / (mu23 ** 3)
+
+    rv_all = (r*r).sum("E", skipna=True)                           # S x D
+    nbar = r.count("E")                                            # S x D  (per-day valid bar count)
+    delta_n = divide_safe(1.0, nbar)                               # S x D
+
+    rvjp = xr.ufuncs.maximum(rs_plus - 0.5 * iv_hat, 0.0)          # S x D
+    rvjn = xr.ufuncs.maximum(rs_minus - 0.5 * iv_hat, 0.0)         # S x D
+    srvj = rvjp - rvjn                                             # S x D
+
+    gamma = alpha * (delta_n ** 0.49) * xr.ufuncs.sqrt(iv_hat)     # S x D
+    gamma_b = gamma.broadcast_like(r)                               # S x D x E
+
+    sum_up_big   = xr.where(r >  gamma_b, r*r, 0.0).sum("E", skipna=True)  # S x D
+    sum_down_big = xr.where(r < -gamma_b, r*r, 0.0).sum("E", skipna=True)  # S x D
+
+    rvljp = xr.ufuncs.minimum(rvjp, sum_up_big)                    # S x D
+    rvljn = xr.ufuncs.minimum(rvjn, sum_down_big)                  # S x D
+    rvsjp = rvjp - rvljp                                           # S x D
+    rvsjn = rvjn - rvljn                                           # S x D
+    srvlj = rvljp - rvljn                                          # S x D
+    srvsj = rvsjp - rvsjn                                          # S x D
+
+    abs_r = r.abs()
+    W = xr.ufuncs.maximum(divide_safe(abs_r, gamma_b) - 1.0, 0.0).sum("E", skipna=True)  # S x D
+    num_tsrjv = _ewm_ma_halflife(W * srvj, dim="D", half_life=half_life, mode="mean")    # S x D
+    den_tsrjv = _ewm_ma_halflife(W,         dim="D", half_life=half_life, mode="mean")   # S x D
+    tsrjv = divide_safe(num_tsrjv, den_tsrjv)                                            # S x D
+
+    series_map = {
+        "rvjp":  _ewm_ma_halflife(rvjp,  dim="D", half_life=half_life, mode="mean"),
+        "rvjn":  _ewm_ma_halflife(rvjn,  dim="D", half_life=half_life, mode="mean"),
+        "srvj":  _ewm_ma_halflife(srvj,  dim="D", half_life=half_life, mode="mean"),
+        "rvljp": _ewm_ma_halflife(rvljp, dim="D", half_life=half_life, mode="mean"),
+        "rvljn": _ewm_ma_halflife(rvljn, dim="D", half_life=half_life, mode="mean"),
+        "rvsjp": _ewm_ma_halflife(rvsjp, dim="D", half_life=half_life, mode="mean"),
+        "rvsjn": _ewm_ma_halflife(rvsjn, dim="D", half_life=half_life, mode="mean"),
+        "srvlj": _ewm_ma_halflife(srvlj, dim="D", half_life=half_life, mode="mean"),
+        "srvsj": _ewm_ma_halflife(srvsj, dim="D", half_life=half_life, mode="mean"),
+        "tsrjv": tsrjv,
+    }
+
+    out = xr.concat(list(series_map.values()), dim="V1").assign_coords(V1=list(series_map.keys()))
     return out.transpose("S","D","E","V1")

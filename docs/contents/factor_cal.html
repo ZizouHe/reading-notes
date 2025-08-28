@@ -2382,7 +2382,145 @@ RSJ_d = \frac{RV^{up}_d - RV^{down}_d}{RV_d}
     <span class="hljs-keyword">return</span> out.transpose(<span class="hljs-string">&quot;S&quot;</span>,<span class="hljs-string">&quot;D&quot;</span>,<span class="hljs-string">&quot;E&quot;</span>,<span class="hljs-string">&quot;V1&quot;</span>)
 </code></pre>
 </li>
+<li><p>&#x8DF3;&#x8DC3;&#x6CE2;&#x52A8;&#x7387;</p>
+<ul>
+<li><p>&#x65E5;&#x5185;1&#x5206;&#x949F;/5&#x5206;&#x949F;&#x6536;&#x76CA;&#x7387;&#x5E8F;&#x5217;</p>
+</li>
+<li><p>&#x6B63;/&#x8D1F;&#x534A;&#x65B9;&#x5DEE; realized semivariance)
+<script type="math/tex; mode=display">
+    RS_t^+ \;=\; \sum_{i=1}^{n_t} r_{t,i}^2\,\mathbf{1}{\{r_{t,i}>0\}}, \qquad RS_t^- \;=\; \sum_{i=1}^{n_t} r_{t,i}^2\,\mathbf{1}{\{r_{t,i}<0\}}.
+    </script></p>
+</li>
+<li><p>&#x4E09;&#x4E58;&#x5E42;&#x53D8;&#x5DEE;&#xFF08;Tripower Variation, &#x8DF3;&#x8DC3;&#x7A33;&#x5065;&#x7684;&#x5DF2;&#x5B9E;&#x73B0;&#x65B9;&#x5DEE;&#xFF09;&#xFF1A;
+<script type="math/tex; mode=display">
+    \widehat{IV}t \;=\; \mu{2/3}^{-3}\sum_{i=3}^{n_t} \big|r_{t,i}\big|^{2/3}\big|r_{t,i-1}\big|^{2/3}\big|r_{t,i-2}\big|^{2/3}, \\ \mu_q \;=\; \mathbb{E}|Z|^q = \frac{2^{q/2}}{\sqrt{\pi}}\Gamma\!\Big(\tfrac{1+q}{2}\Big),\; Z\sim\mathcal N(0,1).
+    </script></p>
+</li>
+<li><p>&#x4E0A;/&#x4E0B;&#x884C;&#x8DF3;&#x8DC3;&#x6CE2;&#x52A8;&#x7387;</p>
+</li>
 </ul>
+<p><script type="math/tex; mode=display">
+  \,RVJP_t \;=\; \max\!\Big(RS_t^+ - \tfrac12 \widehat{IV}_t,\; 0\Big), \\RVJN_t \;=\; \max\!\Big(RS_t^- - \tfrac12 \widehat{IV}_t,\; 0\Big)
+  </script></p>
+<ul>
+<li>&#x4E0A;&#x4E0B;&#x884C;&#x8DF3;&#x8DC3;&#x4E0D;&#x5BF9;&#x79F0;&#x6027;</li>
+</ul>
+<p><script type="math/tex; mode=display">
+  SRVJ_t \;=\; RVJP_t - RVJN_t
+  </script></p>
+<ul>
+<li>&#x5927;/&#x5C0F;&#x8DF3;&#x5206;&#x89E3;&#x7684;&#x9608;&#x503C;</li>
+</ul>
+<p><script type="math/tex; mode=display">
+  \,\gamma_t \;=\; \alpha\,\Delta_n^{0.49}\sqrt{\widehat{IV}_t}\,, \; \Delta_n \;=\; \frac{1}{n_t},\;\; \alpha \approx 4.
+  </script></p>
+</li>
+</ul>
+<ul>
+<li><p>&#x201C;&#x5927;&#x7684;&#x201D;&#x4E0A;/&#x4E0B;&#x884C;&#x8DF3;&#x8DC3;&#x6CE2;&#x52A8;&#x7387;</p>
+<p><script type="math/tex; mode=display">
+  \,RVLJP_{\gamma,t} \;=\; \min\!\Big(RVJP_t,\;\sum_{i=1}^{n_t} r_{t,i}^2\mathbf{1}{\{r{t,i}>\gamma_t\}}\Big)\,\\
+  
+  \,RVLJN_{\gamma,t} \;=\; \min\!\Big(RVJN_t,\;\sum_{i=1}^{n_t} r_{t,i}^2\mathbf{1}{\{r{t,i}<-\gamma_t\}}\Big)\,
+  </script></p>
+</li>
+<li><p>&#x201C;&#x5C0F;&#x7684;&#x201D;&#x4E0A;/&#x4E0B;&#x884C;&#x8DF3;&#x8DC3;&#x6CE2;&#x52A8;&#x7387;</p>
+<p><script type="math/tex; mode=display">
+  \,RVSJP_t \;=\; RVJP_t - RVLJP_{\gamma,t}, \\
+  \,RVSJN_t \;=\; RVJN_t - RVLJN_{\gamma,t}\,.
+  </script></p>
+</li>
+<li><p>&#x201C;&#x5927;&#x7684; / &#x5C0F;&#x7684;&#x201D;&#x4E0A;&#x4E0B;&#x884C;&#x8DF3;&#x8DC3;&#x4E0D;&#x5BF9;&#x79F0;&#x6027;
+<script type="math/tex; mode=display">
+    \,SRVLJ_t \;=\; RVLJP_{\gamma,t} - RVLJN_{\gamma,t}\,,\\
+    \,SRVSJ_t \;=\; RVSJP_t - RVSJN_t\,.
+    </script></p>
+</li>
+<li><p>&#x663E;&#x8457;&#x6027;&#x52A0;&#x6743;&#x7684;&#x4E0A;&#x4E0B;&#x884C;&#x8DF3;&#x8DC3;&#x4E0D;&#x5BF9;&#x79F0;&#x6027;&#xFF08;&#x5DE5;&#x7A0B;&#x53CB;&#x597D;&#x7248;&#xFF09;</p>
+<ul>
+<li>&#x8D85;&#x9608;&#x503C;&#x5F3A;&#x5EA6;&#x6743;&#x91CD;&#xFF08;&#x5F53;&#x65E5;&#xFF09;&#xFF1A;
+<script type="math/tex; mode=display">
+      W_t \;=\; \sum_{i=1}^{n_t}\max\!\Big(\frac{|r_{t,i}|}{\gamma_t}-1,\,0\Big).
+      </script></li>
+</ul>
+</li>
+</ul>
+<pre><code>- &#x65F6;&#x95F4;&#x52A0;&#x6743;&#x4E0D;&#x5BF9;&#x79F0;&#x6027;&#xFF08;&#x8DE8;&#x65E5;&#x7528; EMA&#xFF0C;&#x534A;&#x8870;&#x671F; half_life&#xFF09;&#xFF1A;
+  
+      \,TSRJV \;=\; \frac{\mathrm{EMA}_t\!\big(W_t\cdot SRVJ_t\big)} {\mathrm{EMA}_t\!\big(W_t\big)}\,.
+      
+</code></pre><ul>
+<li>&#x7EDF;&#x8BA1;&#x68C0;&#x9A8C;&#x6743;&#x91CD;&#xFF08;&#x5982; BNS/Jacod &#x68C0;&#x9A8C;&#x7684;
+<script type="math/tex; mode=display">
+    W_{t} =\frac{B V_t}{N^{-1} \sqrt{\hat{\Omega}_{S w V}} \Phi_{1-\alpha}^{-1}}\left(1-\frac{R V_t}{S w V_t}\right).
+    </script></li>
+</ul>
+<pre><code class="lang-python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">_mu_abs_normal</span><span class="hljs-params">(q: float)</span> -&gt; float:</span>
+    <span class="hljs-string">&quot;&quot;&quot;E|Z|^q for Z~N(0,1) = 2^{q/2} / sqrt(pi) * Gamma((1+q)/2).&quot;&quot;&quot;</span>
+    <span class="hljs-keyword">return</span> (<span class="hljs-number">2.0</span> ** (q / <span class="hljs-number">2.0</span>)) / math.sqrt(math.pi) * math.gamma((<span class="hljs-number">1.0</span> + q) / <span class="hljs-number">2.0</span>)
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">compute_jump_volatility_family</span><span class="hljs-params">(
+    da: xr.DataArray,
+    ret_var: str = <span class="hljs-string">&quot;ret&quot;</span>,
+    half_life: float = <span class="hljs-number">10.0</span>,
+    alpha: float = <span class="hljs-number">4.0</span>,
+)</span> -&gt; xr.DataArray:</span>
+    <span class="hljs-keyword">if</span> ret_var <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> da.coords[<span class="hljs-string">&quot;V1&quot;</span>].values:
+        <span class="hljs-keyword">raise</span> ValueError(f<span class="hljs-string">&quot;Variable &apos;{ret_var}&apos; not found in V1&quot;</span>)
+
+    r = da.sel(V1=ret_var)  <span class="hljs-comment"># S x D x E</span>
+
+    rs_plus  = xr.where(r &gt; <span class="hljs-number">0</span>, r*r, <span class="hljs-number">0.0</span>).sum(<span class="hljs-string">&quot;E&quot;</span>, skipna=<span class="hljs-keyword">True</span>)   <span class="hljs-comment"># S x D</span>
+    rs_minus = xr.where(r &lt; <span class="hljs-number">0</span>, r*r, <span class="hljs-number">0.0</span>).sum(<span class="hljs-string">&quot;E&quot;</span>, skipna=<span class="hljs-keyword">True</span>)   <span class="hljs-comment"># S x D</span>
+
+    mu23 = _mu_abs_normal(<span class="hljs-number">2.0</span>/<span class="hljs-number">3.0</span>)
+    ar = r.abs() ** (<span class="hljs-number">2.0</span>/<span class="hljs-number">3.0</span>)
+    tp = (ar * ar.shift(E=<span class="hljs-number">1</span>) * ar.shift(E=<span class="hljs-number">2</span>)).sum(<span class="hljs-string">&quot;E&quot;</span>, skipna=<span class="hljs-keyword">True</span>)  <span class="hljs-comment"># S x D</span>
+    iv_hat = tp / (mu23 ** <span class="hljs-number">3</span>)
+
+    rv_all = (r*r).sum(<span class="hljs-string">&quot;E&quot;</span>, skipna=<span class="hljs-keyword">True</span>)                           <span class="hljs-comment"># S x D</span>
+    nbar = r.count(<span class="hljs-string">&quot;E&quot;</span>)                                            <span class="hljs-comment"># S x D  (per-day valid bar count)</span>
+    delta_n = divide_safe(<span class="hljs-number">1.0</span>, nbar)                               <span class="hljs-comment"># S x D</span>
+
+    rvjp = xr.ufuncs.maximum(rs_plus - <span class="hljs-number">0.5</span> * iv_hat, <span class="hljs-number">0.0</span>)          <span class="hljs-comment"># S x D</span>
+    rvjn = xr.ufuncs.maximum(rs_minus - <span class="hljs-number">0.5</span> * iv_hat, <span class="hljs-number">0.0</span>)         <span class="hljs-comment"># S x D</span>
+    srvj = rvjp - rvjn                                             <span class="hljs-comment"># S x D</span>
+
+    gamma = alpha * (delta_n ** <span class="hljs-number">0.49</span>) * xr.ufuncs.sqrt(iv_hat)     <span class="hljs-comment"># S x D</span>
+    gamma_b = gamma.broadcast_like(r)                               <span class="hljs-comment"># S x D x E</span>
+
+    sum_up_big   = xr.where(r &gt;  gamma_b, r*r, <span class="hljs-number">0.0</span>).sum(<span class="hljs-string">&quot;E&quot;</span>, skipna=<span class="hljs-keyword">True</span>)  <span class="hljs-comment"># S x D</span>
+    sum_down_big = xr.where(r &lt; -gamma_b, r*r, <span class="hljs-number">0.0</span>).sum(<span class="hljs-string">&quot;E&quot;</span>, skipna=<span class="hljs-keyword">True</span>)  <span class="hljs-comment"># S x D</span>
+
+    rvljp = xr.ufuncs.minimum(rvjp, sum_up_big)                    <span class="hljs-comment"># S x D</span>
+    rvljn = xr.ufuncs.minimum(rvjn, sum_down_big)                  <span class="hljs-comment"># S x D</span>
+    rvsjp = rvjp - rvljp                                           <span class="hljs-comment"># S x D</span>
+    rvsjn = rvjn - rvljn                                           <span class="hljs-comment"># S x D</span>
+    srvlj = rvljp - rvljn                                          <span class="hljs-comment"># S x D</span>
+    srvsj = rvsjp - rvsjn                                          <span class="hljs-comment"># S x D</span>
+
+    abs_r = r.abs()
+    W = xr.ufuncs.maximum(divide_safe(abs_r, gamma_b) - <span class="hljs-number">1.0</span>, <span class="hljs-number">0.0</span>).sum(<span class="hljs-string">&quot;E&quot;</span>, skipna=<span class="hljs-keyword">True</span>)  <span class="hljs-comment"># S x D</span>
+    num_tsrjv = _ewm_ma_halflife(W * srvj, dim=<span class="hljs-string">&quot;D&quot;</span>, half_life=half_life, mode=<span class="hljs-string">&quot;mean&quot;</span>)    <span class="hljs-comment"># S x D</span>
+    den_tsrjv = _ewm_ma_halflife(W,         dim=<span class="hljs-string">&quot;D&quot;</span>, half_life=half_life, mode=<span class="hljs-string">&quot;mean&quot;</span>)   <span class="hljs-comment"># S x D</span>
+    tsrjv = divide_safe(num_tsrjv, den_tsrjv)                                            <span class="hljs-comment"># S x D</span>
+
+    series_map = {
+        <span class="hljs-string">&quot;rvjp&quot;</span>:  _ewm_ma_halflife(rvjp,  dim=<span class="hljs-string">&quot;D&quot;</span>, half_life=half_life, mode=<span class="hljs-string">&quot;mean&quot;</span>),
+        <span class="hljs-string">&quot;rvjn&quot;</span>:  _ewm_ma_halflife(rvjn,  dim=<span class="hljs-string">&quot;D&quot;</span>, half_life=half_life, mode=<span class="hljs-string">&quot;mean&quot;</span>),
+        <span class="hljs-string">&quot;srvj&quot;</span>:  _ewm_ma_halflife(srvj,  dim=<span class="hljs-string">&quot;D&quot;</span>, half_life=half_life, mode=<span class="hljs-string">&quot;mean&quot;</span>),
+        <span class="hljs-string">&quot;rvljp&quot;</span>: _ewm_ma_halflife(rvljp, dim=<span class="hljs-string">&quot;D&quot;</span>, half_life=half_life, mode=<span class="hljs-string">&quot;mean&quot;</span>),
+        <span class="hljs-string">&quot;rvljn&quot;</span>: _ewm_ma_halflife(rvljn, dim=<span class="hljs-string">&quot;D&quot;</span>, half_life=half_life, mode=<span class="hljs-string">&quot;mean&quot;</span>),
+        <span class="hljs-string">&quot;rvsjp&quot;</span>: _ewm_ma_halflife(rvsjp, dim=<span class="hljs-string">&quot;D&quot;</span>, half_life=half_life, mode=<span class="hljs-string">&quot;mean&quot;</span>),
+        <span class="hljs-string">&quot;rvsjn&quot;</span>: _ewm_ma_halflife(rvsjn, dim=<span class="hljs-string">&quot;D&quot;</span>, half_life=half_life, mode=<span class="hljs-string">&quot;mean&quot;</span>),
+        <span class="hljs-string">&quot;srvlj&quot;</span>: _ewm_ma_halflife(srvlj, dim=<span class="hljs-string">&quot;D&quot;</span>, half_life=half_life, mode=<span class="hljs-string">&quot;mean&quot;</span>),
+        <span class="hljs-string">&quot;srvsj&quot;</span>: _ewm_ma_halflife(srvsj, dim=<span class="hljs-string">&quot;D&quot;</span>, half_life=half_life, mode=<span class="hljs-string">&quot;mean&quot;</span>),
+        <span class="hljs-string">&quot;tsrjv&quot;</span>: tsrjv,
+    }
+
+    out = xr.concat(list(series_map.values()), dim=<span class="hljs-string">&quot;V1&quot;</span>).assign_coords(V1=list(series_map.keys()))
+    <span class="hljs-keyword">return</span> out.transpose(<span class="hljs-string">&quot;S&quot;</span>,<span class="hljs-string">&quot;D&quot;</span>,<span class="hljs-string">&quot;E&quot;</span>,<span class="hljs-string">&quot;V1&quot;</span>)
+</code></pre>
 <h1 id="risk-factor"><a name="risk-factor" class="anchor-navigation-ex-anchor" href="#risk-factor"><i class="fa fa-link" aria-hidden="true"></i></a> Risk Factor</h1>
 <ul>
 <li><p>Semi-beta</p>
@@ -2445,7 +2583,7 @@ RSJ_d = \frac{RV^{up}_d - RV^{down}_d}{RV_d}
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Factor Calendar","level":"1.2.13","depth":2,"next":{"title":"Reading Todo List","level":"1.2.14","depth":2,"path":"notes/temp.md","ref":"./notes/temp.md","articles":[]},"previous":{"title":"Machine Learning Notes","level":"1.2.12","depth":2,"path":"contents/mln.md","ref":"./contents/mln.md","articles":[]},"dir":"ltr"},"config":{"plugins":["mathjax","image-captions","github","anchors","anchor-navigation-ex","-sharing","sharing-plus@^0.0.2","github-buttons","embed-pdf","livereload"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"github":{"url":"https://github.com/ZizouHe/"},"livereload":{},"search":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":false},"mode":"float","multipleH1":false,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":true},"github-buttons":{"buttons":[{"user":"ZizouHe","repo":"reading-notes","type":"star","size":"small"}]},"mathjax":{"forceSVG":false,"version":"2.6-latest"},"sharing":{"qq":true,"all":["facebook","google","twitter","weibo","qq","linkedin"],"douban":false,"facebook":true,"weibo":true,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":false,"messenger":false,"line":false,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"embed-pdf":{},"image-captions":{"caption":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","align":"right","variable_name":"_pictures"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{"_pictures":[{"backlink":"./notes/RDN.html#fig1.4.2.1","level":"1.4.2","align":"right","list_caption":"Figure: Example (a) data graph and (b) model graph.","alt":"Example (a) data graph and (b) model graph.","nro":1,"url":"./pic/RDN-1.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Example (a) data graph and (b) model graph.","attributes":{},"skip":false,"key":"1.4.2.1"},{"backlink":"./notes/RDN.html#fig1.4.2.2","level":"1.4.2","align":"right","list_caption":"Figure: RDN inference algorithm.","alt":"RDN inference algorithm.","nro":2,"url":"./pic/RDN-2.png","index":2,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"RDN inference algorithm.","attributes":{},"skip":false,"key":"1.4.2.2"},{"backlink":"./notes/Faster_Frank_Wolfe.html#fig1.4.14.1","level":"1.4.14","align":"right","list_caption":"Figure: Frank-Wolfe Algorithm","alt":"Frank-Wolfe Algorithm","nro":3,"url":"./pic/Frank-Wolfe.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Frank-Wolfe Algorithm","attributes":{},"skip":false,"key":"1.4.14.1"},{"backlink":"./notes/Fin_Fan_Book.html#fig1.4.15.1","level":"1.4.15","align":"right","list_caption":"Figure: Efficient Frontier with risk-free asset","alt":"Efficient Frontier with risk-free asset","nro":4,"url":"./pic/Eff_Front_1.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Efficient Frontier with risk-free asset","attributes":{},"skip":false,"key":"1.4.15.1"},{"backlink":"./notes/Fin_Fan_Book.html#fig1.4.15.2","level":"1.4.15","align":"right","list_caption":"Figure: Efficient Frontier without risk-free asset","alt":"Efficient Frontier without risk-free asset","nro":5,"url":"./pic/Eff_Front_2.png","index":2,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Efficient Frontier without risk-free asset","attributes":{},"skip":false,"key":"1.4.15.2"}]},"title":"Reading List & Notes","gitbook":"*"},"file":{"path":"contents/factor_cal.md","mtime":"2025-08-25T01:05:15.196Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2025-08-25T01:05:17.785Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Factor Calendar","level":"1.2.13","depth":2,"next":{"title":"Reading Todo List","level":"1.2.14","depth":2,"path":"notes/temp.md","ref":"./notes/temp.md","articles":[]},"previous":{"title":"Machine Learning Notes","level":"1.2.12","depth":2,"path":"contents/mln.md","ref":"./contents/mln.md","articles":[]},"dir":"ltr"},"config":{"plugins":["mathjax","image-captions","github","anchors","anchor-navigation-ex","-sharing","sharing-plus@^0.0.2","github-buttons","embed-pdf","livereload"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"github":{"url":"https://github.com/ZizouHe/"},"livereload":{},"search":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":false},"mode":"float","multipleH1":false,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":true},"github-buttons":{"buttons":[{"user":"ZizouHe","repo":"reading-notes","type":"star","size":"small"}]},"mathjax":{"forceSVG":false,"version":"2.6-latest"},"sharing":{"qq":true,"all":["facebook","google","twitter","weibo","qq","linkedin"],"douban":false,"facebook":true,"weibo":true,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":false,"messenger":false,"line":false,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"embed-pdf":{},"image-captions":{"caption":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","align":"right","variable_name":"_pictures"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{"_pictures":[{"backlink":"./notes/RDN.html#fig1.4.2.1","level":"1.4.2","align":"right","list_caption":"Figure: Example (a) data graph and (b) model graph.","alt":"Example (a) data graph and (b) model graph.","nro":1,"url":"./pic/RDN-1.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Example (a) data graph and (b) model graph.","attributes":{},"skip":false,"key":"1.4.2.1"},{"backlink":"./notes/RDN.html#fig1.4.2.2","level":"1.4.2","align":"right","list_caption":"Figure: RDN inference algorithm.","alt":"RDN inference algorithm.","nro":2,"url":"./pic/RDN-2.png","index":2,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"RDN inference algorithm.","attributes":{},"skip":false,"key":"1.4.2.2"},{"backlink":"./notes/Faster_Frank_Wolfe.html#fig1.4.14.1","level":"1.4.14","align":"right","list_caption":"Figure: Frank-Wolfe Algorithm","alt":"Frank-Wolfe Algorithm","nro":3,"url":"./pic/Frank-Wolfe.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Frank-Wolfe Algorithm","attributes":{},"skip":false,"key":"1.4.14.1"},{"backlink":"./notes/Fin_Fan_Book.html#fig1.4.15.1","level":"1.4.15","align":"right","list_caption":"Figure: Efficient Frontier with risk-free asset","alt":"Efficient Frontier with risk-free asset","nro":4,"url":"./pic/Eff_Front_1.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Efficient Frontier with risk-free asset","attributes":{},"skip":false,"key":"1.4.15.1"},{"backlink":"./notes/Fin_Fan_Book.html#fig1.4.15.2","level":"1.4.15","align":"right","list_caption":"Figure: Efficient Frontier without risk-free asset","alt":"Efficient Frontier without risk-free asset","nro":5,"url":"./pic/Eff_Front_2.png","index":2,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Efficient Frontier without risk-free asset","attributes":{},"skip":false,"key":"1.4.15.2"}]},"title":"Reading List & Notes","gitbook":"*"},"file":{"path":"contents/factor_cal.md","mtime":"2025-08-28T02:54:04.233Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2025-08-28T02:54:38.773Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

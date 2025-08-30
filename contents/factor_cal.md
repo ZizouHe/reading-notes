@@ -1,5 +1,3 @@
-[Code example](../assets/gpt_gen.py)
-
 # Momentum
 
 - Information Discreteness (ID)
@@ -976,12 +974,11 @@ def compute_ambiguity_amount_ratio(
       W_t \;=\; \sum_{i=1}^{n_t}\max\!\Big(\frac{|r_{t,i}|}{\gamma_t}-1,\,0\Big).
       $$
       
-
     - 时间加权不对称性（跨日用 EMA，半衰期 half_life）：
       $$
       \,TSRJV \;=\; \frac{\mathrm{EMA}_t\!\big(W_t\cdot SRVJ_t\big)} {\mathrm{EMA}_t\!\big(W_t\big)}\,.
       $$
-
+    
   - 统计检验权重（如 BNS/Jacod 检验的
     $$
     W_{t} =\frac{B V_t}{N^{-1} \sqrt{\hat{\Omega}_{S w V}} \Phi_{1-\alpha}^{-1}}\left(1-\frac{R V_t}{S w V_t}\right).
@@ -1056,7 +1053,276 @@ def compute_jump_volatility_family(
     return out.transpose("S","D","E","V1")
 ```
 
+- 大成交量量价相关性
+  - 个股分钟成交量前1/3的分钟，成交量和价格的相关性。
+  - 大成交量更能代表主力行为，信息更多。
+- 修正的日内和隔夜反转
+  - 分别计算日内和隔夜收益率，对过去一段时间计算时序 日内/隔夜收益率的波动率 (std)
+  - 对于波动率超过横截面均值的股票，更容易出现反转，(EMA/MA)收益率取正；对于另外一部分低波动率的股票，更容易出现动量，(EMA/MA)收益率取负。
 
+```python
+def compute_corrected_reversal_both_from_ret(
+    da: xr.DataArray,
+    ret_var: str = "mret",
+    half_life: float = 10.0,
+) -> xr.DataArray:
+
+    r = da.sel(V1=ret_var)
+    r_on = r.isel(E=0)
+    r_intra = r.isel(E=slice(1, None)).sum("E", skipna=True)
+
+    r_intra_ema = _ewm_ma_halflife(r_intra, dim="D", half_life=half_life, mode="mean").isel(D=[-1])
+    sig_intra   = _ewm_ma_halflife(r_intra, dim="D", half_life=half_life, mode="std").isel(D=[-1])
+    sig_intra_cs_mean = sig_intra.mean("S", skipna=True)
+
+    f_intra = xr.where(sig_intra >= sig_intra_cs_mean, r_intra_ema, -r_intra_ema)
+
+    r_on_cs_mean_series = r_on.mean("S", skipna=True)
+    d_on = (r_on - r_on_cs_mean_series).abs()
+
+    d_on_ema = _ewm_ma_halflife(d_on, dim="D", half_life=half_life, mode="mean").isel(D=[-1])
+    sig_on   = _ewm_ma_halflife(d_on, dim="D", half_life=half_life, mode="std").isel(D=[-1])
+    sig_on_cs_mean = sig_on.mean("S", skipna=True)
+
+    f_on = xr.where(sig_on >= sig_on_cs_mean, d_on_ema, -d_on_ema)
+
+    name1 = f"rev_intra_corr_hl{half_life}"
+    name2 = f"rev_overnight_corr_hl{half_life}"
+    out = xr.concat([f_intra, f_on], dim="V1").assign_coords(V1=np.array([name1, name2]))
+    return out.transpose("S", "D", "V1")
+
+```
+
+- 价格、成交量序列差分自相关
+  - 价格双序列差分自相关
+    - 先对日内收盘价按分钟做一阶差分：$$\Delta P_t=P_t-P_{t-1}$$
+    - 只在 同向 情况计算自相关系数：$$\Delta P_t>0\ \&\ \Delta P_{t+1}>0$$ 与 $$\Delta P_t<0\ \&\ \Delta P_{t+1}<0$$。
+  - 成交量双序列差分自相关: 
+    - 价格换成成交量
+  - 成交量单序列差分
+    - 在 $$\Delta V_t>0,  \Delta V_t<0$$ 两个子样本上分别算相关并做 EMA
+
+```python
+def compute_selfcorr_price_volume_family(
+    da: xr.DataArray,
+    half_life: float = 10.0,
+) -> xr.DataArray:
+    price = da.sel(V1="robust")
+    vol   = da.sel(V1="volume")
+
+    dP = price.diff("E")
+    dP1 = dP.shift(E=-1)
+    dV = vol.diff("E")
+    dV1 = dV.shift(E=-1)
+
+    def _corr_mask(x, y, mask):
+        return xr.corr(xr.where(mask, x, np.nan), xr.where(mask, y, np.nan), dim="E")
+
+    corr_pp = _corr_mask(dP, dP1, (dP > 0) & (dP1 > 0))
+    corr_nn = _corr_mask(dP, dP1, (dP < 0) & (dP1 < 0))
+    ema_pp  = _ewm_ma_halflife(corr_pp, dim="D", half_life=half_life, mode="mean").isel(D=[-1])
+    ema_nn  = _ewm_ma_halflife(corr_nn, dim="D", half_life=half_life, mode="mean").isel(D=[-1])
+    cdpddp  = 0.5 * (xs_zw(ema_pp) + xs_zw(ema_nn))
+
+    corr_v_pos = _corr_mask(dV, dV1, dV > 0)
+    corr_v_neg = _corr_mask(dV, dV1, dV < 0)
+    ema_v_pos  = _ewm_ma_halflife(corr_v_pos, dim="D", half_life=half_life, mode="mean").isel(D=[-1])
+    ema_v_neg  = _ewm_ma_halflife(corr_v_neg, dim="D", half_life=half_life, mode="mean").isel(D=[-1])
+    cdvv       = 0.5 * (xs_zw(ema_v_pos) + xs_zw(ema_v_neg))
+
+    corr_v_pp = _corr_mask(dV, dV1, (dV > 0) & (dV1 > 0))
+    corr_v_nn = _corr_mask(dV, dV1, (dV < 0) & (dV1 < 0))
+    ema_v_nn  = _ewm_ma_halflife(corr_v_nn, dim="D", half_life=half_life, mode="mean").isel(D=[-1])
+    ema_v_pp  = _ewm_ma_halflife(corr_v_pp, dim="D", half_life=half_life, mode="mean").isel(D=[-1])
+    cdvdv     = 0.5 * (xs_zw(ema_v_pp) + xs_zw(ema_v_nn))
+
+    names = [ f"cdpddp_hl{half_life}", f"cdvv_hl{half_life}",  f"cdvdv_hl{half_life}"]
+    out = xr.concat([cdpddp, cdvv, cdvdv], dim="V1").assign_coords(V1=names)
+    return out.transpose("S", "D", "V1")
+
+```
+
+- 一致买入/一致卖出
+  - 定义实体/一致性 分钟 K 线用：abs(close - open) >= alpha * (high - low). $$\alpha$$ 为一致参数，$$\alpha$$ 越大， K 线一致性越强（上下引线越短， K 线越实体）；
+  - 当日一致买入量= 所有“上涨且实体”5m K 线的成交量之和；一致卖出量= “下跌且实体”的成交量之和。
+  - 因子为“一致量 / 当日总量”的跨日 EMA 均值
+
+```{python}
+def compute_consist_trd(
+    da: xr.DataArray,
+    alpha: float = 0.6,
+    half_life: float = 10.0,
+) -> xr.DataArray:
+    c = da.sel(V1="robust")
+    o = da.sel(V1="open")
+    h = da.sel(V1="high")
+    l = da.sel(V1="low")
+    v = da.sel(V1="volume")
+
+    rng = (h - l).clip(min=0.0)
+    body = np.abs(c - o)
+    solid = (body >= (alpha * rng))
+
+    up_solid_vol   = v.where(solid & (c > o)).sum("E", skipna=True)
+    down_solid_vol = v.where(solid & (c < o)).sum("E", skipna=True)
+    total_vol      = v.sum("E", skipna=True)
+
+    pcv_day = divide_safe(up_solid_vol, total_vol)
+    ncv_day = divide_safe(down_solid_vol, total_vol)
+
+    pcv = _ewm_ma_halflife(pcv_day, dim="D", half_life=half_life, mode="mean").isel(D=[-1])
+    ncv = _ewm_ma_halflife(ncv_day, dim="D", half_life=half_life, mode="mean").isel(D=[-1])
+
+    out = xr.concat([pcv, ncv], dim="V1").assign_coords(V1=[f"pcv_hl{half_life}", f"ncv_hl{half_life}"])
+    return out.transpose("S", "D", "V1")
+```
+
+- 买入卖出占比
+
+  - HCVOL（买入“浮亏”占比）“有多少买单是在高于收盘价的价位成交的？”
+
+    直觉：收盘前追高买入越多，隔日更容易承压/回落；但也可解读为强势吸筹。
+    $$
+    \text{HCVOL}t \;=\; \frac{\sum_e volumeBuy_{t,e}\,\mathbf 1\{p_{t,e}>Close_t\}} {\sum_e volume_{t,e}}
+    $$
+
+  - HCP（买入“浮亏”价差）“那些高于收盘成交的买单，平均成交价比收盘价贵了多少？”
+
+    直觉：越贵的“高位买入”，第二天回撤风险越大（行为金融里的“追涨-后悔”机制）。
+    $$
+    \overline{P}^{\text{buy}\,>\,Close}_t =\frac{\sum_e p_{t,e} volumeBuy_{t,e}\,\mathbf 1\{p_{t,e}>Close_t\}} {\sum_e volumeBuy_{t,e}\,\mathbf 1\{p_{t,e}>Close_t\}},\\ \text{HCP}_t = \frac{\overline{P}^{\text{buy}\,>\,Close}_t}{Close_t}-1
+    $$
+
+  - LCVOL（卖出“反弹”占比）“有多少卖单是在低于收盘价的价位成交的？”
+
+    直觉：盘中低位抛压越集中，收盘被明显“收回”，次日更容易延续反弹或至少回补。
+    $$
+    \text{LCVOL}_t \;=\; \frac{\sum_e volumeSell_{t,e}\,\mathbf 1\{p_{t,e}<Close_t\}} {\sum_e volume_{t,e}}
+    $$
+
+  ```python
+  def compute_buy_sell_sentiment_factors(
+      da: xr.DataArray,
+      half_life: float = 10.0,
+  ) -> xr.DataArray:
+      #P48 59 91
+      p = da.sel(V1="robust")
+      vol = da.sel(V1="volume")
+      vbuy = da.sel(V1="volumeBuy")
+      vsell = da.sel(V1="volumeSell")
+  
+      close_day = p.isel(E=-1)
+      close_b = close_day.broadcast_like(p)
+  
+      mask_above = p > close_b
+      num_hcvol = (vbuy.where(mask_above)).sum("E", skipna=True)
+      den_vol   = vol.sum("E", skipna=True)
+      hcvol_day = divide_safe(num_hcvol, den_vol)
+      hcvol = _ewm_ma_halflife(hcvol_day, dim="D", half_life=half_life, mode="mean").isel(D=[-1])
+  
+      w_price = (p * vbuy).where(mask_above)
+      num_hcp = w_price.sum("E", skipna=True)
+      den_hcp = (vbuy.where(mask_above)).sum("E", skipna=True)
+      avg_buy_above = divide_safe(num_hcp, den_hcp)
+      hcp_day = divide_safe(avg_buy_above, close_day) - 1.0
+      hcp = _ewm_ma_halflife(hcp_day, dim="D", half_life=half_life, mode="mean").isel(D=[-1])
+  
+      mask_below = p < close_b
+      num_lcvol = (vsell.where(mask_below)).sum("E", skipna=True)
+      lcvol_day = divide_safe(num_lcvol, den_vol)
+      lcvol = _ewm_ma_halflife(lcvol_day, dim="D", half_life=half_life, mode="mean").isel(D=[-1])
+  
+      names = [f"hcvol_hl_{half_life:g}", f"hcp_hl{half_life}", f"lcvol_hl{half_life}"]
+      out = xr.concat([hcvol, hcp, lcvol], dim="V1").assign_coords(V1=names)
+      return out.transpose("S", "D", "V1")
+  ```
+
+- 主动占比
+
+  - 思想：把“当分钟更可能是主动买的强弱”编码为权重 $$w\in[0,1]$$（由return的大小决定），再用该权重对分钟成交额加权；权重大、金额大→更偏“主动买入”。
+  - T 分布 / 朴素：用标准化（对分钟序列的当日标准差）后转化成 t 分布，尾部更肥，对极端分时涨跌更敏感；df_t 越小越强调极端。
+  - 均匀分布：把收益夹在 [-L, L] 内做线性映射，简单稳健；ret_limit 默认 0.10（±10%）。
+  - 置信正态：把 $$\pm L$$ 对应到正态的 $$\pm1.96\sigma$$，等价于置信度的刻画，适合对“极端近涨停”的区分。
+
+  ```python
+  def compute_acs_family(
+      da: xr.DataArray,
+      ret_var: str = "ret",
+      half_life: float = 10.0,
+      df_t: float = 5.0,
+      ret_limit: float = 0.10
+  ) -> xr.DataArray:
+      # 63 66 67 74
+      r   = da.sel(V1=ret_var)
+      px  = da.sel(V1="robust")
+      amt = da.sel(V1="locVol")
+      denom = amt.sum("E", skipna=True)
+  
+      std_r = r.std("E", skipna=True)
+      z_t   = divide_safe(r, std_r)
+      w_t   = xr.apply_ufunc(lambda z: scipy.stats.t.cdf(z, df=df_t), z_t).clip(0.0, 1.0)                                 # S x D x E
+      num_t = (amt * w_t).sum("E", skipna=True)
+      share_t_day = divide_safe(num_t, denom)
+      share_t = _ewm_ma_halflife(share_t_day, dim="D", half_life=half_life, mode="mean").isel(D=[-1])
+  
+      w_u = ((r + ret_limit) / (2.0 * ret_limit)).clip(0.0, 1.0)
+      num_u = (amt * w_u).sum("E", skipna=True)
+      share_uniform_day = divide_safe(num_u, denom)
+      share_uniform = _ewm_ma_halflife(share_uniform_day, dim="D", half_life=half_life, mode="mean").isel(D=[-1])
+  
+      z_c = (r / ret_limit) * 1.96
+      w_c = xr.apply_ufunc(lambda z: scipy.stats.norm.cdf(z), z_c).clip(0.0, 1.0)
+      num_c = (amt * w_c).sum("E", skipna=True)
+      share_conf_day = divide_safe(num_c, denom)
+      share_conf = _ewm_ma_halflife(share_conf_day, dim="D", half_life=half_life, mode="mean").isel(D=[-1])
+  
+      names = [ f"active_tshare_hl{half_life}", f"active_uniform_share_hl{half_life}", f"active_confnorm_share_hl{half_life}", ]
+      out = xr.concat([share_t, share_uniform, share_conf], dim="V1").assign_coords(V1=names)
+      return out.transpose("S", "D", "V1")
+  ```
+
+- 耀眼波动率/收益率
+
+  - 用分钟总量volume做环比差分：$$\Delta V_{t,e}=V_{t,e}-V_{t,e-1}$$。定义成交量激增时刻 n：$$\Delta V_{t,e}>\overline{\Delta V}{t,\cdot}+1\,\sigma(\Delta V{t,\cdot})$$（同日、分钟维度均值与标准差）。
+  - 耀眼波动率：对每个激增时刻 n，取随后的5 个 1 分钟区间 [n, n+4] 的收益率标准差；日内对所有 n 取均值；耀眼收益率：对每个激增时刻 n，取该分钟收益率$$ r_{t,n}$$；日内对所有 n 取均值。
+  - 再做横截面去均值并取绝对值 $$\;|x_{t,i}-\overline{x}_{t,\cdot}|$$。
+
+  ```python
+  def compute_spark_factors(
+      da: xr.DataArray,
+      ret_var: str = "ret",
+      half_life: float = 10.0,
+  ) -> xr.DataArray:
+      #62 79
+      r  = da.sel(V1=ret_var).isel(E=slice(1, -1))
+      v  = da.sel(V1="volume").diff("E").isel(E=slice(1, -1))
+  
+      mu_dv  = v.mean("E", skipna=True)
+      sd_dv  = v.std("E",  skipna=True)
+      thr    = (mu_dv + sd_dv).broadcast_like(v)
+      spike  = v > thr
+  
+      std5_trail = r.rolling(E=5, min_periods=3).std()
+      std5_fwd   = std5_trail.shift(E=-4)
+      spark_vol_day = std5_fwd.where(spike).mean("E", skipna=True)
+  
+      spark_ret_day = r.where(spike).mean("E", skipna=True)
+  
+      sv_cs = spark_vol_day.mean("S", skipna=True)
+      sr_cs = spark_ret_day.mean("S", skipna=True)
+      spark_vol_mod = np.abs(spark_vol_day - sv_cs)
+      spark_ret_mod = np.abs(spark_ret_day - sr_cs)
+  
+      spark_vol = _ewm_ma_halflife(spark_vol_mod, dim="D", half_life=half_life, mode="mean").isel(D=[-1])
+      spark_ret = _ewm_ma_halflife(spark_ret_mod, dim="D", half_life=half_life, mode="mean").isel(D=[-1])
+  
+      names = [f"spark_vol_hl{half_life}", f"spark_ret_hl{half_life}"]
+      out = xr.concat([spark_vol, spark_ret], dim="V1").assign_coords(V1=names)
+      return out.transpose("S", "D", "V1")
+  
+  ```
+
+  
 
 # Risk Factor
 

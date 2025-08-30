@@ -569,3 +569,207 @@ def compute_jump_volatility_family(
 
     out = xr.concat(list(series_map.values()), dim="V1").assign_coords(V1=list(series_map.keys()))
     return out.transpose("S","D","E","V1")
+
+def compute_rev_correction(
+    da: xr.DataArray,
+    ret_var: str = "mret",
+    half_life: float = 10.0,
+) -> xr.DataArray:
+
+    r = da.sel(V1=ret_var)
+    r_on = r.isel(E=0)
+    r_intra = r.isel(E=slice(1, None)).sum("E", skipna=True)
+
+    r_intra_ema = _ewm_ma_halflife(r_intra, dim="D", half_life=half_life, mode="mean").isel(D=[-1])
+    sig_intra   = _ewm_ma_halflife(r_intra, dim="D", half_life=half_life, mode="std").isel(D=[-1])
+    sig_intra_cs_mean = sig_intra.mean("S", skipna=True)
+
+    f_intra = xr.where(sig_intra >= sig_intra_cs_mean, r_intra_ema, -r_intra_ema)
+
+    r_on_cs_mean_series = r_on.mean("S", skipna=True)
+    d_on = (r_on - r_on_cs_mean_series).abs()
+
+    d_on_ema = _ewm_ma_halflife(d_on, dim="D", half_life=half_life, mode="mean").isel(D=[-1])
+    sig_on   = _ewm_ma_halflife(d_on, dim="D", half_life=half_life, mode="std").isel(D=[-1])
+    sig_on_cs_mean = sig_on.mean("S", skipna=True)
+
+    f_on = xr.where(sig_on >= sig_on_cs_mean, d_on_ema, -d_on_ema)
+
+    name1 = f"rev_intra_corr_hl{half_life}"
+    name2 = f"rev_overnight_corr_hl{half_life}"
+    out = xr.concat([f_intra, f_on], dim="V1").assign_coords(V1=np.array([name1, name2]))
+    return out.transpose("S", "D", "V1")
+
+def compute_auto_pvol(
+    da: xr.DataArray,
+    half_life: float = 10.0,
+) -> xr.DataArray:
+    price = da.sel(V1="robust")
+    vol   = da.sel(V1="volume")
+
+    dP = price.diff("E")
+    dP1 = dP.shift(E=-1)
+    dV = vol.diff("E")
+    dV1 = dV.shift(E=-1)
+
+    def _corr_mask(x, y, mask):
+        return xr.corr(xr.where(mask, x, np.nan), xr.where(mask, y, np.nan), dim="E")
+
+    corr_pp = _corr_mask(dP, dP1, (dP > 0) & (dP1 > 0))
+    corr_nn = _corr_mask(dP, dP1, (dP < 0) & (dP1 < 0))
+    ema_pp  = _ewm_ma_halflife(corr_pp, dim="D", half_life=half_life, mode="mean").isel(D=[-1])
+    ema_nn  = _ewm_ma_halflife(corr_nn, dim="D", half_life=half_life, mode="mean").isel(D=[-1])
+    cdpddp  = 0.5 * (xs_zw(ema_pp) + xs_zw(ema_nn))
+
+    corr_v_pos = _corr_mask(dV, dV1, dV > 0)
+    corr_v_neg = _corr_mask(dV, dV1, dV < 0)
+    ema_v_pos  = _ewm_ma_halflife(corr_v_pos, dim="D", half_life=half_life, mode="mean").isel(D=[-1])
+    ema_v_neg  = _ewm_ma_halflife(corr_v_neg, dim="D", half_life=half_life, mode="mean").isel(D=[-1])
+    cdvv       = 0.5 * (xs_zw(ema_v_pos) + xs_zw(ema_v_neg))
+
+    corr_v_pp = _corr_mask(dV, dV1, (dV > 0) & (dV1 > 0))
+    corr_v_nn = _corr_mask(dV, dV1, (dV < 0) & (dV1 < 0))
+    ema_v_nn  = _ewm_ma_halflife(corr_v_nn, dim="D", half_life=half_life, mode="mean").isel(D=[-1])
+    ema_v_pp  = _ewm_ma_halflife(corr_v_pp, dim="D", half_life=half_life, mode="mean").isel(D=[-1])
+    cdvdv     = 0.5 * (xs_zw(ema_v_pp) + xs_zw(ema_v_nn))
+
+    names = [ f"cdpddp_hl{half_life}", f"cdvv_hl{half_life}",  f"cdvdv_hl{half_life}"]
+    out = xr.concat([cdpddp, cdvv, cdvdv], dim="V1").assign_coords(V1=names)
+    return out.transpose("S", "D", "V1")
+
+def compute_consist_trd(
+    da: xr.DataArray,
+    alpha: float = 0.6,
+    half_life: float = 10.0,
+) -> xr.DataArray:
+    c = da.sel(V1="robust")
+    o = da.sel(V1="open")
+    h = da.sel(V1="high")
+    l = da.sel(V1="low")
+    v = da.sel(V1="volume")
+
+    rng = (h - l).clip(min=0.0)
+    body = np.abs(c - o)
+    solid = (body >= (alpha * rng))
+
+    up_solid_vol   = v.where(solid & (c > o)).sum("E", skipna=True)
+    down_solid_vol = v.where(solid & (c < o)).sum("E", skipna=True)
+    total_vol      = v.sum("E", skipna=True)
+
+    pcv_day = divide_safe(up_solid_vol, total_vol)
+    ncv_day = divide_safe(down_solid_vol, total_vol)
+
+    pcv = _ewm_ma_halflife(pcv_day, dim="D", half_life=half_life, mode="mean").isel(D=[-1])
+    ncv = _ewm_ma_halflife(ncv_day, dim="D", half_life=half_life, mode="mean").isel(D=[-1])
+
+    out = xr.concat([pcv, ncv], dim="V1").assign_coords(V1=[f"pcv_hl{half_life}", f"ncv_hl{half_life}"])
+    return out.transpose("S", "D", "V1")
+
+def compute_bs_sent(
+    da: xr.DataArray,
+    half_life: float = 10.0,
+) -> xr.DataArray:
+    #P48 59 91
+    p = da.sel(V1="robust")
+    vol = da.sel(V1="locVol")
+    vbuy = da.sel(V1="locVolBuy")
+    vsell = da.sel(V1="locVolSell")
+
+    close_day = p.isel(E=-1)
+    close_b = close_day.broadcast_like(p)
+
+    mask_above = p > close_b
+    num_hcvol = (vbuy.where(mask_above)).sum("E", skipna=True)
+    den_vol   = vol.sum("E", skipna=True)
+    hcvol_day = divide_safe(num_hcvol, den_vol)
+    hcvol = _ewm_ma_halflife(hcvol_day, dim="D", half_life=half_life, mode="mean").isel(D=[-1])
+
+    w_price = (p * vbuy).where(mask_above)
+    num_hcp = w_price.sum("E", skipna=True)
+    den_hcp = (vbuy.where(mask_above)).sum("E", skipna=True)
+    avg_buy_above = divide_safe(num_hcp, den_hcp)
+    hcp_day = divide_safe(avg_buy_above, close_day) - 1.0
+    hcp = _ewm_ma_halflife(hcp_day, dim="D", half_life=half_life, mode="mean").isel(D=[-1])
+
+    mask_below = p < close_b
+    num_lcvol = (vsell.where(mask_below)).sum("E", skipna=True)
+    lcvol_day = divide_safe(num_lcvol, den_vol)
+    lcvol = _ewm_ma_halflife(lcvol_day, dim="D", half_life=half_life, mode="mean").isel(D=[-1])
+
+    names = [f"hcvol_hl_{half_life:g}", f"hcp_hl{half_life}", f"lcvol_hl{half_life}"]
+    out = xr.concat([hcvol, hcp, lcvol], dim="V1").assign_coords(V1=names)
+    return out.transpose("S", "D", "V1")
+
+def compute_acs_family(
+    da: xr.DataArray,
+    ret_var: str = "ret",
+    half_life: float = 10.0,
+    df_t: float = 5.0,
+    ret_limit: float = 0.10
+) -> xr.DataArray:
+    # 63 66 67 74
+    r   = da.sel(V1=ret_var)
+    px  = da.sel(V1="robust")
+    amt = da.sel(V1="locVol")
+    denom = amt.sum("E", skipna=True)
+
+    std_r = r.std("E", skipna=True)
+    z_t   = divide_safe(r, std_r)
+    w_t   = xr.apply_ufunc(lambda z: scipy.stats.t.cdf(z, df=df_t), z_t).clip(0.0, 1.0)                                 # S x D x E
+    num_t = (amt * w_t).sum("E", skipna=True)
+    share_t_day = divide_safe(num_t, denom)
+    share_t = _ewm_ma_halflife(share_t_day, dim="D", half_life=half_life, mode="mean").isel(D=[-1])
+
+    w_u = ((r + ret_limit) / (2.0 * ret_limit)).clip(0.0, 1.0)
+    num_u = (amt * w_u).sum("E", skipna=True)
+    share_uniform_day = divide_safe(num_u, denom)
+    share_uniform = _ewm_ma_halflife(share_uniform_day, dim="D", half_life=half_life, mode="mean").isel(D=[-1])
+
+    z_c = (r / ret_limit) * 1.96
+    w_c = xr.apply_ufunc(lambda z: scipy.stats.norm.cdf(z), z_c).clip(0.0, 1.0)
+    num_c = (amt * w_c).sum("E", skipna=True)
+    share_conf_day = divide_safe(num_c, denom)
+    share_conf = _ewm_ma_halflife(share_conf_day, dim="D", half_life=half_life, mode="mean").isel(D=[-1])
+
+    names = [ f"active_tshare_hl{half_life}", f"active_uniform_share_hl{half_life}", f"active_confnorm_share_hl{half_life}", ]
+    out = xr.concat([share_t, share_uniform, share_conf], dim="V1").assign_coords(V1=names)
+    return out.transpose("S", "D", "V1")
+
+def compute_spark_factors(
+    da: xr.DataArray,
+    ret_var: str = "ret",
+    half_life: float = 10.0,
+) -> xr.DataArray:
+    #62 79
+    r  = da.sel(V1=ret_var).isel(E=slice(1, -1))
+    v  = da.sel(V1="volume").diff("E").isel(E=slice(1, -1))
+
+    mu_dv  = v.mean("E", skipna=True)
+    sd_dv  = v.std("E",  skipna=True)
+    thr    = (mu_dv + sd_dv).broadcast_like(v)
+    spike  = v > thr
+
+    std5_trail = r.rolling(E=5, min_periods=3).std()
+    std5_fwd   = std5_trail.shift(E=-4)
+    spark_vol_day = std5_fwd.where(spike).mean("E", skipna=True)
+
+    spark_ret_day = r.where(spike).mean("E", skipna=True)
+
+    sv_cs = spark_vol_day.mean("S", skipna=True)
+    sr_cs = spark_ret_day.mean("S", skipna=True)
+    spark_vol_mod = np.abs(spark_vol_day - sv_cs)
+    spark_ret_mod = np.abs(spark_ret_day - sr_cs)
+
+    spark_vol = _ewm_ma_halflife(spark_vol_mod, dim="D", half_life=half_life, mode="mean").isel(D=[-1])
+    spark_ret = _ewm_ma_halflife(spark_ret_mod, dim="D", half_life=half_life, mode="mean").isel(D=[-1])
+
+    names = [f"spark_vol_hl{half_life}", f"spark_ret_hl{half_life}"]
+    out = xr.concat([spark_vol, spark_ret], dim="V1").assign_coords(V1=names)
+    return out.transpose("S", "D", "V1")
+
+27 43 47
+36 39 76
+56 63
+50
+79
+(69 75) 48 56 58 65 73 73

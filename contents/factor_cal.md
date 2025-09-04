@@ -1322,7 +1322,184 @@ def compute_consist_trd(
   
   ```
 
+- 反向/正向日内逆转的频率
+
+  - **NR** 衡量“隔夜上涨→日内下跌”的出现频率；频率越高，说明盘中对隔夜利好**反应过度修正**更常见，后续更可能出现回补。
+  - **PR** 衡量“隔夜下跌→日内上涨”的出现频率；频率越高，表示盘中对隔夜利空**快速纠偏**更常见，后续再跌概率相对更低。
+
+
+```python
+def compute_intrarev_freq(
+    da: xr.DataArray,
+    ret_var: str = "ret",
+    half_life: float = 10.0,
+) -> xr.DataArray:
+    #P56 63
+    r = da.sel(V1=ret_var)
+    co = r.isel(E=0)
+    r_intra_min = r.isel(E=slice(1, None))
+    oc = (1.0 + r_intra_min).prod("E", skipna=True) - 1.0
+
+    nr_day = xr.where((co > 0) & (oc < 0), 1.0, 0.0)
+    pr_day = xr.where((co < 0) & (oc > 0), 1.0, 0.0)
+
+    nr = _ewm_ma_halflife(nr_day, dim="D", half_life=half_life, mode="mean")
+    pr = _ewm_ma_halflife(pr_day, dim="D", half_life=half_life, mode="mean")
+
+    names = [f"nr_intra_rev_freq_hl_{half_life:g}", f"pr_intra_rev_freq_hl{half_life}"]
+    out = xr.concat([nr, pr], dim="V1").assign_coords(V1=names)
+    return out.transpose("S", "D", "V1")
+
+```
+
+- 结构化反转
+
+  - 先用日内分钟成交量把时间段分成“低量（动量段）/高量（反转段）”，再在这两类时间段上对相邻分钟对数收益做加权聚合，最后合成
+
+  ```python
+  def compute_structured_rev(
+      da: xr.DataArray,
+      ret_var: str = "ret",
+      half_life: float = 10.0,
+      mode: str = "quantile",   # 'quantile' or 'share'
+      q: float = 0.10,
+  ) -> xr.DataArray:
+      #P79
+      c = da.sel(V1="robust")
+      v = da.sel(V1="volume")
+      rlog = da.sel(V1=ret_var)
   
+      if mode == "quantile":
+          q_low  = v.quantile(q,     dim="E", skipna=True)
+          q_high = v.quantile(1.0-q, dim="E", skipna=True)
+          low_mask  = v <= q_low.broadcast_like(v)
+          high_mask = v >= q_high.broadcast_like(v)
+  
+      elif mode == "share":
+          def _select_by_share(vol_arr, share, pick_top):
+              a = np.asarray(vol_arr, dtype=float)
+              valid = np.isfinite(a) & (a >= 0)
+              if valid.sum() == 0:
+                  return np.zeros_like(a, dtype=bool)
+              vals = a[valid]
+              order = np.argsort(vals)[::-1] if pick_top else np.argsort(vals)
+              thresh = share * float(vals.sum())
+              chosen = np.zeros_like(vals, dtype=bool)
+              cum = 0.0
+              for idx in order:
+                  if cum + vals[idx] <= thresh + 1e-15:
+                      chosen[idx] = True
+                      cum += vals[idx]
+                  else:
+                      break
+              out = np.zeros_like(a, dtype=bool)
+              out[valid] = chosen
+              return out
+  
+          low_mask = xr.apply_ufunc(
+              lambda x: _select_by_share(x, q, False),
+              v, input_core_dims=[["E"]], output_core_dims=[["E"]],
+              vectorize=True, dask="parallelized", output_dtypes=[bool]
+          )
+          high_mask = xr.apply_ufunc(
+              lambda x: _select_by_share(x, q, True),
+              v, input_core_dims=[["E"]], output_core_dims=[["E"]],
+              vectorize=True, dask="parallelized", output_dtypes=[bool]
+          )
+      else:
+          raise ValueError("mode must be 'quantile' or 'share'")
+  
+      w_mom_raw = xr.where(low_mask,  divide_safe(1.0, v), 0.0)
+      w_rev_raw = xr.where(high_mask, v,                   0.0)
+  
+      w_mom = divide_safe(w_mom_raw, w_mom_raw.sum("E", skipna=True).broadcast_like(w_mom_raw))
+      w_rev = divide_safe(w_rev_raw, w_rev_raw.sum("E", skipna=True).broadcast_like(w_rev_raw))
+  
+      ret_mom_day   = (w_mom * rlog).sum("E", skipna=True)
+      rev_rev_day   = (w_rev * rlog).sum("E", skipna=True)
+      rev_struct_day = rev_rev_day - ret_mom_day
+  
+      ret_mom = _ewm_ma_halflife(ret_mom_day, dim="D", half_life=half_life, mode="mean").isel(D=[-1])
+      rev_rev = _ewm_ma_halflife(rev_rev_day, dim="D", half_life=half_life, mode="mean").isel(D=[-1])
+      rev_struct = _ewm_ma_halflife(rev_struct_day, dim="D", half_life=half_life, mode="mean").isel(D=[-1])
+  
+      names = [
+          f"rev_mom_hl{half_life}",
+          f"rev_rev_hl{half_life}",
+          f"rev_struct_hl{half_life}",
+      ]
+      out = xr.concat([ret_mom, rev_rev, rev_struct], dim="V1").assign_coords(V1=names)
+      return out.transpose("S", "D", "V1")
+  ```
+
+- 订单失衡
+
+  - MLQS（多层订单斜率，Level-1 版本）
+    $$
+    \text{LQS}t=\frac{\log P^A_t-\log P^B_t}{\log V^A_t+\log V^B_t},\qquad \text{MLQS}{\text{day}}=\text{mean}_t(\text{LQS}_t).
+    $$
+    
+
+    分子是对数价差、分母是对数盘口量之和；斜率大=同等“可成交量”下报价差更大，流动性更差。我们对分钟取日均，再在 D 维做 EMA。
+
+  - VOI（订单失衡，带价格门限）
+    $$
+    \Delta V^{WB}t= \begin{cases} 0,& P^B_t<P^B{t-1}\\ V^{WB}t-V^{WB}{t-1},& P^B_t=P^B_{t-1}\\ V^{WB}t,& P^B_t>P^B{t-1} \end{cases}\!, \quad \Delta V^{WA}t= \begin{cases} V^{WA}t,& P^A_t<P^A{t-1}\\ V^{WA}t-V^{WA}{t-1},& P^A_t=P^A{t-1}\\ 0,& P^A_t>P^A_{t-1} \end{cases}
+    $$
+
+    $$
+    \text{VOI}_t=\Delta V^{WB}_t-\Delta V^{WA}t,\qquad \text{VOI}{\text{day}}=\frac{\sum_t \text{VOI}_t}{\sum_t (V^{WB}_t+V^{WA}_t)}.
+    $$
+
+```python
+def compute_voi(
+    da: xr.DataArray,
+    half_life: float = 10.0,
+) -> xr.DataArray:
+    #P27 43 47
+    pb = da.sel(V1="bid")
+    pa = da.sel(V1="ask")
+    vb = da.sel(V1="bidSize")
+    va = da.sel(V1="askSize")
+
+    log_pa = xr.ufuncs.log(xr.where(pa > 0, pa, np.nan))
+    log_pb = xr.ufuncs.log(xr.where(pb > 0, pb, np.nan))
+    log_va = xr.ufuncs.log(xr.where(va > 0, va, np.nan))
+    log_vb = xr.ufuncs.log(xr.where(vb > 0, vb, np.nan))
+    num_lqs = log_pa - log_pb
+    den_lqs = log_va + log_vb
+    lqs_min = divide_safe(num_lqs, den_lqs)
+    mlqs_day = lqs_min.mean("E", skipna=True)
+    mlqs = _ewm_ma_halflife(mlqs_day, dim="D", half_life=half_life, mode="mean").isel(D=[-1])
+
+
+    vwb = vb
+    vwa = va
+    pb_prev = pb.shift(E=1)
+    pa_prev = pa.shift(E=1)
+    tol = 1e-12
+    eq_b = xr.ufuncs.fabs(pb - pb_prev) <= tol
+    eq_a = xr.ufuncs.fabs(pa - pa_prev) <= tol
+    vwb_prev = vwb.shift(E=1)
+    dVWB = xr.where(
+        pb > pb_prev + tol, vwb,
+        xr.where(eq_b, vwb - vwb_prev, 0.0)
+    )
+    vwa_prev = vwa.shift(E=1)
+    dVWA = xr.where(
+        pa < pa_prev - tol, vwa,
+        xr.where(eq_a, vwa - vwa_prev, 0.0)
+    )
+    voi_min = dVWB - dVWA
+    depth_day = (vwb + vwa).sum("E", skipna=True)
+    voi_day = divide_safe(voi_min.sum("E", skipna=True), depth_day)
+    voi = _ewm_ma_halflife(voi_day, dim="D", half_life=half_life, mode="mean").isel(D=[-1])
+
+    out = xr.concat([mlqs, voi], dim="V1").assign_coords(V1=[f"mlqs_hl{half_life}", f"voi_hl{half_life}"])
+    return out.transpose("S", "D", "V1")
+```
+
+
 
 # Risk Factor
 

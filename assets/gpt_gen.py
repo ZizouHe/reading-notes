@@ -767,9 +767,137 @@ def compute_spark_factors(
     out = xr.concat([spark_vol, spark_ret], dim="V1").assign_coords(V1=names)
     return out.transpose("S", "D", "V1")
 
-27 43 47
-36 39 76
-56 63
-50
-79
-(69 75) 48 56 58 65 73 73
+def compute_intrarev_freq(
+    da: xr.DataArray,
+    ret_var: str = "ret",
+    half_life: float = 10.0,
+) -> xr.DataArray:
+    #P56 63
+    r = da.sel(V1=ret_var)
+    co = r.isel(E=0)
+    r_intra_min = r.isel(E=slice(1, None))
+    oc = (1.0 + r_intra_min).prod("E", skipna=True) - 1.0
+
+    nr_day = xr.where((co > 0) & (oc < 0), 1.0, 0.0)
+    pr_day = xr.where((co < 0) & (oc > 0), 1.0, 0.0)
+
+    nr = _ewm_ma_halflife(nr_day, dim="D", half_life=half_life, mode="mean").isel(D=[-1])
+    pr = _ewm_ma_halflife(pr_day, dim="D", half_life=half_life, mode="mean").isel(D=[-1])
+
+    names = [f"nr_intra_rev_freq_hl{half_life}", f"pr_intra_rev_freq_hl{half_life}"]
+    out = xr.concat([nr, pr], dim="V1").assign_coords(V1=names)
+    return out.transpose("S", "D", "V1")
+
+def compute_structured_rev(
+    da: xr.DataArray,
+    ret_var: str = "ret",
+    half_life: float = 10.0,
+    mode: str = "quantile",   # 'quantile' or 'share'
+    q: float = 0.10,
+) -> xr.DataArray:
+    #P79
+    c = da.sel(V1="robust")
+    v = da.sel(V1="volume")
+    rlog = da.sel(V1=ret_var)
+
+    if mode == "quantile":
+        q_low  = v.quantile(q,     dim="E", skipna=True)
+        q_high = v.quantile(1.0-q, dim="E", skipna=True)
+        low_mask  = v <= q_low.broadcast_like(v)
+        high_mask = v >= q_high.broadcast_like(v)
+
+    elif mode == "share":
+        def _select_by_share(vol_arr, share, pick_top):
+            a = np.asarray(vol_arr, dtype=float)
+            valid = np.isfinite(a) & (a >= 0)
+            if valid.sum() == 0:
+                return np.zeros_like(a, dtype=bool)
+            vals = a[valid]
+            order = np.argsort(vals)[::-1] if pick_top else np.argsort(vals)
+            thresh = share * float(vals.sum())
+            chosen = np.zeros_like(vals, dtype=bool)
+            cum = 0.0
+            for idx in order:
+                if cum + vals[idx] <= thresh + 1e-15:
+                    chosen[idx] = True
+                    cum += vals[idx]
+                else:
+                    break
+            out = np.zeros_like(a, dtype=bool)
+            out[valid] = chosen
+            return out
+
+        low_mask = xr.apply_ufunc(
+            lambda x: _select_by_share(x, q, False),
+            v, input_core_dims=[["E"]], output_core_dims=[["E"]],
+            vectorize=True, dask="parallelized", output_dtypes=[bool]
+        )
+        high_mask = xr.apply_ufunc(
+            lambda x: _select_by_share(x, q, True),
+            v, input_core_dims=[["E"]], output_core_dims=[["E"]],
+            vectorize=True, dask="parallelized", output_dtypes=[bool]
+        )
+    else:
+        raise ValueError("mode must be 'quantile' or 'share'")
+
+    w_mom_raw = xr.where(low_mask,  divide_safe(1.0, v), 0.0)
+    w_rev_raw = xr.where(high_mask, v,                   0.0)
+
+    w_mom = divide_safe(w_mom_raw, w_mom_raw.sum("E", skipna=True).broadcast_like(w_mom_raw))
+    w_rev = divide_safe(w_rev_raw, w_rev_raw.sum("E", skipna=True).broadcast_like(w_rev_raw))
+
+    ret_mom_day   = (w_mom * rlog).sum("E", skipna=True)
+    rev_rev_day   = (w_rev * rlog).sum("E", skipna=True)
+    rev_struct_day = rev_rev_day - ret_mom_day
+
+    rev_struct = _ewm_ma_halflife(rev_struct_day, dim="D", half_life=half_life, mode="mean").isel(D=[-1])
+    out = xr.concat([rev_struct], dim="V1").assign_coords(V1=["rev_struct_hl{half_life}"])
+    return out.transpose("S", "D", "V1")
+
+def compute_voi(
+    da: xr.DataArray,
+    half_life: float = 10.0,
+) -> xr.DataArray:
+    #P27 43 47
+    pb = da.sel(V1="bid")
+    pa = da.sel(V1="ask")
+    vb = da.sel(V1="bidSize")
+    va = da.sel(V1="askSize")
+
+    log_pa = xr.ufuncs.log(xr.where(pa > 0, pa, np.nan))
+    log_pb = xr.ufuncs.log(xr.where(pb > 0, pb, np.nan))
+    log_va = xr.ufuncs.log(xr.where(va > 0, va, np.nan))
+    log_vb = xr.ufuncs.log(xr.where(vb > 0, vb, np.nan))
+    num_lqs = log_pa - log_pb
+    den_lqs = log_va + log_vb
+    lqs_min = divide_safe(num_lqs, den_lqs)
+    mlqs_day = lqs_min.mean("E", skipna=True)
+    mlqs = _ewm_ma_halflife(mlqs_day, dim="D", half_life=half_life, mode="mean").isel(D=[-1])
+
+
+    vwb = vb
+    vwa = va
+    pb_prev = pb.shift(E=1)
+    pa_prev = pa.shift(E=1)
+    tol = 1e-12
+    eq_b = xr.ufuncs.fabs(pb - pb_prev) <= tol
+    eq_a = xr.ufuncs.fabs(pa - pa_prev) <= tol
+    vwb_prev = vwb.shift(E=1)
+    dVWB = xr.where(
+        pb > pb_prev + tol, vwb,
+        xr.where(eq_b, vwb - vwb_prev, 0.0)
+    )
+    vwa_prev = vwa.shift(E=1)
+    dVWA = xr.where(
+        pa < pa_prev - tol, vwa,
+        xr.where(eq_a, vwa - vwa_prev, 0.0)
+    )
+    voi_min = dVWB - dVWA
+    depth_day = (vwb + vwa).sum("E", skipna=True)
+    voi_day = divide_safe(voi_min.sum("E", skipna=True), depth_day)
+    voi = _ewm_ma_halflife(voi_day, dim="D", half_life=half_life, mode="mean").isel(D=[-1])
+
+    out = xr.concat([mlqs, voi], dim="V1").assign_coords(V1=[f"mlqs_hl{half_life}", f"voi_hl{half_life}"])
+    return out.transpose("S", "D", "V1")
+
+#(69 75) 48 56 58 65 73 73

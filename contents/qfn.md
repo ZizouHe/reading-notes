@@ -135,6 +135,16 @@
   - The Authors define a alternative value measure: market-to-visits, market-to-pageviews.
   - **Data from SimilarWeb.**
 
+- [Gómez-Cram, Roberto, Yunhan Guo, Theis Ingerslev Jensen, and Howard Kung. "Prediction Market Accuracy: Crowd Wisdom or Informed Minority?" *SSRN* (2026).](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6617059)
+  - Setting: Polymarket — full on-chain transaction universe (every trade, account, contract, timestamp). Jan-2023 to Dec-2025: 98,906 events, 1.72M accounts, $13.76B volume.
+  - **Methodology — sign-randomization skill test**:
+    1. Take each account's full trade history; for each trade observe event, market, size, and price.
+    2. Keep size and price fixed; randomize only direction (buy vs sell, 50/50).
+    3. **Randomize at the event level (critical)**: all trades by an account within one event share a single randomized direction. Handles (a) intra-market position-building (one bet built over many trades is one decision, not many), and (b) cross-market correlated bets within an event (e.g. "Trump wins" + "Harris loses" are perfectly correlated; treating them as independent would overstate evidence).
+    4. Repeat 10,000× → null PnL distribution under "no skill."
+    5. p-value = fraction of simulated PnLs ≥ actual PnL. p<0.05 → skilled (3.14% of accounts); p>0.95 → unskilled (6.4%); in-between → lucky winners (29.0%) or unlucky losers (61.4%). Market makers (0.1%) identified separately.
+  - Validation: among top traders by raw realized profit, **only 12% overlap with the skilled set** — raw PnL is a poor skill measure. OOS skill persistence 44% (vs ~10% for active mutual funds).
+
 ## Analyst
 
 - Analyst Forecast Bundling Intensity and Earnings Surprise
@@ -162,6 +172,20 @@
 
   - Our empirical analysis shows that while the average analyst does not generate statistically significant alpha relative to the returns of a long-only portfolio benchmark, a subset of analysts exhibits persistent alpha. Motivated by this heterogeneity, we introduce a "fund-of-analysts" framework that first predicts analyst performance and then dynamically allocates weights across analysts based on predicted analyst performances.
 
+- [Lopez-Lira, Alejandro, Yuehua Tang, Yuan Wang, and Mingyin Zhu. "What Makes a Star Analyst? Evidence on Industry Expertise from 1.2 Million Analyst Reports." *SSRN* (2026).](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6496619)
+
+  - **Target — *Institutional Investor* All-Star prediction**: ~600 buy-side firms (~$15T AUM) vote annually on top sell-side analysts by sector. All-Star designation drives compensation, broker market share, and access — historically hard to predict from forecast accuracy alone.
+
+  - **LLM evaluation pipeline** scores each industry report on **18 dimensions** in two families:
+
+    - *General research quality*: clarity of investment thesis, quality of evidence, internal logical consistency, transparency of assumptions, balance of bull/bear cases, quantitative rigor, treatment of risks/catalysts.
+    - *Industry expertise*: knowledge of value chain, sector-specific operating metrics, regulatory/technology dynamics, competitor moves, channel/supplier insight, secular vs cyclical drivers.
+    - Per-report 18-dim score vector → aggregated to analyst-level knowledge score.
+
+  - Sample: 1.22M industry reports, 40 major brokerage houses, 2012–2024.
+
+  - **Conclusion**: LLM knowledge scores predict All-Star status with coefficients ~**7× larger** than forecast accuracy. Buy-side stardom tracks textual industry expertise, not numerical accuracy — accuracy is a *consequence* of knowledge, not the driver.
+
 
 
 ## Anomalies
@@ -185,6 +209,32 @@
 - [Cohen, Lauren, and Dong Lou. "Complicated firms." *Journal of financial economics* 104.2 (2012): 383-400.](https://www.sciencedirect.com/science/article/pii/S0304405X11001899)
   - Complication of a firm is measured by income segment. 
   - The more complicated the firm, the more pronounced the return predictability. In addition, we find that sell-side analysts are subject to these same information processing constraints, as their forecast revisions of easy-to-analyze firms predict their future revisions of more complicated firms.
+
+- [Taheri Hosseinkhani, Nima. "Options Volume as Noise: Evidence from Three Decades of Earnings Announcements." *SSRN* (2026).](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6448100)
+  - Sample: 69,094 firm-quarter earnings events, 1996–2024. All signals averaged over [–60, –6] trading days pre-announcement.
+  - **Three option signals**:
+    - **O/S Ratio** = $V^{opt}_t / V^{stk}_t$ (Roll-Schwartz-Subrahmanyam / Johnson-So). Q5–Q1 hedge: –39 bps announcement (t=–3.79), –118 bps PEAD (t=–4.60). Why negative: aggregate flow dominated by hedging/retail noise, not smart money.
+    - **IV Spread** = $\sigma^{C}_{\Delta=50} - \sigma^{P}_{\Delta=-50}$ (Cremers-Weinbaum, 30-day ATM IV diff from OptionMetrics surface). Significant univariate on SUE (t=–2.90) but **collapses with controls** (t=0.29). Cross-sectional dispersion widened post-2020.
+    - **PCR** = $V^{put}_t / (V^{put}_t + V^{call}_t)$ (Pan-Poteshman). **Only signal robust in full spec (t=–2.90).** Directional measure, not level — survives retail noise.
+  - **Structural break in O/S around Oct-2019 zero-commission shift** (FM CAR[0,+1]): 1996–2005 t=–2.04 → 2013–2019 t=1.31 → 2020–2024 **t=+2.77**. Institutional hedging dominated pre-2020 (high O/S = negative info); retail call buying dominates post-2020 (high O/S = bullish sentiment). Same statistic, inverted information content.
+
+- [Posselt, Anders, and Mads Kjær. "Anomaly-Driven Demand." Working Paper (March 2026).](https://alphaarchitect.com/factor-strategies/) — [Alpha Architect summary by Larry Swedroe (May 22, 2026)](https://alphaarchitect.com/factor-strategies/)
+  - **Core idea**: Factor投资规模已经大到使其自身的机械再平衡行为成为驱动anomaly returns的一个独立通道——除经典的risk premium / mispricing / data-mining之外的第四种解释。
+  - **Signal construction (ADD = Anomaly-Driven Demand)**: 在Chen-Zimmermann数据集的209个anomaly上，每只股票每月统计 (净进入long leg数 − 净进入short leg数) 的边际变化，即下个月将面临的coordinated rebalancing压力。完全基于公开characteristics，不需要持仓数据。
+  - **Strategy & results**: 按ADD分5档，年化超额回报单调从6.62%升至10.65%；long-short spread **+4.03 ppt/年 (t=4.03), Sharpe 0.61**。控制FF5+momentum+anomaly PC前三主成分+专门构造的anomaly-exposure组合后alpha仍显著。Anomaly层面，高低ADD imbalance组合差异**+8.04 ppt/年**。
+  - **Mechanism evidence**:
+    - 回报集中在月初**前6个交易日**且**完全来自open-to-close (盘中)**，机构月末再平衡的典型签名。
+    - 价格压力**永久 (12个月无反转)**，与demand-based pricing一致 (类似index inclusion effect但规模更大)。
+    - ADD形成后institutional breadth上升、short interest下降，验证ADD在追踪真实order flow。
+  - **Cross-section**:
+    - **高t值 (statistically robust) anomaly**效应最强 (>5 ppt)；低t值anomaly的spread接近0——effect由capital weight而非signal multiplicity驱动。
+    - 不对称：long-leg入选的price impact > short-leg (机构short约束)。
+    - Size分布**U型**：micro-cap与mega-cap效应都强 (mega-cap年化~3 ppt显著)，mid-cap最弱。Value类信号贡献最大，与机构资金long-standing偏好一致。
+  - **Practical takeaways**:
+    - ADD可作为单股**crowding indicator**接入risk model / turnover控制。
+    - 对**高知名度anomaly**的historical alpha应打折——部分回报为后续crowding inflation贡献。
+    - 月初前6天 + intraday open-to-close是alpha decay与执行成本的**关键窗口**，建议把trading推前到月末执行。
+    - 反馈环: 机械flow → 价格压力 → 推高observed return → 吸引更多资金 → 更大flow → ...
 
 ## Asset Pricing
 
@@ -263,6 +313,12 @@
   - Analyst heterogeneity: When an analyst’s *own* prior revision sign conflicts with a new earnings surprise, she is ~20 pp less likely to update in that direction.
 
   - Forecast dispersion: Cross-analyst dispersion in annual forecasts is *higher* following sign-changes in the last two SUEs.
+
+- [Cosemans, Mathijs, and Rik Frehen. "Salience Theory and Stock Prices: Empirical Evidence." *Journal of Financial Economics* 140.2 (2021): 460-483.](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2887956)
+  - Operationalizes the Bordalo-Gennaioli-Shleifer salience theory (QJE 2012; AER P&P 2013) into a cross-sectional stock factor: **salience theory value (STV)**.
+  - Mechanism: investors overweight salient payoff states — when a stock’s upside is salient relative to a reference point, it gets overvalued (negative future alpha); when downside is salient, it gets undervalued (positive future alpha). Long undervalued / short overvalued earns significant risk-adjusted returns.
+  - Effect is stronger when limits to arbitrage are high and during high-sentiment periods.
+  - Distinct from standard value (B/M) and lottery preference (MAX) — salience theory value captures context-dependent mispricing driven by the salience distortion of probability weighting, not just tail-payoff preference.
 
 ## Crypto
 
@@ -372,7 +428,11 @@
 
   - Managerial Disclosure Behavior:The behavior captured by the PQS (Post‐quarter Sales (PQS): Sales activity occurring after quarter-end but before the earnings announcement) measure indicates that managers do not fully disclose all privately held post-quarter performance information at the earnings announcement. Instead, they understate positive signals—resulting in lower-than-expected announcement returns and delayed price adjustments in the post-announcement period. This may be driven, in part, by personal trading motivations.
 
-    
+- [Katselas, Dean, Jo Drienko, and Jayanth Paranji. "All Strings Attached: Firm-Level Insider-Trade Sequences and the Power of Sell Signals." *SSRN* (2026).](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6504055)
+  - **Isolated buy/sell** = firm-month with insider net-trade and no same-direction activity in adjacent months (one-off). **Buy/sell-string termination** = first month after ≥2 consecutive same-direction months ends (the "last trade" of a sustained stance).
+  - Form 4 1986–2024 × CRSP/Compustat. Buy side symmetric: isolated +1.0% CAR ≈ termination +1.2%. **Sell side asymmetric**: isolated –0.9% CAR vs termination **–1.5% and more persistent**, magnitude growing monotonically with string length. Returns also drift down *during* ongoing sell strings.
+  - Rule 10b5-1 plan sales *amplify* (not dampen) the sell-side signal — counter to conventional wisdom.
+
 
 
 ## Linkage
@@ -678,6 +738,11 @@ $$
   - Analyst coverage measure: analyst is considered actively engaged in a stock for a 12-month period after making an EPS forecast on that stock.
   - Institutional ownership measure: sum the holdings of institutional investors in the stock at a given quarter-end report date and then divide by the number of outstanding shares. An alternative proxy is the number of different institutional investors in the stock.
 
+- [Jaiswal, Rishabh, Shubhankar Sanyal, and Palash Jariwala. "Heterogeneous Pricing of Supply Chain Risk in Production Networks." *SSRN* (2026).](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6726289)
+  - **NSCR (Network Supply Chain Risk)** = combination of:
+    - **BEA input-output tables** — industry-level I-O weights capturing how much of industry j's output goes into industry i (so for firm i, its key upstream inputs).
+    - **FRED macro shocks** — time series of shocks to those upstream input markets (energy, metals, chemicals, etc.).
+
 
 ## Machine Learning
 
@@ -714,9 +779,50 @@ $$
     * Hybrid model that incorporates uniform models with industry-specific ideas is the best.
     * Hybrid models are trained on returns in excess of industry medians, and features are normalized within industries, which reduces noise along the cross industry dimension. And unlike the industry-specific Specialist models, the Hybrid approach avoids partitioning the cross-section of stocks into small subsamples. 
 
-    
+  * [Zhong, Tenghan. "Risk-Sensitive Specialist Routing for Volatility Forecasting." *arXiv:2604.10402* (2026).](https://arxiv.org/abs/2604.10402)
 
+    * 不同预测模型在不同market regime下表现不同，没有单一模型跨状态稳定最优。框架包含online risk-sensitive evaluation（实时评估各specialist质量，惩罚高波动下的underprediction）和state-dependent gating（根据calm/stressed状态动态路由到最优specialist）。
+    * 6只ETF日度面板，rolling walk-forward设计。相对rolling-best baseline：高波动区间预测损失降低~24%，underprediction损失降低~22%。
+    * Specialist routing思路可推广到股票收益率预测（不同模型在趋势/均值回复环境下表现不同）、因子timing、多信号组合的state-dependent加权。本质上是把MoE从一次性训练变成online adaptive routing。
 
+* [Chai, Bailin, Fuwei Jiang, Lingchao Meng, Tian You, and Guofu Zhou. "Generative AI for Finance: A New Framework (RPBERT)." *SSRN Working Paper* (2025).](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6276278)
+  * **Main idea**: Treats the cross-section of stocks like language. Firms are "tokens," sorted by each characteristic to form ranked sequences. Pricing-relevant information is encoded not only in a firm's own characteristics but in its position and interactions within the cross-section. Attention endogenously determines how information enters pricing — no fixed mapping from characteristics to returns.
+  * **Model structure — two stages**:
+    * Stage 1 (Pretrain Company BERT): 12-layer BERT Transformer (hidden 768, 12 heads, FFN 3072, GELU, dropout 0.1). Input = firm-ID tokens sorted by each characteristic per month; token embedding = learnable firm-ID lookup + segment embedding + position embedding (position encodes rank in the characteristic-sorted sequence). Pretrained on 1980–1989 data with MLM (predict masked firm tokens from peer context) + NSP (distinguish adjacent vs. random windows). 130 epochs, batch 128, AdamW lr=1e-4, weight decay 0.01, OneCycleLR, mixed precision.
+    * Stage 2 (Fine-tune with conditional asset pricing): Mention aggregation pools all contextual states of a firm across 94 characteristic-specific sequences into a single firm-level embedding. β-network (5-layer MLP, hidden 512, ReLU) maps firm embedding → K-dim factor loadings. α-network (3-layer MLP, hidden 128, ReLU) maps cross-sectional return vector → K-dim latent factor realizations. Predicted return: r̂ᵢₜ = β̂ᵢ,ₜ₋₁ᵀ f̂ₜ. Loss = MSE on realized returns, backpropagated end-to-end through pricing module and BERT encoder jointly. AdamW lr=3e-5, weight decay 1e-4, gradient clipping 1.0.
+  * **Data**: 94 firm characteristics (Green et al. 2017) — size, value, profitability, investment, momentum, volatility, liquidity, accounting signals (61 annual, 13 quarterly, 20 monthly). Monthly U.S. equities 1980–2023. For each month × characteristic, firms sorted in descending order; long lists split via sliding window (length 128, overlap 25). Tokenized corpus ~100GB. Rolling estimation: 10-year train, 1-year validation, 1-year test, re-estimated annually.
+  * **Results**: RPBERT5 (K=5): total R²=17.92%, predictive R²=1.79%, VW long-short 2.54%/mo (Sharpe 2.85), EW 4.23%/mo (Sharpe 3.50). VW alpha 2.46–2.58%/mo after CAPM/FF5/FF5+mom adjustment (t>12). Tangency portfolio Sharpe 4.91. Shuffling rank order causes material performance collapse — ordering is load-bearing. Combining with AE5 (simple average) pushes R² to 19.33%, confirming embedding signal is complementary to numerical features.
+  * **Attention diagnostics**: Different heads specialize in distinct economic dimensions — forward-looking expectations (EPS forecasts, revisions), liquidity frictions (illiquidity, bid-ask spread), investment dynamics (capex, depreciation, asset growth), intangible intensity (R&D, organizational capital).
+  * **Open questions**: generalization across markets, turnover/implementation costs, sensitivity to characteristic ordering, the α-network taking contemporaneous returns as input (look-ahead in factor extraction).
+
+* [Wade, Rylan. "Do Better Volatility Forecasts Lead to Better Portfolios? Evidence from Graph Neural Networks." *arXiv:2605.19278* (2026).](https://arxiv.org/abs/2605.19278) — [Code](https://github.com/waderylan/sp500-gnn)
+  * **Data & target**: 465只S&P 500股票, 2015-2025 周度realized volatility。Target = 下一周realized vol (MSE loss)。训练2015-2022 / 验证2023 / 测试2024-2025共103周walk-forward。
+  * **GraphSAGE backbone**: 所有三个GNN变体共享同一GraphSAGE backbone (Hamilton et al. 2017)——inductive (归纳式) GNN，无需全图spectral decomposition，新股票加入也能inference，适合金融universe变动。
+    * **Layer rule (Mean aggregator)**: 对每个节点 $v$ 在第 $k$ 层：$h_v^{(k)} = \sigma(W^{(k)} \cdot \text{CONCAT}(h_v^{(k-1)}, \text{MEAN}\{h_u^{(k-1)}: u \in N(v)\}))$。多层叠加使节点能聚合2-hop / 3-hop邻居信息。
+    * 超参 (hidden dim / dropout / layers / lr / correlation threshold / lookback windows) 在2023验证集grid search调优；HAR与LSTM作为固定baseline不调，确保差异来自graph构造而非architecture。
+  * **三种图视角 (核心实验对比)**:
+    * **GNN-Correlation (动态)**: 边定义为 $|\rho| \geq 0.30$ 的rolling Pearson return相关。No-macro用252d窗口；macro版本分别报告21/63/126/252d。**每周重算**，最dynamic——平静期稀疏、危机期接近全连接。
+    * **GNN-Sector (准静态)**: 同一GICS sector内的股票互连，**每年更新一次**。表达基本面/经济结构关系，最稳定，turnover最低。
+    * **GNN-Granger (静态有向)**: 5-day lag Granger因果检验 + Bonferroni校正得13,886条有向边，整训练期**一次性计算**。Message passing保留方向性 (A→B = A过去对B未来有incremental predictive power)。
+    * **GNN-Ensemble**: 三种GNN的逆MSE加权平均。
+  * **Macro-conditioned vs No-macro**:
+    * 架构相同，区别在node feature: macro版本在每个节点feature上concat市场层regime变量 (VIX level + change, SPY vol + return, 10Y-2Y spread, IG credit spread, average pairwise correlation, graph density)，所有股票共享同一份macro copy。Macro features用training-period统计标准化 (非cross-sectional)。
+    * 实证: **加macro一律提升预测精度**——MSE/R²/DA全面优于no-macro对应版本，且边际贡献**大于不同graph构造之间的差异**，说明regime conditioning ≥ graph topology的边际价值。
+  * **Forecast accuracy (103 test weeks)**:
+    * 最低MSE: GNN-Corr + Macro 63d (MSE 0.0298, R² 0.210, DA 0.722)
+    * Baseline: HAR per-stock 0.0329, LSTM 0.0324
+    * No-macro GNN: 三个图差异有限 (0.0322-0.0337)
+  * **Portfolio performance (Min-Var, 10bps成本, 单股≤5%)**:
+    * **最高Sharpe: GNN-Sector + Macro (Sharpe 0.984, 年化Ret 15.3%, vol 10.4%)**
+    * GNN-Granger + Macro Sharpe 0.973
+    * GNN-Corr + Macro 63d (predict最优) Sharpe仅0.794
+    * HAR per-stock Sharpe 0.635
+  * **Key empirical finding (核心结论)**: **最低forecast MSE的模型、最高cross-sectional ranking accuracy的模型、最高portfolio Sharpe的模型是三个不同模型**。Forecast accuracy / ranking quality / portfolio performance相关但不可互换。Graph vol model只在portfolio rule能利用cross-sectional structure时才有增益。
+  * **哪种图更好**: 取决于评估维度——**预测维度Correlation+Macro最优** (动态图捕获current co-movement)，**组合维度Sector+Macro最优** (稳定稀疏图→低turnover→10bp成本下net Sharpe最高，avg turnover仅0.406 vs HAR per-stock 1.012)。提示**更稳定的图对portfolio层有时反而更有用**。
+  * **Practical implications**:
+    * 对"先训练vol预测、再插入min-var优化"的标准ML pipeline提出系统挑战——MSE最小化未必带来更好组合表现，建议直接对下游目标 (IC, Sharpe, turnover-adjusted PnL) 做end-to-end训练或multi-objective loss。
+    * 加入macro regime context的边际收益普遍**高于换用更复杂的图结构**，是ML-for-vol的cost-effective优化方向。
+    * Graph信息对portfolio的增益依赖constructor能否消化cross-sectional信号 (Min-Var利用level + cross-section, IVP只用level)，graph选择应与portfolio rule匹配考虑。
 
 ## Macro
 
@@ -816,7 +922,7 @@ $$
 
 - [Regime Modeling](../notes/regime.html)
 
-- [Factor Timing](../notes/timing.html)
+- [Factor Timing](../notes/moment.html)
 
 - Structural Breaks: Advances in Financial Machine Learning Chapter 17
   - **CUSUM tests**: These test whether the cumulative forecasting errors significantly deviate from white noise.
@@ -933,10 +1039,16 @@ $$
   - These platforms alleviate common investor challenges, stimulate trading, improve market liquidity, and enhance the informativeness of stock prices.
 
 
-- [Cohen, Lauren, and Quoc Nguyen. "Moving Targets." *Available at SSRN 4736129* (2024).](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4736129)
+- [Cohen, Lauren, and Quoc Nguyen. “Moving Targets.” *Available at SSRN 4736129* (2024).](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4736129)
   - Managers publicize performance targets (e.g., revenue, same-store sales, product metrics) in earnings-call presentations. When they fail to hit a given target, they often shift the discussion to a different metric—“moving the target” to ensure they still clear a self-set hurdle.
   - There is no immediate announcement reaction but there will be underperformance after moved targets. Shifts in non-financial targets (e.g., subscriber counts, product units) predict larger underperformance than purely financial ones.
   - **Analyst attention**: when analysts explicitly question a dropped target and management is forced to address it, the underperformance effect is attenuated, indicating that inattention drives the gradual price drift.
+
+- [Sidhu, Karmanpartap Singh, Junyi Fan, and Maryam Pishgar. “Which Voices Move Markets? Speaker Identity and the Cross-Section of Post-Earnings Returns.” *arXiv:2604.13260* (2026).](https://arxiv.org/abs/2604.13260)
+  - Conference call分section、分speaker提取FinBERT情绪，按发言人身份加权。权重通过实证拟合：**Analyst 49%, CFO 30%, Executive 16%, Other 5%**。
+  - 不加权的document-level sentiment丢失大量信息；Q&A section的analyst提问及管理层回应是主要alpha来源；FinBERT完全替代传统Loughran-McDonald词典方法（combined specification中LM t=0.86，FinBERT t=5.90）。
+  - OOS Spearman IC = 0.142（高于IS的0.115），月度long-short alpha 2.03%（FF5 unexplained, t=6.49），控制SUE后仍显著。
+  - 实现上需要speaker-level transcript parsing，主流数据商（Refinitiv、S&P Capital IQ）的transcript均有speaker标注。
 
 ## Portfolio Construction
 

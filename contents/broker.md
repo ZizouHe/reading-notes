@@ -87,6 +87,16 @@
     - **多空关键词判断发帖多空情感**。“预增”、“扭亏为盈”、“低估”、“量价齐升”等30个看多个股的关键词，判断发帖情感效果优异，其中14个看多关键词样本事件收益超过2%，2个看多关键词样本事件收益超过3%。
     - **个股关注度影响发帖个股收益**。单只股票发帖样本事件收益0.9%，多只股票样本事件收益0.5%。发帖个股日内关注度上升，事件收益水平整体下降。日内关注1次样本事件收益为1.2%，10次以上关注样本事件收益降为负值。
     - **发帖情感分析：结合自选股与模拟组合行为**。发帖前用户曾将发帖个股加入自选的样本，事件收益提升至2.0%。发帖前用户曾调仓买入或增仓的个股样本，事件收益提升至2.8%。
+- UBS | A millennial's guide to instagram
+  - Five main metrics were studied at the security (parent company) level
+    - Follower level - total brand followers
+    - Follower growth - relative growth vs trailing 52-week median
+    - interaction level - likes + comments per post per 1000 followers
+    - interaction growth - change in interactions vs 52-week median
+    - Likes-to-comments ratio - differeniating positive vs negative engagement
+
+  - Follower growth and interaction level are the most predictivbe of revenue and stock returns
+
 
 
 ## Event-driven
@@ -136,7 +146,127 @@
   - FactSet Corporate Governance: global activist compain details -> identify activists -> FactSet Ownership -> activist holding percentage (and change of holding) in Japan. 
   - There are about 70 activists campaign each year in Japan.
 
+## Flow
 
+- UBS | Where is the onshore smart money positioned in China?
+
+  - regress fund returns on sector returns to estimate sector exposure
+  - obtain active position from sector exposure and benchmark weights
+  - construct long-short based on that
+
+- UBS | Who is the smart money in China?
+
+  - Mutual funds: investors that clear and settle with custodians; 
+  - Hedge funds: investors who prefer to settle their security holdings through their brokers 
+  - among all Stock Connect Northbound investors, hedge fund investors are likely more skilled at capturing stock-specific returns
+  - **built a composite trading signal based on hedge funds' positioning (active weights: investors' weights minus index weights) and trading (weekly change in active weights)**
+  - hedge funds have brought greater information advantage in sectors with higher idiosyncratic risk (By regressing out sector and factor exposures from investor positions, we can extract idiosyncratic stock-specific views)
+  - double sort traditional quant factors with composite hedge fund signals, yields better factors
+
+- [开源金工 | 聪明钱因子模型的2.0版本](https://mp.weixin.qq.com/s?__biz=MzI1NTYxMjE1Mw==&mid=2247483960&idx=1&sn=ce495ee32c8b6a3ce3ae6887c9b39465)
+
+  - 聪明钱因子如下，其中20%交易量的选取是因为A股机构历史交易量占比在10-20%之间
+
+    ![](/Users/zizou/Zizou/Paper/reading-notes/notes/pic/smart_money1.jpeg)
+
+  - 改进：
+
+    - $$S_t = |R_t| / V_t^\beta$$, $$\beta = 0.1 \sim 0.5$$ 效果比较好
+    - $$S_t = |R_t| / \ln V_t$$
+    - $$S_t = Rank(|R_t|) + Rank(V_t)$$
+
+- [兴业金工 | 如何提升机构仓位测算和宏观数据预测精准度？](https://mp.weixin.qq.com/s/pDqVdbiS1a0mZ9MJShqEgA)
+
+  - 用机构每期收益率，以及行业指数收益率 计算机构在每个行业上的实时仓位
+
+  - 传统方法：Lasso 回归
+
+    ![](../notes/pic/position_lasso.png)
+
+  - 卡尔曼滤波：将 仓位当做隐含变量，假设仓位和基金收益率的联合正态分布，得到仓位的后验分布
+
+    ![](../notes/pic/position_kalman.png)
+
+
+- [兴业金工 | 再论如何提升行业仓位测算精准度](https://mp.weixin.qq.com/s/TGlDvHlj2yFmLcj9MXN8Bg)
+  - 问题：已有的行业指数未必能反应机构的正确持仓，尤其是对于偏好小市值风格的基金。针对这个问题，可以使用基金在各行业的历史持仓来构建该基金customized的行业指数，再在此基础上做Lasso回归或者卡尔曼滤波。
+
+- 北上资金交易因子
+
+
+  - 开源金工 | 北上资金行业配置的双轮驱动力
+
+  - [开源金工 | 北上资金攻守兼顾因子的构造](https://mp.weixin.qq.com/s/HB3YV9Zj3W3mQvsqJ7lN6w)
+
+- 北上资金交易行为因子可以从历史偏好、定价权和边际变化三大维度展开，基本因子构造方式如下：
+
+![](../notes/pic/NB.png)
+
+- 其中成交金额占比、净流入因子表现较为稳定
+
+  - 协同因子控制回撤计算：
+
+  - 每个月底计算所有活跃交易机构在每只股票上的仓位变化，计算得到每只股票的t 统计量 (mean / std)
+
+  - 该值越高，表明不同托管机构的行为越趋一致，因此称为协同性因子。
+
+
+- [海通量化 | 从优秀基金经理的投资风格到因子组合](https://mp.weixin.qq.com/s/b7sA6rTyyq2GhN1YmIC6rA)
+
+  - 估计方法
+
+  ![](../notes/pic/fund_rsch.png)
+
+  - 一方面，可以选择基金选股偏好 (RHS factor above) 中，权重最高的部分股票构建多头组合。该多头组合也反映了基金经理的风格特征，因此与实际收益也具有较高的可比性和相关性。
+  - 另一方面，也可将回归系数当作因子权重构建复合因子，选择复合因子得分最高的股票构建组合。
+
+- [国信金工 | 券商金股全解析—数据、建模与实践](https://mp.weixin.qq.com/s/f87j4BSTlT9qRMAknlj-BA)
+
+  ![](../notes/pic/guoxin_gold.png)
+
+- [开源金工 | 885001指数：优势、复制与超越](https://mp.weixin.qq.com/s/su4H03UIwgNQQnAYJQUmSA)
+
+  - 公募基金在一个完整的自然年需要披露六次持仓信息，分别为四次季报、一次半年报和一次年报。在每个季报期，公募基金仅披露前十大重仓股的持仓占比，而在半年报和年报，公募基金会披露全部的持仓信息。除此之外，公募基金在每个报告期会披露其在证监会和GICS行业的配置比例以及股票和债券的持仓比例。
+
+    虽然半年报和年报在披露信息上更加全面，但同时其也拥有更长的时滞。根据监管要求，公募基金需在季度结束后15个工作日内披露季报，需要在2个月内披露半年报，需要在3个月内披露年报。
+
+    除此之外，上市公司定期披露的十大流通股东提供了基金的隐藏重仓股信息。上市公司的定期报告亦存在一定的时滞，一季报和三季报要求在每个季度结束后的一个月内披露完成，半年报则需在两个月内披露完成，年报则要求最迟在次年四月底前披露完成。
+
+  - 公募基金的仓位测算：二次规划
+
+    - 备选股票通常来源于当期的十大重仓股和最新一期披露的全部持仓的并集。我们根据行业配置信息，对备选股票池进行拓宽。为了避免所选股票在行业内分布不均，我们在每个行业中按照市值排序，选取前3%的个股作为备选标的。这意味着对于权重占比较高的行业，其备选标的亦会相应增加。
+
+    - 在每个季报发布节点，我们回看过去20个交易日，通过最小化跟踪误差来对基金持仓进行拟合。为了简便处理，在拟合期内，假设个股权重不变。
+
+    - **季报持仓补全**
+
+      ![](../notes/pic/mutual_holding_1.png)
+
+    - **持仓高频监测**
+
+      ![](../notes/pic/mutual_holding_2.png)
+
+  - 公募基金的仓位测算：卡尔曼滤波
+
+- UBS | Go with the Flow Insights from Hedge Fund
+
+- UBS | Revisiting the Stock Connect Scheme
+
+  - Northbound holding stop daily update in 2024.
+  - HKEX shows daily short availability before market open (if more than 300,000 shares, it will be shown as "Available"). Available sell is capped at 1% of total northbound holdings. Usually 75% stock connect names have exact available short shares.
+
+- UBS | Identifying fund managers' skills using peer cohort
+
+  - Cluster fund managers based on return correlation
+  - Identify fund manager skills by cohort alpha - idiosyncratic outperformance against cohort benchmark
+  - construct portfolio using top fund managers from each group, to diversify style exposure
+
+- MS | Exploring Signals from Flows & Positioning - A pratical guide
+
+
+  - retail flow is in general reversal signal
+  - retail / foreign flows are good volatility predictor
+  - GEM positioning / country-level flow can be used as conditioner for fundamentals
 
 ## Fundamental
 
@@ -227,7 +357,14 @@
 
   - Total director compensation after exclude size and sector effect has positive long-term return impact.
 
-
+- UBS | How to nowcast earnings surprise
+  - Use peer announcement information to nowcast SUE (consider seasonality, country/macro effects etc.)
+  - Large firm surprises are more predictable (and also gets more attention and reflect more in return)
+  - consider the sequence of releases (# release, timing, identify idio)
+  - decompose into idio and common / industry trend
+  - Peer definition: similar firms / predict by segment revenue
+  - Include all other information available (monthly number, prelim results)
+  - Include market reaction / analyst revision
 
 ## Linkage
 
@@ -344,8 +481,44 @@
 
     - For the distance method, we calculate the spread between the normalised prices of all possible combinations of stock pairs with our catalyst stock and stocks within the same country & sector. The normalised price is the cumulative stock return, adjusted for dividends and other corporate actions, and scaled to $1 for each stock at the beginning of the formation period. We then select a subset of those combinations with the lowest sum of squared spreads to form the nominated top pairs for trade selection.
     - In the cointegration approach, the evaluation of pairs is assessed by the degree of comovement between pairs through cointegration testing. We use the Augmented Dickey-Fuller (ADF) test for stationarity applied to the residual returns between the two stocks in a pair. The residual return series in this context is the series of ordinary least squares (OLS) regression residuals generated by regressing the possible pair stock against the catalyst stock. A stationary residual return series means that there exists a long term relationship between the two stocks and that they tend to move in tandem (though short term deviations from this relationship can still occur). For this reason, we filter and select only pairs that pass the stationarity test at a 95% confidence interval.
-
 - UBS Research | Opportunities in the cross-shareholding network
+- MS Research: Japan-US Peer Momemtum Strategy Based on Business Similarity
+
+  - Japanese firms data: annual securities reports from EDINET, extracting four sections:
+
+    - Business Overview
+    - Management Policy / Business Environment / Issues
+    - MD&A
+    - R&D activities
+
+  - US firms: Full From 10-K filings from SEC EDGAR
+
+    - Section-level extraction was unreliable, so use full text
+
+  - Each filing is summarized into 10 fixed business dimensions:
+
+    - Category, Main business segments, Core technologies / production, Primary customers / markets, Geographic coverage, Supply-chain position, Strategic focus / R&D, Revenue model, Competitors / positioning, Financial scale / growth, Value proposition
+
+  - Each category summary -> 3072-d embedding
+
+    - model: text-embedding-3-large
+    - each company -> 10 embeddings
+
+  - PCA + whitening
+
+    - keep top 128 components per embedding
+    - Normalize variance to 1
+
+  - Similarity score:
+
+    - Category-level cosine similarity
+    - Aggregate similarity: Main business segment: 50% weight; remaining 9 categories: equal weight to take 50%
+
+  - Peer filter: for each Japanese stock
+
+    - keep only 20 most similar US firms
+    - Apply sigmoid transformation to stabilize extremes
+
 
 
 ## Machine Learning
@@ -532,7 +705,30 @@
   - JP companies with past share buybacks tend to keep outperforming market despite a buyback suspension in the future.
   - Statistical arbitrary alpha is the most profitable in JP via weekly or daily rebalancing.
 
-  
+
+- 2025/08 中国财政政策
+
+  - 投资驱动增长 (如资本性支出基建、制造业投资) -> 产能过剩 -> 通缩压力 -> 名义GDP增速低 -> 债务负担更重 (债务 / GDP 比率被动上升) -> 在收入和消费不足的情况下，往往路径依赖，继续加大投资来稳增长
+
+  - 反内卷已经成为中国应对通缩、产能过剩、恶性竞争的新政策工具。2024年9月开始政策转向，2025年中正式推出针对性反内卷措施，强调市场化整合，而不是过去 “运动式”产能出清。目标：从短期刺激转向长期结构性改革，推动创新和可持续增长
+    - 最具收益潜力的行业
+      - 动力电池：资本密集、效率偏低，但有政策扶持、技术快速升级、行业集中度高 -> 易于整合
+        - 钢铁、水泥：国企占主导，已有供给侧改革经验，执行力强。
+        - 航空：长期亏损，产能无明显过剩，监管协调性较高，适合改革。
+- MS: China Shift households from saving to spending
+
+  - 中国居民储蓄率高达35% -> 社会保障覆盖不足、投资型经济
+  - 社会保障扩展：中国社保支出低、城乡差距大、养老金替代率低
+  - 税制改革
+
+    - 中国税收对间接税（增值税、流转税）依赖度高，这类税与产出/产量挂钩，间接鼓励了地方政府以投资、产出为导向
+    - 中央对地方财政转移支付多基于项目导向，而非公共服务供给。导致地方政府更倾向于搞投资拉GDP，而不是改善社保、教育、医疗等公共服务。
+
+- MS: Korea KRX vs NXT
+
+  - Best execution + SOR is the core concept behind why NXT was able to take share from KRX so fast
+  - NXT enables midpoint order, midpoint liquidity is invisible liquidity at a better price. SOR is the intelligence that decides whether waiting for invisible liquidity is worth it.
+
 
 ## Momentum & Reversal
 
@@ -778,117 +974,6 @@
   - 根据订单的特点，将委托划分成交、全撤、部撤和废单四类。部分撤单的委托金额通常比全部撤单要大，而废单相比全撤的报价更消极。卖出委托的挂单金额通常比买入委托的更大，这是因为交易者倾向于分笔买入建仓以隐藏交易意图，或是降低持仓成本。
   - 基于早盘集合竞价阶段撤单数据 （在9:15至9:20期间，委托的交易订单可以被撤销），我们筛选三类卖方撤单率 (撤单量/自由流通股本) 指标，并将其等权合成得到三小将_TRI因子。
   - 毒流动性因子：5秒内撤单数量 / 30秒内撤单数量。
-
-- UBS | Revisiting the Stock Connect Scheme
-  - Northbound holding stop daily update in 2024.
-  - HKEX shows daily short availability before market open (if more than 300,000 shares, it will be shown as "Available"). Available sell is capped at 1% of total northbound holdings. Usually 75% stock connect names have exact available short shares.
-
-## Smart Money
-
-- UBS | Identifying fund managers' skills using peer cohort
-  - Cluster fund managers based on return correlation
-  - Identify fund manager skills by cohort alpha - idiosyncratic outperformance against cohort benchmark
-  - construct portfolio using top fund managers from each group, to diversify style exposure
-
-- UBS | Where is the onshore smart money positioned in China?
-  - regress fund returns on sector returns to estimate sector exposure
-  - obtain active position from sector exposure and benchmark weights
-  - construct long-short based on that
-
-- UBS | Who is the smart money in China?
-  - Mutual funds: investors that clear and settle with custodians; 
-  - Hedge funds: investors who prefer to settle their security holdings through their brokers 
-  - among all Stock Connect Northbound investors, hedge fund investors are likely more skilled at capturing stock-specific returns
-  - **built a composite trading signal based on hedge funds' positioning (active weights: investors' weights minus index weights) and trading (weekly change in active weights)**
-  - hedge funds have brought greater information advantage in sectors with higher idiosyncratic risk (By regressing out sector and factor exposures from investor positions, we can extract idiosyncratic stock-specific views)
-  - double sort traditional quant factors with composite hedge fund signals, yields better factors
-
-- [开源金工 | 聪明钱因子模型的2.0版本](https://mp.weixin.qq.com/s?__biz=MzI1NTYxMjE1Mw==&mid=2247483960&idx=1&sn=ce495ee32c8b6a3ce3ae6887c9b39465)
-
-  - 聪明钱因子如下，其中20%交易量的选取是因为A股机构历史交易量占比在10-20%之间
-
-    ![](/Users/zizou/Zizou/Paper/reading-notes/notes/pic/smart_money1.jpeg)
-
-  - 改进：
-
-    - $$S_t = |R_t| / V_t^\beta$$, $$\beta = 0.1 \sim 0.5$$ 效果比较好
-    - $$S_t = |R_t| / \ln V_t$$
-    - $$S_t = Rank(|R_t|) + Rank(V_t)$$
-
-- [兴业金工 | 如何提升机构仓位测算和宏观数据预测精准度？](https://mp.weixin.qq.com/s/pDqVdbiS1a0mZ9MJShqEgA)
-
-  - 用机构每期收益率，以及行业指数收益率 计算机构在每个行业上的实时仓位
-
-  - 传统方法：Lasso 回归
-
-    ![](../notes/pic/position_lasso.png)
-
-  - 卡尔曼滤波：将 仓位当做隐含变量，假设仓位和基金收益率的联合正态分布，得到仓位的后验分布
-
-    ![](../notes/pic/position_kalman.png)
-
-
-- [兴业金工 | 再论如何提升行业仓位测算精准度](https://mp.weixin.qq.com/s/TGlDvHlj2yFmLcj9MXN8Bg)
-  - 问题：已有的行业指数未必能反应机构的正确持仓，尤其是对于偏好小市值风格的基金。针对这个问题，可以使用基金在各行业的历史持仓来构建该基金customized的行业指数，再在此基础上做Lasso回归或者卡尔曼滤波。
-
-- 北上资金交易因子
-
-
-  - 开源金工 | 北上资金行业配置的双轮驱动力
-
-  - [开源金工 | 北上资金攻守兼顾因子的构造](https://mp.weixin.qq.com/s/HB3YV9Zj3W3mQvsqJ7lN6w)
-
-- 北上资金交易行为因子可以从历史偏好、定价权和边际变化三大维度展开，基本因子构造方式如下：
-
-![](../notes/pic/NB.png)
-
-- 其中成交金额占比、净流入因子表现较为稳定
-
-  - 协同因子控制回撤计算：
-
-  - 每个月底计算所有活跃交易机构在每只股票上的仓位变化，计算得到每只股票的t 统计量 (mean / std)
-
-  - 该值越高，表明不同托管机构的行为越趋一致，因此称为协同性因子。
-
-
-- [海通量化 | 从优秀基金经理的投资风格到因子组合](https://mp.weixin.qq.com/s/b7sA6rTyyq2GhN1YmIC6rA)
-
-  - 估计方法
-
-  ![](../notes/pic/fund_rsch.png)
-
-  - 一方面，可以选择基金选股偏好 (RHS factor above) 中，权重最高的部分股票构建多头组合。该多头组合也反映了基金经理的风格特征，因此与实际收益也具有较高的可比性和相关性。
-  - 另一方面，也可将回归系数当作因子权重构建复合因子，选择复合因子得分最高的股票构建组合。
-
-- [国信金工 | 券商金股全解析—数据、建模与实践](https://mp.weixin.qq.com/s/f87j4BSTlT9qRMAknlj-BA)
-
-  ![](../notes/pic/guoxin_gold.png)
-
-- [开源金工 | 885001指数：优势、复制与超越](https://mp.weixin.qq.com/s/su4H03UIwgNQQnAYJQUmSA)
-
-  - 公募基金在一个完整的自然年需要披露六次持仓信息，分别为四次季报、一次半年报和一次年报。在每个季报期，公募基金仅披露前十大重仓股的持仓占比，而在半年报和年报，公募基金会披露全部的持仓信息。除此之外，公募基金在每个报告期会披露其在证监会和GICS行业的配置比例以及股票和债券的持仓比例。
-
-    虽然半年报和年报在披露信息上更加全面，但同时其也拥有更长的时滞。根据监管要求，公募基金需在季度结束后15个工作日内披露季报，需要在2个月内披露半年报，需要在3个月内披露年报。
-
-    除此之外，上市公司定期披露的十大流通股东提供了基金的隐藏重仓股信息。上市公司的定期报告亦存在一定的时滞，一季报和三季报要求在每个季度结束后的一个月内披露完成，半年报则需在两个月内披露完成，年报则要求最迟在次年四月底前披露完成。
-
-  - 公募基金的仓位测算：二次规划
-
-    - 备选股票通常来源于当期的十大重仓股和最新一期披露的全部持仓的并集。我们根据行业配置信息，对备选股票池进行拓宽。为了避免所选股票在行业内分布不均，我们在每个行业中按照市值排序，选取前3%的个股作为备选标的。这意味着对于权重占比较高的行业，其备选标的亦会相应增加。
-
-    - 在每个季报发布节点，我们回看过去20个交易日，通过最小化跟踪误差来对基金持仓进行拟合。为了简便处理，在拟合期内，假设个股权重不变。
-
-    - **季报持仓补全**
-
-      ![](../notes/pic/mutual_holding_1.png)
-
-    - **持仓高频监测**
-
-      ![](../notes/pic/mutual_holding_2.png)
-
-  - 公募基金的仓位测算：卡尔曼滤波
-
-- UBS | Go with the Flow Insights from Hedge Fund
 
 ## Style Rotation
 

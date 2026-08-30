@@ -1413,6 +1413,19 @@
             
         </li>
     
+        <li class="chapter " data-level="1.4.76" data-path="../notes/apm-paleologo.html">
+            
+                <a href="../notes/apm-paleologo.html">
+            
+                    
+                    Advanced Portfolio Management (Paleologo)
+            
+                </a>
+            
+
+            
+        </li>
+    
 
             </ul>
             
@@ -1634,6 +1647,20 @@ where indicator of <script type="math/tex; ">p_k</script> indicates whether a pa
 <li><strong>Data from SimilarWeb.</strong></li>
 </ul>
 </li>
+<li><p><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6617059" target="_blank">G&#xF3;mez-Cram, Roberto, Yunhan Guo, Theis Ingerslev Jensen, and Howard Kung. &quot;Prediction Market Accuracy: Crowd Wisdom or Informed Minority?&quot; <em>SSRN</em> (2026).</a></p>
+<ul>
+<li>Setting: Polymarket &#x2014; full on-chain transaction universe (every trade, account, contract, timestamp). Jan-2023 to Dec-2025: 98,906 events, 1.72M accounts, $13.76B volume.</li>
+<li><strong>Methodology &#x2014; sign-randomization skill test</strong>:<ol>
+<li>Take each account&apos;s full trade history; for each trade observe event, market, size, and price.</li>
+<li>Keep size and price fixed; randomize only direction (buy vs sell, 50/50).</li>
+<li><strong>Randomize at the event level (critical)</strong>: all trades by an account within one event share a single randomized direction. Handles (a) intra-market position-building (one bet built over many trades is one decision, not many), and (b) cross-market correlated bets within an event (e.g. &quot;Trump wins&quot; + &quot;Harris loses&quot; are perfectly correlated; treating them as independent would overstate evidence).</li>
+<li>Repeat 10,000&#xD7; &#x2192; null PnL distribution under &quot;no skill.&quot;</li>
+<li>p-value = fraction of simulated PnLs &#x2265; actual PnL. p<0.05 →="" skilled="" (3.14%="" of="" accounts);="" p="">0.95 &#x2192; unskilled (6.4%); in-between &#x2192; lucky winners (29.0%) or unlucky losers (61.4%). Market makers (0.1%) identified separately.</0.05></li>
+</ol>
+</li>
+<li>Validation: among top traders by raw realized profit, <strong>only 12% overlap with the skilled set</strong> &#x2014; raw PnL is a poor skill measure. OOS skill persistence 44% (vs ~10% for active mutual funds).</li>
+</ul>
+</li>
 </ul>
 <h2 id="analyst"><a name="analyst" class="anchor-navigation-ex-anchor" href="#analyst"><i class="fa fa-link" aria-hidden="true"></i></a>2. Analyst</h2>
 <ul>
@@ -1666,6 +1693,23 @@ where indicator of <script type="math/tex; ">p_k</script> indicates whether a pa
 <li>Our empirical analysis shows that while the average analyst does not generate statistically significant alpha relative to the returns of a long-only portfolio benchmark, a subset of analysts exhibits persistent alpha. Motivated by this heterogeneity, we introduce a &quot;fund-of-analysts&quot; framework that first predicts analyst performance and then dynamically allocates weights across analysts based on predicted analyst performances.</li>
 </ul>
 </li>
+<li><p><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6496619" target="_blank">Lopez-Lira, Alejandro, Yuehua Tang, Yuan Wang, and Mingyin Zhu. &quot;What Makes a Star Analyst? Evidence on Industry Expertise from 1.2 Million Analyst Reports.&quot; <em>SSRN</em> (2026).</a></p>
+<ul>
+<li><p><strong>Target &#x2014; <em>Institutional Investor</em> All-Star prediction</strong>: ~600 buy-side firms (~$15T AUM) vote annually on top sell-side analysts by sector. All-Star designation drives compensation, broker market share, and access &#x2014; historically hard to predict from forecast accuracy alone.</p>
+</li>
+<li><p><strong>LLM evaluation pipeline</strong> scores each industry report on <strong>18 dimensions</strong> in two families:</p>
+<ul>
+<li><em>General research quality</em>: clarity of investment thesis, quality of evidence, internal logical consistency, transparency of assumptions, balance of bull/bear cases, quantitative rigor, treatment of risks/catalysts.</li>
+<li><em>Industry expertise</em>: knowledge of value chain, sector-specific operating metrics, regulatory/technology dynamics, competitor moves, channel/supplier insight, secular vs cyclical drivers.</li>
+<li>Per-report 18-dim score vector &#x2192; aggregated to analyst-level knowledge score.</li>
+</ul>
+</li>
+<li><p>Sample: 1.22M industry reports, 40 major brokerage houses, 2012&#x2013;2024.</p>
+</li>
+<li><p><strong>Conclusion</strong>: LLM knowledge scores predict All-Star status with coefficients ~<strong>7&#xD7; larger</strong> than forecast accuracy. Buy-side stardom tracks textual industry expertise, not numerical accuracy &#x2014; accuracy is a <em>consequence</em> of knowledge, not the driver.</p>
+</li>
+</ul>
+</li>
 </ul>
 <h2 id="anomalies"><a name="anomalies" class="anchor-navigation-ex-anchor" href="#anomalies"><i class="fa fa-link" aria-hidden="true"></i></a>3. Anomalies</h2>
 <ul>
@@ -1689,9 +1733,48 @@ where indicator of <script type="math/tex; ">p_k</script> indicates whether a pa
 </li>
 </ul>
 </li>
-<li><a href="https://www.sciencedirect.com/science/article/pii/S0304405X11001899" target="_blank">Cohen, Lauren, and Dong Lou. &quot;Complicated firms.&quot; <em>Journal of financial economics</em> 104.2 (2012): 383-400.</a><ul>
+<li><p><a href="https://www.sciencedirect.com/science/article/pii/S0304405X11001899" target="_blank">Cohen, Lauren, and Dong Lou. &quot;Complicated firms.&quot; <em>Journal of financial economics</em> 104.2 (2012): 383-400.</a></p>
+<ul>
 <li>Complication of a firm is measured by income segment. </li>
 <li>The more complicated the firm, the more pronounced the return predictability. In addition, we find that sell-side analysts are subject to these same information processing constraints, as their forecast revisions of easy-to-analyze firms predict their future revisions of more complicated firms.</li>
+</ul>
+</li>
+<li><p><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6448100" target="_blank">Taheri Hosseinkhani, Nima. &quot;Options Volume as Noise: Evidence from Three Decades of Earnings Announcements.&quot; <em>SSRN</em> (2026).</a></p>
+<ul>
+<li>Sample: 69,094 firm-quarter earnings events, 1996&#x2013;2024. All signals averaged over [&#x2013;60, &#x2013;6] trading days pre-announcement.</li>
+<li><strong>Three option signals</strong>:<ul>
+<li><strong>O/S Ratio</strong> = $V^{opt}_t / V^{stk}_t$ (Roll-Schwartz-Subrahmanyam / Johnson-So). Q5&#x2013;Q1 hedge: &#x2013;39 bps announcement (t=&#x2013;3.79), &#x2013;118 bps PEAD (t=&#x2013;4.60). Why negative: aggregate flow dominated by hedging/retail noise, not smart money.</li>
+<li><strong>IV Spread</strong> = $\sigma^{C}<em>{\Delta=50} - \sigma^{P}</em>{\Delta=-50}$ (Cremers-Weinbaum, 30-day ATM IV diff from OptionMetrics surface). Significant univariate on SUE (t=&#x2013;2.90) but <strong>collapses with controls</strong> (t=0.29). Cross-sectional dispersion widened post-2020.</li>
+<li><strong>PCR</strong> = $V^{put}_t / (V^{put}_t + V^{call}_t)$ (Pan-Poteshman). <strong>Only signal robust in full spec (t=&#x2013;2.90).</strong> Directional measure, not level &#x2014; survives retail noise.</li>
+</ul>
+</li>
+<li><strong>Structural break in O/S around Oct-2019 zero-commission shift</strong> (FM CAR[0,+1]): 1996&#x2013;2005 t=&#x2013;2.04 &#x2192; 2013&#x2013;2019 t=1.31 &#x2192; 2020&#x2013;2024 <strong>t=+2.77</strong>. Institutional hedging dominated pre-2020 (high O/S = negative info); retail call buying dominates post-2020 (high O/S = bullish sentiment). Same statistic, inverted information content.</li>
+</ul>
+</li>
+<li><p><a href="https://alphaarchitect.com/factor-strategies/" target="_blank">Posselt, Anders, and Mads Kj&#xE6;r. &quot;Anomaly-Driven Demand.&quot; Working Paper (March 2026).</a> &#x2014; <a href="https://alphaarchitect.com/factor-strategies/" target="_blank">Alpha Architect summary by Larry Swedroe (May 22, 2026)</a></p>
+<ul>
+<li><strong>Core idea</strong>: Factor&#x6295;&#x8D44;&#x89C4;&#x6A21;&#x5DF2;&#x7ECF;&#x5927;&#x5230;&#x4F7F;&#x5176;&#x81EA;&#x8EAB;&#x7684;&#x673A;&#x68B0;&#x518D;&#x5E73;&#x8861;&#x884C;&#x4E3A;&#x6210;&#x4E3A;&#x9A71;&#x52A8;anomaly returns&#x7684;&#x4E00;&#x4E2A;&#x72EC;&#x7ACB;&#x901A;&#x9053;&#x2014;&#x2014;&#x9664;&#x7ECF;&#x5178;&#x7684;risk premium / mispricing / data-mining&#x4E4B;&#x5916;&#x7684;&#x7B2C;&#x56DB;&#x79CD;&#x89E3;&#x91CA;&#x3002;</li>
+<li><strong>Signal construction (ADD = Anomaly-Driven Demand)</strong>: &#x5728;Chen-Zimmermann&#x6570;&#x636E;&#x96C6;&#x7684;209&#x4E2A;anomaly&#x4E0A;&#xFF0C;&#x6BCF;&#x53EA;&#x80A1;&#x7968;&#x6BCF;&#x6708;&#x7EDF;&#x8BA1; (&#x51C0;&#x8FDB;&#x5165;long leg&#x6570; &#x2212; &#x51C0;&#x8FDB;&#x5165;short leg&#x6570;) &#x7684;&#x8FB9;&#x9645;&#x53D8;&#x5316;&#xFF0C;&#x5373;&#x4E0B;&#x4E2A;&#x6708;&#x5C06;&#x9762;&#x4E34;&#x7684;coordinated rebalancing&#x538B;&#x529B;&#x3002;&#x5B8C;&#x5168;&#x57FA;&#x4E8E;&#x516C;&#x5F00;characteristics&#xFF0C;&#x4E0D;&#x9700;&#x8981;&#x6301;&#x4ED3;&#x6570;&#x636E;&#x3002;</li>
+<li><strong>Strategy &amp; results</strong>: &#x6309;ADD&#x5206;5&#x6863;&#xFF0C;&#x5E74;&#x5316;&#x8D85;&#x989D;&#x56DE;&#x62A5;&#x5355;&#x8C03;&#x4ECE;6.62%&#x5347;&#x81F3;10.65%&#xFF1B;long-short spread <strong>+4.03 ppt/&#x5E74; (t=4.03), Sharpe 0.61</strong>&#x3002;&#x63A7;&#x5236;FF5+momentum+anomaly PC&#x524D;&#x4E09;&#x4E3B;&#x6210;&#x5206;+&#x4E13;&#x95E8;&#x6784;&#x9020;&#x7684;anomaly-exposure&#x7EC4;&#x5408;&#x540E;alpha&#x4ECD;&#x663E;&#x8457;&#x3002;Anomaly&#x5C42;&#x9762;&#xFF0C;&#x9AD8;&#x4F4E;ADD imbalance&#x7EC4;&#x5408;&#x5DEE;&#x5F02;<strong>+8.04 ppt/&#x5E74;</strong>&#x3002;</li>
+<li><strong>Mechanism evidence</strong>:<ul>
+<li>&#x56DE;&#x62A5;&#x96C6;&#x4E2D;&#x5728;&#x6708;&#x521D;<strong>&#x524D;6&#x4E2A;&#x4EA4;&#x6613;&#x65E5;</strong>&#x4E14;<strong>&#x5B8C;&#x5168;&#x6765;&#x81EA;open-to-close (&#x76D8;&#x4E2D;)</strong>&#xFF0C;&#x673A;&#x6784;&#x6708;&#x672B;&#x518D;&#x5E73;&#x8861;&#x7684;&#x5178;&#x578B;&#x7B7E;&#x540D;&#x3002;</li>
+<li>&#x4EF7;&#x683C;&#x538B;&#x529B;<strong>&#x6C38;&#x4E45; (12&#x4E2A;&#x6708;&#x65E0;&#x53CD;&#x8F6C;)</strong>&#xFF0C;&#x4E0E;demand-based pricing&#x4E00;&#x81F4; (&#x7C7B;&#x4F3C;index inclusion effect&#x4F46;&#x89C4;&#x6A21;&#x66F4;&#x5927;)&#x3002;</li>
+<li>ADD&#x5F62;&#x6210;&#x540E;institutional breadth&#x4E0A;&#x5347;&#x3001;short interest&#x4E0B;&#x964D;&#xFF0C;&#x9A8C;&#x8BC1;ADD&#x5728;&#x8FFD;&#x8E2A;&#x771F;&#x5B9E;order flow&#x3002;</li>
+</ul>
+</li>
+<li><strong>Cross-section</strong>:<ul>
+<li><strong>&#x9AD8;t&#x503C; (statistically robust) anomaly</strong>&#x6548;&#x5E94;&#x6700;&#x5F3A; (&gt;5 ppt)&#xFF1B;&#x4F4E;t&#x503C;anomaly&#x7684;spread&#x63A5;&#x8FD1;0&#x2014;&#x2014;effect&#x7531;capital weight&#x800C;&#x975E;signal multiplicity&#x9A71;&#x52A8;&#x3002;</li>
+<li>&#x4E0D;&#x5BF9;&#x79F0;&#xFF1A;long-leg&#x5165;&#x9009;&#x7684;price impact &gt; short-leg (&#x673A;&#x6784;short&#x7EA6;&#x675F;)&#x3002;</li>
+<li>Size&#x5206;&#x5E03;<strong>U&#x578B;</strong>&#xFF1A;micro-cap&#x4E0E;mega-cap&#x6548;&#x5E94;&#x90FD;&#x5F3A; (mega-cap&#x5E74;&#x5316;~3 ppt&#x663E;&#x8457;)&#xFF0C;mid-cap&#x6700;&#x5F31;&#x3002;Value&#x7C7B;&#x4FE1;&#x53F7;&#x8D21;&#x732E;&#x6700;&#x5927;&#xFF0C;&#x4E0E;&#x673A;&#x6784;&#x8D44;&#x91D1;long-standing&#x504F;&#x597D;&#x4E00;&#x81F4;&#x3002;</li>
+</ul>
+</li>
+<li><strong>Practical takeaways</strong>:<ul>
+<li>ADD&#x53EF;&#x4F5C;&#x4E3A;&#x5355;&#x80A1;<strong>crowding indicator</strong>&#x63A5;&#x5165;risk model / turnover&#x63A7;&#x5236;&#x3002;</li>
+<li>&#x5BF9;<strong>&#x9AD8;&#x77E5;&#x540D;&#x5EA6;anomaly</strong>&#x7684;historical alpha&#x5E94;&#x6253;&#x6298;&#x2014;&#x2014;&#x90E8;&#x5206;&#x56DE;&#x62A5;&#x4E3A;&#x540E;&#x7EED;crowding inflation&#x8D21;&#x732E;&#x3002;</li>
+<li>&#x6708;&#x521D;&#x524D;6&#x5929; + intraday open-to-close&#x662F;alpha decay&#x4E0E;&#x6267;&#x884C;&#x6210;&#x672C;&#x7684;<strong>&#x5173;&#x952E;&#x7A97;&#x53E3;</strong>&#xFF0C;&#x5EFA;&#x8BAE;&#x628A;trading&#x63A8;&#x524D;&#x5230;&#x6708;&#x672B;&#x6267;&#x884C;&#x3002;</li>
+<li>&#x53CD;&#x9988;&#x73AF;: &#x673A;&#x68B0;flow &#x2192; &#x4EF7;&#x683C;&#x538B;&#x529B; &#x2192; &#x63A8;&#x9AD8;observed return &#x2192; &#x5438;&#x5F15;&#x66F4;&#x591A;&#x8D44;&#x91D1; &#x2192; &#x66F4;&#x5927;flow &#x2192; ...</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -1783,6 +1866,14 @@ where:</p>
 </li>
 <li><p>Forecast dispersion: Cross-analyst dispersion in annual forecasts is <em>higher</em> following sign-changes in the last two SUEs.</p>
 </li>
+</ul>
+</li>
+<li><p><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2887956" target="_blank">Cosemans, Mathijs, and Rik Frehen. &quot;Salience Theory and Stock Prices: Empirical Evidence.&quot; <em>Journal of Financial Economics</em> 140.2 (2021): 460-483.</a></p>
+<ul>
+<li>Operationalizes the Bordalo-Gennaioli-Shleifer salience theory (QJE 2012; AER P&amp;P 2013) into a cross-sectional stock factor: <strong>salience theory value (STV)</strong>.</li>
+<li>Mechanism: investors overweight salient payoff states &#x2014; when a stock&#x2019;s upside is salient relative to a reference point, it gets overvalued (negative future alpha); when downside is salient, it gets undervalued (positive future alpha). Long undervalued / short overvalued earns significant risk-adjusted returns.</li>
+<li>Effect is stronger when limits to arbitrage are high and during high-sentiment periods.</li>
+<li>Distinct from standard value (B/M) and lottery preference (MAX) &#x2014; salience theory value captures context-dependent mispricing driven by the salience distortion of probability weighting, not just tail-payoff preference.</li>
 </ul>
 </li>
 </ul>
@@ -1937,6 +2028,13 @@ where:</p>
 <li><p><a href="https://www.sciencedirect.com/science/article/pii/S0304405X17300776" target="_blank">Froot, Kenneth, et al. &quot;What do measures of real-time corporate sales say about earnings surprises and post-announcement returns?.&quot; <em>Journal of Financial Economics</em> 125.1 (2017): 143-162.</a></p>
 <ul>
 <li>Managerial Disclosure Behavior:The behavior captured by the PQS (Post&#x2010;quarter Sales (PQS): Sales activity occurring after quarter-end but before the earnings announcement) measure indicates that managers do not fully disclose all privately held post-quarter performance information at the earnings announcement. Instead, they understate positive signals&#x2014;resulting in lower-than-expected announcement returns and delayed price adjustments in the post-announcement period. This may be driven, in part, by personal trading motivations.</li>
+</ul>
+</li>
+<li><p><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6504055" target="_blank">Katselas, Dean, Jo Drienko, and Jayanth Paranji. &quot;All Strings Attached: Firm-Level Insider-Trade Sequences and the Power of Sell Signals.&quot; <em>SSRN</em> (2026).</a></p>
+<ul>
+<li><strong>Isolated buy/sell</strong> = firm-month with insider net-trade and no same-direction activity in adjacent months (one-off). <strong>Buy/sell-string termination</strong> = first month after &#x2265;2 consecutive same-direction months ends (the &quot;last trade&quot; of a sustained stance).</li>
+<li>Form 4 1986&#x2013;2024 &#xD7; CRSP/Compustat. Buy side symmetric: isolated +1.0% CAR &#x2248; termination +1.2%. <strong>Sell side asymmetric</strong>: isolated &#x2013;0.9% CAR vs termination <strong>&#x2013;1.5% and more persistent</strong>, magnitude growing monotonically with string length. Returns also drift down <em>during</em> ongoing sell strings.</li>
+<li>Rule 10b5-1 plan sales <em>amplify</em> (not dampen) the sell-side signal &#x2014; counter to conventional wisdom.</li>
 </ul>
 </li>
 </ul>
@@ -2267,6 +2365,15 @@ P_{i, t}=\alpha_{0, t}+\alpha_{1, t} P_{i, t-1}+\alpha_{2, t} M_{i, t-1}+\alpha_
 <li>Institutional ownership measure: sum the holdings of institutional investors in the stock at a given quarter-end report date and then divide by the number of outstanding shares. An alternative proxy is the number of different institutional investors in the stock.</li>
 </ul>
 </li>
+<li><p><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6726289" target="_blank">Jaiswal, Rishabh, Shubhankar Sanyal, and Palash Jariwala. &quot;Heterogeneous Pricing of Supply Chain Risk in Production Networks.&quot; <em>SSRN</em> (2026).</a></p>
+<ul>
+<li><strong>NSCR (Network Supply Chain Risk)</strong> = combination of:<ul>
+<li><strong>BEA input-output tables</strong> &#x2014; industry-level I-O weights capturing how much of industry j&apos;s output goes into industry i (so for firm i, its key upstream inputs).</li>
+<li><strong>FRED macro shocks</strong> &#x2014; time series of shocks to those upstream input markets (energy, metals, chemicals, etc.).</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 <h2 id="machine-learning"><a name="machine-learning" class="anchor-navigation-ex-anchor" href="#machine-learning"><i class="fa fa-link" aria-hidden="true"></i></a>10. Machine Learning</h2>
 <ul>
@@ -2309,6 +2416,70 @@ P_{i, t}=\alpha_{0, t}+\alpha_{1, t} P_{i, t-1}+\alpha_{2, t} M_{i, t-1}+\alpha_
 <ul>
 <li>Hybrid model that incorporates uniform models with industry-specific ideas is the best.</li>
 <li>Hybrid models are trained on returns in excess of industry medians, and features are normalized within industries, which reduces noise along the cross industry dimension. And unlike the industry-specific Specialist models, the Hybrid approach avoids partitioning the cross-section of stocks into small subsamples. </li>
+</ul>
+</li>
+<li><p><a href="https://arxiv.org/abs/2604.10402" target="_blank">Zhong, Tenghan. &quot;Risk-Sensitive Specialist Routing for Volatility Forecasting.&quot; <em>arXiv:2604.10402</em> (2026).</a></p>
+<ul>
+<li>&#x4E0D;&#x540C;&#x9884;&#x6D4B;&#x6A21;&#x578B;&#x5728;&#x4E0D;&#x540C;market regime&#x4E0B;&#x8868;&#x73B0;&#x4E0D;&#x540C;&#xFF0C;&#x6CA1;&#x6709;&#x5355;&#x4E00;&#x6A21;&#x578B;&#x8DE8;&#x72B6;&#x6001;&#x7A33;&#x5B9A;&#x6700;&#x4F18;&#x3002;&#x6846;&#x67B6;&#x5305;&#x542B;online risk-sensitive evaluation&#xFF08;&#x5B9E;&#x65F6;&#x8BC4;&#x4F30;&#x5404;specialist&#x8D28;&#x91CF;&#xFF0C;&#x60E9;&#x7F5A;&#x9AD8;&#x6CE2;&#x52A8;&#x4E0B;&#x7684;underprediction&#xFF09;&#x548C;state-dependent gating&#xFF08;&#x6839;&#x636E;calm/stressed&#x72B6;&#x6001;&#x52A8;&#x6001;&#x8DEF;&#x7531;&#x5230;&#x6700;&#x4F18;specialist&#xFF09;&#x3002;</li>
+<li>6&#x53EA;ETF&#x65E5;&#x5EA6;&#x9762;&#x677F;&#xFF0C;rolling walk-forward&#x8BBE;&#x8BA1;&#x3002;&#x76F8;&#x5BF9;rolling-best baseline&#xFF1A;&#x9AD8;&#x6CE2;&#x52A8;&#x533A;&#x95F4;&#x9884;&#x6D4B;&#x635F;&#x5931;&#x964D;&#x4F4E;~24%&#xFF0C;underprediction&#x635F;&#x5931;&#x964D;&#x4F4E;~22%&#x3002;</li>
+<li>Specialist routing&#x601D;&#x8DEF;&#x53EF;&#x63A8;&#x5E7F;&#x5230;&#x80A1;&#x7968;&#x6536;&#x76CA;&#x7387;&#x9884;&#x6D4B;&#xFF08;&#x4E0D;&#x540C;&#x6A21;&#x578B;&#x5728;&#x8D8B;&#x52BF;/&#x5747;&#x503C;&#x56DE;&#x590D;&#x73AF;&#x5883;&#x4E0B;&#x8868;&#x73B0;&#x4E0D;&#x540C;&#xFF09;&#x3001;&#x56E0;&#x5B50;timing&#x3001;&#x591A;&#x4FE1;&#x53F7;&#x7EC4;&#x5408;&#x7684;state-dependent&#x52A0;&#x6743;&#x3002;&#x672C;&#x8D28;&#x4E0A;&#x662F;&#x628A;MoE&#x4ECE;&#x4E00;&#x6B21;&#x6027;&#x8BAD;&#x7EC3;&#x53D8;&#x6210;online adaptive routing&#x3002;</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6276278" target="_blank">Chai, Bailin, Fuwei Jiang, Lingchao Meng, Tian You, and Guofu Zhou. &quot;Generative AI for Finance: A New Framework (RPBERT).&quot; <em>SSRN Working Paper</em> (2025).</a></p>
+<ul>
+<li><strong>Main idea</strong>: Treats the cross-section of stocks like language. Firms are &quot;tokens,&quot; sorted by each characteristic to form ranked sequences. Pricing-relevant information is encoded not only in a firm&apos;s own characteristics but in its position and interactions within the cross-section. Attention endogenously determines how information enters pricing &#x2014; no fixed mapping from characteristics to returns.</li>
+<li><strong>Model structure &#x2014; two stages</strong>:<ul>
+<li>Stage 1 (Pretrain Company BERT): 12-layer BERT Transformer (hidden 768, 12 heads, FFN 3072, GELU, dropout 0.1). Input = firm-ID tokens sorted by each characteristic per month; token embedding = learnable firm-ID lookup + segment embedding + position embedding (position encodes rank in the characteristic-sorted sequence). Pretrained on 1980&#x2013;1989 data with MLM (predict masked firm tokens from peer context) + NSP (distinguish adjacent vs. random windows). 130 epochs, batch 128, AdamW lr=1e-4, weight decay 0.01, OneCycleLR, mixed precision.</li>
+<li>Stage 2 (Fine-tune with conditional asset pricing): Mention aggregation pools all contextual states of a firm across 94 characteristic-specific sequences into a single firm-level embedding. &#x3B2;-network (5-layer MLP, hidden 512, ReLU) maps firm embedding &#x2192; K-dim factor loadings. &#x3B1;-network (3-layer MLP, hidden 128, ReLU) maps cross-sectional return vector &#x2192; K-dim latent factor realizations. Predicted return: r&#x302;&#x1D62;&#x209C; = &#x3B2;&#x302;&#x1D62;,&#x209C;&#x208B;&#x2081;&#x1D40; f&#x302;&#x209C;. Loss = MSE on realized returns, backpropagated end-to-end through pricing module and BERT encoder jointly. AdamW lr=3e-5, weight decay 1e-4, gradient clipping 1.0.</li>
+</ul>
+</li>
+<li><strong>Data</strong>: 94 firm characteristics (Green et al. 2017) &#x2014; size, value, profitability, investment, momentum, volatility, liquidity, accounting signals (61 annual, 13 quarterly, 20 monthly). Monthly U.S. equities 1980&#x2013;2023. For each month &#xD7; characteristic, firms sorted in descending order; long lists split via sliding window (length 128, overlap 25). Tokenized corpus ~100GB. Rolling estimation: 10-year train, 1-year validation, 1-year test, re-estimated annually.</li>
+<li><strong>Results</strong>: RPBERT5 (K=5): total R&#xB2;=17.92%, predictive R&#xB2;=1.79%, VW long-short 2.54%/mo (Sharpe 2.85), EW 4.23%/mo (Sharpe 3.50). VW alpha 2.46&#x2013;2.58%/mo after CAPM/FF5/FF5+mom adjustment (t&gt;12). Tangency portfolio Sharpe 4.91. Shuffling rank order causes material performance collapse &#x2014; ordering is load-bearing. Combining with AE5 (simple average) pushes R&#xB2; to 19.33%, confirming embedding signal is complementary to numerical features.</li>
+<li><strong>Attention diagnostics</strong>: Different heads specialize in distinct economic dimensions &#x2014; forward-looking expectations (EPS forecasts, revisions), liquidity frictions (illiquidity, bid-ask spread), investment dynamics (capex, depreciation, asset growth), intangible intensity (R&amp;D, organizational capital).</li>
+<li><strong>Open questions</strong>: generalization across markets, turnover/implementation costs, sensitivity to characteristic ordering, the &#x3B1;-network taking contemporaneous returns as input (look-ahead in factor extraction).</li>
+</ul>
+</li>
+<li><p><a href="https://arxiv.org/abs/2605.19278" target="_blank">Wade, Rylan. &quot;Do Better Volatility Forecasts Lead to Better Portfolios? Evidence from Graph Neural Networks.&quot; <em>arXiv:2605.19278</em> (2026).</a> &#x2014; <a href="https://github.com/waderylan/sp500-gnn" target="_blank">Code</a></p>
+<ul>
+<li><strong>Data &amp; target</strong>: 465&#x53EA;S&amp;P 500&#x80A1;&#x7968;, 2015-2025 &#x5468;&#x5EA6;realized volatility&#x3002;Target = &#x4E0B;&#x4E00;&#x5468;realized vol (MSE loss)&#x3002;&#x8BAD;&#x7EC3;2015-2022 / &#x9A8C;&#x8BC1;2023 / &#x6D4B;&#x8BD5;2024-2025&#x5171;103&#x5468;walk-forward&#x3002;</li>
+<li><strong>GraphSAGE backbone</strong>: &#x6240;&#x6709;&#x4E09;&#x4E2A;GNN&#x53D8;&#x4F53;&#x5171;&#x4EAB;&#x540C;&#x4E00;GraphSAGE backbone (Hamilton et al. 2017)&#x2014;&#x2014;inductive (&#x5F52;&#x7EB3;&#x5F0F;) GNN&#xFF0C;&#x65E0;&#x9700;&#x5168;&#x56FE;spectral decomposition&#xFF0C;&#x65B0;&#x80A1;&#x7968;&#x52A0;&#x5165;&#x4E5F;&#x80FD;inference&#xFF0C;&#x9002;&#x5408;&#x91D1;&#x878D;universe&#x53D8;&#x52A8;&#x3002;<ul>
+<li><strong>Layer rule (Mean aggregator)</strong>: &#x5BF9;&#x6BCF;&#x4E2A;&#x8282;&#x70B9; $v$ &#x5728;&#x7B2C; $k$ &#x5C42;&#xFF1A;$h_v^{(k)} = \sigma(W^{(k)} \cdot \text{CONCAT}(h_v^{(k-1)}, \text{MEAN}{h_u^{(k-1)}: u \in N(v)}))$&#x3002;&#x591A;&#x5C42;&#x53E0;&#x52A0;&#x4F7F;&#x8282;&#x70B9;&#x80FD;&#x805A;&#x5408;2-hop / 3-hop&#x90BB;&#x5C45;&#x4FE1;&#x606F;&#x3002;</li>
+<li>&#x8D85;&#x53C2; (hidden dim / dropout / layers / lr / correlation threshold / lookback windows) &#x5728;2023&#x9A8C;&#x8BC1;&#x96C6;grid search&#x8C03;&#x4F18;&#xFF1B;HAR&#x4E0E;LSTM&#x4F5C;&#x4E3A;&#x56FA;&#x5B9A;baseline&#x4E0D;&#x8C03;&#xFF0C;&#x786E;&#x4FDD;&#x5DEE;&#x5F02;&#x6765;&#x81EA;graph&#x6784;&#x9020;&#x800C;&#x975E;architecture&#x3002;</li>
+</ul>
+</li>
+<li><strong>&#x4E09;&#x79CD;&#x56FE;&#x89C6;&#x89D2; (&#x6838;&#x5FC3;&#x5B9E;&#x9A8C;&#x5BF9;&#x6BD4;)</strong>:<ul>
+<li><strong>GNN-Correlation (&#x52A8;&#x6001;)</strong>: &#x8FB9;&#x5B9A;&#x4E49;&#x4E3A; $|\rho| \geq 0.30$ &#x7684;rolling Pearson return&#x76F8;&#x5173;&#x3002;No-macro&#x7528;252d&#x7A97;&#x53E3;&#xFF1B;macro&#x7248;&#x672C;&#x5206;&#x522B;&#x62A5;&#x544A;21/63/126/252d&#x3002;<strong>&#x6BCF;&#x5468;&#x91CD;&#x7B97;</strong>&#xFF0C;&#x6700;dynamic&#x2014;&#x2014;&#x5E73;&#x9759;&#x671F;&#x7A00;&#x758F;&#x3001;&#x5371;&#x673A;&#x671F;&#x63A5;&#x8FD1;&#x5168;&#x8FDE;&#x63A5;&#x3002;</li>
+<li><strong>GNN-Sector (&#x51C6;&#x9759;&#x6001;)</strong>: &#x540C;&#x4E00;GICS sector&#x5185;&#x7684;&#x80A1;&#x7968;&#x4E92;&#x8FDE;&#xFF0C;<strong>&#x6BCF;&#x5E74;&#x66F4;&#x65B0;&#x4E00;&#x6B21;</strong>&#x3002;&#x8868;&#x8FBE;&#x57FA;&#x672C;&#x9762;/&#x7ECF;&#x6D4E;&#x7ED3;&#x6784;&#x5173;&#x7CFB;&#xFF0C;&#x6700;&#x7A33;&#x5B9A;&#xFF0C;turnover&#x6700;&#x4F4E;&#x3002;</li>
+<li><strong>GNN-Granger (&#x9759;&#x6001;&#x6709;&#x5411;)</strong>: 5-day lag Granger&#x56E0;&#x679C;&#x68C0;&#x9A8C; + Bonferroni&#x6821;&#x6B63;&#x5F97;13,886&#x6761;&#x6709;&#x5411;&#x8FB9;&#xFF0C;&#x6574;&#x8BAD;&#x7EC3;&#x671F;<strong>&#x4E00;&#x6B21;&#x6027;&#x8BA1;&#x7B97;</strong>&#x3002;Message passing&#x4FDD;&#x7559;&#x65B9;&#x5411;&#x6027; (A&#x2192;B = A&#x8FC7;&#x53BB;&#x5BF9;B&#x672A;&#x6765;&#x6709;incremental predictive power)&#x3002;</li>
+<li><strong>GNN-Ensemble</strong>: &#x4E09;&#x79CD;GNN&#x7684;&#x9006;MSE&#x52A0;&#x6743;&#x5E73;&#x5747;&#x3002;</li>
+</ul>
+</li>
+<li><strong>Macro-conditioned vs No-macro</strong>:<ul>
+<li>&#x67B6;&#x6784;&#x76F8;&#x540C;&#xFF0C;&#x533A;&#x522B;&#x5728;node feature: macro&#x7248;&#x672C;&#x5728;&#x6BCF;&#x4E2A;&#x8282;&#x70B9;feature&#x4E0A;concat&#x5E02;&#x573A;&#x5C42;regime&#x53D8;&#x91CF; (VIX level + change, SPY vol + return, 10Y-2Y spread, IG credit spread, average pairwise correlation, graph density)&#xFF0C;&#x6240;&#x6709;&#x80A1;&#x7968;&#x5171;&#x4EAB;&#x540C;&#x4E00;&#x4EFD;macro copy&#x3002;Macro features&#x7528;training-period&#x7EDF;&#x8BA1;&#x6807;&#x51C6;&#x5316; (&#x975E;cross-sectional)&#x3002;</li>
+<li>&#x5B9E;&#x8BC1;: <strong>&#x52A0;macro&#x4E00;&#x5F8B;&#x63D0;&#x5347;&#x9884;&#x6D4B;&#x7CBE;&#x5EA6;</strong>&#x2014;&#x2014;MSE/R&#xB2;/DA&#x5168;&#x9762;&#x4F18;&#x4E8E;no-macro&#x5BF9;&#x5E94;&#x7248;&#x672C;&#xFF0C;&#x4E14;&#x8FB9;&#x9645;&#x8D21;&#x732E;<strong>&#x5927;&#x4E8E;&#x4E0D;&#x540C;graph&#x6784;&#x9020;&#x4E4B;&#x95F4;&#x7684;&#x5DEE;&#x5F02;</strong>&#xFF0C;&#x8BF4;&#x660E;regime conditioning &#x2265; graph topology&#x7684;&#x8FB9;&#x9645;&#x4EF7;&#x503C;&#x3002;</li>
+</ul>
+</li>
+<li><strong>Forecast accuracy (103 test weeks)</strong>:<ul>
+<li>&#x6700;&#x4F4E;MSE: GNN-Corr + Macro 63d (MSE 0.0298, R&#xB2; 0.210, DA 0.722)</li>
+<li>Baseline: HAR per-stock 0.0329, LSTM 0.0324</li>
+<li>No-macro GNN: &#x4E09;&#x4E2A;&#x56FE;&#x5DEE;&#x5F02;&#x6709;&#x9650; (0.0322-0.0337)</li>
+</ul>
+</li>
+<li><strong>Portfolio performance (Min-Var, 10bps&#x6210;&#x672C;, &#x5355;&#x80A1;&#x2264;5%)</strong>:<ul>
+<li><strong>&#x6700;&#x9AD8;Sharpe: GNN-Sector + Macro (Sharpe 0.984, &#x5E74;&#x5316;Ret 15.3%, vol 10.4%)</strong></li>
+<li>GNN-Granger + Macro Sharpe 0.973</li>
+<li>GNN-Corr + Macro 63d (predict&#x6700;&#x4F18;) Sharpe&#x4EC5;0.794</li>
+<li>HAR per-stock Sharpe 0.635</li>
+</ul>
+</li>
+<li><strong>Key empirical finding (&#x6838;&#x5FC3;&#x7ED3;&#x8BBA;)</strong>: <strong>&#x6700;&#x4F4E;forecast MSE&#x7684;&#x6A21;&#x578B;&#x3001;&#x6700;&#x9AD8;cross-sectional ranking accuracy&#x7684;&#x6A21;&#x578B;&#x3001;&#x6700;&#x9AD8;portfolio Sharpe&#x7684;&#x6A21;&#x578B;&#x662F;&#x4E09;&#x4E2A;&#x4E0D;&#x540C;&#x6A21;&#x578B;</strong>&#x3002;Forecast accuracy / ranking quality / portfolio performance&#x76F8;&#x5173;&#x4F46;&#x4E0D;&#x53EF;&#x4E92;&#x6362;&#x3002;Graph vol model&#x53EA;&#x5728;portfolio rule&#x80FD;&#x5229;&#x7528;cross-sectional structure&#x65F6;&#x624D;&#x6709;&#x589E;&#x76CA;&#x3002;</li>
+<li><strong>&#x54EA;&#x79CD;&#x56FE;&#x66F4;&#x597D;</strong>: &#x53D6;&#x51B3;&#x4E8E;&#x8BC4;&#x4F30;&#x7EF4;&#x5EA6;&#x2014;&#x2014;<strong>&#x9884;&#x6D4B;&#x7EF4;&#x5EA6;Correlation+Macro&#x6700;&#x4F18;</strong> (&#x52A8;&#x6001;&#x56FE;&#x6355;&#x83B7;current co-movement)&#xFF0C;<strong>&#x7EC4;&#x5408;&#x7EF4;&#x5EA6;Sector+Macro&#x6700;&#x4F18;</strong> (&#x7A33;&#x5B9A;&#x7A00;&#x758F;&#x56FE;&#x2192;&#x4F4E;turnover&#x2192;10bp&#x6210;&#x672C;&#x4E0B;net Sharpe&#x6700;&#x9AD8;&#xFF0C;avg turnover&#x4EC5;0.406 vs HAR per-stock 1.012)&#x3002;&#x63D0;&#x793A;<strong>&#x66F4;&#x7A33;&#x5B9A;&#x7684;&#x56FE;&#x5BF9;portfolio&#x5C42;&#x6709;&#x65F6;&#x53CD;&#x800C;&#x66F4;&#x6709;&#x7528;</strong>&#x3002;</li>
+<li><strong>Practical implications</strong>:<ul>
+<li>&#x5BF9;&quot;&#x5148;&#x8BAD;&#x7EC3;vol&#x9884;&#x6D4B;&#x3001;&#x518D;&#x63D2;&#x5165;min-var&#x4F18;&#x5316;&quot;&#x7684;&#x6807;&#x51C6;ML pipeline&#x63D0;&#x51FA;&#x7CFB;&#x7EDF;&#x6311;&#x6218;&#x2014;&#x2014;MSE&#x6700;&#x5C0F;&#x5316;&#x672A;&#x5FC5;&#x5E26;&#x6765;&#x66F4;&#x597D;&#x7EC4;&#x5408;&#x8868;&#x73B0;&#xFF0C;&#x5EFA;&#x8BAE;&#x76F4;&#x63A5;&#x5BF9;&#x4E0B;&#x6E38;&#x76EE;&#x6807; (IC, Sharpe, turnover-adjusted PnL) &#x505A;end-to-end&#x8BAD;&#x7EC3;&#x6216;multi-objective loss&#x3002;</li>
+<li>&#x52A0;&#x5165;macro regime context&#x7684;&#x8FB9;&#x9645;&#x6536;&#x76CA;&#x666E;&#x904D;<strong>&#x9AD8;&#x4E8E;&#x6362;&#x7528;&#x66F4;&#x590D;&#x6742;&#x7684;&#x56FE;&#x7ED3;&#x6784;</strong>&#xFF0C;&#x662F;ML-for-vol&#x7684;cost-effective&#x4F18;&#x5316;&#x65B9;&#x5411;&#x3002;</li>
+<li>Graph&#x4FE1;&#x606F;&#x5BF9;portfolio&#x7684;&#x589E;&#x76CA;&#x4F9D;&#x8D56;constructor&#x80FD;&#x5426;&#x6D88;&#x5316;cross-sectional&#x4FE1;&#x53F7; (Min-Var&#x5229;&#x7528;level + cross-section, IVP&#x53EA;&#x7528;level)&#xFF0C;graph&#x9009;&#x62E9;&#x5E94;&#x4E0E;portfolio rule&#x5339;&#x914D;&#x8003;&#x8651;&#x3002;</li>
 </ul>
 </li>
 </ul>
@@ -2442,7 +2613,7 @@ P_{i, t}=\alpha_{0, t}+\alpha_{1, t} P_{i, t-1}+\alpha_{2, t} M_{i, t-1}+\alpha_
 </li>
 <li><p><a href="../notes/regime.html">Regime Modeling</a></p>
 </li>
-<li><p><a href="../notes/timing.html">Factor Timing</a></p>
+<li><p><a href="../notes/moment.html">Factor Timing</a></p>
 </li>
 <li><p>Structural Breaks: Advances in Financial Machine Learning Chapter 17</p>
 <ul>
@@ -2590,10 +2761,19 @@ where <script type="math/tex; ">r_{i, t+1}</script> is the future asset <script 
 </li>
 </ul>
 <ul>
-<li><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4736129" target="_blank">Cohen, Lauren, and Quoc Nguyen. &quot;Moving Targets.&quot; <em>Available at SSRN 4736129</em> (2024).</a><ul>
+<li><p><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4736129" target="_blank">Cohen, Lauren, and Quoc Nguyen. &#x201C;Moving Targets.&#x201D; <em>Available at SSRN 4736129</em> (2024).</a></p>
+<ul>
 <li>Managers publicize performance targets (e.g., revenue, same-store sales, product metrics) in earnings-call presentations. When they fail to hit a given target, they often shift the discussion to a different metric&#x2014;&#x201C;moving the target&#x201D; to ensure they still clear a self-set hurdle.</li>
 <li>There is no immediate announcement reaction but there will be underperformance after moved targets. Shifts in non-financial targets (e.g., subscriber counts, product units) predict larger underperformance than purely financial ones.</li>
 <li><strong>Analyst attention</strong>: when analysts explicitly question a dropped target and management is forced to address it, the underperformance effect is attenuated, indicating that inattention drives the gradual price drift.</li>
+</ul>
+</li>
+<li><p><a href="https://arxiv.org/abs/2604.13260" target="_blank">Sidhu, Karmanpartap Singh, Junyi Fan, and Maryam Pishgar. &#x201C;Which Voices Move Markets? Speaker Identity and the Cross-Section of Post-Earnings Returns.&#x201D; <em>arXiv:2604.13260</em> (2026).</a></p>
+<ul>
+<li>Conference call&#x5206;section&#x3001;&#x5206;speaker&#x63D0;&#x53D6;FinBERT&#x60C5;&#x7EEA;&#xFF0C;&#x6309;&#x53D1;&#x8A00;&#x4EBA;&#x8EAB;&#x4EFD;&#x52A0;&#x6743;&#x3002;&#x6743;&#x91CD;&#x901A;&#x8FC7;&#x5B9E;&#x8BC1;&#x62DF;&#x5408;&#xFF1A;<strong>Analyst 49%, CFO 30%, Executive 16%, Other 5%</strong>&#x3002;</li>
+<li>&#x4E0D;&#x52A0;&#x6743;&#x7684;document-level sentiment&#x4E22;&#x5931;&#x5927;&#x91CF;&#x4FE1;&#x606F;&#xFF1B;Q&amp;A section&#x7684;analyst&#x63D0;&#x95EE;&#x53CA;&#x7BA1;&#x7406;&#x5C42;&#x56DE;&#x5E94;&#x662F;&#x4E3B;&#x8981;alpha&#x6765;&#x6E90;&#xFF1B;FinBERT&#x5B8C;&#x5168;&#x66FF;&#x4EE3;&#x4F20;&#x7EDF;Loughran-McDonald&#x8BCD;&#x5178;&#x65B9;&#x6CD5;&#xFF08;combined specification&#x4E2D;LM t=0.86&#xFF0C;FinBERT t=5.90&#xFF09;&#x3002;</li>
+<li>OOS Spearman IC = 0.142&#xFF08;&#x9AD8;&#x4E8E;IS&#x7684;0.115&#xFF09;&#xFF0C;&#x6708;&#x5EA6;long-short alpha 2.03%&#xFF08;FF5 unexplained, t=6.49&#xFF09;&#xFF0C;&#x63A7;&#x5236;SUE&#x540E;&#x4ECD;&#x663E;&#x8457;&#x3002;</li>
+<li>&#x5B9E;&#x73B0;&#x4E0A;&#x9700;&#x8981;speaker-level transcript parsing&#xFF0C;&#x4E3B;&#x6D41;&#x6570;&#x636E;&#x5546;&#xFF08;Refinitiv&#x3001;S&amp;P Capital IQ&#xFF09;&#x7684;transcript&#x5747;&#x6709;speaker&#x6807;&#x6CE8;&#x3002;</li>
 </ul>
 </li>
 </ul>
@@ -2648,7 +2828,7 @@ where <script type="math/tex; ">r_{i, t+1}</script> is the future asset <script 
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Quant Finance Notes","level":"1.2.11","depth":2,"next":{"title":"Machine Learning Notes","level":"1.2.12","depth":2,"path":"contents/mln.md","ref":"./contents/mln.md","articles":[]},"previous":{"title":"Broker Reports","level":"1.2.10","depth":2,"path":"contents/broker.md","ref":"./contents/broker.md","articles":[]},"dir":"ltr"},"config":{"plugins":["mathjax","image-captions","github","anchors","anchor-navigation-ex","-sharing","sharing-plus@^0.0.2","github-buttons","embed-pdf","livereload"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"github":{"url":"https://github.com/ZizouHe/"},"livereload":{},"search":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":false},"mode":"float","multipleH1":false,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":true},"github-buttons":{"buttons":[{"user":"ZizouHe","repo":"reading-notes","type":"star","size":"small"}]},"mathjax":{"forceSVG":false,"version":"2.6-latest"},"sharing":{"qq":true,"all":["facebook","google","twitter","weibo","qq","linkedin"],"douban":false,"facebook":true,"weibo":true,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":false,"messenger":false,"line":false,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"embed-pdf":{},"image-captions":{"caption":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","align":"right","variable_name":"_pictures"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{"_pictures":[{"backlink":"./notes/RDN.html#fig1.4.2.1","level":"1.4.2","align":"right","list_caption":"Figure: Example (a) data graph and (b) model graph.","alt":"Example (a) data graph and (b) model graph.","nro":1,"url":"./pic/RDN-1.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Example (a) data graph and (b) model graph.","attributes":{},"skip":false,"key":"1.4.2.1"},{"backlink":"./notes/RDN.html#fig1.4.2.2","level":"1.4.2","align":"right","list_caption":"Figure: RDN inference algorithm.","alt":"RDN inference algorithm.","nro":2,"url":"./pic/RDN-2.png","index":2,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"RDN inference algorithm.","attributes":{},"skip":false,"key":"1.4.2.2"},{"backlink":"./notes/Faster_Frank_Wolfe.html#fig1.4.14.1","level":"1.4.14","align":"right","list_caption":"Figure: Frank-Wolfe Algorithm","alt":"Frank-Wolfe Algorithm","nro":3,"url":"./pic/Frank-Wolfe.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Frank-Wolfe Algorithm","attributes":{},"skip":false,"key":"1.4.14.1"},{"backlink":"./notes/Fin_Fan_Book.html#fig1.4.15.1","level":"1.4.15","align":"right","list_caption":"Figure: Efficient Frontier with risk-free asset","alt":"Efficient Frontier with risk-free asset","nro":4,"url":"./pic/Eff_Front_1.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Efficient Frontier with risk-free asset","attributes":{},"skip":false,"key":"1.4.15.1"},{"backlink":"./notes/Fin_Fan_Book.html#fig1.4.15.2","level":"1.4.15","align":"right","list_caption":"Figure: Efficient Frontier without risk-free asset","alt":"Efficient Frontier without risk-free asset","nro":5,"url":"./pic/Eff_Front_2.png","index":2,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Efficient Frontier without risk-free asset","attributes":{},"skip":false,"key":"1.4.15.2"}]},"title":"Reading List & Notes","gitbook":"*"},"file":{"path":"contents/qfn.md","mtime":"2025-08-10T20:37:53.550Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2025-09-04T03:33:30.041Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Quant Finance Notes","level":"1.2.11","depth":2,"next":{"title":"Machine Learning Notes","level":"1.2.12","depth":2,"path":"contents/mln.md","ref":"./contents/mln.md","articles":[]},"previous":{"title":"Broker Reports","level":"1.2.10","depth":2,"path":"contents/broker.md","ref":"./contents/broker.md","articles":[]},"dir":"ltr"},"config":{"plugins":["mathjax","image-captions","github","anchors","anchor-navigation-ex","-sharing","sharing-plus@^0.0.2","github-buttons","embed-pdf","livereload"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"github":{"url":"https://github.com/ZizouHe/"},"livereload":{},"search":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":false},"mode":"float","multipleH1":false,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":true},"github-buttons":{"buttons":[{"user":"ZizouHe","repo":"reading-notes","type":"star","size":"small"}]},"mathjax":{"forceSVG":false,"version":"2.6-latest"},"sharing":{"qq":true,"all":["facebook","google","twitter","weibo","qq","linkedin"],"douban":false,"facebook":true,"weibo":true,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":false,"messenger":false,"line":false,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"embed-pdf":{},"image-captions":{"caption":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","align":"right","variable_name":"_pictures"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{"_pictures":[{"backlink":"./notes/RDN.html#fig1.4.2.1","level":"1.4.2","align":"right","list_caption":"Figure: Example (a) data graph and (b) model graph.","alt":"Example (a) data graph and (b) model graph.","nro":1,"url":"./pic/RDN-1.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Example (a) data graph and (b) model graph.","attributes":{},"skip":false,"key":"1.4.2.1"},{"backlink":"./notes/RDN.html#fig1.4.2.2","level":"1.4.2","align":"right","list_caption":"Figure: RDN inference algorithm.","alt":"RDN inference algorithm.","nro":2,"url":"./pic/RDN-2.png","index":2,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"RDN inference algorithm.","attributes":{},"skip":false,"key":"1.4.2.2"},{"backlink":"./notes/Faster_Frank_Wolfe.html#fig1.4.14.1","level":"1.4.14","align":"right","list_caption":"Figure: Frank-Wolfe Algorithm","alt":"Frank-Wolfe Algorithm","nro":3,"url":"./pic/Frank-Wolfe.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Frank-Wolfe Algorithm","attributes":{},"skip":false,"key":"1.4.14.1"},{"backlink":"./notes/Fin_Fan_Book.html#fig1.4.15.1","level":"1.4.15","align":"right","list_caption":"Figure: Efficient Frontier with risk-free asset","alt":"Efficient Frontier with risk-free asset","nro":4,"url":"./pic/Eff_Front_1.png","index":1,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Efficient Frontier with risk-free asset","attributes":{},"skip":false,"key":"1.4.15.1"},{"backlink":"./notes/Fin_Fan_Book.html#fig1.4.15.2","level":"1.4.15","align":"right","list_caption":"Figure: Efficient Frontier without risk-free asset","alt":"Efficient Frontier without risk-free asset","nro":5,"url":"./pic/Eff_Front_2.png","index":2,"caption_template":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","label":"Efficient Frontier without risk-free asset","attributes":{},"skip":false,"key":"1.4.15.2"}]},"title":"Reading List & Notes","gitbook":"*"},"file":{"path":"contents/qfn.md","mtime":"2026-07-04T02:44:49.307Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2026-08-30T01:26:16.161Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

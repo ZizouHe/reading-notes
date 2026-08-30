@@ -407,6 +407,13 @@ If all assets have the same Sharpe ratio (or mean, if volatilities are the same)
 - [Gallagher, David R., Peter A. Gardner, and Camille H. Schmidt. "Style factor timing: An application to the portfolio holdings of US fund managers." *Australian Journal of Management* 40.2 (2015): 318-350.](https://journals.sagepub.com/doi/abs/10.1177/0312896213519117?casa_token=zKwdORG-NWIAAAAA:RIOq1BFU8RuYHxcH2Adi75YuBCmTxT4_lkN84rsFJinzAMGLfElYHlstFGBgTCvfjF3ac6bVtQ)
   - The focus is on four popular factors: market, size, value, and momentum. The authors aim to develop a model using market and macroeconomic variables at the stock level and test it on a large sample of US active equity mutual funds. The study finds that a buy-and-hold strategy based on the highest forecast return each quarter yields an average annual excess return of 7.26% from 1981 to 2011, which is significant at the 1% level.
 
+- [Cui, L., G. Feng, J. Ma, and Y. Su. "Breaks and Trends in Factor Premia." Working paper (2025).](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4958484) — via [因子择时 | 川总写量化, 石川 (2025-10-20)](https://mp.weixin.qq.com/s/QjXQ2ldPMHlkl8J1WkfJ0w)
+  - Factor risk premia are piecewise-constant — stable within regimes, shifting at structural breaks. Proposes **TV-PR (Total Variation Predictive Regression)**, a lasso-type estimator between two extremes: constant γ (pooled panel) and period-by-period γ_t (Fama-MacBeth)
+  - TV-PR objective: MSE + λ·Σ|γ_{t,j} − γ_{t−1,j}| + η·Σ|γ_{j,t}|. The middle term is a **fused lasso on the time dimension**: L1 on period-to-period changes encourages γ_t to be flat most of the time and jump only at structural break points. λ controls number of breaks; η controls factor selection
+  - Empirical results (US stocks, 2004–2023, 61 factors): break identification robust across rolling windows; factor rotation (long top-5 / short bottom-5 by estimated premia) beats **factor momentum benchmark** at Sharpe ~0.77; single-factor timing beats buy-and-hold for most factors
+    - Factor momentum benchmark: each month rank factors by past cumulative return, long top / short bottom — mirrors stock-level momentum applied to factors (Ehsani & Linnainmaa 2022 JoF). Strong baseline in US equities; beating it suggests TV-PR adds value beyond raw return continuation
+  - 石川's take: still skeptical of factor timing in general due to large measurement errors in mean/std/corr making OOS hard to beat simple diversification, but considers TV-PR worth trying
+
 ## Industry Momentum
 
 - [Ge, Shuyi, et al. "Decoding Cross-Stock Predictability: Peer Strength versus Firm-Peer Disparities." *Available at SSRN 4848655* (2024).](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4849902)
@@ -459,3 +466,4 @@ If all assets have the same Sharpe ratio (or mean, if volatilities are the same)
       由定义可知，DR 越大说明因子之间的相关性越低，越能够分散化风险；越小则意味着因子之间的相关性上升。
 
   - 个别因子变得极度昂贵。
+

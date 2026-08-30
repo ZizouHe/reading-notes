@@ -104,3 +104,4 @@
     - [Regime Modeling](./notes/regime.md)
     - [Financial Statement Related](./notes/fin_stat.md)
     - [Deep Learning in Finance](./notes/dl_fin.md)
+    - [Advanced Portfolio Management (Paleologo)](./notes/apm-paleologo.md)
